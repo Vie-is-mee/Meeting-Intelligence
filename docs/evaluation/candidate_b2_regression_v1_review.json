@@ -1,0 +1,91 @@
+{
+  "version": "B2",
+  "method": "Same-assistant semantic review of a frozen development regression, not independent generalization. Include all failures and incomplete calls.",
+  "source_code_commit": "0dcb797e80a0191fe3d5c5c13d95f98f769ad51e",
+  "run": "docs/evaluation/candidate_b2_regression_v1.json",
+  "run_sha256": "e14b6b29653aad93e2a5cf33e1f097694afd619a3a463480246d649f45d0567e",
+  "input_sha256": "272d57b9cbf3798e44909c90e3e071525ca007ab86b8b534a91b9ac3e9577825",
+  "results": {
+    "requested": 8,
+    "attempted": 8,
+    "pipeline_and_audit_completed": 8,
+    "strict_case_passed": 4,
+    "core_data_passed": 5,
+    "api_attempts": 16,
+    "provider_reported_tokens": 42932
+  },
+  "cases": [
+    {
+      "id": "D01",
+      "verdict": "FAIL",
+      "core_data": "FAIL",
+      "audit": "MISSED_EXTRA_RECORD",
+      "expectation": "Agreed object storage th? nghi?m v? open nh? cung c?p; kh?ng t?o request t? agenda.",
+      "observed": "Hai quy?t ??nh b?t bu?c v? ngu?n L006 ??ng, nh?ng th?m request recorded t? m?c ti?u bu?i h?p L001. Audit tr?ng, kh?ng ph?t hi?n nh?m agenda th?nh nhu c?u nghi?p v?.",
+      "lesson": "Ch? d?n ch?ng over-extraction ch?a ?? ?n ??nh; t?ch choice c?i thi?n coverage nh?ng kh?ng b?o to?n to?n b? h?nh vi ?? ??t ? A."
+    },
+    {
+      "id": "LC01",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "M?t action cancelled, Mai l?ch s?, b? h?n; kh?ng request ho?c quy?t ??nh ph?.",
+      "observed": "M?t action cancelled/Mai/due null, assignment L001-L002, h?y L003, clear h?n L004. Chu?n h?a request L001 th?nh assignment c? c?u giao ??ch danh v? nh?n vi?c h? tr?, raw LLM v?n gi?. Audit tr?ng.",
+      "lesson": "Chu?n h?a speech act c? c?n c? gi?i quy?t tr?ng request/action trong l??t n?y; kh?ng ch?ng minh model t? ph?n lo?i ??ng."
+    },
+    {
+      "id": "LC02",
+      "verdict": "FAIL",
+      "core_data": "FAIL",
+      "audit": "MISSED_EXTRA_AND_MISSING_RECORD",
+      "expectation": "Request CSV gi?, task cancelled/D?ng/h?n null, c?ch thay th? open; kh?ng y?u c?u th? th? vi?n c?n hi?u l?c.",
+      "observed": "Request CSV v? action cancelled/D?ng/h?n null ??ng; thi?u decision c?ch thay th? ch?a ch?n L005. C? th?m request th? th? vi?n X v?i h?n chi?u mai d? c?ng vi?c ?? h?y. Gi? tr? request g?m deadline v? kh?c m? t? action n?n guard c?ng n?i dung kh?ng g?p. Audit tr?ng.",
+      "lesson": "Kh?ng n?i guard t?y ti?n theo output: c?n t?ch n?i dung nhi?m v? kh?i thu?c t?nh khi ki?m tra ??ng nh?t, v? ?o coverage c?u cu?i ri?ng."
+    },
+    {
+      "id": "H03",
+      "verdict": "FAIL",
+      "core_data": "FAIL",
+      "audit": "MISSED_MISSING_RECORD",
+      "expectation": "Request r? so?t tr??c l?n th? ti?p theo, kh?ng owner; ng?y th? T?/th? N?m ch?a ch?t, c?n r? so?t.",
+      "observed": "Request recorded v? h?n t??ng ??i L001 ??ng, kh?ng t? ??t owner. Thi?u decision open v? kh?ng ghi chi ti?t ng?y ch?a ch?t trong request theo ph??ng ?n g?p ?? cho ph?p; request unreviewed, kh?ng ngu?n L006. Audit tr?ng.",
+      "lesson": "Kh?i ph?c request kh?ng b?o ??m gi? di?n bi?n ng?y ch?a ch?t; B1 ??t ? case n?y nh?ng B2 ch?a ??t, cho th?y bi?n thi?n gi?a c?c l??t v? prompt."
+    },
+    {
+      "id": "LC03",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "Gi? decision ph?m vi n?i b?, request n?t quay l?i; action cancelled/Chi/h?n null.",
+      "observed": "Ba b?n ghi ??ng vai tr? v? tr??ng: decision agreed ch? nh?m n?i b? L001, request L002, action cancelled/Chi L003 v? h?y/x?a h?n L005. Kh?ng t?o quy?t ??nh ph?. Audit tr?ng, kh?ng ??i x?a owner l?ch s?.",
+      "lesson": "Audit ph?n bi?t ng??i t?ng nh?n vi?c v?i ng??i c? cam k?t hi?n h?nh t?t trong c? B1 v? B2 tr?n case n?y."
+    },
+    {
+      "id": "D03",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "Agreed trong ph?m vi thi?t k?, blocked ??n ph?p ch? duy?t; issue h?p ??ng ch?a duy?t ri?ng.",
+      "observed": "Hai b?n ghi b?t bu?c ??ng. Content/status L003; execution blocked v? condition ph?p ch? ph? duy?t L005. Issue open/needs_review L004. Kh?ng b?a ng??i/h?n ho?c cho ph?p tri?n khai ngay. Audit tr?ng.",
+      "lesson": "Gi? ???c h?nh vi t?ch quy?t ??nh trong h?p v? kh? n?ng tri?n khai trong l??t B2."
+    },
+    {
+      "id": "D04",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "Conditional, pending_condition; ng??ng m?i 300 ng??i AND kh?ng l?i nghi?m tr?ng, ch?a x?c nh?n ??t.",
+      "observed": "M?t decision ??ng ?? ?i?u ki?n hi?n h?nh L003 v? tr?ng th?i conditional/pending_condition/needs_review. Kh?ng gi? ng??ng 500, kh?ng nh?n ?? ??t, kh?ng t? giao Ki?n ki?m th?. Audit tr?ng.",
+      "lesson": "Gi? ???c c?p nh?t ??y ?? ?i?u ki?n v? tr?ng th?i ch? tr?n l??t B2."
+    },
+    {
+      "id": "H01",
+      "verdict": "FAIL",
+      "core_data": "PASS",
+      "audit": "FALSE_POSITIVE",
+      "expectation": "Reopened, condition null; action Huy v?n assigned kh?ng h?n, audit kh?ng ??i gi? ?i?u ki?n c?.",
+      "observed": "Hai b?n ghi b?t bu?c ??ng, ngu?n reopen L004/owner Huy L002; request l?m r? quy?n L003 l? extra c? c?n c?. Audit medium unsupported_fact ??i condition kh?ng null v? L004 n?i m? l?i, nh?ng ??y l? tr?ng th?i ch?a ch?t, kh?ng ph?i ?i?u ki?n tri?n khai m?i.",
+      "lesson": "Audit v?n c? th? nh?m tr?ng th?i m? l?i th?nh ?i?u ki?n d? ?? b? sung ng? c?nh; h?i quy H01 l?m l??t B2 kh?ng ??t gate b?o to?n case th?nh c?ng."
+    }
+  ]
+}

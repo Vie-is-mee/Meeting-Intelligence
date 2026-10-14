@@ -11,12 +11,62 @@
     "provider_reported_tokens": 37817
   },
   "candidate_b": {
-    "status": "not_created_or_evaluated",
-    "source_commit": null,
-    "model_config": null,
-    "run_artifact": null,
-    "review_artifact": null,
-    "summary": null
+    "status": "evaluated_not_accepted_keep_A",
+    "selected_candidate": null,
+    "experimental_branch": "candidate/b-core-repair-20261014",
+    "versions": [
+      {
+        "version": "B1",
+        "source_commit": "f469b5a39f0f19842b6dd075d90b5c8f1884bfcf",
+        "model": "openai/gpt-oss-120b",
+        "generation_settings": {
+          "max_completion_tokens": 2560,
+          "audit_max_completion_tokens": 1024,
+          "temperature": 0.6,
+          "reasoning_effort": "low"
+        },
+        "structured_outputs": "auto",
+        "run_artifact": "docs/evaluation/candidate_b1_regression_v1.json",
+        "review_artifact": "docs/evaluation/candidate_b1_regression_v1_review.json",
+        "run_sha256": "1e2d99f810ac47f2389eb37de587993701a69b5ec2b745697bdb3e1474a51610",
+        "summary": {
+          "requested": 8,
+          "attempted": 8,
+          "pipeline_and_audit_completed": 7,
+          "strict_case_passed": 5,
+          "core_data_passed": 5,
+          "api_attempts": 15,
+          "provider_reported_tokens": 39636
+        },
+        "selection": "rejected"
+      },
+      {
+        "version": "B2",
+        "source_commit": "0dcb797e80a0191fe3d5c5c13d95f98f769ad51e",
+        "model": "openai/gpt-oss-120b",
+        "generation_settings": {
+          "max_completion_tokens": 2560,
+          "audit_max_completion_tokens": 1024,
+          "temperature": 0.6,
+          "reasoning_effort": "low"
+        },
+        "structured_outputs": "auto",
+        "run_artifact": "docs/evaluation/candidate_b2_regression_v1.json",
+        "review_artifact": "docs/evaluation/candidate_b2_regression_v1_review.json",
+        "run_sha256": "e14b6b29653aad93e2a5cf33e1f097694afd619a3a463480246d649f45d0567e",
+        "summary": {
+          "requested": 8,
+          "attempted": 8,
+          "pipeline_and_audit_completed": 8,
+          "strict_case_passed": 4,
+          "core_data_passed": 5,
+          "api_attempts": 16,
+          "provider_reported_tokens": 42932
+        },
+        "selection": "rejected"
+      }
+    ],
+    "decision_reason": "B1 has a pipeline failure and D01 regression. B2 completes all cases but regresses D01 extra agenda request and H01 false audit; H03 and LC02 remain incomplete semantically. Do not choose the best per-case output across versions."
   },
   "regression_cases": [
     {
@@ -25,10 +75,24 @@
       "baseline_core": "FAIL",
       "baseline_audit": "FALSE_POSITIVES",
       "baseline_observation": "Chỉ có decision open; thiếu request và hạn tương đối. Audit đòi thể hiện đề xuất ngày trong bản ghi cuối, không phát hiện request thiếu.",
-      "candidate_b_strict": null,
-      "candidate_b_core": null,
-      "candidate_b_audit": null,
-      "comparison_reason": null
+      "candidate_b_strict": "FAIL",
+      "candidate_b_core": "FAIL",
+      "candidate_b_audit": "MISSED_MISSING_RECORD",
+      "comparison_reason": "Latest complete candidate is B2; all B1 results are retained above. Request recorded v? h?n t??ng ??i L001 ??ng, kh?ng t? ??t owner. Thi?u decision open v? kh?ng ghi chi ti?t ng?y ch?a ch?t trong request theo ph??ng ?n g?p ?? cho ph?p; request unreviewed, kh?ng ngu?n L006. Audit tr?ng.",
+      "candidate_versions": {
+        "B1": {
+          "strict": "PASS",
+          "core": "PASS",
+          "audit": "NO_FINDINGS",
+          "observed": "Có request và decision open, owner null. Model để due_raw null nhưng value chứa hạn tương đối; phần mềm giữ nguyên văn với nguồn L001 và warning. Audit trống."
+        },
+        "B2": {
+          "strict": "FAIL",
+          "core": "FAIL",
+          "audit": "MISSED_MISSING_RECORD",
+          "observed": "Request recorded v? h?n t??ng ??i L001 ??ng, kh?ng t? ??t owner. Thi?u decision open v? kh?ng ghi chi ti?t ng?y ch?a ch?t trong request theo ph??ng ?n g?p ?? cho ph?p; request unreviewed, kh?ng ngu?n L006. Audit tr?ng."
+        }
+      }
     },
     {
       "id": "LC03",
@@ -36,10 +100,24 @@
       "baseline_core": "PASS",
       "baseline_audit": "FALSE_POSITIVE",
       "baseline_observation": "Các bản ghi và trường lõi đúng; audit medium đòi xóa owner lịch sử sau hủy dù không có lệnh xóa.",
-      "candidate_b_strict": null,
-      "candidate_b_core": null,
-      "candidate_b_audit": null,
-      "comparison_reason": null
+      "candidate_b_strict": "PASS",
+      "candidate_b_core": "PASS",
+      "candidate_b_audit": "NO_FINDINGS",
+      "comparison_reason": "Latest complete candidate is B2; all B1 results are retained above. Ba b?n ghi ??ng vai tr? v? tr??ng: decision agreed ch? nh?m n?i b? L001, request L002, action cancelled/Chi L003 v? h?y/x?a h?n L005. Kh?ng t?o quy?t ??nh ph?. Audit tr?ng, kh?ng ??i x?a owner l?ch s?.",
+      "candidate_versions": {
+        "B1": {
+          "strict": "PASS",
+          "core": "PASS",
+          "audit": "NO_FINDINGS",
+          "observed": "Đủ ba bản ghi, task cancelled với owner lịch sử Chi L003, clear due nguồn L005. Audit không đòi xóa owner."
+        },
+        "B2": {
+          "strict": "PASS",
+          "core": "PASS",
+          "audit": "NO_FINDINGS",
+          "observed": "Ba b?n ghi ??ng vai tr? v? tr??ng: decision agreed ch? nh?m n?i b? L001, request L002, action cancelled/Chi L003 v? h?y/x?a h?n L005. Kh?ng t?o quy?t ??nh ph?. Audit tr?ng, kh?ng ??i x?a owner l?ch s?."
+        }
+      }
     },
     {
       "id": "D01",
@@ -47,10 +125,24 @@
       "baseline_core": "PASS",
       "baseline_audit": "NO_FINDINGS",
       "baseline_observation": "Decision agreed object storage, decision open nhà cung cấp, nguồn trạng thái/nội dung L006, không tự đặt người/hạn.",
-      "candidate_b_strict": null,
-      "candidate_b_core": null,
-      "candidate_b_audit": null,
-      "comparison_reason": null
+      "candidate_b_strict": "FAIL",
+      "candidate_b_core": "FAIL",
+      "candidate_b_audit": "MISSED_EXTRA_RECORD",
+      "comparison_reason": "Latest complete candidate is B2; all B1 results are retained above. Hai quy?t ??nh b?t bu?c v? ngu?n L006 ??ng, nh?ng th?m request recorded t? m?c ti?u bu?i h?p L001. Audit tr?ng, kh?ng ph?t hi?n nh?m agenda th?nh nhu c?u nghi?p v?.",
+      "candidate_versions": {
+        "B1": {
+          "strict": "FAIL",
+          "core": "FAIL",
+          "audit": "MISSED_MISSING_RECORD",
+          "observed": "Lựa chọn storage cuối đúng, nhưng chưa chọn nhà cung cấp chỉ nằm trong content agreed, thiếu record open riêng. Thêm request từ mục tiêu buổi họp. Audit không phát hiện thiếu/sai vai trò."
+        },
+        "B2": {
+          "strict": "FAIL",
+          "core": "FAIL",
+          "audit": "MISSED_EXTRA_RECORD",
+          "observed": "Hai quy?t ??nh b?t bu?c v? ngu?n L006 ??ng, nh?ng th?m request recorded t? m?c ti?u bu?i h?p L001. Audit tr?ng, kh?ng ph?t hi?n nh?m agenda th?nh nhu c?u nghi?p v?."
+        }
+      }
     },
     {
       "id": "D03",
@@ -58,10 +150,24 @@
       "baseline_core": "PASS",
       "baseline_audit": "NO_FINDINGS",
       "baseline_observation": "Đủ decision agreed/blocked/phạm vi/condition; nguồn nội dung L003, execution và condition L005; issue open L004, needs_review.",
-      "candidate_b_strict": null,
-      "candidate_b_core": null,
-      "candidate_b_audit": null,
-      "comparison_reason": null
+      "candidate_b_strict": "PASS",
+      "candidate_b_core": "PASS",
+      "candidate_b_audit": "NO_FINDINGS",
+      "comparison_reason": "Latest complete candidate is B2; all B1 results are retained above. Hai b?n ghi b?t bu?c ??ng. Content/status L003; execution blocked v? condition ph?p ch? ph? duy?t L005. Issue open/needs_review L004. Kh?ng b?a ng??i/h?n ho?c cho ph?p tri?n khai ngay. Audit tr?ng.",
+      "candidate_versions": {
+        "B1": {
+          "strict": "PASS",
+          "core": "PASS",
+          "audit": "NO_FINDINGS",
+          "observed": "Decision agreed/blocked đúng scope và điều kiện; source content/status L003, execution/condition L005; issue open L004 needs_review. Audit trống."
+        },
+        "B2": {
+          "strict": "PASS",
+          "core": "PASS",
+          "audit": "NO_FINDINGS",
+          "observed": "Hai b?n ghi b?t bu?c ??ng. Content/status L003; execution blocked v? condition ph?p ch? ph? duy?t L005. Issue open/needs_review L004. Kh?ng b?a ng??i/h?n ho?c cho ph?p tri?n khai ngay. Audit tr?ng."
+        }
+      }
     },
     {
       "id": "D04",
@@ -69,10 +175,24 @@
       "baseline_core": "PASS",
       "baseline_audit": "NO_FINDINGS",
       "baseline_observation": "Đúng đầy đủ điều kiện thay thế, nguồn L003; không bịa người/hạn; needs_review. Audit trống.",
-      "candidate_b_strict": null,
-      "candidate_b_core": null,
-      "candidate_b_audit": null,
-      "comparison_reason": null
+      "candidate_b_strict": "PASS",
+      "candidate_b_core": "PASS",
+      "candidate_b_audit": "NO_FINDINGS",
+      "comparison_reason": "Latest complete candidate is B2; all B1 results are retained above. M?t decision ??ng ?? ?i?u ki?n hi?n h?nh L003 v? tr?ng th?i conditional/pending_condition/needs_review. Kh?ng gi? ng??ng 500, kh?ng nh?n ?? ??t, kh?ng t? giao Ki?n ki?m th?. Audit tr?ng.",
+      "candidate_versions": {
+        "B1": {
+          "strict": "PASS",
+          "core": "PASS",
+          "audit": "NO_FINDINGS",
+          "observed": "Conditional/pending_condition đúng đầy đủ condition nguồn L003, needs_review; không bịa người/hạn. Audit trống."
+        },
+        "B2": {
+          "strict": "PASS",
+          "core": "PASS",
+          "audit": "NO_FINDINGS",
+          "observed": "M?t decision ??ng ?? ?i?u ki?n hi?n h?nh L003 v? tr?ng th?i conditional/pending_condition/needs_review. Kh?ng gi? ng??ng 500, kh?ng nh?n ?? ??t, kh?ng t? giao Ki?n ki?m th?. Audit tr?ng."
+        }
+      }
     },
     {
       "id": "H01",
@@ -80,10 +200,24 @@
       "baseline_core": "PASS",
       "baseline_audit": "NO_FINDINGS",
       "baseline_observation": "Đúng hai bản ghi, nguồn mở lại L004, owner Huy L002; audit trống, không tự hủy action.",
-      "candidate_b_strict": null,
-      "candidate_b_core": null,
-      "candidate_b_audit": null,
-      "comparison_reason": null
+      "candidate_b_strict": "FAIL",
+      "candidate_b_core": "PASS",
+      "candidate_b_audit": "FALSE_POSITIVE",
+      "comparison_reason": "Latest complete candidate is B2; all B1 results are retained above. Hai b?n ghi b?t bu?c ??ng, ngu?n reopen L004/owner Huy L002; request l?m r? quy?n L003 l? extra c? c?n c?. Audit medium unsupported_fact ??i condition kh?ng null v? L004 n?i m? l?i, nh?ng ??y l? tr?ng th?i ch?a ch?t, kh?ng ph?i ?i?u ki?n tri?n khai m?i.",
+      "candidate_versions": {
+        "B1": {
+          "strict": "PASS",
+          "core": "PASS",
+          "audit": "NO_FINDINGS",
+          "observed": "Hai bản ghi bắt buộc đúng nguồn L004 và L002, không hủy task. Request làm rõ quyền từ L003 có căn cứ và được chấp nhận như extra, không tăng required recall. Audit trống."
+        },
+        "B2": {
+          "strict": "FAIL",
+          "core": "PASS",
+          "audit": "FALSE_POSITIVE",
+          "observed": "Hai b?n ghi b?t bu?c ??ng, ngu?n reopen L004/owner Huy L002; request l?m r? quy?n L003 l? extra c? c?n c?. Audit medium unsupported_fact ??i condition kh?ng null v? L004 n?i m? l?i, nh?ng ??y l? tr?ng th?i ch?a ch?t, kh?ng ph?i ?i?u ki?n tri?n khai m?i."
+        }
+      }
     },
     {
       "id": "LC01",
@@ -91,10 +225,24 @@
       "baseline_core": "FAIL",
       "baseline_audit": "SUPPORTED_FINDING",
       "baseline_observation": "Action đúng nhưng có request recorded trùng câu giao việc. Guard needs_review và audit high unsupported_fact dẫn L003 phát hiện request thừa.",
-      "candidate_b_strict": null,
-      "candidate_b_core": null,
-      "candidate_b_audit": null,
-      "comparison_reason": null
+      "candidate_b_strict": "PASS",
+      "candidate_b_core": "PASS",
+      "candidate_b_audit": "NO_FINDINGS",
+      "comparison_reason": "Latest complete candidate is B2; all B1 results are retained above. M?t action cancelled/Mai/due null, assignment L001-L002, h?y L003, clear h?n L004. Chu?n h?a request L001 th?nh assignment c? c?u giao ??ch danh v? nh?n vi?c h? tr?, raw LLM v?n gi?. Audit tr?ng.",
+      "candidate_versions": {
+        "B1": {
+          "strict": "ERROR",
+          "core": "NOT_EVALUATED",
+          "audit": "NOT_RUN",
+          "observed": "Extraction để mô tả nhiệm vụ trong request, action assignment value null. Guard nội dung nhóm action từ chối trước resolver/audit. Không có output được công bố."
+        },
+        "B2": {
+          "strict": "PASS",
+          "core": "PASS",
+          "audit": "NO_FINDINGS",
+          "observed": "M?t action cancelled/Mai/due null, assignment L001-L002, h?y L003, clear h?n L004. Chu?n h?a request L001 th?nh assignment c? c?u giao ??ch danh v? nh?n vi?c h? tr?, raw LLM v?n gi?. Audit tr?ng."
+        }
+      }
     },
     {
       "id": "LC02",
@@ -102,10 +250,24 @@
       "baseline_core": "FAIL",
       "baseline_audit": "FALSE_POSITIVE",
       "baseline_observation": "Request và task cancelled/Dũng/hạn null đúng, nhưng thiếu decision cách thay thế chưa chốt; thêm proposal thử thư viện X. Audit medium đòi lý do hủy giấy phép không phù hợp thành condition hiện hành.",
-      "candidate_b_strict": null,
-      "candidate_b_core": null,
-      "candidate_b_audit": null,
-      "comparison_reason": null
+      "candidate_b_strict": "FAIL",
+      "candidate_b_core": "FAIL",
+      "candidate_b_audit": "MISSED_EXTRA_AND_MISSING_RECORD",
+      "comparison_reason": "Latest complete candidate is B2; all B1 results are retained above. Request CSV v? action cancelled/D?ng/h?n null ??ng; thi?u decision c?ch thay th? ch?a ch?n L005. C? th?m request th? th? vi?n X v?i h?n chi?u mai d? c?ng vi?c ?? h?y. Gi? tr? request g?m deadline v? kh?c m? t? action n?n guard c?ng n?i dung kh?ng g?p. Audit tr?ng.",
+      "candidate_versions": {
+        "B1": {
+          "strict": "FAIL",
+          "core": "FAIL",
+          "audit": "MISSED_MISSING_RECORD",
+          "observed": "Request và task đúng, không proposal phụ, condition null. Vẫn thiếu choice cách thay thế chưa chốt. Audit trống nên bỏ sót lỗi coverage."
+        },
+        "B2": {
+          "strict": "FAIL",
+          "core": "FAIL",
+          "audit": "MISSED_EXTRA_AND_MISSING_RECORD",
+          "observed": "Request CSV v? action cancelled/D?ng/h?n null ??ng; thi?u decision c?ch thay th? ch?a ch?n L005. C? th?m request th? th? vi?n X v?i h?n chi?u mai d? c?ng vi?c ?? h?y. Gi? tr? request g?m deadline v? kh?c m? t? action n?n guard c?ng n?i dung kh?ng g?p. Audit tr?ng."
+        }
+      }
     }
   ],
   "prospective_evaluation": {
@@ -141,5 +303,16 @@
     "Preserve errors, incomplete runs and all repeated outputs",
     "Do not claim dataset-wide precision/recall from an eight-case regression"
   ],
-  "changes": []
+  "changes": [
+    "Coverage/role separation extraction instructions",
+    "Source-backed normalization of duplicate named assignments before orphan-group validation",
+    "State context and cancellation/history instructions for second-pass audit",
+    "No model, context-window, resolver/schema changes; no N01-N12 tuning or API evaluation"
+  ],
+  "measurement_limits": [
+    "One fresh run per candidate version, temperature 0.6; prompt change and provider sampling effects cannot be isolated.",
+    "All eight cases are development regression; same-assistant review, no independent benchmark.",
+    "Case success counts are not dataset-wide precision/recall.",
+    "No post-hoc gold or acceptance changes, no rerun replacing failed cases."
+  ]
 }

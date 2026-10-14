@@ -99,5 +99,41 @@
       "core_tuned_on_cases": false,
       "independence_claim": false
     }
+  ],
+  "candidate_regression_runs": [
+    {
+      "version": "B1",
+      "source": "docs/evaluation/candidate_b1_regression_v1.json",
+      "case_ids": [
+        "D01",
+        "D03",
+        "D04",
+        "H01",
+        "H03",
+        "LC01",
+        "LC02",
+        "LC03"
+      ],
+      "current_role": "development_regression",
+      "independence_claim": false,
+      "selected_for_main": false
+    },
+    {
+      "version": "B2",
+      "source": "docs/evaluation/candidate_b2_regression_v1.json",
+      "case_ids": [
+        "D01",
+        "D03",
+        "D04",
+        "H01",
+        "H03",
+        "LC01",
+        "LC02",
+        "LC03"
+      ],
+      "current_role": "development_regression",
+      "independence_claim": false,
+      "selected_for_main": false
+    }
   ]
 }

@@ -1,0 +1,91 @@
+{
+  "version": "B1",
+  "method": "Same-assistant semantic review of a frozen development regression, not independent generalization. Include all failures and incomplete calls.",
+  "source_code_commit": "f469b5a39f0f19842b6dd075d90b5c8f1884bfcf",
+  "run": "docs/evaluation/candidate_b1_regression_v1.json",
+  "run_sha256": "1e2d99f810ac47f2389eb37de587993701a69b5ec2b745697bdb3e1474a51610",
+  "input_sha256": "645efef8c0f9b5310aa087fb13685e2e5e59962e1846d6c44dd66ee2ddf61b56",
+  "results": {
+    "requested": 8,
+    "attempted": 8,
+    "pipeline_and_audit_completed": 7,
+    "strict_case_passed": 5,
+    "core_data_passed": 5,
+    "api_attempts": 15,
+    "provider_reported_tokens": 39636
+  },
+  "cases": [
+    {
+      "id": "H03",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "Giữ request rà soát trước lần thử tiếp theo, không gán người/ngày, ngày còn mở.",
+      "observed": "Có request và decision open, owner null. Model để due_raw null nhưng value chứa hạn tương đối; phần mềm giữ nguyên văn với nguồn L001 và warning. Audit trống.",
+      "lesson": "Inventory yêu cầu tốt hơn trong lượt này; chưa chứng minh riêng LLM đã trích đúng field hạn."
+    },
+    {
+      "id": "LC03",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "Scope nội bộ và request quay lại giữ; task hướng dẫn cancelled/Chi/hạn null.",
+      "observed": "Đủ ba bản ghi, task cancelled với owner lịch sử Chi L003, clear due nguồn L005. Audit không đòi xóa owner.",
+      "lesson": "Ngữ cảnh trạng thái giúp audit trong lượt này; vẫn cần đo thêm tính ổn định."
+    },
+    {
+      "id": "D01",
+      "verdict": "FAIL",
+      "core_data": "FAIL",
+      "audit": "MISSED_MISSING_RECORD",
+      "expectation": "Agreed object storage thử nghiệm và open nhà cung cấp, không request từ agenda.",
+      "observed": "Lựa chọn storage cuối đúng, nhưng chưa chọn nhà cung cấp chỉ nằm trong content agreed, thiếu record open riêng. Thêm request từ mục tiêu buổi họp. Audit không phát hiện thiếu/sai vai trò.",
+      "lesson": "Coverage request có thể gây over-extraction agenda, và composite agreed không thể thay một choice open có trạng thái riêng."
+    },
+    {
+      "id": "D03",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "Agreed phạm vi thiết kế, blocked đến pháp chế duyệt, issue hợp đồng riêng.",
+      "observed": "Decision agreed/blocked đúng scope và điều kiện; source content/status L003, execution/condition L005; issue open L004 needs_review. Audit trống.",
+      "lesson": "Hành vi phạm vi và quyền triển khai được giữ trong lượt mới."
+    },
+    {
+      "id": "D04",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "Conditional với 300 người đồng thời AND không lỗi nghiêm trọng, chưa đạt điều kiện.",
+      "observed": "Conditional/pending_condition đúng đầy đủ condition nguồn L003, needs_review; không bịa người/hạn. Audit trống.",
+      "lesson": "Thay đổi ngưỡng và trạng thái chờ được giữ."
+    },
+    {
+      "id": "H01",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "Reopened, condition null; action Huy vẫn assigned không hạn.",
+      "observed": "Hai bản ghi bắt buộc đúng nguồn L004 và L002, không hủy task. Request làm rõ quyền từ L003 có căn cứ và được chấp nhận như extra, không tăng required recall. Audit trống.",
+      "lesson": "Extra đúng nguồn/role không tự là lỗi; tách phần gold cốt lõi khỏi mọi thông tin hữu ích."
+    },
+    {
+      "id": "LC01",
+      "verdict": "ERROR",
+      "core_data": "NOT_EVALUATED",
+      "audit": "NOT_RUN",
+      "expectation": "Một action cancelled, Mai lịch sử, bỏ hạn; không request phụ.",
+      "observed": "Extraction để mô tả nhiệm vụ trong request, action assignment value null. Guard nội dung nhóm action từ chối trước resolver/audit. Không có output được công bố.",
+      "lesson": "An toàn khi không suy diễn từ topic, nhưng normalization hẹp cần chạy trước guard nếu câu giao việc đích danh đã có nội dung thật."
+    },
+    {
+      "id": "LC02",
+      "verdict": "FAIL",
+      "core_data": "FAIL",
+      "audit": "MISSED_MISSING_RECORD",
+      "expectation": "Request CSV giữ, task cancelled/Dũng/hạn null, cách thay thế open.",
+      "observed": "Request và task đúng, không proposal phụ, condition null. Vẫn thiếu choice cách thay thế chưa chốt. Audit trống nên bỏ sót lỗi coverage.",
+      "lesson": "Sửa nhầm proposal không đủ; phải kiểm tra từng mệnh đề và choice độc lập trong kết luận cuối."
+    }
+  ]
+}
