@@ -61,11 +61,15 @@
         "N11",
         "N12"
       ],
-      "current_role": "prospective_synthetic_pending_human_labels",
+      "current_role": "prospective_synthetic_assistant_labeled_not_run",
       "independence_claim": false,
       "outputs_observed": false,
       "used_to_tune_core": false,
-      "reason": "New synthetic cases, same implementation author, no gold or outputs yet. Human annotation remains pending."
+      "reason": "User requested assistant annotation. Internal same-author labels finalized before outputs; implementation author has seen both transcripts and labels, so no independent/unseen benchmark claim.",
+      "label_author": "coding_assistant_same_author_not_independent_human",
+      "human_signoff": false,
+      "annotation_file": "datasets/prospective_eval_v2_annotations.json",
+      "frozen_input": "datasets/prospective_eval_v2_frozen.json"
     }
   ],
   "independent_real_world_benchmark": {
@@ -73,5 +77,27 @@
     "case_ids": []
   },
   "policy": "Record any prospective case used to tune as development before measuring a revised candidate. Never silently relabel it as unseen.",
-  "exposure_log": []
+  "exposure_log": [
+    {
+      "local_date": "2026-10-14",
+      "case_ids": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "N10",
+        "N11",
+        "N12"
+      ],
+      "event": "assistant_same_author_semantic_annotation_requested_by_user",
+      "model_outputs_seen": false,
+      "core_tuned_on_cases": false,
+      "independence_claim": false
+    }
+  ]
 }

@@ -64,15 +64,32 @@ class EvaluationPreparationTests(unittest.TestCase):
         pool,annotations=fixture();annotations['cases'].append(copy.deepcopy(annotations['cases'][0]))
         with self.assertRaisesRegex(ValueError,'exactly once'):validate_annotations(pool,annotations)
 
-    def test_new_pool_has_no_gold_or_outputs_and_counts_match_parser(self):
+    def test_new_pool_has_no_outputs_and_reviewed_labels_keep_source_hashes(self):
         pool=json.loads((ROOT/'datasets/prospective_eval_v2.json').read_text(encoding='utf8'))
         annotations=json.loads((ROOT/'datasets/prospective_eval_v2_annotations.json').read_text(encoding='utf8'))
         self.assertEqual(len(pool['cases']),12);self.assertFalse(pool['llm_execution_performed']);self.assertFalse(pool['independence_claim'])
         for case,row in zip(pool['cases'],annotations['cases']):
-            self.assertNotIn('required_records',case);self.assertNotIn('output',case);self.assertIsNone(row['required_records'])
+            self.assertNotIn('required_records',case);self.assertNotIn('output',case);self.assertIsInstance(row['required_records'],list)
+            self.assertEqual(row['annotation_status'],'assistant_reviewed');self.assertIn('not_independent_human',row['reviewer'])
             self.assertEqual(case['utterance_count'],len(parse_transcript(case['transcript'])))
             self.assertEqual(row['transcript_sha256'],digest(case['transcript']))
         self.assertTrue(all(c['utterance_count']>=70 for c in pool['cases'] if c['difficulty']=='hard'))
+        self.assertEqual(sum(len(c['required_records']) for c in validate_annotations(pool,annotations,allow_assistant_review=True)),27)
+
+    def test_assistant_labels_require_explicit_acceptance_and_never_create_human_signoff(self):
+        pool,annotations=fixture();annotations['cases'][0]['annotation_status']='assistant_reviewed'
+        with self.assertRaises(ValueError):validate_annotations(pool,annotations)
+        case=validate_annotations(pool,annotations,allow_assistant_review=True)[0]
+        self.assertEqual(case['annotation_status'],'assistant_reviewed_internal');self.assertNotIn('human_signoff',case)
+
+    def test_invalid_alternative_or_its_quote_is_rejected(self):
+        pool,annotations=fixture();row=annotations['cases'][0]
+        alt={'id':'equivalent','replaces_label_ids':['missing'],'expected_records':[copy.deepcopy(row['required_records'][0])]}
+        row['representation_alternatives']=[alt]
+        with self.assertRaisesRegex(ValueError,'alternative'):validate_annotations(pool,annotations)
+        alt['replaces_label_ids']=['guide'];alt['expected_records'][0]['label_id']='guide_combined'
+        alt['expected_records'][0]['evidence'][0]['source_id']='L999'
+        with self.assertRaisesRegex(ValueError,'exact parser'):validate_annotations(pool,annotations)
 
     def test_runner_blocks_pending_pool_before_client_or_api(self):
         from scripts import run_dataset

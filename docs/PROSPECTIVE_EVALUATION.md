@@ -1,6 +1,8 @@
 # Bước 1 — Chốt baseline A và chuẩn bị đánh giá mới
 
-Trạng thái: baseline đã chốt; 12 transcript mới đã chuẩn bị; nhãn con người chưa có; không chạy API ở bước này. Không gọi bước chuẩn bị này là đánh giá độc lập đã hoàn thành.
+Trạng thái mới: theo yêu cầu ứng viên, trợ lý đã đọc và gán nhãn 12 transcript trước đầu ra model: 27 nhãn cốt lõi, 9 extras tham chiếu và 4 biểu diễn tương đương. [Báo cáo lý do từng case](PROSPECTIVE_LABEL_REVIEW.md). Nhãn con người vẫn chưa có; không chạy API ở bước này, không có điểm mới hay đánh giá độc lập.
+
+Nhãn ở `datasets/prospective_eval_v2_annotations.json` ghi `assistant_reviewed`, không giả human signoff. Đầu vào đã seal tại `datasets/prospective_eval_v2_frozen.json` với `label_review_mode: assistant_internal` và `independence_claim: false`. Pool transcript gốc vẫn có gate pending: chạy đánh giá tương lai phải dùng file frozen, không đưa JSON nhãn hoặc đáp án vào prompt.
 
 ## Baseline A
 
@@ -18,7 +20,7 @@ Trạng thái: baseline đã chốt; 12 transcript mới đã chuẩn bị; nhã
 | Nhóm | Vai trò hiện tại |
 | --- | --- |
 | 24 case D/H cũ và LC01–LC03 | Dữ liệu đã xem, phát triển/hồi quy; không dùng làm điểm độc lập |
-| N01–N12 mới | Pool tổng hợp prospective, chưa có đầu ra; không dùng để tinh chỉnh trước lượt đo |
+| N01–N12 mới | Tổng hợp prospective, nhãn nội bộ của trợ lý đã chốt, chưa có đầu ra; không dùng để tinh chỉnh trước lượt đo |
 | Benchmark độc lập thực tế | Chưa có; cần transcript do người khác cung cấp, quyền sử dụng phù hợp và nhãn trước đầu ra |
 
 N01–N12 do cùng trợ lý triển khai viết và nhìn thấy. Người thứ hai gán nhãn sẽ cải thiện chất lượng nhãn, nhưng không tự biến nguồn dữ liệu thành họp thật hoặc thành benchmark độc lập hoàn toàn. Nếu dùng một N-case để sửa prompt/code, ghi nhận thành development và tạo case mới thay thế trước khi đo.
@@ -44,7 +46,7 @@ Pool: [prospective_eval_v2.json](../datasets/prospective_eval_v2.json). Phiếu 
 
 Độ khó là dự đoán của người thiết kế, không phải cam kết dễ sẽ đúng hoặc khó sẽ sai. Transcript dài ở đây vẫn chỉ là dài đối với MVP, chưa đại diện cuộc họp nhiều giờ.
 
-## Gán nhãn trước khi xem model
+## Cách gán nhãn con người nếu bổ sung sau
 
 1. Bạn/người thứ hai đọc từng transcript từ phiếu, chưa chạy qua website/CLI. Ghi thông tin có giá trị sau cuộc họp, trạng thái cuối và nguồn chứng minh; không cần ép có đủ mọi loại trong từng case.
 2. Điền `datasets/prospective_eval_v2_annotations.json`. `required_records: null` nghĩa là chưa gán nhãn; chỉ dùng `[]` khi đã xác định không có bản ghi bắt buộc và ghi `no_required_records_reason`.
@@ -58,7 +60,13 @@ python scripts/prepare_prospective_eval.py
 python scripts/prepare_prospective_eval.py --freeze
 ```
 
-Hiện lệnh phải từ chối vì nhãn còn trống. `run_dataset.py` cũng chặn pool pending trước khi tạo client/gọi API. Không có tùy chọn bỏ qua gate cho pool này. Dataset frozen chỉ được tạo khi toàn bộ nhãn hợp lệ; không ghi đè một dataset đã seal.
+Lệnh mặc định chỉ chấp nhận human_reviewed thực sự được tự khai. Với yêu cầu mới của ứng viên, nhãn trợ lý được chấp nhận bằng tùy chọn rõ ràng, giữ tác giả nội bộ:
+
+```powershell
+python scripts/prepare_prospective_eval.py --allow-assistant-review
+```
+
+File đã seal, không chạy `--freeze` lại để ghi đè. Khi thay nhãn có căn cứ, dùng phiên bản annotation và đường dẫn frozen mới, ghi lý do. `run_dataset.py` tiếp tục chặn pool pending trước client/API; dataset frozen nội bộ mới đủ cấu trúc để đo ở bước sau. Cho phép nhãn trợ lý không làm thay đổi độ độc lập của bộ dữ liệu.
 
 Mẫu một nhãn (ví dụ riêng, KHÔNG là đáp án N01–N12):
 
@@ -99,4 +107,4 @@ Validator kiểm tra cấu trúc, hash và quote tồn tại, không tự chứn
 
 ## Hoàn thành và phần còn lại
 
-Đã chuẩn bị checkpoint A, registry, bảng so sánh chưa có B, 12 transcript, phiếu/JSON nhãn và gate. Chưa có human labels, benchmark độc lập, candidate B hoặc điểm mới. Bước tiếp theo: sửa ba nhóm lỗi lõi trên dữ liệu phát triển/hồi quy; đồng thời người đọc chuẩn bị nhãn bộ mới trước khi chạy API.
+Đã chuẩn bị checkpoint A, registry, bảng so sánh chưa có B, 12 transcript, nhãn trợ lý được rà và seal, phiếu/JSON cùng gate. Chưa có human labels, benchmark độc lập, candidate B hoặc điểm mới. Bước tiếp theo: sửa ba nhóm lỗi lõi trên dữ liệu phát triển/hồi quy; khi đo bộ mới dùng nguyên nhãn đã chốt, không sửa theo câu trả lời model.

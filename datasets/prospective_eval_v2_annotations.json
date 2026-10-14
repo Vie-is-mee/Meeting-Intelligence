@@ -1,163 +1,2716 @@
 {
   "dataset_id": "prospective_eval_vi_v2",
-  "status": "pending_human_labels",
+  "status": "assistant_semantically_reviewed_before_outputs",
   "instructions": "Write labels before viewing model outputs; null required_records means NOT annotated, [] means deliberately no required records and needs a reason. Human signoff is self-reported, not independently authenticated.",
   "cases": [
     {
       "id": "N01",
       "transcript_sha256": "3df1bc5f6d3dc6f81299d3d312c093ea3332e3deb6316fdd683167cf35af0bd3",
-      "annotation_status": "pending",
-      "reviewer": "",
-      "reviewed_at": null,
-      "labels_finalized_before_outputs": false,
-      "required_records": null,
+      "annotation_status": "assistant_reviewed",
+      "reviewer": "coding_assistant_same_author_not_independent_human",
+      "reviewed_at": "2026-10-14T14:08:45.376727+00:00",
+      "labels_finalized_before_outputs": true,
+      "required_records": [
+        {
+          "label_id": "south_carrier",
+          "kind": "decision",
+          "meaning": "Dùng đơn vị Mây cho đợt bán thử miền Nam",
+          "meeting_status": "agreed",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L001",
+              "quote": "Buổi này chỉ chọn đơn vị giao hàng cho đợt bán thử miền Nam."
+            },
+            {
+              "source_id": "L004",
+              "quote": "Vậy tôi rút đề xuất Sao và đồng ý dùng Mây cho đợt thử."
+            },
+            {
+              "source_id": "L005",
+              "quote": "Thống nhất Mây cho đợt thử miền Nam. Chưa chọn đơn vị cho miền Bắc."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L001",
+                "quote": "Buổi này chỉ chọn đơn vị giao hàng cho đợt bán thử miền Nam."
+              },
+              {
+                "source_id": "L005",
+                "quote": "Thống nhất Mây cho đợt thử miền Nam. Chưa chọn đơn vị cho miền Bắc."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L005",
+                "quote": "Thống nhất Mây cho đợt thử miền Nam. Chưa chọn đơn vị cho miền Bắc."
+              }
+            ]
+          },
+          "counter_evidence": [
+            {
+              "source_id": "L002",
+              "quote": "Tôi đề xuất giao cho đơn vị Sao vì giá thấp hơn."
+            }
+          ],
+          "must_flag_for_review": false,
+          "semantic_note": "Sao là đề xuất cũ đã rút; Mây chỉ áp dụng đợt thử miền Nam."
+        }
+      ],
       "no_required_records_reason": null,
-      "allowed_additional_records": [],
-      "forbidden_claims": [],
-      "case_review_required": false
+      "allowed_additional_records": [
+        {
+          "label_id": "north_carrier_open",
+          "kind": "decision",
+          "meaning": "Chưa chọn đơn vị giao hàng miền Bắc, để cuộc họp khác",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L005",
+              "quote": "Thống nhất Mây cho đợt thử miền Nam. Chưa chọn đơn vị cho miền Bắc."
+            },
+            {
+              "source_id": "L006",
+              "quote": "Miền Bắc sẽ bàn ở một cuộc họp khác; hôm nay không giao việc liên hệ bên nào."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L005",
+                "quote": "Thống nhất Mây cho đợt thử miền Nam. Chưa chọn đơn vị cho miền Bắc."
+              },
+              {
+                "source_id": "L006",
+                "quote": "Miền Bắc sẽ bàn ở một cuộc họp khác; hôm nay không giao việc liên hệ bên nào."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L005",
+                "quote": "Thống nhất Mây cho đợt thử miền Nam. Chưa chọn đơn vị cho miền Bắc."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        }
+      ],
+      "forbidden_claims": [
+        "Sao là đơn vị đang được chọn",
+        "Mây đã được chọn cho mọi miền/mọi đợt",
+        "Có một người đã nhận liên hệ đơn vị giao hàng"
+      ],
+      "case_review_required": false,
+      "representation_alternatives": [],
+      "annotation_notes": "Miền Bắc nằm ngoài phạm vi chọn hôm nay: chấp nhận open riêng nhưng không bắt buộc model phải tạo record ngoài phạm vi. Không chấm proposal Sao thành quyết định còn hiệu lực."
     },
     {
       "id": "N02",
       "transcript_sha256": "7a2397677576c79f91bc1b99d5908cf7dfc68bbded37863db1d1df68461f8b22",
-      "annotation_status": "pending",
-      "reviewer": "",
-      "reviewed_at": null,
-      "labels_finalized_before_outputs": false,
-      "required_records": null,
+      "annotation_status": "assistant_reviewed",
+      "reviewer": "coding_assistant_same_author_not_independent_human",
+      "reviewed_at": "2026-10-14T14:08:45.376727+00:00",
+      "labels_finalized_before_outputs": true,
+      "required_records": [
+        {
+          "label_id": "activation_guide",
+          "kind": "action",
+          "meaning": "Làm bản hướng dẫn kích hoạt tài khoản",
+          "meeting_status": "assigned",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": "Uyên",
+          "supporter": null,
+          "due_raw": "chiều thứ Sáu",
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L001",
+              "quote": "Phương làm bản hướng dẫn kích hoạt tài khoản, hạn sáng thứ Tư nhé."
+            },
+            {
+              "source_id": "L004",
+              "quote": "Chuyển bản hướng dẫn sang Uyên, hạn chiều thứ Sáu; không giữ hạn thứ Tư nữa."
+            },
+            {
+              "source_id": "L005",
+              "quote": "Tôi nhận làm bản hướng dẫn, gửi chiều thứ Sáu."
+            },
+            {
+              "source_id": "L006",
+              "quote": "Đúng, Uyên phụ trách. Phương không còn phụ trách bản này; chưa giao người hỗ trợ."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L001",
+                "quote": "Phương làm bản hướng dẫn kích hoạt tài khoản, hạn sáng thứ Tư nhé."
+              },
+              {
+                "source_id": "L004",
+                "quote": "Chuyển bản hướng dẫn sang Uyên, hạn chiều thứ Sáu; không giữ hạn thứ Tư nữa."
+              },
+              {
+                "source_id": "L005",
+                "quote": "Tôi nhận làm bản hướng dẫn, gửi chiều thứ Sáu."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L005",
+                "quote": "Tôi nhận làm bản hướng dẫn, gửi chiều thứ Sáu."
+              },
+              {
+                "source_id": "L006",
+                "quote": "Đúng, Uyên phụ trách. Phương không còn phụ trách bản này; chưa giao người hỗ trợ."
+              }
+            ],
+            "owner": [
+              {
+                "source_id": "L004",
+                "quote": "Chuyển bản hướng dẫn sang Uyên, hạn chiều thứ Sáu; không giữ hạn thứ Tư nữa."
+              },
+              {
+                "source_id": "L005",
+                "quote": "Tôi nhận làm bản hướng dẫn, gửi chiều thứ Sáu."
+              },
+              {
+                "source_id": "L006",
+                "quote": "Đúng, Uyên phụ trách. Phương không còn phụ trách bản này; chưa giao người hỗ trợ."
+              }
+            ],
+            "supporter": [
+              {
+                "source_id": "L006",
+                "quote": "Đúng, Uyên phụ trách. Phương không còn phụ trách bản này; chưa giao người hỗ trợ."
+              }
+            ],
+            "due_raw": [
+              {
+                "source_id": "L004",
+                "quote": "Chuyển bản hướng dẫn sang Uyên, hạn chiều thứ Sáu; không giữ hạn thứ Tư nữa."
+              },
+              {
+                "source_id": "L005",
+                "quote": "Tôi nhận làm bản hướng dẫn, gửi chiều thứ Sáu."
+              }
+            ]
+          },
+          "counter_evidence": [
+            {
+              "source_id": "L001",
+              "quote": "Phương làm bản hướng dẫn kích hoạt tài khoản, hạn sáng thứ Tư nhé."
+            },
+            {
+              "source_id": "L002",
+              "quote": "Tôi nhận bản hướng dẫn đó."
+            }
+          ],
+          "must_flag_for_review": false,
+          "semantic_note": "Phương là owner cũ, không còn là owner/supporter; không tự chuẩn hóa thứ Sáu thành ngày lịch."
+        }
+      ],
       "no_required_records_reason": null,
       "allowed_additional_records": [],
-      "forbidden_claims": [],
-      "case_review_required": false
+      "forbidden_claims": [
+        "Phương vẫn là người phụ trách hoặc người hỗ trợ",
+        "Hạn hiện hành là sáng thứ Tư",
+        "Hai action đang giao cùng việc cho Phương và Uyên"
+      ],
+      "case_review_required": false,
+      "representation_alternatives": [],
+      "annotation_notes": "Một vòng đời công việc, không phải hai công việc độc lập. L004 thay người và hạn; L005 xác nhận nhận việc; L006 nói chưa giao supporter."
     },
     {
       "id": "N03",
       "transcript_sha256": "e2288c0f4f1b331f324345be17ed10a3c8923e6c92733a6de1546ef2970308a9",
-      "annotation_status": "pending",
-      "reviewer": "",
-      "reviewed_at": null,
-      "labels_finalized_before_outputs": false,
-      "required_records": null,
+      "annotation_status": "assistant_reviewed",
+      "reviewer": "coding_assistant_same_author_not_independent_human",
+      "reviewed_at": "2026-10-14T14:08:45.376727+00:00",
+      "labels_finalized_before_outputs": true,
+      "required_records": [
+        {
+          "label_id": "registration_many_fields",
+          "kind": "feedback",
+          "meaning": "Khách dùng thử phản hồi trang đăng ký có quá nhiều ô nhập",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L001",
+              "quote": "Nhóm khách dùng thử phản hồi rằng trang đăng ký có quá nhiều ô nhập."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L001",
+                "quote": "Nhóm khách dùng thử phản hồi rằng trang đăng ký có quá nhiều ô nhập."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L001",
+                "quote": "Nhóm khách dùng thử phản hồi rằng trang đăng ký có quá nhiều ô nhập."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "required_registration_fields",
+          "kind": "request",
+          "meaning": "Bước đăng ký đầu chỉ bắt buộc số điện thoại và mã xác nhận",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L002",
+              "quote": "Khách yêu cầu chỉ bắt buộc số điện thoại và mã xác nhận trong bước đầu."
+            },
+            {
+              "source_id": "L004",
+              "quote": "Ghi nhận yêu cầu giảm trường bắt buộc. Chưa chốt thiết kế thay thế và chưa giao ai triển khai."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L002",
+                "quote": "Khách yêu cầu chỉ bắt buộc số điện thoại và mã xác nhận trong bước đầu."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L004",
+                "quote": "Ghi nhận yêu cầu giảm trường bắt buộc. Chưa chốt thiết kế thay thế và chưa giao ai triển khai."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "picture_instructions_positive",
+          "kind": "feedback",
+          "meaning": "Khách khen hướng dẫn bằng hình dễ hiểu",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L003",
+              "quote": "Họ cũng khen phần hướng dẫn bằng hình dễ hiểu; đó là phản hồi, không phải yêu cầu thêm hình."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L003",
+                "quote": "Họ cũng khen phần hướng dẫn bằng hình dễ hiểu; đó là phản hồi, không phải yêu cầu thêm hình."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L003",
+                "quote": "Họ cũng khen phần hướng dẫn bằng hình dễ hiểu; đó là phản hồi, không phải yêu cầu thêm hình."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        }
+      ],
       "no_required_records_reason": null,
-      "allowed_additional_records": [],
-      "forbidden_claims": [],
-      "case_review_required": false
+      "allowed_additional_records": [
+        {
+          "label_id": "registration_design_open",
+          "kind": "decision",
+          "meaning": "Chưa chốt thiết kế đăng ký thay thế",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L004",
+              "quote": "Ghi nhận yêu cầu giảm trường bắt buộc. Chưa chốt thiết kế thay thế và chưa giao ai triển khai."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L004",
+                "quote": "Ghi nhận yêu cầu giảm trường bắt buộc. Chưa chốt thiết kế thay thế và chưa giao ai triển khai."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L004",
+                "quote": "Ghi nhận yêu cầu giảm trường bắt buộc. Chưa chốt thiết kế thay thế và chưa giao ai triển khai."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        }
+      ],
+      "forbidden_claims": [
+        "Khách yêu cầu thêm hình",
+        "Đã chốt thiết kế thay thế hoặc giao người triển khai",
+        "Khách yêu cầu bỏ đăng ký bằng số điện thoại để dùng email"
+      ],
+      "case_review_required": false,
+      "representation_alternatives": [
+        {
+          "id": "combined_registration_feedback",
+          "replaces_label_ids": [
+            "registration_many_fields",
+            "picture_instructions_positive"
+          ],
+          "expected_records": [
+            {
+              "label_id": "registration_feedback_combined",
+              "kind": "feedback",
+              "meaning": "Khách phản hồi đăng ký quá nhiều ô nhập và khen hướng dẫn bằng hình dễ hiểu",
+              "meeting_status": "recorded",
+              "execution_status": "not_applicable",
+              "authority_status": "unknown",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "due_iso": null,
+              "condition": null,
+              "evidence": [
+                {
+                  "source_id": "L001",
+                  "quote": "Nhóm khách dùng thử phản hồi rằng trang đăng ký có quá nhiều ô nhập."
+                },
+                {
+                  "source_id": "L003",
+                  "quote": "Họ cũng khen phần hướng dẫn bằng hình dễ hiểu; đó là phản hồi, không phải yêu cầu thêm hình."
+                }
+              ],
+              "field_evidence": {
+                "content": [
+                  {
+                    "source_id": "L001",
+                    "quote": "Nhóm khách dùng thử phản hồi rằng trang đăng ký có quá nhiều ô nhập."
+                  },
+                  {
+                    "source_id": "L003",
+                    "quote": "Họ cũng khen phần hướng dẫn bằng hình dễ hiểu; đó là phản hồi, không phải yêu cầu thêm hình."
+                  }
+                ],
+                "meeting_status": [
+                  {
+                    "source_id": "L001",
+                    "quote": "Nhóm khách dùng thử phản hồi rằng trang đăng ký có quá nhiều ô nhập."
+                  },
+                  {
+                    "source_id": "L003",
+                    "quote": "Họ cũng khen phần hướng dẫn bằng hình dễ hiểu; đó là phản hồi, không phải yêu cầu thêm hình."
+                  }
+                ]
+              },
+              "counter_evidence": [],
+              "must_flag_for_review": false,
+              "semantic_note": ""
+            }
+          ],
+          "note": "Một feedback gộp được chấp nhận nếu giữ đủ ý tiêu cực và tích cực; request giảm trường vẫn riêng."
+        }
+      ],
+      "annotation_notes": "Chưa chốt thiết kế là thông tin có nguồn, chấp nhận open riêng. Câu hỏi email chưa phải yêu cầu bỏ số điện thoại. Không tạo task chỉ từ request."
     },
     {
       "id": "N04",
       "transcript_sha256": "86c7eb52acada4f51554e4b50bb8d40cf7781438c713f12d120365feb33595ce",
-      "annotation_status": "pending",
-      "reviewer": "",
-      "reviewed_at": null,
-      "labels_finalized_before_outputs": false,
-      "required_records": null,
+      "annotation_status": "assistant_reviewed",
+      "reviewer": "coding_assistant_same_author_not_independent_human",
+      "reviewed_at": "2026-10-14T14:08:45.376727+00:00",
+      "labels_finalized_before_outputs": true,
+      "required_records": [
+        {
+          "label_id": "xlsx_need",
+          "kind": "request",
+          "meaning": "Bộ phận vận hành cần tải danh sách đơn dưới dạng XLSX; nhu cầu vẫn giữ",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L001",
+              "quote": "Bộ phận vận hành cần tải danh sách đơn dưới dạng XLSX."
+            },
+            {
+              "source_id": "L005",
+              "quote": "Nhu cầu tải XLSX vẫn giữ. Chưa chọn cách khác và chưa giao đầu việc thay thế."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L001",
+                "quote": "Bộ phận vận hành cần tải danh sách đơn dưới dạng XLSX."
+              },
+              {
+                "source_id": "L005",
+                "quote": "Nhu cầu tải XLSX vẫn giữ. Chưa chọn cách khác và chưa giao đầu việc thay thế."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L005",
+                "quote": "Nhu cầu tải XLSX vẫn giữ. Chưa chọn cách khác và chưa giao đầu việc thay thế."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "try_tool_k",
+          "kind": "action",
+          "meaning": "Thử xuất danh sách đơn bằng công cụ K (đã hủy)",
+          "meeting_status": "cancelled",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": "Trúc",
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L002",
+              "quote": "Nhờ Trúc thử cách xuất bằng công cụ K, hạn trưa mai."
+            },
+            {
+              "source_id": "L003",
+              "quote": "Tôi nhận thử công cụ K."
+            },
+            {
+              "source_id": "L004",
+              "quote": "Hủy việc thử công cụ K vì không phù hợp chính sách dữ liệu, bỏ hạn trưa mai."
+            },
+            {
+              "source_id": "L006",
+              "quote": "Tôi hiểu: tôi không còn làm thử K; câu này không phải đề xuất tiếp tục thử."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L002",
+                "quote": "Nhờ Trúc thử cách xuất bằng công cụ K, hạn trưa mai."
+              },
+              {
+                "source_id": "L004",
+                "quote": "Hủy việc thử công cụ K vì không phù hợp chính sách dữ liệu, bỏ hạn trưa mai."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L004",
+                "quote": "Hủy việc thử công cụ K vì không phù hợp chính sách dữ liệu, bỏ hạn trưa mai."
+              },
+              {
+                "source_id": "L006",
+                "quote": "Tôi hiểu: tôi không còn làm thử K; câu này không phải đề xuất tiếp tục thử."
+              }
+            ],
+            "owner": [
+              {
+                "source_id": "L002",
+                "quote": "Nhờ Trúc thử cách xuất bằng công cụ K, hạn trưa mai."
+              },
+              {
+                "source_id": "L003",
+                "quote": "Tôi nhận thử công cụ K."
+              }
+            ],
+            "due_raw": [
+              {
+                "source_id": "L004",
+                "quote": "Hủy việc thử công cụ K vì không phù hợp chính sách dữ liệu, bỏ hạn trưa mai."
+              }
+            ]
+          },
+          "counter_evidence": [
+            {
+              "source_id": "L002",
+              "quote": "Nhờ Trúc thử cách xuất bằng công cụ K, hạn trưa mai."
+            }
+          ],
+          "must_flag_for_review": false,
+          "semantic_note": "Trúc là owner lịch sử; hạn trưa mai đã bị bỏ. Lý do hủy không là condition để tiếp tục."
+        },
+        {
+          "label_id": "xlsx_method_open",
+          "kind": "decision",
+          "meaning": "Chưa chọn cách xuất XLSX thay thế",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L005",
+              "quote": "Nhu cầu tải XLSX vẫn giữ. Chưa chọn cách khác và chưa giao đầu việc thay thế."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L005",
+                "quote": "Nhu cầu tải XLSX vẫn giữ. Chưa chọn cách khác và chưa giao đầu việc thay thế."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L005",
+                "quote": "Nhu cầu tải XLSX vẫn giữ. Chưa chọn cách khác và chưa giao đầu việc thay thế."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        }
+      ],
       "no_required_records_reason": null,
       "allowed_additional_records": [],
-      "forbidden_claims": [],
-      "case_review_required": false
+      "forbidden_claims": [
+        "Nhu cầu XLSX đã bị rút",
+        "Trúc đang tiếp tục thử K hoặc đang làm cách mới",
+        "Hạn trưa mai vẫn hiện hành",
+        "Không phù hợp chính sách dữ liệu là condition hiện hành để thử K",
+        "Sinh request thử K độc lập còn hiệu lực từ câu giao việc đã hủy"
+      ],
+      "case_review_required": false,
+      "representation_alternatives": [],
+      "annotation_notes": "Giữ ba vai trò: nhu cầu, công việc triển khai đã hủy, lựa chọn thay thế chưa chốt. Owner lịch sử không tự bị xóa; không ghép hạn của task vào request XLSX."
     },
     {
       "id": "N05",
       "transcript_sha256": "cf670ab1cdd893c02f539350b9379fd93132fba8c41605e320cc77005477902a",
-      "annotation_status": "pending",
-      "reviewer": "",
-      "reviewed_at": null,
-      "labels_finalized_before_outputs": false,
-      "required_records": null,
+      "annotation_status": "assistant_reviewed",
+      "reviewer": "coding_assistant_same_author_not_independent_human",
+      "reviewed_at": "2026-10-14T14:08:45.376727+00:00",
+      "labels_finalized_before_outputs": true,
+      "required_records": [
+        {
+          "label_id": "scanner_connectivity",
+          "kind": "issue",
+          "meaning": "Lỗi máy quét quầy số hai được Oanh báo hết trong lượt thử, chưa được kiểm tra độc lập hoặc xác nhận không tái phát",
+          "meeting_status": "reported_resolved",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L001",
+              "quote": "Máy quét mã ở quầy số hai không gửi được kết quả về hệ thống từ sáng."
+            },
+            {
+              "source_id": "L002",
+              "quote": "Tôi vừa thay dây mạng; máy quét đã gửi được ba lượt thử."
+            },
+            {
+              "source_id": "L003",
+              "quote": "Đó là kết quả bạn báo lại, bên vận hành chưa kiểm tra độc lập cả ca làm việc."
+            },
+            {
+              "source_id": "L004",
+              "quote": "Đúng, tôi chỉ báo lỗi kết nối đã hết trong lượt thử; chưa xác nhận không tái phát."
+            },
+            {
+              "source_id": "L005",
+              "quote": "Ghi nhận lời báo khắc phục và việc chưa được kiểm chứng. Cuộc họp chưa giao nhiệm vụ kiểm tra cho ai."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L001",
+                "quote": "Máy quét mã ở quầy số hai không gửi được kết quả về hệ thống từ sáng."
+              },
+              {
+                "source_id": "L004",
+                "quote": "Đúng, tôi chỉ báo lỗi kết nối đã hết trong lượt thử; chưa xác nhận không tái phát."
+              },
+              {
+                "source_id": "L005",
+                "quote": "Ghi nhận lời báo khắc phục và việc chưa được kiểm chứng. Cuộc họp chưa giao nhiệm vụ kiểm tra cho ai."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L004",
+                "quote": "Đúng, tôi chỉ báo lỗi kết nối đã hết trong lượt thử; chưa xác nhận không tái phát."
+              },
+              {
+                "source_id": "L005",
+                "quote": "Ghi nhận lời báo khắc phục và việc chưa được kiểm chứng. Cuộc họp chưa giao nhiệm vụ kiểm tra cho ai."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": true,
+          "semantic_note": ""
+        }
+      ],
       "no_required_records_reason": null,
-      "allowed_additional_records": [],
-      "forbidden_claims": [],
-      "case_review_required": false
+      "allowed_additional_records": [
+        {
+          "label_id": "scanner_trial_report",
+          "kind": "knowledge",
+          "meaning": "Oanh báo ba lượt thử gửi được sau thay dây mạng; chưa xác minh cả ca",
+          "meeting_status": "unverified",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L002",
+              "quote": "Tôi vừa thay dây mạng; máy quét đã gửi được ba lượt thử."
+            },
+            {
+              "source_id": "L003",
+              "quote": "Đó là kết quả bạn báo lại, bên vận hành chưa kiểm tra độc lập cả ca làm việc."
+            },
+            {
+              "source_id": "L004",
+              "quote": "Đúng, tôi chỉ báo lỗi kết nối đã hết trong lượt thử; chưa xác nhận không tái phát."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L002",
+                "quote": "Tôi vừa thay dây mạng; máy quét đã gửi được ba lượt thử."
+              },
+              {
+                "source_id": "L003",
+                "quote": "Đó là kết quả bạn báo lại, bên vận hành chưa kiểm tra độc lập cả ca làm việc."
+              },
+              {
+                "source_id": "L004",
+                "quote": "Đúng, tôi chỉ báo lỗi kết nối đã hết trong lượt thử; chưa xác nhận không tái phát."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L004",
+                "quote": "Đúng, tôi chỉ báo lỗi kết nối đã hết trong lượt thử; chưa xác nhận không tái phát."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": true,
+          "semantic_note": ""
+        }
+      ],
+      "forbidden_claims": [
+        "Lỗi đã được xác minh độc lập hết hoàn toàn hoặc không tái phát",
+        "Đã giao Oanh/Nam làm nhiệm vụ kiểm tra sau họp"
+      ],
+      "case_review_required": true,
+      "representation_alternatives": [],
+      "annotation_notes": "reported_resolved là lời báo kết quả giới hạn, không là verified. Việc Oanh đã làm trước câu nói không tự trở thành action assigned sau họp. Cần thể hiện rõ giới hạn kiểm chứng; không chỉ ghi \"đã xử lý xong\"."
     },
     {
       "id": "N06",
       "transcript_sha256": "5c4d758d4069e0074c42c7e17970a0dfc6b4f256f63c926200c62cdfc622ad14",
-      "annotation_status": "pending",
-      "reviewer": "",
-      "reviewed_at": null,
-      "labels_finalized_before_outputs": false,
-      "required_records": null,
+      "annotation_status": "assistant_reviewed",
+      "reviewer": "coding_assistant_same_author_not_independent_human",
+      "reviewed_at": "2026-10-14T14:08:45.376727+00:00",
+      "labels_finalized_before_outputs": true,
+      "required_records": [
+        {
+          "label_id": "launch_condition",
+          "kind": "decision",
+          "meaning": "Mở chương trình ưu đãi khi đủ 100 cửa hàng tham gia VÀ kiểm thử thanh toán không có lỗi nghiêm trọng",
+          "meeting_status": "conditional",
+          "execution_status": "pending_condition",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": "đủ 100 cửa hàng tham gia và kiểm thử thanh toán không có lỗi nghiêm trọng",
+          "evidence": [
+            {
+              "source_id": "L003",
+              "quote": "Chốt mở chương trình khi đủ 100 cửa hàng và kiểm thử thanh toán không có lỗi nghiêm trọng; bỏ mốc 80."
+            },
+            {
+              "source_id": "L004",
+              "quote": "Hiện chỉ có 92 cửa hàng, phần kiểm thử vẫn chưa kết thúc."
+            },
+            {
+              "source_id": "L005",
+              "quote": "Chưa đủ điều kiện để mở ngay; không phải hủy quyết định có điều kiện vừa chốt."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L003",
+                "quote": "Chốt mở chương trình khi đủ 100 cửa hàng và kiểm thử thanh toán không có lỗi nghiêm trọng; bỏ mốc 80."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L003",
+                "quote": "Chốt mở chương trình khi đủ 100 cửa hàng và kiểm thử thanh toán không có lỗi nghiêm trọng; bỏ mốc 80."
+              },
+              {
+                "source_id": "L005",
+                "quote": "Chưa đủ điều kiện để mở ngay; không phải hủy quyết định có điều kiện vừa chốt."
+              }
+            ],
+            "condition": [
+              {
+                "source_id": "L003",
+                "quote": "Chốt mở chương trình khi đủ 100 cửa hàng và kiểm thử thanh toán không có lỗi nghiêm trọng; bỏ mốc 80."
+              }
+            ],
+            "execution_status": [
+              {
+                "source_id": "L004",
+                "quote": "Hiện chỉ có 92 cửa hàng, phần kiểm thử vẫn chưa kết thúc."
+              },
+              {
+                "source_id": "L005",
+                "quote": "Chưa đủ điều kiện để mở ngay; không phải hủy quyết định có điều kiện vừa chốt."
+              }
+            ]
+          },
+          "counter_evidence": [
+            {
+              "source_id": "L001",
+              "quote": "Dự kiến mở chương trình ưu đãi nếu có 80 cửa hàng đồng ý tham gia."
+            }
+          ],
+          "must_flag_for_review": true,
+          "semantic_note": ""
+        }
+      ],
       "no_required_records_reason": null,
       "allowed_additional_records": [],
-      "forbidden_claims": [],
-      "case_review_required": false
+      "forbidden_claims": [
+        "Mốc hiện hành là 80 cửa hàng",
+        "Chỉ cần một trong hai điều kiện",
+        "Các điều kiện đã đạt hoặc được phép mở ngay",
+        "Quyết định có điều kiện đã bị hủy/mở lại",
+        "Có ngày mở đã chốt"
+      ],
+      "case_review_required": false,
+      "representation_alternatives": [
+        {
+          "id": "blocked_until_conditions",
+          "replaces_label_ids": [
+            "launch_condition"
+          ],
+          "expected_records": [
+            {
+              "label_id": "launch_condition_blocked",
+              "kind": "decision",
+              "meaning": "Mở chương trình ưu đãi khi đủ 100 cửa hàng tham gia VÀ kiểm thử thanh toán không có lỗi nghiêm trọng",
+              "meeting_status": "conditional",
+              "execution_status": "blocked",
+              "authority_status": "unknown",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "due_iso": null,
+              "condition": "đủ 100 cửa hàng tham gia và kiểm thử thanh toán không có lỗi nghiêm trọng",
+              "evidence": [
+                {
+                  "source_id": "L003",
+                  "quote": "Chốt mở chương trình khi đủ 100 cửa hàng và kiểm thử thanh toán không có lỗi nghiêm trọng; bỏ mốc 80."
+                },
+                {
+                  "source_id": "L004",
+                  "quote": "Hiện chỉ có 92 cửa hàng, phần kiểm thử vẫn chưa kết thúc."
+                },
+                {
+                  "source_id": "L005",
+                  "quote": "Chưa đủ điều kiện để mở ngay; không phải hủy quyết định có điều kiện vừa chốt."
+                }
+              ],
+              "field_evidence": {
+                "content": [
+                  {
+                    "source_id": "L003",
+                    "quote": "Chốt mở chương trình khi đủ 100 cửa hàng và kiểm thử thanh toán không có lỗi nghiêm trọng; bỏ mốc 80."
+                  }
+                ],
+                "meeting_status": [
+                  {
+                    "source_id": "L003",
+                    "quote": "Chốt mở chương trình khi đủ 100 cửa hàng và kiểm thử thanh toán không có lỗi nghiêm trọng; bỏ mốc 80."
+                  },
+                  {
+                    "source_id": "L005",
+                    "quote": "Chưa đủ điều kiện để mở ngay; không phải hủy quyết định có điều kiện vừa chốt."
+                  }
+                ],
+                "condition": [
+                  {
+                    "source_id": "L003",
+                    "quote": "Chốt mở chương trình khi đủ 100 cửa hàng và kiểm thử thanh toán không có lỗi nghiêm trọng; bỏ mốc 80."
+                  }
+                ],
+                "execution_status": [
+                  {
+                    "source_id": "L004",
+                    "quote": "Hiện chỉ có 92 cửa hàng, phần kiểm thử vẫn chưa kết thúc."
+                  },
+                  {
+                    "source_id": "L005",
+                    "quote": "Chưa đủ điều kiện để mở ngay; không phải hủy quyết định có điều kiện vừa chốt."
+                  }
+                ]
+              },
+              "counter_evidence": [
+                {
+                  "source_id": "L001",
+                  "quote": "Dự kiến mở chương trình ưu đãi nếu có 80 cửa hàng đồng ý tham gia."
+                }
+              ],
+              "must_flag_for_review": true,
+              "semantic_note": "Cách thể hiện tương đương: chưa được mở ngay do các điều kiện chưa đạt, không bịa một lệnh cấm độc lập."
+            }
+          ],
+          "note": "Chấp nhận blocked thay pending_condition chỉ khi giữ đầy đủ điều kiện và không đổi meeting_status conditional."
+        }
+      ],
+      "annotation_notes": "Điều kiện chưa đạt không biến conditional thành reopened. Ngưỡng 100 và kiểm thử không lỗi là quan hệ AND. Có thể biểu diễn chặn mở ngay bằng blocked nếu nói rõ cùng trạng thái chờ; phương án dưới đây được chốt trước đầu ra."
     },
     {
       "id": "N07",
       "transcript_sha256": "de63b830917e08fe51ac6c76d8e5d746a11085e2828a4337cf00c0f7a7fdaaa1",
-      "annotation_status": "pending",
-      "reviewer": "",
-      "reviewed_at": null,
-      "labels_finalized_before_outputs": false,
-      "required_records": null,
+      "annotation_status": "assistant_reviewed",
+      "reviewer": "coding_assistant_same_author_not_independent_human",
+      "reviewed_at": "2026-10-14T14:08:45.376727+00:00",
+      "labels_finalized_before_outputs": true,
+      "required_records": [
+        {
+          "label_id": "check_event_exit",
+          "kind": "request",
+          "meaning": "Kiểm tra đường thoát khu sự kiện trước lượt diễn tập tiếp theo; chưa xác định người nhận",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": "trước lượt diễn tập tiếp theo",
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L001",
+              "quote": "Trước lượt diễn tập tiếp theo, cần kiểm tra đường thoát của khu sự kiện."
+            },
+            {
+              "source_id": "L004",
+              "quote": "Chưa có người nhận. Đừng ghi tên Khánh hoặc Mai chỉ vì hai người đang nói."
+            },
+            {
+              "source_id": "L006",
+              "quote": "Hai ngày mới là gợi ý. Chưa chọn ngày diễn tập; yêu cầu kiểm tra trước lượt tiếp theo vẫn giữ."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L001",
+                "quote": "Trước lượt diễn tập tiếp theo, cần kiểm tra đường thoát của khu sự kiện."
+              },
+              {
+                "source_id": "L006",
+                "quote": "Hai ngày mới là gợi ý. Chưa chọn ngày diễn tập; yêu cầu kiểm tra trước lượt tiếp theo vẫn giữ."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L006",
+                "quote": "Hai ngày mới là gợi ý. Chưa chọn ngày diễn tập; yêu cầu kiểm tra trước lượt tiếp theo vẫn giữ."
+              }
+            ],
+            "owner": [
+              {
+                "source_id": "L004",
+                "quote": "Chưa có người nhận. Đừng ghi tên Khánh hoặc Mai chỉ vì hai người đang nói."
+              }
+            ],
+            "due_raw": [
+              {
+                "source_id": "L001",
+                "quote": "Trước lượt diễn tập tiếp theo, cần kiểm tra đường thoát của khu sự kiện."
+              },
+              {
+                "source_id": "L006",
+                "quote": "Hai ngày mới là gợi ý. Chưa chọn ngày diễn tập; yêu cầu kiểm tra trước lượt tiếp theo vẫn giữ."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": true,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "rehearsal_date_open",
+          "kind": "decision",
+          "meaning": "Chưa chọn ngày diễn tập; thứ Hai/thứ Ba mới là gợi ý",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L005",
+              "quote": "Có thể diễn tập thứ Hai, à không, thứ Ba cũng được."
+            },
+            {
+              "source_id": "L006",
+              "quote": "Hai ngày mới là gợi ý. Chưa chọn ngày diễn tập; yêu cầu kiểm tra trước lượt tiếp theo vẫn giữ."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L005",
+                "quote": "Có thể diễn tập thứ Hai, à không, thứ Ba cũng được."
+              },
+              {
+                "source_id": "L006",
+                "quote": "Hai ngày mới là gợi ý. Chưa chọn ngày diễn tập; yêu cầu kiểm tra trước lượt tiếp theo vẫn giữ."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L006",
+                "quote": "Hai ngày mới là gợi ý. Chưa chọn ngày diễn tập; yêu cầu kiểm tra trước lượt tiếp theo vẫn giữ."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        }
+      ],
       "no_required_records_reason": null,
-      "allowed_additional_records": [],
-      "forbidden_claims": [],
-      "case_review_required": false
+      "allowed_additional_records": [
+        {
+          "label_id": "ask_organizer_schedule",
+          "kind": "request",
+          "meaning": "Cần hỏi thêm lịch ban tổ chức trước khi bàn người và ngày",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L007",
+              "quote": "Cần hỏi thêm lịch của ban tổ chức rồi mới bàn người và ngày."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L007",
+                "quote": "Cần hỏi thêm lịch của ban tổ chức rồi mới bàn người và ngày."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L007",
+                "quote": "Cần hỏi thêm lịch của ban tổ chức rồi mới bàn người và ngày."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        }
+      ],
+      "forbidden_claims": [
+        "Đã giao Khánh/Mai hoặc một người cụ thể kiểm tra",
+        "Đã chốt diễn tập thứ Hai hoặc thứ Ba",
+        "Yêu cầu kiểm tra không có ràng buộc thời gian vì chưa biết ngày lịch"
+      ],
+      "case_review_required": true,
+      "representation_alternatives": [],
+      "annotation_notes": "Request có thời điểm tương đối dù chưa có owner/action. Đại từ trong câu hỏi L002 không chứng minh nhận việc. L007 là nhu cầu bổ trợ có thể tách, không tự gán Mai làm."
     },
     {
       "id": "N08",
       "transcript_sha256": "dbe93cd12d13a3af815e947287fd9bf4a9a297ffba09097cb451ab47b80ff66d",
-      "annotation_status": "pending",
-      "reviewer": "",
-      "reviewed_at": null,
-      "labels_finalized_before_outputs": false,
-      "required_records": null,
+      "annotation_status": "assistant_reviewed",
+      "reviewer": "coding_assistant_same_author_not_independent_human",
+      "reviewed_at": "2026-10-14T14:08:45.376727+00:00",
+      "labels_finalized_before_outputs": true,
+      "required_records": [
+        {
+          "label_id": "venue_reopened",
+          "kind": "decision",
+          "meaning": "Lựa chọn địa điểm hội thảo đã mở lại; hôm nay chưa chọn phòng A hay B",
+          "meeting_status": "reopened",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L001",
+              "quote": "Tôi đọc biên bản tuần trước: \"Chốt dùng phòng A cho hội thảo\"."
+            },
+            {
+              "source_id": "L003",
+              "quote": "Mở lại lựa chọn địa điểm. Hôm nay chưa chọn A hay B."
+            },
+            {
+              "source_id": "L006",
+              "quote": "Tôi nhắc lại câu \"Chốt phòng A\" chỉ để nói lịch sử, không chốt A lại."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L003",
+                "quote": "Mở lại lựa chọn địa điểm. Hôm nay chưa chọn A hay B."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L003",
+                "quote": "Mở lại lựa chọn địa điểm. Hôm nay chưa chọn A hay B."
+              },
+              {
+                "source_id": "L006",
+                "quote": "Tôi nhắc lại câu \"Chốt phòng A\" chỉ để nói lịch sử, không chốt A lại."
+              }
+            ]
+          },
+          "counter_evidence": [
+            {
+              "source_id": "L001",
+              "quote": "Tôi đọc biên bản tuần trước: \"Chốt dùng phòng A cho hội thảo\"."
+            }
+          ],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "suitable_venue_request",
+          "kind": "request",
+          "meaning": "Có phương án phòng phù hợp trước lần xác nhận vé tiếp theo",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": "trước lần xác nhận vé tiếp theo",
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L004",
+              "quote": "Ban tổ chức yêu cầu có phương án phòng phù hợp trước lần xác nhận vé tiếp theo."
+            },
+            {
+              "source_id": "L005",
+              "quote": "Ghi yêu cầu đó, chưa giao người làm và chưa có ngày xác nhận vé cụ thể."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L004",
+                "quote": "Ban tổ chức yêu cầu có phương án phòng phù hợp trước lần xác nhận vé tiếp theo."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L005",
+                "quote": "Ghi yêu cầu đó, chưa giao người làm và chưa có ngày xác nhận vé cụ thể."
+              }
+            ],
+            "owner": [
+              {
+                "source_id": "L005",
+                "quote": "Ghi yêu cầu đó, chưa giao người làm và chưa có ngày xác nhận vé cụ thể."
+              }
+            ],
+            "due_raw": [
+              {
+                "source_id": "L004",
+                "quote": "Ban tổ chức yêu cầu có phương án phòng phù hợp trước lần xác nhận vé tiếp theo."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        }
+      ],
       "no_required_records_reason": null,
-      "allowed_additional_records": [],
-      "forbidden_claims": [],
-      "case_review_required": false
+      "allowed_additional_records": [
+        {
+          "label_id": "room_a_electric_repair",
+          "kind": "issue",
+          "meaning": "Phòng A đang sửa điện, ảnh hưởng lựa chọn địa điểm",
+          "meeting_status": "open",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L002",
+              "quote": "Đó là quyết định tuần trước, nhưng hôm nay biết phòng A đang sửa điện."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L002",
+                "quote": "Đó là quyết định tuần trước, nhưng hôm nay biết phòng A đang sửa điện."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L002",
+                "quote": "Đó là quyết định tuần trước, nhưng hôm nay biết phòng A đang sửa điện."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        }
+      ],
+      "forbidden_claims": [
+        "Phòng A đã được chốt lại hôm nay",
+        "Phòng B đã được chọn",
+        "Thu/Dũng đã nhận tìm phòng hoặc có ngày xác nhận vé cụ thể"
+      ],
+      "case_review_required": false,
+      "representation_alternatives": [],
+      "annotation_notes": "Có thể giữ content phòng A như nội dung lịch sử của reopened nếu ghi rõ không còn kết luận cuối. L006 nhắc câu cũ không là agreement mới."
     },
     {
       "id": "N09",
       "transcript_sha256": "67010fad257c3cb8a9ba46eb83939c28d1fc875ed53750b1ee30837f9c4cb023",
-      "annotation_status": "pending",
-      "reviewer": "",
-      "reviewed_at": null,
-      "labels_finalized_before_outputs": false,
-      "required_records": null,
-      "no_required_records_reason": null,
+      "annotation_status": "assistant_reviewed",
+      "reviewer": "coding_assistant_same_author_not_independent_human",
+      "reviewed_at": "2026-10-14T14:08:45.376727+00:00",
+      "labels_finalized_before_outputs": true,
+      "required_records": [],
+      "no_required_records_reason": "Chỉ thử mic/camera trước phần họp chính; không có thông tin nghiệp vụ hoặc cam kết dùng sau họp.",
       "allowed_additional_records": [],
-      "forbidden_claims": [],
-      "case_review_required": false
+      "forbidden_claims": [
+        "Tạo quyết định kinh doanh hoặc công việc sau họp từ thử mic/camera",
+        "Hà/Bình nhận một nhiệm vụ sau cuộc họp",
+        "Coi kết quả thử âm thanh là tri thức nghiệp vụ cần dùng tiếp"
+      ],
+      "case_review_required": false,
+      "representation_alternatives": [],
+      "annotation_notes": "Negative control: chỉ thử thiết bị trước họp, không có nội dung nghiệp vụ/cam kết dùng sau họp. required_records=[] có chủ ý; không cần suy diễn thiếu transcript hoặc bịa cảnh báo hỏng dữ liệu."
     },
     {
       "id": "N10",
       "transcript_sha256": "77afdb9781de10f61e2e35027082134b39be5865d48a43b2a0b74b892df855c6",
-      "annotation_status": "pending",
-      "reviewer": "",
-      "reviewed_at": null,
-      "labels_finalized_before_outputs": false,
-      "required_records": null,
+      "annotation_status": "assistant_reviewed",
+      "reviewer": "coding_assistant_same_author_not_independent_human",
+      "reviewed_at": "2026-10-14T14:08:45.376727+00:00",
+      "labels_finalized_before_outputs": true,
+      "required_records": [
+        {
+          "label_id": "retention_uncertain",
+          "kind": "knowledge",
+          "meaning": "Có lời nhớ 45 ngày và tài liệu cũ ghi 30 ngày; thời gian lưu dấu vết hiện tại chưa được xác minh",
+          "meeting_status": "unverified",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L001",
+              "quote": "Tôi nhớ hệ thống lưu dấu vết truy cập trong 45 ngày, nhưng chưa chắc đây là cấu hình hiện tại."
+            },
+            {
+              "source_id": "L002",
+              "quote": "Tài liệu cũ tôi đọc ghi 30 ngày. Không nên coi một trong hai số là đã xác minh."
+            },
+            {
+              "source_id": "L005",
+              "quote": "Không có quyết định đổi thời gian lưu. Hai con số chỉ là thông tin đang cần xác minh."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L001",
+                "quote": "Tôi nhớ hệ thống lưu dấu vết truy cập trong 45 ngày, nhưng chưa chắc đây là cấu hình hiện tại."
+              },
+              {
+                "source_id": "L002",
+                "quote": "Tài liệu cũ tôi đọc ghi 30 ngày. Không nên coi một trong hai số là đã xác minh."
+              },
+              {
+                "source_id": "L005",
+                "quote": "Không có quyết định đổi thời gian lưu. Hai con số chỉ là thông tin đang cần xác minh."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L001",
+                "quote": "Tôi nhớ hệ thống lưu dấu vết truy cập trong 45 ngày, nhưng chưa chắc đây là cấu hình hiện tại."
+              },
+              {
+                "source_id": "L002",
+                "quote": "Tài liệu cũ tôi đọc ghi 30 ngày. Không nên coi một trong hai số là đã xác minh."
+              },
+              {
+                "source_id": "L005",
+                "quote": "Không có quyết định đổi thời gian lưu. Hai con số chỉ là thông tin đang cần xác minh."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": true,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "verify_retention_config",
+          "kind": "request",
+          "meaning": "Đối chiếu tài liệu cấu hình mới trước khi trả lời khách",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": "trước khi trả lời khách",
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L003",
+              "quote": "Cần đối chiếu tài liệu cấu hình mới trước khi trả lời khách."
+            },
+            {
+              "source_id": "L004",
+              "quote": "Chưa ai nhận việc đối chiếu và cuộc họp không chốt hạn."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L003",
+                "quote": "Cần đối chiếu tài liệu cấu hình mới trước khi trả lời khách."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L003",
+                "quote": "Cần đối chiếu tài liệu cấu hình mới trước khi trả lời khách."
+              }
+            ],
+            "owner": [
+              {
+                "source_id": "L004",
+                "quote": "Chưa ai nhận việc đối chiếu và cuộc họp không chốt hạn."
+              }
+            ],
+            "due_raw": [
+              {
+                "source_id": "L003",
+                "quote": "Cần đối chiếu tài liệu cấu hình mới trước khi trả lời khách."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        }
+      ],
       "no_required_records_reason": null,
       "allowed_additional_records": [],
-      "forbidden_claims": [],
-      "case_review_required": false
+      "forbidden_claims": [
+        "Cấu hình hiện tại chắc chắn là 30 hoặc 45 ngày",
+        "Cuộc họp quyết định đổi thời gian lưu",
+        "Nga/Vũ đã nhận việc đối chiếu",
+        "Không có ràng buộc trước khi trả lời khách chỉ vì không có ngày lịch"
+      ],
+      "case_review_required": true,
+      "representation_alternatives": [
+        {
+          "id": "separate_uncertain_retention_claims",
+          "replaces_label_ids": [
+            "retention_uncertain"
+          ],
+          "expected_records": [
+            {
+              "label_id": "retention_45_unverified",
+              "kind": "knowledge",
+              "meaning": "Nga nhớ thời gian lưu 45 ngày nhưng chưa chắc là cấu hình hiện tại",
+              "meeting_status": "unverified",
+              "execution_status": "not_applicable",
+              "authority_status": "unknown",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "due_iso": null,
+              "condition": null,
+              "evidence": [
+                {
+                  "source_id": "L001",
+                  "quote": "Tôi nhớ hệ thống lưu dấu vết truy cập trong 45 ngày, nhưng chưa chắc đây là cấu hình hiện tại."
+                },
+                {
+                  "source_id": "L005",
+                  "quote": "Không có quyết định đổi thời gian lưu. Hai con số chỉ là thông tin đang cần xác minh."
+                }
+              ],
+              "field_evidence": {
+                "content": [
+                  {
+                    "source_id": "L001",
+                    "quote": "Tôi nhớ hệ thống lưu dấu vết truy cập trong 45 ngày, nhưng chưa chắc đây là cấu hình hiện tại."
+                  }
+                ],
+                "meeting_status": [
+                  {
+                    "source_id": "L001",
+                    "quote": "Tôi nhớ hệ thống lưu dấu vết truy cập trong 45 ngày, nhưng chưa chắc đây là cấu hình hiện tại."
+                  },
+                  {
+                    "source_id": "L005",
+                    "quote": "Không có quyết định đổi thời gian lưu. Hai con số chỉ là thông tin đang cần xác minh."
+                  }
+                ]
+              },
+              "counter_evidence": [],
+              "must_flag_for_review": true,
+              "semantic_note": ""
+            },
+            {
+              "label_id": "retention_30_old_doc",
+              "kind": "knowledge",
+              "meaning": "Tài liệu cũ Vũ đọc ghi 30 ngày, chưa xác minh cấu hình hiện tại",
+              "meeting_status": "unverified",
+              "execution_status": "not_applicable",
+              "authority_status": "unknown",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "due_iso": null,
+              "condition": null,
+              "evidence": [
+                {
+                  "source_id": "L002",
+                  "quote": "Tài liệu cũ tôi đọc ghi 30 ngày. Không nên coi một trong hai số là đã xác minh."
+                },
+                {
+                  "source_id": "L005",
+                  "quote": "Không có quyết định đổi thời gian lưu. Hai con số chỉ là thông tin đang cần xác minh."
+                }
+              ],
+              "field_evidence": {
+                "content": [
+                  {
+                    "source_id": "L002",
+                    "quote": "Tài liệu cũ tôi đọc ghi 30 ngày. Không nên coi một trong hai số là đã xác minh."
+                  }
+                ],
+                "meeting_status": [
+                  {
+                    "source_id": "L002",
+                    "quote": "Tài liệu cũ tôi đọc ghi 30 ngày. Không nên coi một trong hai số là đã xác minh."
+                  },
+                  {
+                    "source_id": "L005",
+                    "quote": "Không có quyết định đổi thời gian lưu. Hai con số chỉ là thông tin đang cần xác minh."
+                  }
+                ]
+              },
+              "counter_evidence": [],
+              "must_flag_for_review": true,
+              "semantic_note": ""
+            }
+          ],
+          "note": "Hai knowledge đều phải giữ nguồn và độ chưa chắc chắn. Không chấm hai con số thành hai facts verified."
+        }
+      ],
+      "annotation_notes": "Tri thức là phát biểu có mức tin cậy, không là sự thật bên ngoài đã xác minh. L004 chưa chốt hạn lịch không xóa thứ tự \"trước khi trả lời khách\" ở L003."
     },
     {
       "id": "N11",
       "transcript_sha256": "d849aec12bd1cb02394709f510c3e899669de60a8a363bc777467b4a04f4f7f4",
-      "annotation_status": "pending",
-      "reviewer": "",
-      "reviewed_at": null,
-      "labels_finalized_before_outputs": false,
-      "required_records": null,
+      "annotation_status": "assistant_reviewed",
+      "reviewer": "coding_assistant_same_author_not_independent_human",
+      "reviewed_at": "2026-10-14T14:08:45.376727+00:00",
+      "labels_finalized_before_outputs": true,
+      "required_records": [
+        {
+          "label_id": "cold_inventory_schedule",
+          "kind": "decision",
+          "meaning": "Kiểm kê khu lạnh chiều thứ Sáu, thay lịch sáng thứ Năm",
+          "meeting_status": "agreed",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L002",
+              "quote": "Tôi đề xuất kiểm kê khu lạnh vào sáng thứ Năm."
+            },
+            {
+              "source_id": "L003",
+              "quote": "Đồng ý lịch thứ Năm tạm thời, lát nữa xem lịch xe rồi chốt lại."
+            },
+            {
+              "source_id": "L062",
+              "quote": "Quyết định lịch kiểm kê: bỏ sáng thứ Năm, chuyển sang chiều thứ Sáu."
+            },
+            {
+              "source_id": "L063",
+              "quote": "Tôi đồng ý kiểm kê khu lạnh chiều thứ Sáu."
+            },
+            {
+              "source_id": "L064",
+              "quote": "Chốt chiều thứ Sáu cho khu lạnh, chưa chọn lịch cho khu thường."
+            },
+            {
+              "source_id": "L066",
+              "quote": "Không. Sơ đồ vẫn gửi sáng thứ Sáu, lịch kiểm kê là chiều thứ Sáu."
+            },
+            {
+              "source_id": "L072",
+              "quote": "Kết thúc với lịch khu lạnh chiều thứ Sáu và tài liệu Linh gửi sáng thứ Sáu."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L062",
+                "quote": "Quyết định lịch kiểm kê: bỏ sáng thứ Năm, chuyển sang chiều thứ Sáu."
+              },
+              {
+                "source_id": "L064",
+                "quote": "Chốt chiều thứ Sáu cho khu lạnh, chưa chọn lịch cho khu thường."
+              },
+              {
+                "source_id": "L072",
+                "quote": "Kết thúc với lịch khu lạnh chiều thứ Sáu và tài liệu Linh gửi sáng thứ Sáu."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L064",
+                "quote": "Chốt chiều thứ Sáu cho khu lạnh, chưa chọn lịch cho khu thường."
+              },
+              {
+                "source_id": "L072",
+                "quote": "Kết thúc với lịch khu lạnh chiều thứ Sáu và tài liệu Linh gửi sáng thứ Sáu."
+              }
+            ]
+          },
+          "counter_evidence": [
+            {
+              "source_id": "L002",
+              "quote": "Tôi đề xuất kiểm kê khu lạnh vào sáng thứ Năm."
+            },
+            {
+              "source_id": "L003",
+              "quote": "Đồng ý lịch thứ Năm tạm thời, lát nữa xem lịch xe rồi chốt lại."
+            }
+          ],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "cold_map_document",
+          "kind": "action",
+          "meaning": "Sửa sơ đồ khu lạnh trong tài liệu; Linh phụ trách, gửi sáng thứ Sáu",
+          "meeting_status": "assigned",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": "Linh",
+          "supporter": null,
+          "due_raw": "sáng thứ Sáu",
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L011",
+              "quote": "Bình sửa phần sơ đồ trong tài liệu, hạn chiều thứ Tư."
+            },
+            {
+              "source_id": "L012",
+              "quote": "Tôi nhận sửa sơ đồ trong tài liệu."
+            },
+            {
+              "source_id": "L036",
+              "quote": "Phần giao Bình lúc nãy chỉ là sơ đồ khu lạnh."
+            },
+            {
+              "source_id": "L058",
+              "quote": "Chuyển việc sửa sơ đồ khu lạnh sang Linh, bỏ hạn chiều thứ Tư."
+            },
+            {
+              "source_id": "L059",
+              "quote": "Tôi nhận sửa sơ đồ, gửi sáng thứ Sáu."
+            },
+            {
+              "source_id": "L060",
+              "quote": "Chốt Linh làm sơ đồ khu lạnh, hạn sáng thứ Sáu; Bình không còn phụ trách."
+            },
+            {
+              "source_id": "L066",
+              "quote": "Không. Sơ đồ vẫn gửi sáng thứ Sáu, lịch kiểm kê là chiều thứ Sáu."
+            },
+            {
+              "source_id": "L069",
+              "quote": "Tôi hiểu việc tài liệu đã chuyển sang Linh."
+            },
+            {
+              "source_id": "L072",
+              "quote": "Kết thúc với lịch khu lạnh chiều thứ Sáu và tài liệu Linh gửi sáng thứ Sáu."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L036",
+                "quote": "Phần giao Bình lúc nãy chỉ là sơ đồ khu lạnh."
+              },
+              {
+                "source_id": "L058",
+                "quote": "Chuyển việc sửa sơ đồ khu lạnh sang Linh, bỏ hạn chiều thứ Tư."
+              },
+              {
+                "source_id": "L060",
+                "quote": "Chốt Linh làm sơ đồ khu lạnh, hạn sáng thứ Sáu; Bình không còn phụ trách."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L059",
+                "quote": "Tôi nhận sửa sơ đồ, gửi sáng thứ Sáu."
+              },
+              {
+                "source_id": "L060",
+                "quote": "Chốt Linh làm sơ đồ khu lạnh, hạn sáng thứ Sáu; Bình không còn phụ trách."
+              },
+              {
+                "source_id": "L072",
+                "quote": "Kết thúc với lịch khu lạnh chiều thứ Sáu và tài liệu Linh gửi sáng thứ Sáu."
+              }
+            ],
+            "owner": [
+              {
+                "source_id": "L058",
+                "quote": "Chuyển việc sửa sơ đồ khu lạnh sang Linh, bỏ hạn chiều thứ Tư."
+              },
+              {
+                "source_id": "L059",
+                "quote": "Tôi nhận sửa sơ đồ, gửi sáng thứ Sáu."
+              },
+              {
+                "source_id": "L060",
+                "quote": "Chốt Linh làm sơ đồ khu lạnh, hạn sáng thứ Sáu; Bình không còn phụ trách."
+              },
+              {
+                "source_id": "L069",
+                "quote": "Tôi hiểu việc tài liệu đã chuyển sang Linh."
+              }
+            ],
+            "due_raw": [
+              {
+                "source_id": "L059",
+                "quote": "Tôi nhận sửa sơ đồ, gửi sáng thứ Sáu."
+              },
+              {
+                "source_id": "L060",
+                "quote": "Chốt Linh làm sơ đồ khu lạnh, hạn sáng thứ Sáu; Bình không còn phụ trách."
+              },
+              {
+                "source_id": "L066",
+                "quote": "Không. Sơ đồ vẫn gửi sáng thứ Sáu, lịch kiểm kê là chiều thứ Sáu."
+              }
+            ]
+          },
+          "counter_evidence": [
+            {
+              "source_id": "L011",
+              "quote": "Bình sửa phần sơ đồ trong tài liệu, hạn chiều thứ Tư."
+            },
+            {
+              "source_id": "L012",
+              "quote": "Tôi nhận sửa sơ đồ trong tài liệu."
+            }
+          ],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "arrival_button_feedback",
+          "kind": "feedback",
+          "meaning": "Ca tối dùng máy bàn phản hồi màn hình hàng về khó tìm nút xác nhận; chưa xử lý",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L004",
+              "quote": "Màn hình hàng về đang khó tìm nút xác nhận theo phản hồi của ca tối."
+            },
+            {
+              "source_id": "L007",
+              "quote": "Phản hồi khó tìm nút đến từ máy bàn, không phải kết luận lỗi trên mọi thiết bị."
+            },
+            {
+              "source_id": "L026",
+              "quote": "Tôi chỉ báo thông tin ca tối gửi lại, chưa kiểm tra độc lập giao diện."
+            },
+            {
+              "source_id": "L043",
+              "quote": "Tôi còn giữ nguyên phản hồi về nút khó tìm."
+            },
+            {
+              "source_id": "L056",
+              "quote": "Màn hình khó tìm nút vẫn là phản hồi chưa được xử lý."
+            },
+            {
+              "source_id": "L067",
+              "quote": "Nút xác nhận và chữ nhỏ vẫn là phản hồi được ghi nhận, chưa có phương án sửa."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L004",
+                "quote": "Màn hình hàng về đang khó tìm nút xác nhận theo phản hồi của ca tối."
+              },
+              {
+                "source_id": "L007",
+                "quote": "Phản hồi khó tìm nút đến từ máy bàn, không phải kết luận lỗi trên mọi thiết bị."
+              },
+              {
+                "source_id": "L026",
+                "quote": "Tôi chỉ báo thông tin ca tối gửi lại, chưa kiểm tra độc lập giao diện."
+              },
+              {
+                "source_id": "L056",
+                "quote": "Màn hình khó tìm nút vẫn là phản hồi chưa được xử lý."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L043",
+                "quote": "Tôi còn giữ nguyên phản hồi về nút khó tìm."
+              },
+              {
+                "source_id": "L067",
+                "quote": "Nút xác nhận và chữ nhỏ vẫn là phản hồi được ghi nhận, chưa có phương án sửa."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "small_text_feedback",
+          "kind": "feedback",
+          "meaning": "Chữ ở màn hình xác nhận nhỏ trên màn hình cũ; không quy kết mọi máy đều như vậy",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L018",
+              "quote": "Một phản hồi nữa là chữ ở màn hình xác nhận nhỏ khi dùng màn hình cũ."
+            },
+            {
+              "source_id": "L019",
+              "quote": "Máy mới không có cùng phản hồi; cần giữ rõ phạm vi phản hồi."
+            },
+            {
+              "source_id": "L067",
+              "quote": "Nút xác nhận và chữ nhỏ vẫn là phản hồi được ghi nhận, chưa có phương án sửa."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L018",
+                "quote": "Một phản hồi nữa là chữ ở màn hình xác nhận nhỏ khi dùng màn hình cũ."
+              },
+              {
+                "source_id": "L019",
+                "quote": "Máy mới không có cùng phản hồi; cần giữ rõ phạm vi phản hồi."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L067",
+                "quote": "Nút xác nhận và chữ nhỏ vẫn là phản hồi được ghi nhận, chưa có phương án sửa."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        }
+      ],
       "no_required_records_reason": null,
-      "allowed_additional_records": [],
-      "forbidden_claims": [],
-      "case_review_required": false
+      "allowed_additional_records": [
+        {
+          "label_id": "normal_zone_schedule_open",
+          "kind": "decision",
+          "meaning": "Chưa chọn lịch kiểm kê khu thường, ngoài phạm vi chốt khu lạnh",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L037",
+              "quote": "Có người hỏi kiểm kê cả kho, nhưng hôm nay phạm vi chỉ khu lạnh."
+            },
+            {
+              "source_id": "L064",
+              "quote": "Chốt chiều thứ Sáu cho khu lạnh, chưa chọn lịch cho khu thường."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L037",
+                "quote": "Có người hỏi kiểm kê cả kho, nhưng hôm nay phạm vi chỉ khu lạnh."
+              },
+              {
+                "source_id": "L064",
+                "quote": "Chốt chiều thứ Sáu cho khu lạnh, chưa chọn lịch cho khu thường."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L064",
+                "quote": "Chốt chiều thứ Sáu cho khu lạnh, chưa chọn lịch cho khu thường."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "obscured_shelf_code",
+          "kind": "issue",
+          "meaning": "Mã kệ phía đông trên sơ đồ hiện tại bị chú thích che; chưa có lời báo đã sửa",
+          "meeting_status": "open",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L013",
+              "quote": "Trong hình hiện tại mã kệ phía đông bị che bởi chú thích."
+            },
+            {
+              "source_id": "L014",
+              "quote": "Tôi thấy ghi chú đó, còn bản sơ đồ mới chưa hoàn tất."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L013",
+                "quote": "Trong hình hiện tại mã kệ phía đông bị che bởi chú thích."
+              },
+              {
+                "source_id": "L014",
+                "quote": "Tôi thấy ghi chú đó, còn bản sơ đồ mới chưa hoàn tất."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L014",
+                "quote": "Tôi thấy ghi chú đó, còn bản sơ đồ mới chưa hoàn tất."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "button_visibility_request",
+          "kind": "request",
+          "meaning": "Người dùng muốn nhìn thấy nút xác nhận rõ hơn, chưa đề nghị vị trí cụ thể",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L030",
+              "quote": "Người dùng muốn nhìn thấy nút xác nhận rõ hơn, chưa đề nghị đổi vị trí cụ thể."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L030",
+                "quote": "Người dùng muốn nhìn thấy nút xác nhận rõ hơn, chưa đề nghị đổi vị trí cụ thể."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L030",
+                "quote": "Người dùng muốn nhìn thấy nút xác nhận rõ hơn, chưa đề nghị đổi vị trí cụ thể."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        }
+      ],
+      "forbidden_claims": [
+        "Kiểm kê khu lạnh sáng thứ Năm còn là lịch cuối",
+        "Bình còn phụ trách sơ đồ hoặc được gán supporter",
+        "Hạn sơ đồ là chiều thứ Tư hoặc chiều thứ Sáu",
+        "Linh/Vy/Bình đã được giao sửa giao diện hay lịch xe",
+        "Đã chốt kiểm kê toàn kho/đổi cảm biến/dịch tài liệu"
+      ],
+      "case_review_required": false,
+      "representation_alternatives": [
+        {
+          "id": "combined_arrival_ui_feedback",
+          "replaces_label_ids": [
+            "arrival_button_feedback",
+            "small_text_feedback"
+          ],
+          "expected_records": [
+            {
+              "label_id": "arrival_ui_feedback_combined",
+              "kind": "feedback",
+              "meaning": "Ca tối/máy bàn khó tìm nút xác nhận; chữ nhỏ trên màn hình cũ; chưa có phương án sửa",
+              "meeting_status": "recorded",
+              "execution_status": "not_applicable",
+              "authority_status": "unknown",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "due_iso": null,
+              "condition": null,
+              "evidence": [
+                {
+                  "source_id": "L004",
+                  "quote": "Màn hình hàng về đang khó tìm nút xác nhận theo phản hồi của ca tối."
+                },
+                {
+                  "source_id": "L007",
+                  "quote": "Phản hồi khó tìm nút đến từ máy bàn, không phải kết luận lỗi trên mọi thiết bị."
+                },
+                {
+                  "source_id": "L018",
+                  "quote": "Một phản hồi nữa là chữ ở màn hình xác nhận nhỏ khi dùng màn hình cũ."
+                },
+                {
+                  "source_id": "L019",
+                  "quote": "Máy mới không có cùng phản hồi; cần giữ rõ phạm vi phản hồi."
+                },
+                {
+                  "source_id": "L026",
+                  "quote": "Tôi chỉ báo thông tin ca tối gửi lại, chưa kiểm tra độc lập giao diện."
+                },
+                {
+                  "source_id": "L067",
+                  "quote": "Nút xác nhận và chữ nhỏ vẫn là phản hồi được ghi nhận, chưa có phương án sửa."
+                }
+              ],
+              "field_evidence": {
+                "content": [
+                  {
+                    "source_id": "L004",
+                    "quote": "Màn hình hàng về đang khó tìm nút xác nhận theo phản hồi của ca tối."
+                  },
+                  {
+                    "source_id": "L007",
+                    "quote": "Phản hồi khó tìm nút đến từ máy bàn, không phải kết luận lỗi trên mọi thiết bị."
+                  },
+                  {
+                    "source_id": "L018",
+                    "quote": "Một phản hồi nữa là chữ ở màn hình xác nhận nhỏ khi dùng màn hình cũ."
+                  },
+                  {
+                    "source_id": "L019",
+                    "quote": "Máy mới không có cùng phản hồi; cần giữ rõ phạm vi phản hồi."
+                  },
+                  {
+                    "source_id": "L026",
+                    "quote": "Tôi chỉ báo thông tin ca tối gửi lại, chưa kiểm tra độc lập giao diện."
+                  }
+                ],
+                "meeting_status": [
+                  {
+                    "source_id": "L067",
+                    "quote": "Nút xác nhận và chữ nhỏ vẫn là phản hồi được ghi nhận, chưa có phương án sửa."
+                  }
+                ]
+              },
+              "counter_evidence": [],
+              "must_flag_for_review": false,
+              "semantic_note": ""
+            }
+          ],
+          "note": "Feedback gộp được chấp nhận nếu giữ cả hai ý và phạm vi thiết bị; không mất một ý rồi vẫn tính đủ recall."
+        }
+      ],
+      "annotation_notes": "Lịch kiểm kê chiều thứ Sáu nằm trong nội dung decision, không gán thành due của tài liệu. Tài liệu gửi sáng thứ Sáu theo L066. Hai feedback có phạm vi, không tự đổi thành task. Khu thường ngoài phạm vi nên open có nguồn là extra hợp lệ."
     },
     {
       "id": "N12",
       "transcript_sha256": "9077cf1a287aebd625c138948fd65d8bbb8ef9490c96fe7b4112c796ad39e6d9",
-      "annotation_status": "pending",
-      "reviewer": "",
-      "reviewed_at": null,
-      "labels_finalized_before_outputs": false,
-      "required_records": null,
+      "annotation_status": "assistant_reviewed",
+      "reviewer": "coding_assistant_same_author_not_independent_human",
+      "reviewed_at": "2026-10-14T14:08:45.376727+00:00",
+      "labels_finalized_before_outputs": true,
+      "required_records": [
+        {
+          "label_id": "english_guide_need",
+          "kind": "request",
+          "meaning": "Khách cần hướng dẫn tiếng Anh cho cả tuyến Bắc và Nam; nhu cầu còn giữ",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L002",
+              "quote": "Khách yêu cầu có bản hướng dẫn tiếng Anh cho cả hai tuyến."
+            },
+            {
+              "source_id": "L020",
+              "quote": "Khách nước ngoài yêu cầu bản tiếng Anh, không yêu cầu đổi loại vé."
+            },
+            {
+              "source_id": "L046",
+              "quote": "Yêu cầu hướng dẫn tiếng Anh vẫn giữ dù hủy thử M."
+            },
+            {
+              "source_id": "L061",
+              "quote": "Yêu cầu tiếng Anh không có hạn mới trong buổi này."
+            },
+            {
+              "source_id": "L069",
+              "quote": "Yêu cầu hướng dẫn tiếng Anh không bị rút vì mở lại lịch."
+            },
+            {
+              "source_id": "L072",
+              "quote": "Khách vẫn cần hướng dẫn tiếng Anh cho cả hai tuyến."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L002",
+                "quote": "Khách yêu cầu có bản hướng dẫn tiếng Anh cho cả hai tuyến."
+              },
+              {
+                "source_id": "L020",
+                "quote": "Khách nước ngoài yêu cầu bản tiếng Anh, không yêu cầu đổi loại vé."
+              },
+              {
+                "source_id": "L072",
+                "quote": "Khách vẫn cần hướng dẫn tiếng Anh cho cả hai tuyến."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L046",
+                "quote": "Yêu cầu hướng dẫn tiếng Anh vẫn giữ dù hủy thử M."
+              },
+              {
+                "source_id": "L069",
+                "quote": "Yêu cầu hướng dẫn tiếng Anh không bị rút vì mở lại lịch."
+              },
+              {
+                "source_id": "L072",
+                "quote": "Khách vẫn cần hướng dẫn tiếng Anh cho cả hai tuyến."
+              }
+            ],
+            "due_raw": [
+              {
+                "source_id": "L061",
+                "quote": "Yêu cầu tiếng Anh không có hạn mới trong buổi này."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "try_tool_m",
+          "kind": "action",
+          "meaning": "Thử làm hướng dẫn bằng công cụ M (đã hủy)",
+          "meeting_status": "cancelled",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": "Hòa",
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L003",
+              "quote": "Giao Hòa thử làm bản hướng dẫn bằng công cụ M, hạn tối mai."
+            },
+            {
+              "source_id": "L004",
+              "quote": "Tôi nhận thử công cụ M."
+            },
+            {
+              "source_id": "L044",
+              "quote": "Hủy việc thử công cụ M, bỏ hạn tối mai. Đây là lý do hủy, không phải điều kiện để tiếp tục dùng M."
+            },
+            {
+              "source_id": "L045",
+              "quote": "Tôi không còn làm thử M."
+            },
+            {
+              "source_id": "L049",
+              "quote": "Đừng ghi tôi tiếp tục làm chỉ vì tôi từng nhận thử M."
+            },
+            {
+              "source_id": "L060",
+              "quote": "Hạn tối mai đã bị bỏ đối với thử công cụ M."
+            },
+            {
+              "source_id": "L073",
+              "quote": "Việc thử M đã hủy, người từng nhận là tôi; không còn hạn tối mai."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L003",
+                "quote": "Giao Hòa thử làm bản hướng dẫn bằng công cụ M, hạn tối mai."
+              },
+              {
+                "source_id": "L044",
+                "quote": "Hủy việc thử công cụ M, bỏ hạn tối mai. Đây là lý do hủy, không phải điều kiện để tiếp tục dùng M."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L044",
+                "quote": "Hủy việc thử công cụ M, bỏ hạn tối mai. Đây là lý do hủy, không phải điều kiện để tiếp tục dùng M."
+              },
+              {
+                "source_id": "L045",
+                "quote": "Tôi không còn làm thử M."
+              },
+              {
+                "source_id": "L073",
+                "quote": "Việc thử M đã hủy, người từng nhận là tôi; không còn hạn tối mai."
+              }
+            ],
+            "owner": [
+              {
+                "source_id": "L003",
+                "quote": "Giao Hòa thử làm bản hướng dẫn bằng công cụ M, hạn tối mai."
+              },
+              {
+                "source_id": "L004",
+                "quote": "Tôi nhận thử công cụ M."
+              },
+              {
+                "source_id": "L073",
+                "quote": "Việc thử M đã hủy, người từng nhận là tôi; không còn hạn tối mai."
+              }
+            ],
+            "due_raw": [
+              {
+                "source_id": "L044",
+                "quote": "Hủy việc thử công cụ M, bỏ hạn tối mai. Đây là lý do hủy, không phải điều kiện để tiếp tục dùng M."
+              },
+              {
+                "source_id": "L060",
+                "quote": "Hạn tối mai đã bị bỏ đối với thử công cụ M."
+              },
+              {
+                "source_id": "L073",
+                "quote": "Việc thử M đã hủy, người từng nhận là tôi; không còn hạn tối mai."
+              }
+            ]
+          },
+          "counter_evidence": [
+            {
+              "source_id": "L003",
+              "quote": "Giao Hòa thử làm bản hướng dẫn bằng công cụ M, hạn tối mai."
+            }
+          ],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "guide_method_open",
+          "kind": "decision",
+          "meaning": "Chưa chọn công cụ/cách làm hướng dẫn thay thế và chưa giao người làm",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L047",
+              "quote": "Chưa chọn cách làm thay thế và chưa giao ai làm bản hướng dẫn mới."
+            },
+            {
+              "source_id": "L048",
+              "quote": "Ghi rõ cách làm hướng dẫn thay thế còn mở."
+            },
+            {
+              "source_id": "L064",
+              "quote": "Công cụ thay thế chưa được chọn."
+            },
+            {
+              "source_id": "L074",
+              "quote": "Không có quyết định chọn công cụ mới."
+            },
+            {
+              "source_id": "L075",
+              "quote": "Chưa giao người làm tài liệu thay thế."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L047",
+                "quote": "Chưa chọn cách làm thay thế và chưa giao ai làm bản hướng dẫn mới."
+              },
+              {
+                "source_id": "L048",
+                "quote": "Ghi rõ cách làm hướng dẫn thay thế còn mở."
+              },
+              {
+                "source_id": "L074",
+                "quote": "Không có quyết định chọn công cụ mới."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L048",
+                "quote": "Ghi rõ cách làm hướng dẫn thay thế còn mở."
+              },
+              {
+                "source_id": "L074",
+                "quote": "Không có quyết định chọn công cụ mới."
+              },
+              {
+                "source_id": "L075",
+                "quote": "Chưa giao người làm tài liệu thay thế."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "north_departure_reopened",
+          "kind": "decision",
+          "meaning": "Lựa chọn giờ tuyến Bắc được mở lại; không còn chốt 8 giờ hay 7 giờ, ngày chạy thử chưa chắc chắn",
+          "meeting_status": "reopened",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L005",
+              "quote": "Tôi đọc biên bản tháng trước: \"Chốt tuyến Bắc khởi hành 7 giờ\"."
+            },
+            {
+              "source_id": "L006",
+              "quote": "Đó là lịch tháng trước, chưa phải lịch hôm nay."
+            },
+            {
+              "source_id": "L055",
+              "quote": "Thống nhất tuyến Bắc khởi hành 8 giờ trong ngày chạy thử; không áp dụng cho mọi ngày."
+            },
+            {
+              "source_id": "L066",
+              "quote": "Tôi vừa nhận thông báo bổ sung: ngày chạy thử chưa được xác nhận cuối cùng."
+            },
+            {
+              "source_id": "L067",
+              "quote": "Vậy mở lại quyết định 8 giờ tuyến Bắc. Chưa chốt giờ khởi hành cho ngày chưa xác nhận."
+            },
+            {
+              "source_id": "L068",
+              "quote": "Đồng ý mở lại, chưa chọn 7 giờ hay 8 giờ."
+            },
+            {
+              "source_id": "L071",
+              "quote": "Cuối buổi: tuyến Bắc chưa chốt giờ, tuyến Nam cũng chưa chốt giờ."
+            },
+            {
+              "source_id": "L078",
+              "quote": "Những giờ từng đề xuất giữ trong lịch sử, không dùng làm giờ đã chốt."
+            },
+            {
+              "source_id": "L079",
+              "quote": "Chúng ta chưa có ngày chạy thử chắc chắn."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L067",
+                "quote": "Vậy mở lại quyết định 8 giờ tuyến Bắc. Chưa chốt giờ khởi hành cho ngày chưa xác nhận."
+              },
+              {
+                "source_id": "L068",
+                "quote": "Đồng ý mở lại, chưa chọn 7 giờ hay 8 giờ."
+              },
+              {
+                "source_id": "L071",
+                "quote": "Cuối buổi: tuyến Bắc chưa chốt giờ, tuyến Nam cũng chưa chốt giờ."
+              },
+              {
+                "source_id": "L079",
+                "quote": "Chúng ta chưa có ngày chạy thử chắc chắn."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L067",
+                "quote": "Vậy mở lại quyết định 8 giờ tuyến Bắc. Chưa chốt giờ khởi hành cho ngày chưa xác nhận."
+              },
+              {
+                "source_id": "L068",
+                "quote": "Đồng ý mở lại, chưa chọn 7 giờ hay 8 giờ."
+              },
+              {
+                "source_id": "L071",
+                "quote": "Cuối buổi: tuyến Bắc chưa chốt giờ, tuyến Nam cũng chưa chốt giờ."
+              },
+              {
+                "source_id": "L078",
+                "quote": "Những giờ từng đề xuất giữ trong lịch sử, không dùng làm giờ đã chốt."
+              }
+            ]
+          },
+          "counter_evidence": [
+            {
+              "source_id": "L005",
+              "quote": "Tôi đọc biên bản tháng trước: \"Chốt tuyến Bắc khởi hành 7 giờ\"."
+            },
+            {
+              "source_id": "L055",
+              "quote": "Thống nhất tuyến Bắc khởi hành 8 giờ trong ngày chạy thử; không áp dụng cho mọi ngày."
+            }
+          ],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "south_departure_open",
+          "kind": "decision",
+          "meaning": "Chưa chốt giờ khởi hành tuyến Nam",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L025",
+              "quote": "Tuyến Nam chưa có quyết định giờ khởi hành mới."
+            },
+            {
+              "source_id": "L026",
+              "quote": "Không dùng giờ tuyến Bắc để điền cho tuyến Nam."
+            },
+            {
+              "source_id": "L059",
+              "quote": "Ghi nhu cầu xác nhận giờ tuyến Nam, chưa chốt giờ và chưa giao người."
+            },
+            {
+              "source_id": "L071",
+              "quote": "Cuối buổi: tuyến Bắc chưa chốt giờ, tuyến Nam cũng chưa chốt giờ."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L025",
+                "quote": "Tuyến Nam chưa có quyết định giờ khởi hành mới."
+              },
+              {
+                "source_id": "L059",
+                "quote": "Ghi nhu cầu xác nhận giờ tuyến Nam, chưa chốt giờ và chưa giao người."
+              },
+              {
+                "source_id": "L071",
+                "quote": "Cuối buổi: tuyến Bắc chưa chốt giờ, tuyến Nam cũng chưa chốt giờ."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L059",
+                "quote": "Ghi nhu cầu xác nhận giờ tuyến Nam, chưa chốt giờ và chưa giao người."
+              },
+              {
+                "source_id": "L071",
+                "quote": "Cuối buổi: tuyến Bắc chưa chốt giờ, tuyến Nam cũng chưa chốt giờ."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "south_bus_late_feedback",
+          "kind": "feedback",
+          "meaning": "Tuyến Nam có phản hồi xe đến điểm đón trễ, chưa có lời báo hết trễ",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L007",
+              "quote": "Tuyến Nam đang có phản hồi xe đến điểm đón trễ."
+            },
+            {
+              "source_id": "L008",
+              "quote": "Phản hồi này chỉ liên quan tuyến Nam."
+            },
+            {
+              "source_id": "L024",
+              "quote": "Phản hồi xe trễ vẫn chưa có báo khắc phục."
+            },
+            {
+              "source_id": "L038",
+              "quote": "Chưa có lời báo xe tuyến Nam đã đúng giờ trở lại."
+            },
+            {
+              "source_id": "L065",
+              "quote": "Phản hồi xe tuyến Nam trễ là phản hồi còn cần chú ý."
+            },
+            {
+              "source_id": "L076",
+              "quote": "Không có lời xác nhận xe tuyến Nam hết trễ."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L007",
+                "quote": "Tuyến Nam đang có phản hồi xe đến điểm đón trễ."
+              },
+              {
+                "source_id": "L008",
+                "quote": "Phản hồi này chỉ liên quan tuyến Nam."
+              },
+              {
+                "source_id": "L065",
+                "quote": "Phản hồi xe tuyến Nam trễ là phản hồi còn cần chú ý."
+              },
+              {
+                "source_id": "L076",
+                "quote": "Không có lời xác nhận xe tuyến Nam hết trễ."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L065",
+                "quote": "Phản hồi xe tuyến Nam trễ là phản hồi còn cần chú ý."
+              },
+              {
+                "source_id": "L076",
+                "quote": "Không có lời xác nhận xe tuyến Nam hết trễ."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        },
+        {
+          "label_id": "confirm_south_departure",
+          "kind": "request",
+          "meaning": "Cần xác nhận giờ tuyến Nam với nhà xe; chưa có người nhận liên hệ",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L057",
+              "quote": "Tuyến Nam cần xác nhận giờ với nhà xe."
+            },
+            {
+              "source_id": "L058",
+              "quote": "Chưa ai nhận việc liên hệ nhà xe."
+            },
+            {
+              "source_id": "L059",
+              "quote": "Ghi nhu cầu xác nhận giờ tuyến Nam, chưa chốt giờ và chưa giao người."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L057",
+                "quote": "Tuyến Nam cần xác nhận giờ với nhà xe."
+              },
+              {
+                "source_id": "L059",
+                "quote": "Ghi nhu cầu xác nhận giờ tuyến Nam, chưa chốt giờ và chưa giao người."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L059",
+                "quote": "Ghi nhu cầu xác nhận giờ tuyến Nam, chưa chốt giờ và chưa giao người."
+              }
+            ],
+            "owner": [
+              {
+                "source_id": "L058",
+                "quote": "Chưa ai nhận việc liên hệ nhà xe."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        }
+      ],
       "no_required_records_reason": null,
-      "allowed_additional_records": [],
-      "forbidden_claims": [],
-      "case_review_required": false
+      "allowed_additional_records": [
+        {
+          "label_id": "south_lateness_issue",
+          "kind": "issue",
+          "meaning": "Vướng mắc xe tuyến Nam trễ chưa được báo khắc phục",
+          "meeting_status": "open",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L007",
+              "quote": "Tuyến Nam đang có phản hồi xe đến điểm đón trễ."
+            },
+            {
+              "source_id": "L024",
+              "quote": "Phản hồi xe trễ vẫn chưa có báo khắc phục."
+            },
+            {
+              "source_id": "L038",
+              "quote": "Chưa có lời báo xe tuyến Nam đã đúng giờ trở lại."
+            },
+            {
+              "source_id": "L076",
+              "quote": "Không có lời xác nhận xe tuyến Nam hết trễ."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L007",
+                "quote": "Tuyến Nam đang có phản hồi xe đến điểm đón trễ."
+              },
+              {
+                "source_id": "L024",
+                "quote": "Phản hồi xe trễ vẫn chưa có báo khắc phục."
+              },
+              {
+                "source_id": "L038",
+                "quote": "Chưa có lời báo xe tuyến Nam đã đúng giờ trở lại."
+              },
+              {
+                "source_id": "L076",
+                "quote": "Không có lời xác nhận xe tuyến Nam hết trễ."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L076",
+                "quote": "Không có lời xác nhận xe tuyến Nam hết trễ."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "semantic_note": ""
+        }
+      ],
+      "forbidden_claims": [
+        "Giờ tuyến Bắc hiện đã chốt 7 hoặc 8 giờ",
+        "Lấy 8 giờ của Bắc làm giờ Nam",
+        "Hòa còn đang thử M/làm hướng dẫn mới hoặc còn hạn tối mai",
+        "Yêu cầu tiếng Anh bị hủy khi công cụ M hoặc lịch Bắc bị mở lại",
+        "Lý do công cụ không cho dùng thương mại thành condition tiếp tục triển khai M",
+        "Đã chọn công cụ thay thế hoặc giao người làm/liên hệ nhà xe",
+        "Xe tuyến Nam được báo khắc phục hoặc xác minh hết trễ"
+      ],
+      "case_review_required": false,
+      "representation_alternatives": [],
+      "annotation_notes": "Giữ riêng vòng đời hai tuyến, request tài liệu và task M. Giờ 8 chỉ từng agreed trong ngày thử rồi bị reopened ở L067; các giờ được nhắc lại là history. Hòa là owner lịch sử của task cancelled, hạn null. Request xác nhận giờ Nam khác với một action liên hệ được nhận. Extra issue Nam có căn cứ nhưng không tự chứng minh feedback đã được trích đủ."
     }
-  ]
+  ],
+  "review_method": "Internal same-author semantic review against the full transcript; user explicitly requested assistant annotation, not human signoff.",
+  "independence_claim": false,
+  "llm_execution_performed": false
 }

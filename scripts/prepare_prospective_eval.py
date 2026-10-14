@@ -1,4 +1,4 @@
-"""Validate pre-output human annotations and freeze prospective input; no API calls."""
+"""Validate pre-output annotations with explicit authorship; no API calls."""
 import argparse
 import copy
 import hashlib
@@ -16,7 +16,7 @@ from meeting_intelligence.models import Kind, MeetingStatus, ExecutionStatus
 def digest(value):
     return hashlib.sha256(value.encode('utf8')).hexdigest()
 
-def validate_annotations(pool, annotations):
+def validate_annotations(pool, annotations, *, allow_assistant_review=False):
     cases={c['id']:c for c in pool['cases']}
     rows=annotations.get('cases',[])
     if len(cases)!=len(pool['cases']) or len(rows)!=len(cases) or len({r['id'] for r in rows})!=len(rows) or {r['id'] for r in rows}!=set(cases):
@@ -25,7 +25,9 @@ def validate_annotations(pool, annotations):
     for row in rows:
         cid=row['id'];case=cases[cid]
         if row.get('transcript_sha256')!=digest(case['transcript']):raise ValueError(cid+': transcript changed after annotation')
-        if row.get('annotation_status')!='human_reviewed' or not str(row.get('reviewer') or '').strip() or row.get('labels_finalized_before_outputs') is not True:
+        status=row.get('annotation_status')
+        accepted=status=='human_reviewed' or (allow_assistant_review and status=='assistant_reviewed')
+        if not accepted or not str(row.get('reviewer') or '').strip() or row.get('labels_finalized_before_outputs') is not True:
             raise ValueError(cid+': human review and pre-output declaration are still pending')
         try:stamp=datetime.fromisoformat(row['reviewed_at'])
         except (TypeError,ValueError,KeyError):raise ValueError(cid+': reviewed_at must be ISO datetime with timezone')
@@ -35,8 +37,15 @@ def validate_annotations(pool, annotations):
         if not isinstance(required,list):raise ValueError(cid+': required_records is not annotated; null is NOT an empty gold set')
         if not required and not str(row.get('no_required_records_reason') or '').strip():raise ValueError(cid+': explain a deliberately empty gold set')
         sources={u.id:u.text for u in parse_transcript(case['transcript'])}
+        alternatives=row.get('representation_alternatives',[])
+        required_ids={r['label_id'] for r in required}
+        alternative_ids=set()
+        for alt in alternatives:
+            if not alt.get('id') or alt['id'] in alternative_ids or not alt.get('replaces_label_ids') or not set(alt['replaces_label_ids']).issubset(required_ids) or not alt.get('expected_records'):
+                raise ValueError(cid+': invalid representation alternative')
+            alternative_ids.add(alt['id'])
         label_ids=set()
-        for record in [*required,*row.get('allowed_additional_records',[])]:
+        for record in [*required,*row.get('allowed_additional_records',[]),*[r for alt in alternatives for r in alt['expected_records']]]:
             lid=record.get('label_id')
             if not lid or lid in label_ids:raise ValueError(cid+': label IDs must be unique')
             label_ids.add(lid)
@@ -63,8 +72,12 @@ def validate_annotations(pool, annotations):
             if record['execution_status'] in {'blocked','pending_condition'} and not record['field_evidence'].get('execution_status'):raise ValueError(cid+': execution status evidence required')
         item=copy.deepcopy(case)
         item.update({k:copy.deepcopy(row[k]) for k in ['required_records','allowed_additional_records','forbidden_claims','case_review_required']})
-        item['annotation_status']='human_reviewed_self_reported'
-        item['human_signoff']={k:row[k] for k in ['reviewer','reviewed_at','labels_finalized_before_outputs']}
+        item['annotation_status']='assistant_reviewed_internal' if status=='assistant_reviewed' else 'human_reviewed_self_reported'
+        signoff={k:row[k] for k in ['reviewer','reviewed_at','labels_finalized_before_outputs']}
+        item['annotation_review']=signoff
+        if status=='human_reviewed':item['human_signoff']=signoff
+        item['representation_alternatives']=copy.deepcopy(alternatives)
+        item['annotation_notes']=row.get('annotation_notes','')
         item['split']='held_out'  # runner/scorer compatibility; does not imply independent authorship.
         frozen.append(item)
     return frozen
@@ -75,20 +88,23 @@ def main():
     p.add_argument('--annotations',default='datasets/prospective_eval_v2_annotations.json')
     p.add_argument('--out',default='datasets/prospective_eval_v2_frozen.json')
     p.add_argument('--freeze',action='store_true')
+    p.add_argument('--allow-assistant-review',action='store_true',help='Accept explicitly assistant-reviewed internal labels; never call them human/independent.')
     args=p.parse_args()
     try:
         pool_path=ROOT/args.pool;annotations_path=ROOT/args.annotations
         pool=json.loads(pool_path.read_text(encoding='utf8'));annotations=json.loads(annotations_path.read_text(encoding='utf8'))
-        cases=validate_annotations(pool,annotations)
-        value={'dataset_id':'prospective_eval_vi_v2_frozen','evaluation_gate':'frozen_human_labels',
+        cases=validate_annotations(pool,annotations,allow_assistant_review=args.allow_assistant_review)
+        assistant=any(c['annotation_status']=='assistant_reviewed_internal' for c in cases)
+        value={'dataset_id':'prospective_eval_vi_v2_frozen','evaluation_gate':'frozen_assistant_labels' if assistant else 'frozen_human_labels',
+            'label_review_mode':'assistant_internal' if assistant else 'human_self_reported',
             'provenance':pool['provenance'],'independence_claim':False,
-            'caveat':'Synthetic transcripts seen by implementation author; human signoff is self-reported. This is NOT an independent real-world benchmark.',
+            'caveat':'Synthetic transcripts seen by implementation author; assistant labels are internal and human signoff, if any, is self-reported. This is NOT an independent real-world benchmark.',
             'source_sha256':{args.pool:hashlib.sha256(pool_path.read_bytes()).hexdigest(),args.annotations:hashlib.sha256(annotations_path.read_bytes()).hexdigest()},'cases':cases}
         if args.freeze:
             out=ROOT/args.out
             if out.exists():raise ValueError('Frozen dataset already exists; do not overwrite. Use a new version.')
             out.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
-            print('Frozen human-reviewed inputs. No API calls. Independence claim remains false.')
+            print('Frozen inputs with review mode: '+value['label_review_mode']+'. No API calls. Independence claim remains false.')
         else:print('Annotations valid; use --freeze to seal before model outputs. No API calls.')
     except (ValueError,OSError,KeyError,TypeError) as exc:p.exit(1,str(exc)+'\n')
 

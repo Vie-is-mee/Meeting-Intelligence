@@ -1,6 +1,6 @@
 # Phiếu đọc và gán nhãn trước khi xem kết quả
 
-12 transcript tổng hợp mới, chưa chạy LLM và chưa có đáp án. Bạn/người thứ hai đọc từng transcript và điền JSON annotations theo PROSPECTIVE_EVALUATION.md. Không dùng đầu ra AI để viết đáp án. Tác giả transcript vẫn là trợ lý triển khai, vì vậy không gọi đây là benchmark độc lập.
+12 transcript tổng hợp, chưa chạy LLM. Theo yêu cầu ứng viên, trợ lý đã gán nhãn trong JSON annotations; [xem lý do từng case](PROSPECTIVE_LABEL_REVIEW.md). Phiếu này giữ các ô trống để người thứ hai có thể đọc và ghi nhận xét riêng nếu cần. Không dùng đầu ra model để viết/sửa đáp án. Tác giả transcript và nhãn hiện vẫn là trợ lý triển khai, không gọi đây là benchmark độc lập hoặc có human signoff.
 
 ## N01 — Lựa chọn đơn vị giao hàng
 

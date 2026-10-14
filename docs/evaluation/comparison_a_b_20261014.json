@@ -109,7 +109,7 @@
     }
   ],
   "prospective_evaluation": {
-    "status": "pending_human_labels",
+    "status": "assistant_labels_frozen_no_model_run",
     "case_ids": [
       "N01",
       "N02",
@@ -126,7 +126,13 @@
     ],
     "run_artifacts": [],
     "scores": null,
-    "independence_claim": false
+    "independence_claim": false,
+    "frozen_input": "datasets/prospective_eval_v2_frozen.json",
+    "label_review_mode": "assistant_internal",
+    "human_signoff": false,
+    "nominal_required_records": 27,
+    "reference_extra_records": 9,
+    "representation_alternatives": 4
   },
   "acceptance_policy": [
     "Repair target errors without changing gold to fit outputs",
