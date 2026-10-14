@@ -396,32 +396,59 @@ function reviewKindSettings(preferred) {
     $(id).disabled = !allowed; if(!allowed) $(id).value = '';
   }
 }
+let reviewChoice = null;
+function chooseReview(value) {
+  reviewChoice=value;
+  document.querySelectorAll('[data-review-choice]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.reviewChoice===value)));
+  $('review-correction').hidden=value!=='wrong';
+  $('review-reason-label').hidden=!['wrong','insufficient'].includes(value)&&!(value==='correct'&&currentReview?.records[selected]?.decision==='rejected');
+  $('review-check-label').hidden=value!=='wrong';
+  $('review-edit').hidden=value!=='wrong';$('review-reject').hidden=value!=='wrong';
+  $('review-submit').disabled=!value;
+  $('review-submit').textContent={correct:'Xác nhận: kết quả đúng',wrong:'Lưu bản sửa và xác nhận',insufficient:'Lưu: chưa đủ bằng chứng'}[value]||'Lưu đánh giá';
+  $('review-choice-help').textContent={correct:'Bạn xác nhận thông tin đang hiển thị phù hợp với transcript. Không cần chỉnh sửa.',wrong:'Sửa phần ghi sai và ghi lý do; hoặc loại bỏ nếu bản ghi không tồn tại trong cuộc họp.',insufficient:'Ghi rõ điều còn chưa xác minh được. Bản này tiếp tục chờ, không được đưa vào CSV đã xác nhận.'}[value]||'Chọn một đánh giá sau khi đọc các câu nguồn. Có thể xem thêm toàn bộ transcript bên trái.';
+}
 function renderHumanReview() {
+  chooseReview(null);
   $('review-message').textContent='';
   $('human-review-panel').hidden = !currentReview;
   if (!currentReview) return;
   const counts = {pending:0,confirmed:0,rejected:0}; currentReview.records.forEach(r=>counts[r.decision]++);
-  $('review-counts').textContent = `${counts.pending} chờ rà soát · ${counts.confirmed} đã xác nhận nội dung · ${counts.rejected} bị từ chối`;
+  const insufficient=currentReview.records.filter(r=>r.assessment==='insufficient').length;
+  $('review-counts').textContent = `${counts.pending} chưa xác nhận${insufficient?` (gồm ${insufficient} chưa đủ bằng chứng)`:''} · ${counts.confirmed} đã xác nhận · ${counts.rejected} bản sai đã loại bỏ`;
   $('export-review-csv').disabled = !counts.confirmed;
   const selector = node('select'); selector.setAttribute('aria-label','Chọn bản ghi để rà soát');
-  currentReview.records.forEach((r,i)=>{const option=node('option','',`${i+1}. ${result.analysis.records[i].topic} · ${{pending:'Chờ rà soát',confirmed:'Đã xác nhận',rejected:'Đã từ chối'}[r.decision]}`);option.value=i;selector.append(option);});
+  currentReview.records.forEach((r,i)=>{const option=node('option','',`${i+1}. ${result.analysis.records[i].topic} · ${r.assessment==='insufficient'?'Chưa đủ bằng chứng':{pending:'Chưa xác nhận',confirmed:'Đã xác nhận',rejected:'Sai, đã loại bỏ'}[r.decision]}`);option.value=i;selector.append(option);});
   selector.value=selected;
   selector.addEventListener('change',()=>{selected=Number(selector.value);renderRecords();renderDetail();renderHumanReview();});
   $('review-record-selector').replaceChildren(node('label','','Chọn bản ghi (lưu chỉnh sửa trước khi chuyển)'),selector);
   const entry=currentReview.records[selected];
   $('human-review-form').hidden=!entry;
-  $('review-record-title').textContent=entry ? `Bản rà soát ${selected+1}: ${result.analysis.records[selected].topic}` : 'Không có bản ghi để rà soát.';
-  $('review-original').replaceChildren(); $('review-history').replaceChildren();
+  $('review-record-title').textContent=entry ? `Kiểm tra mục ${selected+1}: ${result.analysis.records[selected].topic}` : 'Không có bản ghi để rà soát.';
+  $('review-reopen').hidden=!entry?.history.length;
+  $('review-original').replaceChildren(); $('review-evidence').replaceChildren(); $('review-history').replaceChildren();
   if(entry){
     const original=currentReview.original_analysis.records[selected];
-    $('review-original').append(node('strong','','AI gốc (không thay đổi)'),node('p','',`${kinds[original.kind]} · ${statuses[original.meeting_status]} · ${original.content||'Chưa có nội dung'}`));
+    const changed=JSON.stringify(entry.draft)!==JSON.stringify(Object.fromEntries(MeetingReview.editable.map(k=>[k,original[k]??null])));
+    const display=entry.draft;
+    $('review-original').append(node('strong','',changed?'Phiên bản đã sửa — đang đối chiếu':'Kết quả AI cần kiểm tra'),node('p','',`${kinds[display.kind]} · ${statuses[display.meeting_status]} · ${display.content||'Chưa có nội dung'}`));
+    for(const [key,label] of [['owner','Người phụ trách'],['supporter','Người hỗ trợ'],['due_raw','Hạn'],['condition','Điều kiện']])if(display[key])$('review-original').append(node('p','',`${label}: ${display[key]}`));
+    $('review-original').append(node('p','review-state',entry.assessment==='insufficient'?'Đánh giá đã lưu: chưa đủ bằng chứng':`Đánh giá đã lưu: ${{pending:'chưa xác nhận',confirmed:'đã xác nhận nội dung',rejected:'bản ghi sai, đã loại bỏ'}[entry.decision]}`));
+    if(changed){const old=node('details');old.append(node('summary','','Xem kết quả AI ban đầu'),node('p','',`${kinds[original.kind]} · ${statuses[original.meeting_status]} · ${original.content}`));$('review-original').append(old);}
+    const evidence=$('review-evidence');evidence.replaceChildren(node('strong','','Câu nguồn để đối chiếu'));
+    const sourceIds=new Set([...original.evidence_ids,...(original.counter_evidence_ids||[]),...entry.source_ids]);
+    // Event evidence includes later turns that may reopen or cancel an earlier statement.
+    for(const event of original.history||[])for(const id of event.source_ids||[])sourceIds.add(id);
+    currentReview.original_analysis.utterances.filter(u=>sourceIds.has(u.id)).forEach(u=>{const quote=node('blockquote');quote.append(node('strong','',`${u.id} · ${u.speaker||'Không rõ người nói'}`),node('p','',u.text));evidence.append(quote);});
+    if(!sourceIds.size)evidence.append(node('p','','AI chưa cung cấp câu nguồn. Hãy xem toàn bộ transcript trước khi đánh giá.'));
+    evidence.append(node('p','help','Đây là các câu được liên kết, có thể chưa đầy đủ. Đọc cả câu trước/sau trong transcript để kiểm tra diễn biến cuối cuộc họp.'));
     $('review-kind').replaceChildren();Object.entries(kinds).forEach(([value,label])=>{const option=node('option','',label);option.value=value;$('review-kind').append(option);});
     $('review-kind').value=entry.draft.kind;
     for(const [id,field] of [['review-content','content'],['review-owner','owner'],['review-supporter','supporter'],['review-due','due_raw'],['review-condition','condition']])$(id).value=entry.draft[field]||'';
     reviewKindSettings(entry.draft.meeting_status);
     $('review-sources').value=entry.source_ids.join(', ');$('review-reason').value='';$('review-checked').checked=false;
     if(!entry.history.length)$('review-history').append(node('p','','Chưa có thao tác của người dùng.'));
-    entry.history.forEach(h=>{const detail=node('details');detail.append(node('summary','',`${new Date(h.at).toLocaleString('vi-VN')} · ${h.actor} · ${{confirmed:'Xác nhận',edited:'Chỉnh sửa, chờ xác nhận',rejected:'Từ chối',reopened:'Mở lại'}[h.action]}`));detail.append(node('p','',h.reason||'Xác nhận nội dung sau đối chiếu.'),node('pre','',JSON.stringify(h,null,2)));$('review-history').append(detail);});
+    entry.history.forEach(h=>{const detail=node('details');detail.append(node('summary','',`${new Date(h.at).toLocaleString('vi-VN')} · ${h.actor} · ${{confirmed:'Xác nhận đúng',edited:'Chỉnh sửa, chờ xác nhận',rejected:'Bản ghi sai, loại bỏ',reopened:'Đánh giá lại',insufficient:'Chưa đủ bằng chứng'}[h.action]}`));detail.append(node('p','',h.reason||'Xác nhận nội dung sau đối chiếu.'));const technical=node('details');technical.append(node('summary','','Chi tiết thay đổi dữ liệu'),node('pre','',JSON.stringify(h,null,2)));detail.append(technical);$('review-history').append(detail);});
   }
   const ready=MeetingReview.confirmed(currentReview);
   $('confirmed-records').replaceChildren(node('h3','','Bản đã xác nhận để xuất dữ liệu'));
@@ -440,7 +467,18 @@ function applyHumanReview(confirm=false) {
 function downloadText(text,filename,type){const url=URL.createObjectURL(new Blob([text],{type}));const link=node('a');link.href=url;link.download=filename;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 function reviewAction(action){try{action();}catch(error){$('review-message').textContent=error.message;}}
 $('review-kind').addEventListener('change',()=>reviewKindSettings($('review-meeting-status').value));
-$('human-review-form').addEventListener('submit',event=>{event.preventDefault();reviewAction(()=>applyHumanReview(true));});
+document.querySelectorAll('[data-review-choice]').forEach(button=>button.addEventListener('click',()=>chooseReview(button.dataset.reviewChoice)));
+$('human-review-form').addEventListener('submit',event=>{event.preventDefault();reviewAction(()=>{
+  if(!reviewChoice)throw new Error('Hãy chọn Đúng, Sai hoặc Chưa đủ bằng chứng.');
+  if(reviewChoice==='wrong')return applyHumanReview(true);
+  if(busy||!currentReview||!$('stale').hidden)throw new Error('Hãy mở đúng kết quả trước khi đánh giá.');
+  if(reviewChoice==='correct'){
+    const entry=currentReview.records[selected];
+    MeetingReview.update(currentReview,selected,{},entry.source_ids,$('review-actor').value,$('review-reason').value,true);
+  }else MeetingReview.decide(currentReview,selected,'insufficient',$('review-actor').value,$('review-reason').value);
+  const message=reviewChoice==='correct'?'Đã xác nhận nội dung đúng với transcript.':'Đã ghi nhận chưa đủ bằng chứng; bản này chưa được xác nhận và không vào CSV.';
+  renderRecords();renderHumanReview();$('review-message').textContent=message;
+});});
 $('review-edit').addEventListener('click',()=>reviewAction(()=>applyHumanReview(false)));
 for(const [id,decision] of [['review-reject','rejected'],['review-reopen','pending']])$(id).addEventListener('click',()=>reviewAction(()=>{
   if(busy||!$('stale').hidden)throw new Error('Hãy mở đúng kết quả trước khi rà soát.');

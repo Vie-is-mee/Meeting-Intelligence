@@ -84,21 +84,23 @@
         </div>
       </section>
       <section id="human-review-panel" class="panel human-review-panel" hidden aria-label="Rà soát của người dùng">
-        <div class="panel-heading"><div><span class="section-number">05</span><h2>Rà soát và chuẩn bị dữ liệu sử dụng</h2></div></div>
-        <div class="human-review-body"><p>Đầu ra AI ở phía trên được giữ nguyên. Các chỉnh sửa bên dưới là bản riêng của người dùng; xác nhận nội dung không đồng nghĩa phê duyệt của tổ chức.</p>
+        <div class="panel-heading"><div><span class="section-number">05</span><h2>Đối chiếu kết quả AI với transcript</h2></div></div>
+        <div class="human-review-body"><p>1. Đọc kết quả AI và câu nguồn bên dưới → 2. Chọn Đúng, Sai hoặc Chưa đủ bằng chứng → 3. Lưu đánh giá. Không cần nhập lại nội dung nếu AI đã ghi đúng.</p>
           <div id="review-counts" class="review-counts"></div><div id="review-record-selector" class="review-record-selector"></div>
-          <h3 id="review-record-title"></h3><div id="review-original" class="review-original"></div>
-          <form id="human-review-form"><div class="review-form-grid">
+          <h3 id="review-record-title"></h3><div class="review-comparison"><div id="review-original" class="review-original"></div><div id="review-evidence" class="review-evidence"></div></div>
+          <form id="human-review-form" novalidate>
             <label>Tên người rà soát (tự khai)<input id="review-actor" maxlength="100" required autocomplete="name"></label>
+            <fieldset class="review-verdict"><legend>Kết quả này có đúng với transcript không?</legend><div class="review-choices"><button type="button" class="button secondary" data-review-choice="correct" aria-pressed="false">Đúng</button><button type="button" class="button secondary" data-review-choice="wrong" aria-pressed="false">Sai</button><button type="button" class="button secondary" data-review-choice="insufficient" aria-pressed="false">Chưa đủ bằng chứng</button></div><p id="review-choice-help">Chọn một đánh giá sau khi đọc các câu nguồn. Có thể xem thêm toàn bộ transcript bên trái.</p></fieldset>
+            <div id="review-correction" hidden><h3>Sửa thông tin AI ghi sai</h3><p>Nếu bản ghi hoàn toàn không tồn tại hoặc bị trích xuất thừa, chọn “Loại bỏ bản ghi sai” bên dưới.</p><div class="review-form-grid">
             <label>Loại thông tin<select id="review-kind"></select></label>
             <label class="review-wide">Nội dung bản rà soát<textarea id="review-content" maxlength="10000" required></textarea></label>
             <label>Trạng thái trong cuộc họp<select id="review-meeting-status"></select></label>
             <label>Mã câu nguồn, ngăn cách bằng dấu phẩy<input id="review-sources" placeholder="L001, L004" required></label>
             <label>Người phụ trách (lịch sử nếu việc đã hủy)<input id="review-owner" maxlength="200"></label><label>Người hỗ trợ<input id="review-supporter" maxlength="200"></label>
             <label>Hạn nguyên văn<input id="review-due" maxlength="500"></label><label>Điều kiện<input id="review-condition" maxlength="2000"></label>
-            <label class="review-wide">Lý do sửa / từ chối / mở lại<textarea id="review-reason" maxlength="2000" placeholder="Ví dụ: request trùng công việc đã hủy ở L003; không nên dùng làm yêu cầu còn hiệu lực."></textarea></label>
-          </div><label class="review-check"><input id="review-checked" type="checkbox"> Tôi đã đối chiếu nội dung và các câu nguồn trước khi xác nhận.</label>
-          <div class="review-actions"><button type="submit" class="button primary">Xác nhận bản rà soát này</button><button type="button" class="button secondary" id="review-edit">Lưu chỉnh sửa, chưa xác nhận</button><button type="button" class="button secondary" id="review-reject">Từ chối bản ghi</button><button type="button" class="button secondary" id="review-reopen">Mở lại rà soát</button></div></form>
+          </div></div><label id="review-reason-label" hidden>Lý do đánh giá / câu nguồn cần chú ý<textarea id="review-reason" maxlength="2000" placeholder="Ví dụ: L005 đã đổi người phụ trách sang Lan; hoặc chưa có câu nào xác nhận hạn."></textarea></label>
+          <label class="review-check" id="review-check-label" hidden><input id="review-checked" type="checkbox"> Tôi đã đối chiếu phiên bản sửa với transcript.</label>
+          <div class="review-actions"><button type="submit" id="review-submit" class="button primary" disabled>Lưu đánh giá</button><button type="button" class="button secondary" id="review-edit" hidden>Lưu bản sửa, chưa xác nhận</button><button type="button" class="button secondary" id="review-reject" hidden>Loại bỏ bản ghi sai</button><button type="button" class="button secondary" id="review-reopen" hidden>Đánh giá lại bản ghi</button></div></form>
           <div id="review-message" role="status" class="review-message"></div><details><summary>Lịch sử thao tác của người dùng</summary><div id="review-history"></div></details>
           <div class="review-export"><button class="button secondary" id="save-review">Lưu phiên trên trình duyệt này</button><button class="button secondary" id="export-review-json">Xuất JSON kèm lịch sử rà soát</button><button class="button secondary" id="export-review-csv">Xuất CSV bản đã xác nhận</button></div>
           <p class="help">Chỉ bản được xác nhận mới vào danh sách sử dụng; bản chờ hoặc bị từ chối vẫn nằm trong lịch sử. Trình duyệt giữ một phiên đã lưu gần nhất; tải JSON để giữ các phiên khác. Lưu phiên không gửi dữ liệu lên GitHub/server.</p>

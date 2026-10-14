@@ -24,16 +24,16 @@
     const before={draft:clone(entry.draft),source_ids:[...entry.source_ids],decision:entry.decision};
     const edited=JSON.stringify(draft)!==JSON.stringify(entry.draft)||JSON.stringify(ids)!==JSON.stringify(entry.source_ids);
     if((edited||(!confirm&&entry.decision!=='pending')||(confirm&&entry.decision==='rejected'))&&!String(reason||'').trim())throw new Error('Hãy ghi lý do chỉnh sửa/thay đổi xác nhận và câu nguồn hỗ trợ.');
-    entry.draft=draft;entry.source_ids=ids;entry.decision=confirm?'confirmed':'pending';
+    entry.draft=draft;entry.source_ids=ids;entry.decision=confirm?'confirmed':'pending';entry.assessment=null;
     entry.history.push({at:new Date().toISOString(),actor,action:confirm?'confirmed':'edited',reason:String(reason||'').trim(),before,after:{draft:clone(draft),source_ids:[...ids],decision:entry.decision}});
     return entry;
   }
   function decide(session,index,decision,actor,reason){
-    if(!['rejected','pending'].includes(decision))throw new Error('Thao tác không hợp lệ.');
+    if(!['rejected','pending','insufficient'].includes(decision))throw new Error('Thao tác không hợp lệ.');
     actor=actorName(actor);if(!String(reason||'').trim())throw new Error('Hãy ghi lý do từ chối/mở lại.');
     const entry=session.records[index];if(!entry)throw new Error('Không tìm thấy bản ghi.');
-    const before=entry.decision;entry.decision=decision;
-    entry.history.push({at:new Date().toISOString(),actor,action:decision==='rejected'?'rejected':'reopened',reason:reason.trim(),before_decision:before,after_decision:decision});return entry;
+    const before=entry.decision;entry.decision=decision==='insufficient'?'pending':decision;entry.assessment=decision==='insufficient'?'insufficient':null;
+    entry.history.push({at:new Date().toISOString(),actor,action:decision==='insufficient'?'insufficient':decision==='rejected'?'rejected':'reopened',reason:reason.trim(),before_decision:before,after_decision:entry.decision});return entry;
   }
   function confirmed(session){return session.records.filter(r=>r.decision==='confirmed').map(r=>({original_index:r.index,...clone(r.draft),source_ids:[...r.source_ids],human_review:'confirmed',reviewed_by:r.history.at(-1)?.actor,reviewed_at:r.history.at(-1)?.at,authority_status:'unknown',confirmation_scope:'Nội dung do người dùng rà soát, không phải phê duyệt tổ chức.',review_history:clone(r.history)}));}
   function exportJSON(session){return {format:'meeting-human-review-v1',session_id:session.id,source_metadata:clone(session.source_metadata||{}),original_analysis:clone(session.original_analysis),review:clone(session.records),confirmed_records:confirmed(session)};}
