@@ -1,6 +1,7 @@
 import copy
 import unittest
-from meeting_intelligence.extractor import normalize_named_assignment_events
+from meeting_intelligence.extractor import normalize_named_assignment_events,extract_events
+from meeting_intelligence.llm_client import LLMError
 from meeting_intelligence.parser import parse_transcript
 from meeting_intelligence.models import Event
 from meeting_intelligence.resolver import resolve_events
@@ -35,5 +36,17 @@ class CandidateBNormalizationTests(unittest.TestCase):
     def test_speaker_metadata_is_not_invented_supporter(self):
         lines,events=self.build();events[0].supporter='Linh'
         self.assertIsNone(normalize_named_assignment_events(events,lines)[0].supporter)
+    def test_literal_task_description_survives_null_acceptance_before_group_validation(self):
+        lines,events=self.build();events[0].value='Mai lập bảng đối soát';events[1].value=None
+        class Client:
+            def completion_json(self,*args):return {'events':[e.model_dump() for e in events]}
+        parsed=extract_events(lines,Client());records=resolve_events(parsed,lines)
+        self.assertEqual(len(records),1);self.assertEqual(records[0].meeting_status,'cancelled')
+        self.assertEqual(records[0].content,'Mai lập bảng đối soát')
+    def test_unrelated_request_cannot_supply_an_orphan_action_description(self):
+        lines,events=self.build(source='Cần lập bảng đối soát.');events[1].value=None
+        class Client:
+            def completion_json(self,*args):return {'events':[e.model_dump() for e in events]}
+        with self.assertRaises(LLMError):extract_events(lines,Client())
 
 if __name__=='__main__':unittest.main()

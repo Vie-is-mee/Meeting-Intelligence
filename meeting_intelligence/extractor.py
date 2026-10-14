@@ -15,6 +15,10 @@ Build coverage in this order, then return the events in transcript order:
 4. Existing problems, user feedback and reusable knowledge.
 These are distinct roles, not one generic summary per topic. One turn can contain several distinct roles. Before returning, compare the first and last substantive turns against these four groups. If an explicit requirement still exists, or a replacement method is explicitly undecided, its event must not be omitted merely because a related task was cancelled.
 
+Do not extract an extra request from an agenda such as "Mục tiêu buổi họp là chọn ..."; meeting purpose is not a separate operational need. A real "Cần kiểm tra ... trước ..." is a request even without assignment.
+Split independently changeable CHOICES, not just large topics: "Chốt dùng xe điện. Hãng xe để cuộc họp sau chọn." needs agreement for vehicle type AND unresolved for vehicle brand with different keys. Mentioning the unchosen brand inside an agreed record is not enough: its status must remain open. Similarly, "hủy thử công cụ; chưa chọn cách thay thế" needs the cancelled action AND an unresolved replacement-method choice, separately from the surviving requirement. Read every clause of such closing turns, not just the first clause.
+Every task must have at least one nonempty task description across its action lifecycle. A later "Tôi nhận việc đó" can have null value only if the original named instruction was correctly extracted as an assignment with the task description under that SAME action key. Do not leave the only task description in a separate request group.
+
 Speech-act example (illustrative only): "Khách cần tệp PDF. Giao Vân thử công cụ Z. Tôi nhận thử. Hủy thử Z vì không phù hợp; chưa chọn cách thay thế, nhu cầu PDF vẫn giữ." produces request PDF + the action lifecycle + unresolved replacement method. It does NOT produce an independent proposal to try Z. The reason for cancellation belongs in historical value/context, NOT condition; condition describes a prerequisite under which work may proceed. "Bỏ hạn" must set clear_fields:["due_raw"].
 
 Each event has issue_key, topic, kind, event_type, source_ids, value, owner, supporter, due_raw, condition, clear_fields. Use null for fields not updated and [] for clear_fields. Only action events may use clear_fields: explicitly removed owner/supporter/due_raw/condition. Never set and clear the same field.
@@ -89,12 +93,13 @@ def extract_events(utterances: list[Utterance], client: LLMClient, *, warnings: 
                 if warnings is not None:
                     warnings.append('Mô tả mục chưa chốt được lấy nguyên văn từ nguồn vì LLM chưa thể hiện rõ nội dung chưa chốt; cần rà soát: '
                                     + ', '.join(event.source_ids))
-    groups = {(event.kind, event.issue_key) for event in parsed.events}
+    normalized = normalize_named_assignment_events(parsed.events, utterances, warnings=warnings)
+    groups = {(event.kind, event.issue_key) for event in normalized}
     for kind, key in groups:
-        if not any(event.value and event.value.strip() for event in parsed.events
+        if not any(event.value and event.value.strip() for event in normalized
                    if event.kind == kind and event.issue_key == key):
             raise LLMError('LLM trả chủ đề nhưng thiếu nội dung sự kiện; chưa công bố kết quả')
-    return normalize_named_assignment_events(parsed.events, utterances, warnings=warnings)
+    return normalized
 
 
 def normalize_named_assignment_events(events: list[Event], utterances: list[Utterance], *, warnings=None) -> list[Event]:
@@ -107,10 +112,13 @@ def normalize_named_assignment_events(events: list[Event], utterances: list[Utte
     lookup={u.id:u for u in utterances}
     def norm(text):
         return ' '.join(re.sub(r'[^\w\s]',' ',(text or '').casefold()).split()).replace('thử làm ','thử ')
+    def task_norm(text,owner):
+        return re.sub(r'^(?:(?:nhờ|giao(?:\s+cho)?|đề\s+nghị)\s+)?'+re.escape(norm(owner))+r'\s+','',norm(text))
     def direct_instruction(source,owner,value):
+        if not value:return False
         pattern=r'^(?:(?:nhờ|giao(?:\s+cho)?|đề\s+nghị)\s+)?'+re.escape(owner)+r'\s+(?!không\b|chưa\b|nếu\b|có\s+thể\b)(.+)$'
         match=re.match(pattern,source.text,re.IGNORECASE)
-        return bool(match and '?' not in source.text and norm(value) in norm(match.group(1)))
+        return bool(match and '?' not in source.text and task_norm(value,owner) in norm(match.group(1)))
     def supported_assignment(event):
         for sid in event.source_ids:
             u=lookup[sid]
@@ -119,13 +127,13 @@ def normalize_named_assignment_events(events: list[Event], utterances: list[Utte
                 if re.match(r'(?i)^(?:tôi|mình)\s+(?:nhận|đồng\s+ý\s+(?:nhận|làm)|sẽ\s+(?:làm|thực\s+hiện))\b',u.text):
                     if not re.search(r'(?i)\bnếu\b',u.text) or event.condition:return True
         return False
-    assignments=[e for e in events if e.kind=='action' and e.event_type in {'assignment','reassignment'} and e.owner and e.value and supported_assignment(e)]
+    assignments=[e for e in events if e.kind=='action' and e.event_type in {'assignment','reassignment'} and e.owner and supported_assignment(e)]
     normalized=[]
     for event in events:
         if not ((event.kind=='request' and event.event_type=='request_made') or
                 (event.kind=='decision' and event.event_type=='proposal')):
             normalized.append(event);continue
-        matches=[e for e in assignments if e.issue_key==event.issue_key and norm(e.value)==norm(event.value)
+        matches=[e for e in assignments if e.issue_key==event.issue_key and (e.value is None or task_norm(e.value,e.owner)==task_norm(event.value,e.owner))
                  and max(lookup[s].order for s in e.source_ids)>=max(lookup[s].order for s in event.source_ids)]
         owners={e.owner for e in matches}
         if len(owners)!=1:
