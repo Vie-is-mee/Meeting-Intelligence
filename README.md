@@ -10,7 +10,7 @@ Hoặc nhấp đúp `run_demo.cmd`, mở `http://127.0.0.1:5501` để xem bản
 
 **Muốn phân tích mới:** nhấp đúp `run_web.cmd`, mở `http://127.0.0.1:8765`, chuyển sang LLM API. Python cần dependencies trong requirements nếu máy chưa có; key đặt trong `.env`, không gửi ra frontend. Baseline offline là luật hẹp, được ghi nhãn riêng.
 
-**Gói đóng sẵn:** `dist/meeting-intelligence-demo-static.zip` để xem/deploy trang tĩnh sau; `dist/meeting-intelligence-mission2-source.zip` để chia sẻ source không có `.env`. Chưa publish/deploy. Xem [hướng dẫn](docs/STATIC_DEMO.md), [kịch bản video](docs/DEMO_RUNBOOK.md), [ba câu trả lời và nội dung form](docs/MISSION2_SUBMISSION.md), [kết quả 8 case cùng phiên bản](docs/FINAL_REGRESSION_RESULTS.md).
+**Gói đóng sẵn:** `dist/meeting-intelligence-demo-static.zip` để xem/deploy trang tĩnh sau; `dist/meeting-intelligence-mission2-source.zip` để chia sẻ source không có `.env`. Repo đã công khai; website chưa deploy online. Xem [hướng dẫn](docs/STATIC_DEMO.md), [kịch bản video](docs/DEMO_RUNBOOK.md), [ba câu trả lời và nội dung form](docs/MISSION2_SUBMISSION.md), [kết quả 8 case cùng phiên bản](docs/FINAL_REGRESSION_RESULTS.md).
 
 > **Trạng thái: bản local để kiểm chứng, chưa hoàn tất bài nộp.** Có website nhập transcript, xem bản ghi, lịch sử, evidence và JSON. Đã chạy bộ phát triển T01–T07 bằng Groq thật, ghi nhận cả lỗi API, lỗi nội dung và cảnh báo audit. Kết quả, sửa đổi và giới hạn được ghi tại [LLM_EVALUATION.md](docs/LLM_EVALUATION.md). Offline theo luật và fixture viết tay được phân biệt với model thật. Xem [WEB_STATUS.md](docs/WEB_STATUS.md).
 
@@ -173,7 +173,7 @@ Kết quả chạy LLM mới được tính là kiểm thử mô hình thật. N
 2. Còn lỗi phân loại vòng đời công việc thành request/action thừa; cảnh báo không đồng nghĩa tự sửa được lỗi. Transcript dài và độ ổn định giữa nhiều lần sinh chưa được xác nhận đầy đủ.
 3. Audit có thể bỏ sót hoặc cảnh báo sai. Chưa có kiểm thử đối chứng audit on/off đầy đủ hoặc nhãn được người review độc lập xác nhận.
 4. Quota API đã chặn một số lượt hồi quy cũ. Lượt cố định mới nhất đã chạy đủ LC01–LC03/H03 và nhóm đại diện bằng cùng phiên bản; kết quả vẫn có lỗi nội dung/audit. Không coi các lượt quota cũ là model trả sai.
-5. Chưa hoàn tất public repository, deploy và video. Xem [bảng test thực tế](docs/MISSION2_TEST_CASES.md) và [hướng dẫn demo](docs/DEMO_RUNBOOK.md).
+5. Đã có repository public; chưa hoàn tất deploy và video. Xem [bảng test thực tế](docs/MISSION2_TEST_CASES.md) và [hướng dẫn demo](docs/DEMO_RUNBOOK.md).
 
 **Giới hạn bảo mật:** Chỉ dùng transcript bạn có quyền xử lý; dữ liệu sẽ gửi tới bên cung cấp API bạn cấu hình. Không gửi dữ liệu nội bộ nhạy cảm vào dịch vụ chưa được phê duyệt. Transcript chứa câu lệnh giả mạo là dữ liệu, không phải lệnh điều khiển.
 

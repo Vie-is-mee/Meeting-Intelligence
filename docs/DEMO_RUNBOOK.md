@@ -40,6 +40,6 @@ H03 ở hồi quy mới chỉ còn decision chưa chọn ngày/người, thiếu
 2. Chọn tối thiểu 5 case thực tế có kỳ vọng → kết quả → đạt/chưa đạt → điều học được; bảng hiện có là bằng chứng nhiều phiên bản, cần ghi rõ nếu dùng.
 3. Công khai hạn chế đã biết; nhiệm vụ không yêu cầu mọi case khó đều đúng. Chưa có bằng chứng độc lập để tuyên bố sản phẩm hoàn hảo.
 4. Chuẩn bị câu trả lời ba câu bắt buộc: giả thuyết lõi; thay đổi so với proposal Mission 1 sau khi đối chiếu proposal gốc; loại thông tin dễ sai và các biện pháp chống dữ liệu không tồn tại.
-5. Public GitHub repo, link demo hoặc lý do/hướng dẫn local, YouTube ≤5 phút và đoạn trình bày ≥50 ký tự. Chưa có link công khai nào được xác nhận trong runbook này.
+5. Public GitHub repo, link demo hoặc lý do/hướng dẫn local, YouTube ≤5 phút và đoạn trình bày ≥50 ký tự. Repo public: https://github.com/Vie-is-mee/Meeting-Intelligence. Demo online và YouTube chưa được xác nhận.
 
 Chưa deploy hoặc publish từ hướng dẫn này. Website hiện là công cụ kiểm chứng local; việc có cảnh báo cần rà soát là hành vi minh bạch của MVP, không phải bằng chứng đủ để kết quả trở thành đúng.
