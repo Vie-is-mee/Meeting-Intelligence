@@ -14,9 +14,11 @@ Hoặc nhấp đúp `run_demo.cmd`, mở `http://127.0.0.1:5501` để xem bản
 
 **Bố cục website:** chuyển giữa **Phân tích → Kiểm chứng → Rà soát & xuất** bằng thanh bên (desktop) hoặc thanh bước (điện thoại). Mỗi màn chỉ hiển thị phần liên quan. Kiểm chứng có ba tab: kết luận/nguồn, diễn biến xử lý và audit. Chuyển màn giữ kết quả, bản ghi đang chọn và nội dung rà soát đang nhập.
 
+Các bảng mở đầy đủ chiều cao và cuộn theo trang; transcript tự giãn khi nhập hoặc đổi kích thước cửa sổ. Nền màu có chuyển động nhẹ, hiệu ứng chuyển màn và hover; tự tắt chuyển động khi hệ điều hành bật reduced motion. Bảng rộng vẫn hỗ trợ cuộn ngang trên điện thoại.
+
 **Muốn phân tích mới:** nhấp đúp `run_web.cmd`, mở `http://127.0.0.1:8765`, chuyển sang LLM API. Python cần dependencies trong requirements nếu máy chưa có; key đặt trong `.env`, không gửi ra frontend. Baseline offline là luật hẹp, được ghi nhãn riêng.
 
-**Gói đóng sẵn:** `dist/meeting-intelligence-demo-static.zip` để xem/deploy trang tĩnh sau; `dist/meeting-intelligence-mission2-source.zip` để chia sẻ source không có `.env`. Repo đã công khai; website chưa deploy online. Xem [hướng dẫn](docs/STATIC_DEMO.md), [kịch bản video](docs/DEMO_RUNBOOK.md), [ba câu trả lời và nội dung form](docs/MISSION2_SUBMISSION.md), [kết quả 8 case cùng phiên bản](docs/FINAL_REGRESSION_RESULTS.md).
+**Gói đóng sẵn:** `dist/meeting-intelligence-demo-static.zip` để xem/deploy trang tĩnh; `dist/meeting-intelligence-mission2-source.zip` để chia sẻ source không có `.env`. Repo đã công khai. Xem [hướng dẫn](docs/STATIC_DEMO.md), [kịch bản video](docs/DEMO_RUNBOOK.md), [ba câu trả lời và nội dung form](docs/MISSION2_SUBMISSION.md), [kết quả 8 case cùng phiên bản](docs/FINAL_REGRESSION_RESULTS.md).
 
 > **Trạng thái: bản local để kiểm chứng, chưa hoàn tất bài nộp.** Có website nhập transcript, xem bản ghi, lịch sử, evidence và JSON. Đã chạy bộ phát triển T01–T07 bằng Groq thật, ghi nhận cả lỗi API, lỗi nội dung và cảnh báo audit. Kết quả, sửa đổi và giới hạn được ghi tại [LLM_EVALUATION.md](docs/LLM_EVALUATION.md). Offline theo luật và fixture viết tay được phân biệt với model thật. Xem [WEB_STATUS.md](docs/WEB_STATUS.md).
 

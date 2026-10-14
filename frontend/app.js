@@ -23,6 +23,7 @@ function setWorkspaceView(view){
   $('workspace-description').textContent=workspaceScreens[view][1];
   document.querySelectorAll('[data-workspace-target]').forEach(b=>{const active=b.dataset.workspaceTarget===view;b.classList.toggle('active',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
   $('workspace-context').hidden=view!=='evidence';
+  if(view==='analysis')fitTranscript();
 }
 function syncWorkspace(){
   document.querySelectorAll('[data-workspace-target]').forEach(b=>b.disabled=b.dataset.workspaceTarget!=='analysis'&&(!result||busy));
@@ -82,7 +83,12 @@ function reviewLabel(status) {
     ? 'Cần người kiểm tra' : 'Chờ người dùng xác nhận';
 }
 function showError(message) { $('error').textContent = message; $('error').hidden = false; }
-function countText() { $('text-count').textContent = `${$('transcript').value.length.toLocaleString('vi-VN')} ký tự`; }
+function fitTranscript(){
+  const input=$('transcript');if(!input.getClientRects().length)return;
+  input.style.height='auto';input.style.height=`${input.scrollHeight+2}px`;
+}
+window.addEventListener('resize',fitTranscript);
+function countText() { $('text-count').textContent = `${$('transcript').value.length.toLocaleString('vi-VN')} ký tự`;fitTranscript(); }
 function markChanged() { if (result) $('stale').hidden = false; countText(); }
 function engineSettings() {
   const live = $('engine').value === 'llm_api';
