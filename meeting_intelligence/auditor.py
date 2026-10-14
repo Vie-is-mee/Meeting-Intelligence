@@ -75,6 +75,15 @@ def audit_events(utterances: list[Utterance], events: list[Event],
         # evidence_ids as support for every current field.
         'records': [r.model_dump(exclude={'history','evidence_ids','counter_evidence_ids','authority_status'}) for r in records],
     }
+    # Supply historical-owner context only for cancelled tasks. All other
+    # audit inputs and the baseline audit prompt remain unchanged.
+    historical = [{'issue_key': r.issue_key, 'kind': r.kind,
+                   'owner_role': 'historical_assignee',
+                   'owner': r.owner, 'active_task': False}
+                  for r in records if r.kind == 'action'
+                  and r.meeting_status == 'cancelled' and r.owner]
+    if historical:
+        raw['cancelled_task_context'] = historical
     typed = getattr(client, 'completion_typed', None)
     encoded = json.dumps(raw, ensure_ascii=False, separators=(',',':'))
     response = (typed(AUDIT_SYSTEM_PROMPT, encoded, AuditBatch, max_completion_tokens=1024)

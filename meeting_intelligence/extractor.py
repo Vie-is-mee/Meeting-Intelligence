@@ -80,9 +80,62 @@ def extract_events(utterances: list[Utterance], client: LLMClient, *, warnings: 
                 if warnings is not None:
                     warnings.append('Mô tả mục chưa chốt được lấy nguyên văn từ nguồn vì LLM chưa thể hiện rõ nội dung chưa chốt; cần rà soát: '
                                     + ', '.join(event.source_ids))
+    parsed.events = normalize_named_assignment_events(parsed.events, utterances, warnings=warnings)
     groups = {(event.kind, event.issue_key) for event in parsed.events}
     for kind, key in groups:
         if not any(event.value and event.value.strip() for event in parsed.events
                    if event.kind == kind and event.issue_key == key):
             raise LLMError('LLM trả chủ đề nhưng thiếu nội dung sự kiện; chưa công bố kết quả')
     return parsed.events
+
+
+def normalize_named_assignment_events(events: list[Event], utterances: list[Utterance], *, warnings=None) -> list[Event]:
+    """Normalize only duplicate speech acts backed by a named instruction + acceptance.
+
+    No missing record is invented. Different keys/content, business requests,
+    questions, hypotheticals and ambiguous matches stay untouched.
+    Raw provider events remain in the runner's llm_responses for comparison.
+    """
+    lookup={u.id:u for u in utterances}
+    def norm(text):
+        return ' '.join(re.sub(r'[^\w\s]',' ',(text or '').casefold()).split()).replace('thử làm ','thử ')
+    def task_norm(text,owner):
+        return re.sub(r'^(?:(?:nhờ|giao(?:\s+cho)?|đề\s+nghị)\s+)?'+re.escape(norm(owner))+r'\s+','',norm(text))
+    def direct_instruction(source,owner,value):
+        if not value:return False
+        pattern=r'^(?:(?:nhờ|giao(?:\s+cho)?|đề\s+nghị)\s+)?'+re.escape(owner)+r'\s+(?!không\b|chưa\b|nếu\b|có\s+thể\b)(.+)$'
+        match=re.match(pattern,source.text,re.IGNORECASE)
+        return bool(match and '?' not in source.text and task_norm(value,owner) in norm(match.group(1)))
+    def supported_assignment(event):
+        for sid in event.source_ids:
+            u=lookup[sid]
+            if direct_instruction(u,event.owner,event.value):return True
+            if (u.speaker or '').casefold()==event.owner.casefold() and '?' not in u.text:
+                if re.match(r'(?i)^(?:tôi|mình)\s+(?:nhận|đồng\s+ý\s+(?:nhận|làm)|sẽ\s+(?:làm|thực\s+hiện))\b',u.text):
+                    if not re.search(r'(?i)\bnếu\b',u.text) or event.condition:return True
+        return False
+    assignments=[e for e in events if e.kind=='action' and e.event_type in {'assignment','reassignment'} and e.owner and supported_assignment(e)]
+    normalized=[]
+    for event in events:
+        if not ((event.kind=='request' and event.event_type=='request_made') or
+                (event.kind=='decision' and event.event_type=='proposal')):
+            normalized.append(event);continue
+        matches=[e for e in assignments if e.issue_key==event.issue_key and (e.value is None or task_norm(e.value,e.owner)==task_norm(event.value,e.owner))
+                 and max(lookup[s].order for s in e.source_ids)>=max(lookup[s].order for s in event.source_ids)]
+        owners={e.owner for e in matches}
+        if len(owners)!=1:
+            normalized.append(event);continue
+        owner=next(iter(owners))
+        supporting=[lookup[s] for s in event.source_ids]
+        direct=[u for u in supporting if direct_instruction(u,owner,event.value)]
+        if not direct:
+            normalized.append(event);continue
+        # Do not use the speaker's name as evidence that they support the task.
+        supporter=event.supporter
+        if supporter and not any(re.search(re.escape(supporter)+r'\s+(?:sẽ\s+)?hỗ\s+trợ\b',u.text,re.IGNORECASE) for u in direct):
+            supporter=None
+        repaired=event.model_copy(update={'kind':'action','event_type':'assignment','owner':owner,'supporter':supporter})
+        normalized.append(repaired)
+        if warnings is not None:
+            warnings.append('Chuẩn hóa '+event.kind+' thành action cho câu giao việc đích danh đã có nhận việc cùng key/nội dung: '+', '.join(event.source_ids)+'. Không tạo sự kiện mới; raw LLM vẫn giữ riêng.')
+    return normalized

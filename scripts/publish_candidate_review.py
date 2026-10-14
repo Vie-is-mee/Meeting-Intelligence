@@ -7,8 +7,9 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--version',required=True);p.add_argument('--run',required=True);p.add_argument('--input',required=True)
     p.add_argument('--draft',required=True);p.add_argument('--code-commit',required=True)
+    p.add_argument('--scope',choices=['full_regression','targeted_pilot'],default='full_regression')
     args=p.parse_args();version=args.version
-    if version not in {'B1','B2'}:p.error('Use B1/B2')
+    if version not in {'B1','B2','C1'}:p.error('Use B1/B2/C1')
     run_path=ROOT/args.run;input_path=ROOT/args.input;draft_path=ROOT/args.draft
     run=json.loads(run_path.read_text(encoding='utf8'));inputs=json.loads(input_path.read_text(encoding='utf8'));draft=json.loads(draft_path.read_text(encoding='utf8'))
     expected=run['requested_cases'];rows=draft['cases']
@@ -36,7 +37,7 @@ def main():
         'strict_case_passed':sum(r['verdict']=='PASS' for r in rows),'core_data_passed':sum(r['core_data']=='PASS' for r in rows),
         'api_attempts':sum(c['api_calls'] for c in run['cases']),
         'provider_reported_tokens':sum(c['api_tokens'].get('total_tokens',0) for c in run['cases'])}
-    review={'version':version,'method':'Same-assistant semantic review of a frozen development regression, not independent generalization. Include all failures and incomplete calls.',
+    review={'version':version,'scope':args.scope,'method':'Same-assistant semantic review of a frozen development regression, not independent generalization. Include all failures and incomplete calls.',
         'source_code_commit':args.code_commit,'run':targets[0].relative_to(ROOT).as_posix(),
         'run_sha256':hashlib.sha256(run_path.read_bytes()).hexdigest(),
         'input_sha256':hashlib.sha256(input_path.read_bytes()).hexdigest(),'results':summary,'cases':rows}
