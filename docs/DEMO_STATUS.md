@@ -6,6 +6,7 @@ Theo lựa chọn của ứng viên: Local/Go Live trước, chuẩn bị gói d
 
 - Giao diện có 3 chế độ: kết quả LLM đã lưu, LLM API phân tích mới, offline theo luật. Không có fallback giả từ API sang demo/offline.
 - Demo mặc định mở D01, có đủ 8 case cùng phiên bản, cả đạt/chưa đạt. Review kỳ vọng/thực tế/bài học, evidence từng trường, lịch sử, transcript và JSON tải xuống.
+- Có bảng 04 đối chiếu giá trị hiện tại với nguồn từng trường, lịch sử phát biểu/cụm gợi ý/sự kiện/quy tắc xử lý. Mã câu bấm được để về transcript; audit tách riêng và không được gọi là sự thật. Bảng là trình bày dữ liệu đã có, không gọi model mới hoặc thay thuật toán phân loại.
 - Xem lại không cần key/dependencies, không gọi API; thời gian/API usage lịch sử được tách khỏi lượt xem hiện tại. Transcript demo readonly để tránh gán kết quả cũ cho dữ liệu đã sửa.
 - Backend chỉ serve thêm asset demo cho phép sẵn; không mở route .env hoặc source tùy ý. Chế độ recorded chỉ ở frontend, backend từ chối engine giả này.
 - Có transcript .txt ở samples/demo để nhập vào chế độ API mới, run_demo.cmd và run_web.cmd, ZIP static/source theo allowlist và BUILD_INFO.

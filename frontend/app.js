@@ -164,16 +164,92 @@ function sourceLink(id) {
   return button;
 }
 
+const eventRules = {
+  proposal:'Ghi nhận đề xuất, chưa coi là đã chốt. Đề xuất mới sau phát biểu chốt được giữ để rà soát.',
+  counterproposal:'Ghi nhận phương án khác được đề xuất; chưa tự coi là đồng thuận.',
+  agreement:'Cập nhật thành đã thống nhất trong họp; không tự suy ra quyền phê duyệt của tổ chức.',
+  conditional_agreement:'Giữ lựa chọn đã thống nhất có điều kiện và bộ điều kiện được trích; chưa coi điều kiện đã đạt.',
+  reopen:'Mở lại lựa chọn, xóa điều kiện hiện hành; giữ nội dung cũ trong lịch sử.',
+  unresolved:'Giữ mục còn mở, chưa có lựa chọn cuối; không tự chọn một đề xuất.',
+  withdrawal:'Rút lựa chọn khỏi trạng thái hiện hành, giữ lịch sử để truy lại.',
+  execution_blocked:'Ghi nhận chưa được triển khai; không tự mở lại quyết định đã thống nhất.',
+  assignment:'Cập nhật phân công và các trường được trích; trường không có dữ liệu không tự được điền.',
+  reassignment:'Cập nhật phân công mới; nếu chưa rõ người nhận thì giữ để rà soát.',
+  deadline_change:'Chỉ cập nhật hoặc xóa hạn, không tự đổi người hoặc kích hoạt lại việc đã hủy.',
+  action_cancelled:'Đánh dấu công việc đã hủy. Giữ thông tin lịch sử trừ những trường được yêu cầu xóa rõ ràng.',
+  request_made:'Ghi nhận yêu cầu; không tự biến thành công việc đã giao cho một người.',
+  request_changed:'Cập nhật nội dung yêu cầu theo sự kiện được trích.',
+  request_withdrawn:'Đánh dấu yêu cầu đã rút, giữ nội dung cũ trong lịch sử.',
+  issue_reported:'Giữ vướng mắc ở trạng thái còn mở.',
+  issue_reported_resolved:'Chỉ ghi được báo đã xử lý; không coi đã xác minh ngoài thực tế.',
+  feedback_given:'Ghi nhận phản hồi, không tự biến thành quyết định hoặc nhiệm vụ.',
+  knowledge_shared:'Giữ tri thức chưa xác minh, không coi là sự thật đã được kiểm chứng.'
+};
+function sourceQuote(id, utterances) {
+  const source = utterances.get(id), cell = node('div','trace-quote');
+  cell.append(sourceLink(id),node('span','trace-speaker',source?.speaker || 'Chưa rõ người nói'),
+    node('p','',source ? `“${source.text}”` : 'Không tìm thấy câu nguồn.'));
+  return cell;
+}
+function makeTraceTable(headers, rows) {
+  const table = node('table','trace-table'), head = node('thead'), tr = node('tr');
+  headers.forEach(label => { const th = node('th','',label); th.scope = 'col'; tr.append(th); });
+  head.append(tr); table.append(head);
+  const body = node('tbody');
+  rows.forEach(cells => { const row = node('tr'); cells.forEach(value => { const td = node('td'); td.append(typeof value === 'string' ? document.createTextNode(value) : value); row.append(td); }); body.append(row); });
+  table.append(body); return table;
+}
+function renderExplanation(record, utterances) {
+  $('explanation-panel').hidden = !record;
+  if (!record) return;
+  $('explanation-title').textContent = `${kinds[record.kind]} · ${record.topic}`;
+  const execution = {unknown:'Chưa xác định',blocked:'Chưa được triển khai',pending_condition:'Chờ đáp ứng điều kiện',not_applicable:'Không áp dụng'};
+  const provenance = record.field_evidence_ids || {};
+  const fieldRows = Object.entries(provenance).map(([field,ids]) => {
+    const sources = node('div'); ids.forEach(id => sources.append(sourceQuote(id,utterances)));
+    if (!ids.length) sources.append(node('p','','Chưa có câu nguồn riêng cho trường này.'));
+    const raw = record[field];
+    const value = field === 'meeting_status' ? statuses[raw] || raw : field === 'execution_status' ? execution[raw] || raw : raw ?? 'Không có giá trị hiện hành';
+    const label = field === 'owner' && record.meeting_status === 'cancelled' ? 'Người từng phụ trách' : fields[field] || field;
+    return [label,String(value),sources];
+  });
+  $('conclusion-table').replaceChildren(makeTraceTable(['Trường kết quả','Giá trị hiện tại','Câu nguồn được hệ thống gắn'],fieldRows));
+  const cuePattern = /chưa\s+(?:chốt|chọn|quyết\s+định|nhận)|không\s+(?:chốt|tiếp\s+tục)|mở\s+lại|rút\s+(?:lời\s+chốt|đề\s+xuất)|chốt|đồng\s+ý|thống\s+nhất|đề\s+xuất|đề\s+nghị|nếu|cho\s+đến\s+khi|hủy|bỏ\s+hạn|yêu\s+cầu|phản\s+hồi|tôi\s+nhận|phụ\s+trách|hạn/giu;
+  const eventRows = [];
+  for (const event of record.history) {
+    const cleared = (event.clear_fields || []).filter(f => event.event_type !== 'deadline_change' || f === 'due_raw');
+    const rule = (eventRules[event.event_type] || 'Xem sự kiện được trích và JSON gốc.') + (cleared.length ? ` Trường được đánh dấu xóa: ${cleared.map(f => fields[f] || f).join(', ')}.` : '');
+    for (const id of event.source_ids) {
+      const quote = utterances.get(id)?.text || '';
+      const cues = [...new Set(quote.match(cuePattern) || [])];
+      const classification = node('div'); classification.append(node('strong','',events[event.event_type] || event.event_type));
+      if (event.value) classification.append(node('p','',event.value));
+      eventRows.push([sourceQuote(id,utterances),cues.length ? cues.map(c => `“${c}”`).join(', ') : 'Không có cụm gợi ý trong danh sách hiển thị; cần đọc ngữ cảnh.',classification,rule]);
+    }
+  }
+  $('event-table').replaceChildren(makeTraceTable(['Phát biểu nguyên văn','Cụm gợi ý xuất hiện trong câu','Phân loại hệ thống đã trích','Quy tắc xử lý tương ứng'],eventRows));
+  const findings = result.analysis.audit_findings.filter(f => f.issue_key === record.issue_key && (!f.kind || f.kind === record.kind));
+  $('audit-explanation').hidden = !findings.length;
+  $('audit-table').replaceChildren(makeTraceTable(['Nguồn audit dẫn','Nhận xét của LLM audit','Cách sử dụng nhận xét'],findings.map(f => {
+    const source = node('div'); f.source_ids.forEach(id => source.append(sourceLink(id))); source.append(node('p','',`“${f.source_quote}”`));
+    return [source,f.explanation,'Đây là cảnh báo cần rà soát, không phải kết luận thay thế hay bằng chứng audit luôn đúng.'];
+  })));
+}
+
 function renderDetail() {
   const record = result.analysis.records[selected];
   $('detail').hidden = !record;
   $('detail-empty').hidden = !!record;
+  $('explanation-panel').hidden = !record;
   if (!record) return;
   $('detail-kind').textContent = `${kinds[record.kind]} · ${record.issue_key}`;
   $('detail-title').textContent = record.topic;
   $('detail-status').replaceChildren(statusBadge(record.meeting_status));
   $('detail-conclusion').replaceChildren(conclusionBlock(record),
     node('p','detail-review',`Rà soát bản ghi: ${reviewLabel(record.review_status)}. Đây là bước kiểm tra bản ghi, không phải trạng thái chốt của cuộc họp.`));
+  const jump = node('button','button secondary trace-jump','Xem bảng câu nguồn → kết luận');
+  jump.addEventListener('click',() => $('explanation-panel').scrollIntoView({behavior:'smooth',block:'start'}));
+  $('detail-conclusion').append(jump);
   const utterances = new Map(result.analysis.utterances.map(u => [u.id,u]));
   const timeline = $('timeline');
   timeline.replaceChildren();
@@ -231,6 +307,7 @@ function renderDetail() {
     row.append(links); provenance.append(row);
   }
   provenance.append(node('p','','Nguồn có thật chưa bảo đảm cách diễn giải đúng. Hãy đọc cả ngữ cảnh.'));
+  renderExplanation(record,utterances);
   showEvidenceTab('history');
 }
 

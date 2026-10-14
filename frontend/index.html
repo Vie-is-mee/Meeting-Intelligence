@@ -72,6 +72,14 @@
         <div id="detail-empty" class="evidence-empty"><span class="small-caps">ĐỌC KẾT QUẢ CÙNG NGỮ CẢNH</span><p>Chọn một bản ghi để xem lịch sử và các phát biểu liên quan.</p><div class="legend"><span><i class="source-dot"></i>Câu nguồn</span><span><i class="change-dot"></i>Câu sửa đổi / audit</span></div></div>
         <div id="detail" hidden><div class="detail-heading"><span id="detail-kind" class="small-caps"></span><h3 id="detail-title"></h3><div id="detail-status"></div><div id="detail-conclusion"></div></div><div class="evidence-tabs"><button id="show-history" class="active">Lịch sử thay đổi</button><button id="show-transcript">Transcript</button></div><div id="timeline"></div><div id="source-view" hidden><div class="legend"><span><i class="source-dot"></i>Nguồn của bản ghi</span><span><i class="change-dot"></i>Thay đổi / audit</span></div><div id="source-lines"></div></div><div id="field-evidence" class="field-evidence"></div></div>
       </section>
+      <section id="explanation-panel" class="panel explanation-panel" hidden aria-label="Bảng đối chiếu kết luận với câu nguồn">
+        <div class="panel-heading"><div><span class="section-number">04</span><h2>Bảng đối chiếu với câu nguồn</h2></div></div>
+        <div class="explanation-body"><h3 id="explanation-title"></h3><p class="explanation-note">Đọc từ sự kiện và nguồn hệ thống đã trích, không phải suy nghĩ nội bộ của LLM. Cụm từ gợi ý không tự chứng minh cách phân loại đúng; hãy đọc toàn câu và diễn biến.</p>
+          <h4>Kết quả hiện tại dựa vào đâu?</h4><div id="conclusion-table" class="table-scroll" tabindex="0" aria-label="Nguồn theo từng trường"></div>
+          <h4>Từ phát biểu đến sự kiện và cách xử lý</h4><p class="help">“Quy tắc xử lý” mô tả logic phần mềm cho loại sự kiện đó; các sự kiện về sau có thể thay đổi kết quả.</p><div id="event-table" class="table-scroll" tabindex="0" aria-label="Diễn biến theo câu nguồn"></div>
+          <div id="audit-explanation" hidden><h4>Nhận xét audit — có thể sai, cần đối chiếu</h4><div id="audit-table" class="table-scroll" tabindex="0" aria-label="Nhận xét audit và câu trích"></div></div>
+        </div>
+      </section>
     </section>
     <footer><span>Trạng thái trong cuộc họp không đồng nghĩa phê duyệt của tổ chức.</span><span id="footer-model">Dữ liệu được xử lý khi bạn nhấn phân tích.</span></footer>
   </main>

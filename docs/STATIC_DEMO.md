@@ -10,6 +10,8 @@ Nếu dùng ZIP tĩnh đã giải nén, mở `index.html` ở ngay thư mục g�
 
 Các case nên xem: D01/D03/D04/H01 thành công; LC03 có audit sai; LC01 có request thừa được cảnh báo; H03 bỏ sót request; LC02 thiếu lựa chọn thay thế và có bản ghi thừa. 4/8 đạt đầy đủ, 5/8 đạt dữ liệu lõi trong lượt đã lưu, không phải accuracy tổng quát.
 
+Sau khi chọn bản ghi, bấm “Xem bảng câu nguồn → kết luận” ở khung bằng chứng. Bảng 04 hiển thị giá trị hiện tại và nguồn từng trường, rồi đối chiếu phát biểu nguyên văn/cụm gợi ý/sự kiện/quy tắc xử lý. Bấm mã câu để về transcript. Nhận xét audit được tách riêng vì có thể sai. Cụm gợi ý chỉ được tìm trong câu có thật để hỗ trợ đọc; không quyết định phân loại và không phải suy nghĩ nội bộ của LLM.
+
 Không dùng double-click file:// làm cách chạy chính vì trình duyệt có thể chặn fetch JSON. Dùng Go Live hoặc HTTP server.
 
 ## Chạy bằng Python có sẵn, không cài thư viện
