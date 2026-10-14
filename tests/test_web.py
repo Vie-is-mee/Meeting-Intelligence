@@ -121,3 +121,58 @@ class WebTests(unittest.TestCase):
             })
         self.assertEqual(status, 422)
         self.assertEqual(json.loads(body)['error'], 'Thiếu cấu hình API')
+
+
+class HostedWebTests(unittest.TestCase):
+    request = WebTests.request
+
+    def setUp(self):
+        self.environment = patch.dict(os.environ, {'RENDER_EXTERNAL_HOSTNAME': 'demo.onrender.com',
+            'ALLOWED_ORIGINS': 'https://demo.vercel.app', 'ALLOWED_HOSTS': '', 'ENABLE_LIVE_API': 'false'})
+        self.environment.start()
+        self.server = InspectionServer(('127.0.0.1', 0), public=True)
+        self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
+        self.thread.start()
+        self.base = f'http://127.0.0.1:{self.server.server_port}'
+
+    def tearDown(self):
+        self.server.shutdown(); self.server.server_close(); self.thread.join(timeout=2)
+        self.environment.stop()
+
+    def test_render_host_and_health_work_without_exposing_configuration(self):
+        status, body, _ = self.request('/healthz', headers={'Host':'demo.onrender.com'})
+        self.assertEqual((status,json.loads(body)), (200,{'status':'ok'}))
+        status, _, _ = self.request('/config.js', headers={'Host':'demo.onrender.com'})
+        self.assertEqual(status,200)
+        status, _, _ = self.request('/.env', headers={'Host':'demo.onrender.com'})
+        self.assertEqual(status,404)
+
+    def test_vercel_preflight_and_real_offline_post(self):
+        headers={'Host':'demo.onrender.com','Origin':'https://demo.vercel.app','Content-Type':'application/json'}
+        req=urllib.request.Request(self.base+'/api/analyze',headers=headers,method='OPTIONS')
+        with urllib.request.urlopen(req,timeout=10) as response:
+            self.assertEqual(response.status,204)
+            self.assertEqual(response.headers['Access-Control-Allow-Origin'],'https://demo.vercel.app')
+            self.assertIn('POST',response.headers['Access-Control-Allow-Methods'])
+        status, body, response_headers=self.request('/api/analyze',{'transcript':'Lan: Chốt phương án B.','engine':'offline_rules'},headers)
+        self.assertEqual(status,200)
+        self.assertEqual(json.loads(body)['api_calls'],0)
+        self.assertEqual(response_headers['Access-Control-Allow-Origin'],'https://demo.vercel.app')
+
+    def test_unapproved_origin_and_host_are_blocked(self):
+        for headers in [{'Host':'evil.example'},{'Host':'demo.onrender.com','Origin':'https://evil.vercel.app'}]:
+            status,_,response_headers=self.request('/api/config',headers=headers)
+            self.assertEqual(status,403)
+            self.assertIsNone(response_headers.get('Access-Control-Allow-Origin'))
+
+    def test_public_llm_disabled_does_not_call_provider(self):
+        with patch('web.LLMClient') as client:
+            status,_,_=self.request('/api/analyze',{'transcript':'Chốt B','engine':'llm_api'})
+            self.assertEqual(status,403);client.assert_not_called()
+        with patch('web.load_local_config'):
+            self.assertFalse(public_config(public=True)['api_configured'])
+
+    def test_same_origin_render_frontend_is_allowed(self):
+        status,_,headers=self.request('/api/samples',headers={'Host':'demo.onrender.com','Origin':'https://demo.onrender.com'})
+        self.assertEqual(status,200)
+        self.assertEqual(headers['Access-Control-Allow-Origin'],'https://demo.onrender.com')

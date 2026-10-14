@@ -28,15 +28,16 @@ ASSETS = {
     '/review.js': ('review.js', 'text/javascript; charset=utf-8'),
     '/review.css': ('review.css', 'text/css; charset=utf-8'),
     '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
+    '/config.js': ('config.js', 'text/javascript; charset=utf-8'),
     '/demo-data.json': ('demo-data.json', 'application/json; charset=utf-8'),
 }
 
 
-def public_config():
+def public_config(public=False):
     load_local_config()
     key = os.environ.get('LLM_API_KEY', '')
     return {
-        'api_configured': bool(key and key != 'replace-with-private-token'
+        'api_configured': bool((not public or os.environ.get('ENABLE_LIVE_API', '').lower() == 'true') and key and key != 'replace-with-private-token'
                                and os.environ.get('LLM_BASE_URL') and os.environ.get('LLM_MODEL')),
         'model': os.environ.get('LLM_MODEL', ''),
         'provider': urlparse(os.environ.get('LLM_BASE_URL', '')).hostname or '',
@@ -54,9 +55,19 @@ def samples():
 class InspectionServer(ThreadingHTTPServer):
     daemon_threads = True
 
-    def __init__(self, address, handler=None):
+    def __init__(self, address, handler=None, *, public=False):
         super().__init__(address, handler or Handler)
         self.analysis_lock = threading.Lock()
+        self.public = public
+        self.allowed_hosts = {f'127.0.0.1:{self.server_port}', f'localhost:{self.server_port}'}
+        if public:
+            self.allowed_hosts.update(h.strip() for h in os.environ.get('ALLOWED_HOSTS', '').split(',') if h.strip())
+            if os.environ.get('RENDER_EXTERNAL_HOSTNAME'):
+                self.allowed_hosts.add(os.environ['RENDER_EXTERNAL_HOSTNAME'])
+        self.allowed_origins = {f'http://{host}' for host in self.allowed_hosts if host.startswith(('localhost:', '127.0.0.1:'))}
+        if public:
+            self.allowed_origins.update(f'https://{host}' for host in self.allowed_hosts if not host.startswith(('localhost:', '127.0.0.1:')))
+            self.allowed_origins.update(o.strip().rstrip('/') for o in os.environ.get('ALLOWED_ORIGINS', '').split(',') if o.strip())
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -70,6 +81,12 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Content-Length', str(len(body)))
         self.send_header('Cache-Control', 'no-store')
         self.send_header('X-Content-Type-Options', 'nosniff')
+        origin = self.headers.get('Origin')
+        if origin and origin in self.server.allowed_origins:
+            self.send_header('Access-Control-Allow-Origin', origin)
+            self.send_header('Vary', 'Origin')
+            self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+            self.send_header('Access-Control-Allow-Headers', 'Content-Type')
         self.send_header('Content-Security-Policy',
                          "default-src 'self'; script-src 'self'; style-src 'self'; "
                          "connect-src 'self'; img-src 'self' data:; frame-ancestors 'none'")
@@ -81,17 +98,20 @@ class Handler(BaseHTTPRequestHandler):
                        'application/json; charset=utf-8')
 
     def local_request(self):
-        allowed = {f'127.0.0.1:{self.server.server_port}', f'localhost:{self.server.server_port}'}
+        allowed = self.server.allowed_hosts
         if self.headers.get('Host') not in allowed:
-            self.send_json(403, {'error': 'Hãy mở website bằng địa chỉ localhost được in trong terminal.'})
+            self.send_json(403, {'error': 'Địa chỉ website chưa được cho phép trong cấu hình server.'})
             return False
         origin = self.headers.get('Origin')
-        if origin and origin not in {f'http://{host}' for host in allowed}:
-            self.send_json(403, {'error': 'Chỉ nhận yêu cầu từ giao diện local của ứng dụng.'})
+        if origin and origin not in self.server.allowed_origins:
+            self.send_json(403, {'error': 'Origin chưa được cho phép. Kiểm tra ALLOWED_ORIGINS trên backend.'})
             return False
         return True
 
     def do_GET(self):
+        if urlparse(self.path).path == '/healthz':
+            self.send_json(200, {'status': 'ok'})
+            return
         if not self.local_request():
             return
         path = urlparse(self.path).path
@@ -99,11 +119,19 @@ class Handler(BaseHTTPRequestHandler):
             filename, content_type = ASSETS[path]
             self.send_body(200, (ROOT / 'frontend' / filename).read_bytes(), content_type)
         elif path == '/api/config':
-            self.send_json(200, public_config())
+            self.send_json(200, public_config(self.server.public))
         elif path == '/api/samples':
             self.send_json(200, {'samples': samples()})
         else:
             self.send_json(404, {'error': 'Không tìm thấy đường dẫn.'})
+
+    def do_OPTIONS(self):
+        if not self.local_request():
+            return
+        if urlparse(self.path).path not in {'/api/config', '/api/samples', '/api/analyze'}:
+            self.send_json(404, {'error': 'Không tìm thấy đường dẫn.'})
+            return
+        self.send_body(204, b'', 'text/plain')
 
     def do_POST(self):
         if not self.local_request():
@@ -133,6 +161,9 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError('Chế độ phân tích hoặc tùy chọn audit không hợp lệ.')
         except (ValueError, UnicodeError) as exc:
             self.send_json(400, {'error': str(exc)})
+            return
+        if engine == 'llm_api' and self.server.public and os.environ.get('ENABLE_LIVE_API', '').lower() != 'true':
+            self.send_json(403, {'error': 'Phân tích LLM online chưa bật. Đặt ENABLE_LIVE_API=true trên Render để dùng khóa của bạn.'})
             return
         if not self.server.analysis_lock.acquire(blocking=False):
             self.send_json(409, {'error': 'Đang có một lượt phân tích. Hãy chờ lượt hiện tại hoàn tất.'})
@@ -169,11 +200,13 @@ class Handler(BaseHTTPRequestHandler):
 
 def main():
     parser = argparse.ArgumentParser(description='Website local để kiểm tra lõi Trí tuệ cuộc họp')
-    parser.add_argument('--port', type=int, default=8765)
+    parser.add_argument('--port', type=int, default=int(os.environ.get('PORT', '8765')))
+    parser.add_argument('--host', default='127.0.0.1')
+    parser.add_argument('--public', action='store_true', help='Cho phép các host/origin được cấu hình cho bản demo online')
     args = parser.parse_args()
     load_local_config()
     try:
-        server = InspectionServer(('127.0.0.1', args.port))
+        server = InspectionServer((args.host, args.port), public=args.public)
     except OSError:
         parser.exit(1, f'Không mở được cổng {args.port}. Thử python web.py --port 8766\n')
     print(f'Meeting Intelligence: http://127.0.0.1:{server.server_port}', flush=True)

@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: meeting-intelligence
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -X utf8 web.py --host 0.0.0.0 --public
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.12
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_BASE_URL
+        value: https://api.groq.com/openai/v1
+      - key: LLM_MODEL
+        value: openai/gpt-oss-120b
+      - key: LLM_JSON_MODE
+        value: "true"
+      - key: LLM_STRUCTURED_OUTPUTS
+        value: auto
+      - key: LLM_MAX_COMPLETION_TOKENS
+        value: "2560"
+      - key: LLM_TEMPERATURE
+        value: "0.6"
+      - key: LLM_REASONING_EFFORT
+        value: low
+      - key: ENABLE_LIVE_API
+        value: "true"
+      - key: ALLOWED_ORIGINS
+        value: ""

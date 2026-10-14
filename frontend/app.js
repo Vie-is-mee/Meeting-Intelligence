@@ -10,6 +10,11 @@ let demoData = null, backendAvailable = false;
 let currentReview = null;
 const reviewSessions = new Map(), resultSessionIds = new WeakMap();
 const REVIEW_STORAGE_KEY = 'meeting-intelligence-review-last-v1';
+const API_BASE_URL=(window.MEETING_CONFIG?.apiBaseUrl||'').replace(/\/+$/,'');
+async function apiFetch(path,options={},timeout=18000){
+  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),timeout);
+  try{return await fetch(API_BASE_URL+path,{...options,signal:controller.signal});}finally{clearTimeout(timer);}
+}
 const workspaceScreens={analysis:['Phân tích cuộc họp','Đưa transcript vào và xem những thông tin còn giá trị sau cuộc họp.'],evidence:['Kiểm chứng kết luận','Đối chiếu câu nguồn, theo dõi thay đổi và hiểu kết luận cuối cùng.'],review:['Rà soát & xuất dữ liệu','Xác minh từng bản ghi trước khi đưa thông tin vào công việc.']};
 function setWorkspaceView(view){
   if(!workspaceScreens[view]||(view!=='analysis'&&!result))return;
@@ -557,7 +562,7 @@ async function runAnalysis() {
   const update = () => { $('run-state').textContent = `Đang chạy ${$('engine').value === 'llm_api' ? 'LLM và kiểm chứng' : 'baseline offline'} · ${Math.floor((Date.now()-start)/1000)}s`; };
   update(); const timer = setInterval(update,1000);
   try {
-    const response = await fetch('/api/analyze', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({transcript:text,engine:$('engine').value,audit:$('audit').checked,sample_id:$('sample').value})});
+    const response = await apiFetch('/api/analyze', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({transcript:text,engine:$('engine').value,audit:$('audit').checked,sample_id:$('sample').value})},300000);
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || 'Không thể hoàn tất phân tích.');
     result = data;
@@ -649,20 +654,34 @@ async function initialize() {
     $('demo-summary').replaceChildren(node('strong','','Bộ demo đã lưu · 8 tình huống cùng phiên bản'),node('span','',`${stats.strict_case_passed}/8 đạt đầy đủ · ${stats.core_data_passed}/8 đúng dữ liệu lõi · Có cả lỗi thật để đối chiếu`));
     $('demo-summary').hidden = false;
   } catch { $('engine').querySelector('[value="recorded"]').disabled = true; $('engine').value = 'offline_rules'; }
+  if(API_BASE_URL&&demoData)await staticPreview();
+  await connectBackend();
+}
+let connectingBackend=false;
+async function connectBackend(){
+  if(connectingBackend||busy)return;
+  connectingBackend=true;$('connect-backend').disabled=true;
   try {
-    const responses = await Promise.all([fetch('/api/config'),fetch('/api/samples')]);
+    const responses = await Promise.all([apiFetch('/api/config'),apiFetch('/api/samples')]);
     if (responses.some(response => !response.ok)) throw new Error('Backend chưa sẵn sàng.');
     const [config,data] = await Promise.all(responses.map(response => response.json()));
     backendAvailable = true;
-    populateSamples([...(demoData?.cases || []),...data.samples]);
-    $('config-status').textContent = config.api_configured ? `Đã có cấu hình · ${config.provider} · ${config.model}` : 'Chưa có khóa API hợp lệ trong .env. Bạn vẫn chạy được chế độ offline.';
-    $('footer-model').textContent = config.model ? `Model cấu hình: ${config.model}` : 'Chế độ offline không gọi API.';
+    $('static-preview').hidden=true;
+    for(const value of ['offline_rules','llm_api'])$('engine').querySelector(`[value="${value}"]`).disabled=false;
+    const merged=[...(demoData?.cases || []),...data.samples];
+    if(!result)populateSamples(merged);
+    else {const previous=$('sample').value;sampleData=merged;$('sample').replaceChildren();for(const s of merged){const option=node('option','',`${s.id} · ${s.description}`);option.value=s.id;$('sample').append(option);}const custom=node('option','','Transcript của bạn');custom.value='custom';$('sample').append(custom);$('sample').value=previous;}
+    $('config-status').textContent = config.api_configured ? `Backend đã kết nối · ${config.provider} · ${config.model}` : 'Backend đã kết nối; cấu hình khóa/bật LLM trên server để phân tích mới. Offline vẫn dùng được.';
+    if(!result)$('footer-model').textContent = config.model ? `Model cấu hình: ${config.model}` : 'Chế độ offline không gọi API.';
     $('sample').disabled = false;
     $('run-state').textContent = 'Sẵn sàng · chưa gọi API';
     engineSettings();
-    if (demoData && $('engine').value === 'recorded') await runAnalysis();
+    $('connect-backend').hidden=true;
+    if (!result && demoData && $('engine').value === 'recorded') await runAnalysis();
   } catch(error) {
-    await staticPreview();
-  }
+    if(!backendAvailable&&!result)await staticPreview();
+    if(API_BASE_URL){$('connect-backend').hidden=false;$('config-status').textContent='Backend chưa kết nối hoặc đang khởi động. Demo đã lưu vẫn xem được; đợi khoảng một phút rồi bấm kết nối lại.';}
+  }finally{connectingBackend=false;$('connect-backend').disabled=false;}
 }
+$('connect-backend').addEventListener('click',connectBackend);
 initialize();

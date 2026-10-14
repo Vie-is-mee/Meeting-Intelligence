@@ -11,11 +11,11 @@ ROOT=Path(__file__).resolve().parents[1]
 def main():
     target=ROOT/'dist'
     target.mkdir(exist_ok=True)
-    root_files=['README.md','requirements.txt','.env.example','.gitignore','.gitattributes','cli.py','web.py','run_web.cmd','run_demo.cmd']
+    root_files=['README.md','requirements.txt','.env.example','.gitignore','.gitattributes','.vercelignore','cli.py','web.py','run_web.cmd','run_demo.cmd','vercel.json','render.yaml']
     files=[ROOT/p for p in root_files]
     for name in ['meeting_intelligence','frontend','samples','datasets','tests','scripts','docs']:
         files.extend(p for p in sorted((ROOT/name).rglob('*')) if p.is_file()
-                     and '__pycache__' not in p.parts and p.suffix in {'.py','.js','.cjs','.css','.html','.json','.md','.txt'})
+                     and '__pycache__' not in p.parts and p.suffix in {'.py','.js','.mjs','.cjs','.css','.html','.json','.md','.txt'})
     secret_pattern=re.compile(rb'(?:gsk_[A-Za-z0-9]{24,}|sk-proj-[A-Za-z0-9_-]{24,})')
     hashes={}
     for p in files:
@@ -26,6 +26,7 @@ def main():
             'review.js':ROOT/'frontend/review.js',
             'review.css':ROOT/'frontend/review.css',
             'workspace.css':ROOT/'frontend/workspace.css',
+            'config.js':ROOT/'frontend/config.js',
             'styles.css':ROOT/'frontend/styles.css','demo-data.json':ROOT/'frontend/demo-data.json',
             'README.md':ROOT/'docs/STATIC_DEMO.md'}
     with zipfile.ZipFile(target/'meeting-intelligence-demo-static.zip','w',zipfile.ZIP_DEFLATED) as archive:

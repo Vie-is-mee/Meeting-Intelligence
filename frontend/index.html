@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./review.css">
   <link rel="stylesheet" href="./workspace.css">
   <script src="./review.js" defer></script>
+  <script src="./config.js" defer></script>
   <script src="./app.js" defer></script>
 </head>
 <body data-workspace-view="analysis">
@@ -54,6 +55,7 @@
 
         <div class="settings"><label for="engine">Chế độ xử lý</label><select id="engine"><option value="recorded">Demo · kết quả LLM đã lưu</option><option value="llm_api">LLM API · phân tích mới</option><option value="offline_rules">Offline · baseline theo luật</option></select>
           <p id="config-status" class="help">Đang kiểm tra cấu hình…</p>
+          <button id="connect-backend" class="button secondary" type="button" hidden>Kết nối lại backend</button>
           <label class="toggle-row"><input type="checkbox" id="audit" checked><span class="switch" aria-hidden="true"></span><span>Rà soát lần hai bằng LLM<small>Có thể bỏ sót hoặc cảnh báo sai; cần đối chiếu nguồn</small></span></label>
         </div>
         <div class="engine-note" id="engine-note">Offline chỉ nhận diện một số mẫu quyết định; không đại diện cho năng lực LLM.</div>
