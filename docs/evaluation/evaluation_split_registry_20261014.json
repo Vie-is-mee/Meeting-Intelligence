@@ -134,6 +134,19 @@
       "current_role": "development_regression",
       "independence_claim": false,
       "selected_for_main": false
+    },
+    {
+      "version": "C1",
+      "source": "docs/evaluation/candidate_c1_pilot_v1.json",
+      "case_ids": [
+        "LC01",
+        "LC03",
+        "D01",
+        "H01"
+      ],
+      "current_role": "targeted_development_pilot",
+      "independence_claim": false,
+      "selected_for_main": false
     }
   ]
 }

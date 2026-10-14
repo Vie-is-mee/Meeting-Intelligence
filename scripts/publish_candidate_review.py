@@ -29,7 +29,7 @@ def main():
             content=subprocess.check_output(['git','show',args.code_commit+':'+normalized],cwd=ROOT)
             if hashlib.sha256(content).hexdigest()!=digest:raise SystemExit('Code commit differs from frozen run: '+normalized)
         elif hashlib.sha256(input_path.read_bytes()).hexdigest()!=digest:raise SystemExit('Input hash mismatch')
-    out_dir=ROOT/'docs/evaluation';stem='candidate_'+version.lower()+'_regression_v1'
+    out_dir=ROOT/'docs/evaluation';stem='candidate_'+version.lower()+('_pilot_v1' if args.scope=='targeted_pilot' else '_regression_v1')
     targets=[out_dir/(stem+'.json'),out_dir/(stem+'_input.json'),out_dir/(stem+'_review.json')]
     if any(p.exists() for p in targets):raise SystemExit('Preserve published evidence; use a new version')
     summary={'requested':len(expected),'attempted':len(run['cases']),
