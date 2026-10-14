@@ -1,0 +1,6 @@
+L001 | Diệp | Bộ phận vận hành cần tải danh sách đơn dưới dạng XLSX.
+L002 | Bảo | Nhờ Trúc thử cách xuất bằng công cụ K, hạn trưa mai.
+L003 | Trúc | Tôi nhận thử công cụ K.
+L004 | Bảo | Hủy việc thử công cụ K vì không phù hợp chính sách dữ liệu, bỏ hạn trưa mai.
+L005 | Diệp | Nhu cầu tải XLSX vẫn giữ. Chưa chọn cách khác và chưa giao đầu việc thay thế.
+L006 | Trúc | Tôi hiểu: tôi không còn làm thử K; câu này không phải đề xuất tiếp tục thử.

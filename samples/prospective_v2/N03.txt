@@ -1,0 +1,5 @@
+L001 | Lệ | Nhóm khách dùng thử phản hồi rằng trang đăng ký có quá nhiều ô nhập.
+L002 | Sơn | Khách yêu cầu chỉ bắt buộc số điện thoại và mã xác nhận trong bước đầu.
+L003 | Lệ | Họ cũng khen phần hướng dẫn bằng hình dễ hiểu; đó là phản hồi, không phải yêu cầu thêm hình.
+L004 | Sơn | Ghi nhận yêu cầu giảm trường bắt buộc. Chưa chốt thiết kế thay thế và chưa giao ai triển khai.
+L005 | Hạnh | Có khách hỏi đăng ký qua email được không, nhưng họ chưa yêu cầu bỏ đăng ký bằng số điện thoại.

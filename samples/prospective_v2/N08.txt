@@ -1,0 +1,6 @@
+L001 | Thu | Tôi đọc biên bản tuần trước: "Chốt dùng phòng A cho hội thảo".
+L002 | Dũng | Đó là quyết định tuần trước, nhưng hôm nay biết phòng A đang sửa điện.
+L003 | Thu | Mở lại lựa chọn địa điểm. Hôm nay chưa chọn A hay B.
+L004 | Dũng | Ban tổ chức yêu cầu có phương án phòng phù hợp trước lần xác nhận vé tiếp theo.
+L005 | Thu | Ghi yêu cầu đó, chưa giao người làm và chưa có ngày xác nhận vé cụ thể.
+L006 | Dũng | Tôi nhắc lại câu "Chốt phòng A" chỉ để nói lịch sử, không chốt A lại.

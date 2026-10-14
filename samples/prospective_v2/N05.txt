@@ -1,0 +1,5 @@
+L001 | Nam | Máy quét mã ở quầy số hai không gửi được kết quả về hệ thống từ sáng.
+L002 | Oanh | Tôi vừa thay dây mạng; máy quét đã gửi được ba lượt thử.
+L003 | Nam | Đó là kết quả bạn báo lại, bên vận hành chưa kiểm tra độc lập cả ca làm việc.
+L004 | Oanh | Đúng, tôi chỉ báo lỗi kết nối đã hết trong lượt thử; chưa xác nhận không tái phát.
+L005 | Nam | Ghi nhận lời báo khắc phục và việc chưa được kiểm chứng. Cuộc họp chưa giao nhiệm vụ kiểm tra cho ai.

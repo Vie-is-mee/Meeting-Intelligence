@@ -4,6 +4,8 @@ GitHub: [Vie-is-mee/Meeting-Intelligence](https://github.com/Vie-is-mee/Meeting-
 
 Deploy online: [hướng dẫn Vercel + Render Free](docs/DEPLOYMENT.md). Repo đã có vercel.json, render.yaml và cấu hình frontend gọi backend; khóa Groq chỉ đặt trên Render.
 
+Kế hoạch cải thiện mới: [baseline A và bộ đánh giá prospective](docs/PROSPECTIVE_EVALUATION.md). Đã khóa bằng chứng phiên bản A; 12 transcript mới đang chờ nhãn con người trước khi gọi model, chưa có điểm mới hoặc tuyên bố benchmark độc lập.
+
 ## Xem demo ngay
 
 **Không cần cài requirements hoặc key để xem demo:** mở [frontend/index.html](frontend/index.html) bằng Go Live. Mặc định hiển thị D01: từ đề xuất lưu trên máy chủ sang chốt object storage. Chọn 8 case để xem kết quả thật đã lưu, kể cả lỗi, kèm evidence/lịch sử/JSON và đánh giá. Đây là xem lại, không phải phân tích mới.

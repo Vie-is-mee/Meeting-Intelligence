@@ -1,0 +1,7 @@
+L001 | Điều phối | Trước lượt diễn tập tiếp theo, cần kiểm tra đường thoát của khu sự kiện.
+L002 | Khánh | Anh ấy nhận kiểm tra rồi phải không?
+L003 | Mai | Khoan, anh ấy là ai? Tôi chưa nghe ai nhận cả.
+L004 | Điều phối | Chưa có người nhận. Đừng ghi tên Khánh hoặc Mai chỉ vì hai người đang nói.
+L005 | Khánh | Có thể diễn tập thứ Hai, à không, thứ Ba cũng được.
+L006 | Điều phối | Hai ngày mới là gợi ý. Chưa chọn ngày diễn tập; yêu cầu kiểm tra trước lượt tiếp theo vẫn giữ.
+L007 | Mai | Cần hỏi thêm lịch của ban tổ chức rồi mới bàn người và ngày.

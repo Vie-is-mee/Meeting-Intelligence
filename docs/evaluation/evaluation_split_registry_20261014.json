@@ -1,0 +1,77 @@
+{
+  "updated_local_date": "2026-10-14",
+  "scope": "Current dataset-use status; historical dataset metadata is not rewritten.",
+  "groups": [
+    {
+      "source": "datasets/meeting_eval_v1.json",
+      "case_ids": [
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "H01",
+        "H02",
+        "H03",
+        "H04",
+        "H05",
+        "H06",
+        "H07",
+        "H08"
+      ],
+      "current_role": "development_or_regression",
+      "independence_claim": false,
+      "reason": "Original 24-case run has already been seen; reserved/H cases have participated in the development/evaluation history. Do not claim untouched held-out results."
+    },
+    {
+      "source": "datasets/task_lifecycle_regression_v1.json",
+      "case_ids": [
+        "LC01",
+        "LC02",
+        "LC03"
+      ],
+      "current_role": "development_or_regression",
+      "independence_claim": false,
+      "reason": "Lifecycle examples used to inspect/repair behavior."
+    },
+    {
+      "source": "datasets/prospective_eval_v2.json",
+      "case_ids": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05",
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "N10",
+        "N11",
+        "N12"
+      ],
+      "current_role": "prospective_synthetic_pending_human_labels",
+      "independence_claim": false,
+      "outputs_observed": false,
+      "used_to_tune_core": false,
+      "reason": "New synthetic cases, same implementation author, no gold or outputs yet. Human annotation remains pending."
+    }
+  ],
+  "independent_real_world_benchmark": {
+    "status": "not_available",
+    "case_ids": []
+  },
+  "policy": "Record any prospective case used to tune as development before measuring a revised candidate. Never silently relabel it as unseen.",
+  "exposure_log": []
+}

@@ -1,0 +1,80 @@
+L001 | An | Ta bàn hai tuyến tham quan Bắc và Nam cùng bản hướng dẫn khách.
+L002 | Phúc | Khách yêu cầu có bản hướng dẫn tiếng Anh cho cả hai tuyến.
+L003 | An | Giao Hòa thử làm bản hướng dẫn bằng công cụ M, hạn tối mai.
+L004 | Hòa | Tôi nhận thử công cụ M.
+L005 | Lan | Tôi đọc biên bản tháng trước: "Chốt tuyến Bắc khởi hành 7 giờ".
+L006 | An | Đó là lịch tháng trước, chưa phải lịch hôm nay.
+L007 | Phúc | Tuyến Nam đang có phản hồi xe đến điểm đón trễ.
+L008 | Lan | Phản hồi này chỉ liên quan tuyến Nam.
+L009 | An | Ta sẽ bàn lại tuyến Bắc khi có thông báo của điểm tham quan.
+L010 | Hòa | Bản hướng dẫn hiện có mô tả điểm đón và số điện thoại tổng đài giả lập trong tài liệu.
+L011 | An | Không cần đưa số tổng đài vào quyết định vận hành.
+L012 | Phúc | Tuyến Bắc đi qua điểm bảo tàng, tuyến Nam đi qua công viên.
+L013 | Lan | Chưa có yêu cầu thay đổi các điểm tham quan.
+L014 | Hòa | Công cụ M đang có giới hạn dùng thương mại.
+L015 | An | Chưa kết luận về công cụ, đợi phần cuối buổi.
+L016 | Phúc | Xe tuyến Nam có hai điểm đón.
+L017 | Lan | Có khách hỏi bỏ điểm đón thứ hai nhưng chưa có đề nghị chính thức.
+L018 | An | Chưa chốt bỏ điểm đón nào.
+L019 | Hòa | Bản tiếng Việt có phần hướng dẫn nhận vé.
+L020 | Phúc | Khách nước ngoài yêu cầu bản tiếng Anh, không yêu cầu đổi loại vé.
+L021 | Lan | Thông báo điểm tham quan tuyến Bắc còn chờ.
+L022 | An | Lịch 7 giờ tôi nghe lúc đầu là lịch cũ.
+L023 | Hòa | Tôi chưa báo hoàn thành thử công cụ M.
+L024 | Phúc | Phản hồi xe trễ vẫn chưa có báo khắc phục.
+L025 | Lan | Tuyến Nam chưa có quyết định giờ khởi hành mới.
+L026 | An | Không dùng giờ tuyến Bắc để điền cho tuyến Nam.
+L027 | Hòa | Tài liệu có hình bản đồ các điểm đón.
+L028 | Phúc | Khách không yêu cầu thay bản đồ trong buổi này.
+L029 | Lan | Có thể tuyến Bắc đi muộn hơn nhưng đó là suy đoán của tôi.
+L030 | An | Chưa coi suy đoán là một giờ được thống nhất.
+L031 | Hòa | Điều khoản công cụ M vừa được bộ phận mua sắm gửi lại.
+L032 | Phúc | Yêu cầu tiếng Anh vẫn còn, chưa có bản mới.
+L033 | Lan | Tôi muốn giữ riêng những gì thuộc tuyến Bắc và tuyến Nam.
+L034 | An | Đúng, hai lịch khởi hành không cùng một chủ đề.
+L035 | Hòa | Tài liệu khách dùng không phải lịch phân công nhân sự.
+L036 | Phúc | Tôi đang đọc phản hồi đã gửi từ hôm qua.
+L037 | Lan | Đọc phản hồi cũ không chứng minh vấn đề đã hết hôm nay.
+L038 | An | Chưa có lời báo xe tuyến Nam đã đúng giờ trở lại.
+L039 | Hòa | Tôi chỉ kiểm tra điều khoản trong cuộc họp, không nhận việc khác sau họp.
+L040 | Phúc | Khách còn hỏi có bản hướng dẫn dễ đọc trên điện thoại không.
+L041 | Lan | Câu hỏi đó chưa phải yêu cầu đổi định dạng.
+L042 | An | Không giao thêm việc từ câu hỏi này.
+L043 | Hòa | Công cụ M không cho dùng trong mục đích thương mại của đợt này.
+L044 | An | Hủy việc thử công cụ M, bỏ hạn tối mai. Đây là lý do hủy, không phải điều kiện để tiếp tục dùng M.
+L045 | Hòa | Tôi không còn làm thử M.
+L046 | Phúc | Yêu cầu hướng dẫn tiếng Anh vẫn giữ dù hủy thử M.
+L047 | Lan | Chưa chọn cách làm thay thế và chưa giao ai làm bản hướng dẫn mới.
+L048 | An | Ghi rõ cách làm hướng dẫn thay thế còn mở.
+L049 | Hòa | Đừng ghi tôi tiếp tục làm chỉ vì tôi từng nhận thử M.
+L050 | Phúc | Phần phản hồi tuyến Nam vẫn chưa xử lý.
+L051 | Lan | Điểm tham quan tuyến Bắc vừa báo mở cửa từ 9 giờ.
+L052 | An | Đề xuất tuyến Bắc khởi hành 8 giờ thay vì lịch cũ 7 giờ.
+L053 | Phúc | Tôi đồng ý 8 giờ cho tuyến Bắc.
+L054 | Lan | Đồng ý, nhưng thông báo mở cửa này chỉ cho ngày chạy thử.
+L055 | An | Thống nhất tuyến Bắc khởi hành 8 giờ trong ngày chạy thử; không áp dụng cho mọi ngày.
+L056 | Hòa | Quyết định lịch đó không giao lại việc công cụ M.
+L057 | Phúc | Tuyến Nam cần xác nhận giờ với nhà xe.
+L058 | Lan | Chưa ai nhận việc liên hệ nhà xe.
+L059 | An | Ghi nhu cầu xác nhận giờ tuyến Nam, chưa chốt giờ và chưa giao người.
+L060 | Hòa | Hạn tối mai đã bị bỏ đối với thử công cụ M.
+L061 | Phúc | Yêu cầu tiếng Anh không có hạn mới trong buổi này.
+L062 | Lan | Tôi nhắc giờ 7 giờ để đối chiếu lịch tháng trước thôi.
+L063 | An | Không khôi phục lịch 7 giờ bằng việc nhắc lại đó.
+L064 | Hòa | Công cụ thay thế chưa được chọn.
+L065 | Phúc | Phản hồi xe tuyến Nam trễ là phản hồi còn cần chú ý.
+L066 | Lan | Tôi vừa nhận thông báo bổ sung: ngày chạy thử chưa được xác nhận cuối cùng.
+L067 | An | Vậy mở lại quyết định 8 giờ tuyến Bắc. Chưa chốt giờ khởi hành cho ngày chưa xác nhận.
+L068 | Phúc | Đồng ý mở lại, chưa chọn 7 giờ hay 8 giờ.
+L069 | Hòa | Yêu cầu hướng dẫn tiếng Anh không bị rút vì mở lại lịch.
+L070 | Lan | Đúng, lịch và yêu cầu tài liệu là hai vấn đề khác nhau.
+L071 | An | Cuối buổi: tuyến Bắc chưa chốt giờ, tuyến Nam cũng chưa chốt giờ.
+L072 | Phúc | Khách vẫn cần hướng dẫn tiếng Anh cho cả hai tuyến.
+L073 | Hòa | Việc thử M đã hủy, người từng nhận là tôi; không còn hạn tối mai.
+L074 | Lan | Không có quyết định chọn công cụ mới.
+L075 | An | Chưa giao người làm tài liệu thay thế.
+L076 | Phúc | Không có lời xác nhận xe tuyến Nam hết trễ.
+L077 | Hòa | Những câu đọc biên bản cũ không phải kết luận hôm nay.
+L078 | Lan | Những giờ từng đề xuất giữ trong lịch sử, không dùng làm giờ đã chốt.
+L079 | An | Chúng ta chưa có ngày chạy thử chắc chắn.
+L080 | Phúc | Kết thúc, giữ riêng yêu cầu tài liệu, lịch từng tuyến và phản hồi xe trễ.

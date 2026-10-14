@@ -55,6 +55,8 @@ def main():
         parser.error('call interval must be nonnegative')
     dataset_path = ROOT / args.dataset
     data = json.loads(dataset_path.read_text(encoding='utf-8'))
+    if data.get('evaluation_gate') == 'pending_human_labels':
+        parser.error('Prospective labels are pending. Human-annotate and freeze with scripts/prepare_prospective_eval.py before any API run.')
     if args.ids:
         unknown = set(args.ids) - {c['id'] for c in data['cases']}
         if unknown:

@@ -1,0 +1,6 @@
+L001 | Kiên | Dự kiến mở chương trình ưu đãi nếu có 80 cửa hàng đồng ý tham gia.
+L002 | Thảo | Tôi đề nghị nâng lên 100 cửa hàng và phải kiểm thử thanh toán không có lỗi nghiêm trọng.
+L003 | Kiên | Chốt mở chương trình khi đủ 100 cửa hàng và kiểm thử thanh toán không có lỗi nghiêm trọng; bỏ mốc 80.
+L004 | Thảo | Hiện chỉ có 92 cửa hàng, phần kiểm thử vẫn chưa kết thúc.
+L005 | Kiên | Chưa đủ điều kiện để mở ngay; không phải hủy quyết định có điều kiện vừa chốt.
+L006 | Thảo | Hôm nay không chốt ngày mở chương trình.

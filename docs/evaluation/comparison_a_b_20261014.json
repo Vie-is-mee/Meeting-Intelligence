@@ -1,0 +1,139 @@
+{
+  "baseline_id": "baseline-A-20261014",
+  "baseline_source_commit": "4aecdc91f1c526773c7bae0a7dfdebfe5e658d2d",
+  "baseline_manifest": "docs/evaluation/baseline_a_20261014.json",
+  "baseline_summary": {
+    "pipeline_and_audit_completed": 8,
+    "requested": 8,
+    "strict_case_passed": 4,
+    "core_data_passed": 5,
+    "api_attempts": 16,
+    "provider_reported_tokens": 37817
+  },
+  "candidate_b": {
+    "status": "not_created_or_evaluated",
+    "source_commit": null,
+    "model_config": null,
+    "run_artifact": null,
+    "review_artifact": null,
+    "summary": null
+  },
+  "regression_cases": [
+    {
+      "id": "H03",
+      "baseline_strict": "FAIL",
+      "baseline_core": "FAIL",
+      "baseline_audit": "FALSE_POSITIVES",
+      "baseline_observation": "Chỉ có decision open; thiếu request và hạn tương đối. Audit đòi thể hiện đề xuất ngày trong bản ghi cuối, không phát hiện request thiếu.",
+      "candidate_b_strict": null,
+      "candidate_b_core": null,
+      "candidate_b_audit": null,
+      "comparison_reason": null
+    },
+    {
+      "id": "LC03",
+      "baseline_strict": "FAIL",
+      "baseline_core": "PASS",
+      "baseline_audit": "FALSE_POSITIVE",
+      "baseline_observation": "Các bản ghi và trường lõi đúng; audit medium đòi xóa owner lịch sử sau hủy dù không có lệnh xóa.",
+      "candidate_b_strict": null,
+      "candidate_b_core": null,
+      "candidate_b_audit": null,
+      "comparison_reason": null
+    },
+    {
+      "id": "D01",
+      "baseline_strict": "PASS",
+      "baseline_core": "PASS",
+      "baseline_audit": "NO_FINDINGS",
+      "baseline_observation": "Decision agreed object storage, decision open nhà cung cấp, nguồn trạng thái/nội dung L006, không tự đặt người/hạn.",
+      "candidate_b_strict": null,
+      "candidate_b_core": null,
+      "candidate_b_audit": null,
+      "comparison_reason": null
+    },
+    {
+      "id": "D03",
+      "baseline_strict": "PASS",
+      "baseline_core": "PASS",
+      "baseline_audit": "NO_FINDINGS",
+      "baseline_observation": "Đủ decision agreed/blocked/phạm vi/condition; nguồn nội dung L003, execution và condition L005; issue open L004, needs_review.",
+      "candidate_b_strict": null,
+      "candidate_b_core": null,
+      "candidate_b_audit": null,
+      "comparison_reason": null
+    },
+    {
+      "id": "D04",
+      "baseline_strict": "PASS",
+      "baseline_core": "PASS",
+      "baseline_audit": "NO_FINDINGS",
+      "baseline_observation": "Đúng đầy đủ điều kiện thay thế, nguồn L003; không bịa người/hạn; needs_review. Audit trống.",
+      "candidate_b_strict": null,
+      "candidate_b_core": null,
+      "candidate_b_audit": null,
+      "comparison_reason": null
+    },
+    {
+      "id": "H01",
+      "baseline_strict": "PASS",
+      "baseline_core": "PASS",
+      "baseline_audit": "NO_FINDINGS",
+      "baseline_observation": "Đúng hai bản ghi, nguồn mở lại L004, owner Huy L002; audit trống, không tự hủy action.",
+      "candidate_b_strict": null,
+      "candidate_b_core": null,
+      "candidate_b_audit": null,
+      "comparison_reason": null
+    },
+    {
+      "id": "LC01",
+      "baseline_strict": "FAIL",
+      "baseline_core": "FAIL",
+      "baseline_audit": "SUPPORTED_FINDING",
+      "baseline_observation": "Action đúng nhưng có request recorded trùng câu giao việc. Guard needs_review và audit high unsupported_fact dẫn L003 phát hiện request thừa.",
+      "candidate_b_strict": null,
+      "candidate_b_core": null,
+      "candidate_b_audit": null,
+      "comparison_reason": null
+    },
+    {
+      "id": "LC02",
+      "baseline_strict": "FAIL",
+      "baseline_core": "FAIL",
+      "baseline_audit": "FALSE_POSITIVE",
+      "baseline_observation": "Request và task cancelled/Dũng/hạn null đúng, nhưng thiếu decision cách thay thế chưa chốt; thêm proposal thử thư viện X. Audit medium đòi lý do hủy giấy phép không phù hợp thành condition hiện hành.",
+      "candidate_b_strict": null,
+      "candidate_b_core": null,
+      "candidate_b_audit": null,
+      "comparison_reason": null
+    }
+  ],
+  "prospective_evaluation": {
+    "status": "pending_human_labels",
+    "case_ids": [
+      "N01",
+      "N02",
+      "N03",
+      "N04",
+      "N05",
+      "N06",
+      "N07",
+      "N08",
+      "N09",
+      "N10",
+      "N11",
+      "N12"
+    ],
+    "run_artifacts": [],
+    "scores": null,
+    "independence_claim": false
+  },
+  "acceptance_policy": [
+    "Repair target errors without changing gold to fit outputs",
+    "Check preservation of known successful regression behavior",
+    "Separate audit usefulness from extraction correctness",
+    "Preserve errors, incomplete runs and all repeated outputs",
+    "Do not claim dataset-wide precision/recall from an eight-case regression"
+  ],
+  "changes": []
+}

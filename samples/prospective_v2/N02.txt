@@ -1,0 +1,6 @@
+L001 | Tâm | Phương làm bản hướng dẫn kích hoạt tài khoản, hạn sáng thứ Tư nhé.
+L002 | Phương | Tôi nhận bản hướng dẫn đó.
+L003 | Phương | Nhưng thứ Tư tôi trực hỗ trợ cả ngày, không thể làm kịp.
+L004 | Tâm | Chuyển bản hướng dẫn sang Uyên, hạn chiều thứ Sáu; không giữ hạn thứ Tư nữa.
+L005 | Uyên | Tôi nhận làm bản hướng dẫn, gửi chiều thứ Sáu.
+L006 | Tâm | Đúng, Uyên phụ trách. Phương không còn phụ trách bản này; chưa giao người hỗ trợ.

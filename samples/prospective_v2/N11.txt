@@ -1,0 +1,72 @@
+L001 | Huy | Họp này có ba phần: lịch kiểm kê, tài liệu kho và phản hồi màn hình hàng về.
+L002 | Linh | Tôi đề xuất kiểm kê khu lạnh vào sáng thứ Năm.
+L003 | Huy | Đồng ý lịch thứ Năm tạm thời, lát nữa xem lịch xe rồi chốt lại.
+L004 | Vy | Màn hình hàng về đang khó tìm nút xác nhận theo phản hồi của ca tối.
+L005 | Huy | Ghi lại phản hồi đó, chưa có thiết kế mới.
+L006 | Bình | Ca sáng dùng máy tính bảng, ca tối chủ yếu dùng máy bàn.
+L007 | Vy | Phản hồi khó tìm nút đến từ máy bàn, không phải kết luận lỗi trên mọi thiết bị.
+L008 | Linh | Khu lạnh có hai lối vào và lịch xe hiện còn chờ xác nhận.
+L009 | Huy | Chưa đổi quy trình nhập hàng ở phần này.
+L010 | Bình | Tài liệu kiểm kê có sơ đồ vị trí các kệ.
+L011 | Huy | Bình sửa phần sơ đồ trong tài liệu, hạn chiều thứ Tư.
+L012 | Bình | Tôi nhận sửa sơ đồ trong tài liệu.
+L013 | Vy | Trong hình hiện tại mã kệ phía đông bị che bởi chú thích.
+L014 | Bình | Tôi thấy ghi chú đó, còn bản sơ đồ mới chưa hoàn tất.
+L015 | Huy | Việc sửa tài liệu tách khỏi việc kiểm kê, không phụ thuộc ngày kiểm kê.
+L016 | Linh | Đơn vị xe nói thứ Năm vẫn có thể thay đổi giờ.
+L017 | Huy | Ta quay lại lịch ở cuối buổi, chưa sửa kết luận tạm thời bây giờ.
+L018 | Vy | Một phản hồi nữa là chữ ở màn hình xác nhận nhỏ khi dùng màn hình cũ.
+L019 | Bình | Máy mới không có cùng phản hồi; cần giữ rõ phạm vi phản hồi.
+L020 | Huy | Chưa giao ai thay đổi chữ hoặc nút trong cuộc họp này.
+L021 | Linh | Cửa khu lạnh mở theo ca vận hành của kho.
+L022 | Vy | Phiếu kiểm kê giấy có mã kệ và mã lô riêng.
+L023 | Bình | Đừng gộp mã kệ với mã lô trong phần chú thích.
+L024 | Huy | Đây là mô tả tài liệu, không phải giao một công việc mới cho Vy.
+L025 | Linh | Xe chưa xác nhận giờ đến, nên giờ kiểm kê chưa đủ chắc chắn.
+L026 | Vy | Tôi chỉ báo thông tin ca tối gửi lại, chưa kiểm tra độc lập giao diện.
+L027 | Bình | Sơ đồ hiện có bản tiếng Việt, chưa có bản tiếng Anh.
+L028 | Huy | Cuộc họp này không quyết định dịch tài liệu.
+L029 | Linh | Thứ Năm có khả năng trùng chuyến hàng bổ sung.
+L030 | Vy | Người dùng muốn nhìn thấy nút xác nhận rõ hơn, chưa đề nghị đổi vị trí cụ thể.
+L031 | Bình | Trong tài liệu, khu lạnh được ghi bằng ký hiệu K.
+L032 | Huy | Không coi ký hiệu tài liệu là lựa chọn lịch kiểm kê.
+L033 | Linh | Tôi sẽ đọc thông báo lịch xe khi bên xe trả lời trong buổi này.
+L034 | Vy | Đó là lời mô tả việc đang làm trong buổi họp, chưa phải đầu việc sau họp.
+L035 | Bình | Sơ đồ khu thường nằm ở trang kế tiếp.
+L036 | Huy | Phần giao Bình lúc nãy chỉ là sơ đồ khu lạnh.
+L037 | Linh | Có người hỏi kiểm kê cả kho, nhưng hôm nay phạm vi chỉ khu lạnh.
+L038 | Vy | Ca tối nói cần phản hồi riêng cho màn hình hàng về.
+L039 | Bình | Tôi chưa nhận việc sửa giao diện.
+L040 | Huy | Đúng, không gộp việc sửa tài liệu với sửa giao diện.
+L041 | Linh | Thông báo xe cũ ghi chiều thứ Năm nhưng có thể không còn đúng.
+L042 | Huy | Chưa dùng thông báo cũ để chốt lại lịch.
+L043 | Vy | Tôi còn giữ nguyên phản hồi về nút khó tìm.
+L044 | Bình | Hạn tài liệu chiều thứ Tư vẫn là hạn đang được nhắc ở thời điểm này.
+L045 | Huy | Ta còn phần kết luận cuối để xem có cần đổi người làm tài liệu.
+L046 | Linh | Ca kiểm kê cần kho đóng tiếp nhận hàng ở khu lạnh.
+L047 | Vy | Chưa có người được giao thay đổi lịch tiếp nhận hàng.
+L048 | Bình | Chú thích sơ đồ hiện có cả vị trí cảm biến.
+L049 | Huy | Không có quyết định thay cảm biến trong buổi này.
+L050 | Linh | Bên xe đang gửi thông báo mới.
+L051 | Vy | Khi chốt lịch nên đọc rõ đó là lịch cuối, tránh dùng lịch đầu buổi.
+L052 | Bình | Tôi có lịch trực hỗ trợ vào chiều thứ Tư.
+L053 | Huy | Cảm ơn, lát nữa sẽ đổi người nếu cần.
+L054 | Linh | Thông báo mới xác nhận xe đến sáng thứ Năm.
+L055 | Huy | Vậy lịch kiểm kê sáng thứ Năm cần thay đổi.
+L056 | Vy | Màn hình khó tìm nút vẫn là phản hồi chưa được xử lý.
+L057 | Bình | Tôi không thể hoàn tất sơ đồ chiều thứ Tư vì ca trực.
+L058 | Huy | Chuyển việc sửa sơ đồ khu lạnh sang Linh, bỏ hạn chiều thứ Tư.
+L059 | Linh | Tôi nhận sửa sơ đồ, gửi sáng thứ Sáu.
+L060 | Huy | Chốt Linh làm sơ đồ khu lạnh, hạn sáng thứ Sáu; Bình không còn phụ trách.
+L061 | Vy | Tôi đọc lại phản hồi ca tối để ghi nhận, không nhận việc sửa giao diện.
+L062 | Huy | Quyết định lịch kiểm kê: bỏ sáng thứ Năm, chuyển sang chiều thứ Sáu.
+L063 | Linh | Tôi đồng ý kiểm kê khu lạnh chiều thứ Sáu.
+L064 | Huy | Chốt chiều thứ Sáu cho khu lạnh, chưa chọn lịch cho khu thường.
+L065 | Bình | Có cần chuyển cả hạn sơ đồ sang chiều thứ Sáu không?
+L066 | Huy | Không. Sơ đồ vẫn gửi sáng thứ Sáu, lịch kiểm kê là chiều thứ Sáu.
+L067 | Vy | Nút xác nhận và chữ nhỏ vẫn là phản hồi được ghi nhận, chưa có phương án sửa.
+L068 | Linh | Không có đầu việc mới về lịch xe sau cuộc họp.
+L069 | Bình | Tôi hiểu việc tài liệu đã chuyển sang Linh.
+L070 | Huy | Các mô tả cảm biến không phải quyết định mua hoặc thay thiết bị.
+L071 | Vy | Không bổ sung người phụ trách sửa giao diện từ việc tôi báo phản hồi.
+L072 | Huy | Kết thúc với lịch khu lạnh chiều thứ Sáu và tài liệu Linh gửi sáng thứ Sáu.

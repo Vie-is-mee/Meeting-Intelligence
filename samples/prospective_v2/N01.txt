@@ -1,0 +1,6 @@
+L001 | Quỳnh | Buổi này chỉ chọn đơn vị giao hàng cho đợt bán thử miền Nam.
+L002 | Hải | Tôi đề xuất giao cho đơn vị Sao vì giá thấp hơn.
+L003 | My | Sao chưa có tuyến giao trong ngày ở khu vực thử nghiệm; đơn vị Mây có tuyến đó.
+L004 | Hải | Vậy tôi rút đề xuất Sao và đồng ý dùng Mây cho đợt thử.
+L005 | Quỳnh | Thống nhất Mây cho đợt thử miền Nam. Chưa chọn đơn vị cho miền Bắc.
+L006 | My | Miền Bắc sẽ bàn ở một cuộc họp khác; hôm nay không giao việc liên hệ bên nào.

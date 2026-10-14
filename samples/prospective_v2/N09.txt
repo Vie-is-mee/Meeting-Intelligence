@@ -1,0 +1,5 @@
+L001 | Hà | Một hai, mọi người nghe tiếng mic chưa?
+L002 | Bình | Nghe rồi, tôi đang chỉnh âm lượng tai nghe.
+L003 | Hà | Ta chưa bắt đầu phần nội dung. Tôi chỉ đang thử âm thanh.
+L004 | Bình | Tôi cũng đang thử camera, chưa có đề xuất hay yêu cầu công việc.
+L005 | Hà | Đoạn ghi âm này kết thúc trước khi họp chính thức bắt đầu.

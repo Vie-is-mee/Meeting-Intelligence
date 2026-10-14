@@ -1,0 +1,5 @@
+L001 | Nga | Tôi nhớ hệ thống lưu dấu vết truy cập trong 45 ngày, nhưng chưa chắc đây là cấu hình hiện tại.
+L002 | Vũ | Tài liệu cũ tôi đọc ghi 30 ngày. Không nên coi một trong hai số là đã xác minh.
+L003 | Nga | Cần đối chiếu tài liệu cấu hình mới trước khi trả lời khách.
+L004 | Vũ | Chưa ai nhận việc đối chiếu và cuộc họp không chốt hạn.
+L005 | Nga | Không có quyết định đổi thời gian lưu. Hai con số chỉ là thông tin đang cần xác minh.
