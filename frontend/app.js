@@ -7,6 +7,9 @@ const events = {proposal:'Đề xuất',counterproposal:'Đề xuất thay thế
 const fields = {content:'Nội dung',meeting_status:'Trạng thái',execution_status:'Trạng thái triển khai',owner:'Người phụ trách',supporter:'Người hỗ trợ',due_raw:'Thời hạn',condition:'Điều kiện'};
 let sampleData = [], result = null, selected = -1, filter = 'all', busy = false;
 let demoData = null, backendAvailable = false;
+let currentReview = null;
+const reviewSessions = new Map(), resultSessionIds = new WeakMap();
+const REVIEW_STORAGE_KEY = 'meeting-intelligence-review-last-v1';
 
 function node(tag, className, text) {
   const element = document.createElement(tag);
@@ -133,8 +136,10 @@ function renderRecords() {
     const review = record.review_status === 'needs_review';
     bottom.append(node('span',review ? 'review' : '', `Rà soát bản ghi: ${reviewLabel(record.review_status)}`),
       node('span','',`${record.history.length} sự kiện · ${record.evidence_ids.length} câu nguồn`), node('span','arrow','↗'));
+    const human=currentReview?.records[index];
+    if(human && human.decision!=='pending') bottom.append(node('span',human.decision==='rejected'?'human-rejected':'human-confirmed',human.decision==='rejected'?'Bản người dùng: đã từ chối, không xuất CSV':'Bản người dùng: đã xác nhận nội dung (AI gốc vẫn giữ nguyên)'));
     button.append(bottom);
-    button.addEventListener('click', () => { selected = index; renderRecords(); renderDetail(); });
+    button.addEventListener('click', () => { selected = index; renderRecords(); renderDetail(); renderHumanReview(); });
     container.append(button);
   });
   if (!visible) {
@@ -344,12 +349,17 @@ function renderEvaluation() {
 function renderResult() {
   const {analysis} = result;
   const recorded = result.source_mode === 'recorded';
+  if (!resultSessionIds.has(result)) resultSessionIds.set(result,recorded ? `recorded:${result.provenance.run_sha256}:${result.provenance.case}` : `live:${crypto.randomUUID()}`);
+  const id = resultSessionIds.get(result);
+  if (!reviewSessions.has(id)) reviewSessions.set(id,MeetingReview.create(analysis,id,{source_mode:result.source_mode||'live',model:result.model||null,provenance:result.provenance||null}));
+  currentReview = reviewSessions.get(id);
+  if(!result.restored_from_local)$('recorded-notice').textContent='Kết quả LLM thật đã lưu · Không gọi API hoặc phân tích transcript mới. Giữ nguyên cả kết quả sai để đối chiếu.';
   $('metric-records').textContent = analysis.records.length;
   $('metric-review').textContent = analysis.records.filter(r => r.review_status === 'needs_review').length;
-  $('metric-time').textContent = recorded ? 'Đã lưu' : `${result.duration_s}s`;
-  $('result-engine').textContent = recorded ? 'Bản ghi LLM đã lưu' : analysis.engine === 'llm_api' ? 'LLM API mới' : 'Offline · theo luật';
+  $('metric-time').textContent = recorded || result.restored_from_local ? 'Đã lưu' : `${result.duration_s}s`;
+  $('result-engine').textContent = result.restored_from_local ? 'Phiên đã lưu trên máy' : recorded ? 'Bản ghi LLM đã lưu' : analysis.engine === 'llm_api' ? 'LLM API mới' : 'Offline · theo luật';
   $('result-engine').className = `badge ${analysis.engine === 'llm_api' ? 'green' : 'amber'}`;
-  $('api-metrics').textContent = recorded ? 'Lượt xem này: 0 API call' : `${result.api_calls} API call${result.token_usage.total_tokens ? ' · ' + result.token_usage.total_tokens.toLocaleString('vi-VN') + ' token' : ''}`;
+  $('api-metrics').textContent = recorded || result.restored_from_local ? 'Lượt xem này: 0 API call' : `${result.api_calls} API call${result.token_usage.total_tokens ? ' · ' + result.token_usage.total_tokens.toLocaleString('vi-VN') + ' token' : ''}`;
   $('demo-review').hidden = !recorded;
   if (recorded) {
     const review = result.review;
@@ -364,7 +374,7 @@ function renderResult() {
     panel.append(node('small','',`Review cùng trợ lý, chưa độc lập · Lượt hồi quy bắt đầu ${date} ICT · ${result.model}. Thời gian gốc ${result.duration_s}s gồm khoảng nghỉ; không phải thời gian xem hiện tại.`));
     $('footer-model').textContent = `Đang xem kết quả đã lưu · SHA-256 ${result.provenance.run_sha256.slice(0,12)}…`;
   } else {
-    $('footer-model').textContent = result.model ? `Lượt phân tích mới · ${result.model}` : 'Baseline offline · không gọi LLM.';
+    $('footer-model').textContent = result.restored_from_local ? 'Đang xem phiên lưu trên máy · không gọi API.' : result.model ? `Lượt phân tích mới · ${result.model}` : 'Baseline offline · không gọi LLM.';
   }
   $('raw-json').textContent = JSON.stringify(result, null, 2);
   $('warnings-list').replaceChildren();
@@ -373,8 +383,88 @@ function renderResult() {
   $('warnings-summary').textContent = `${analysis.warnings.length} lưu ý của lượt chạy`;
   filter = 'all'; selected = analysis.records.length ? 0 : -1;
   renderFilters(); renderRecords(); renderDetail(); renderEvaluation();
+  renderHumanReview();
   setResultTab('records');
 }
+
+function reviewKindSettings(preferred) {
+  const kind = $('review-kind').value, select = $('review-meeting-status');
+  select.replaceChildren();
+  MeetingReview.statuses[kind].forEach(value => { const option = node('option','',statuses[value]); option.value = value; select.append(option); });
+  select.value = MeetingReview.statuses[kind].includes(preferred) ? preferred : 'unverified';
+  for (const [id,allowed] of [['review-owner',kind==='action'],['review-supporter',kind==='action'],['review-due',['action','request'].includes(kind)],['review-condition',['decision','action'].includes(kind)]]) {
+    $(id).disabled = !allowed; if(!allowed) $(id).value = '';
+  }
+}
+function renderHumanReview() {
+  $('review-message').textContent='';
+  $('human-review-panel').hidden = !currentReview;
+  if (!currentReview) return;
+  const counts = {pending:0,confirmed:0,rejected:0}; currentReview.records.forEach(r=>counts[r.decision]++);
+  $('review-counts').textContent = `${counts.pending} chờ rà soát · ${counts.confirmed} đã xác nhận nội dung · ${counts.rejected} bị từ chối`;
+  $('export-review-csv').disabled = !counts.confirmed;
+  const selector = node('select'); selector.setAttribute('aria-label','Chọn bản ghi để rà soát');
+  currentReview.records.forEach((r,i)=>{const option=node('option','',`${i+1}. ${result.analysis.records[i].topic} · ${{pending:'Chờ rà soát',confirmed:'Đã xác nhận',rejected:'Đã từ chối'}[r.decision]}`);option.value=i;selector.append(option);});
+  selector.value=selected;
+  selector.addEventListener('change',()=>{selected=Number(selector.value);renderRecords();renderDetail();renderHumanReview();});
+  $('review-record-selector').replaceChildren(node('label','','Chọn bản ghi (lưu chỉnh sửa trước khi chuyển)'),selector);
+  const entry=currentReview.records[selected];
+  $('human-review-form').hidden=!entry;
+  $('review-record-title').textContent=entry ? `Bản rà soát ${selected+1}: ${result.analysis.records[selected].topic}` : 'Không có bản ghi để rà soát.';
+  $('review-original').replaceChildren(); $('review-history').replaceChildren();
+  if(entry){
+    const original=currentReview.original_analysis.records[selected];
+    $('review-original').append(node('strong','','AI gốc (không thay đổi)'),node('p','',`${kinds[original.kind]} · ${statuses[original.meeting_status]} · ${original.content||'Chưa có nội dung'}`));
+    $('review-kind').replaceChildren();Object.entries(kinds).forEach(([value,label])=>{const option=node('option','',label);option.value=value;$('review-kind').append(option);});
+    $('review-kind').value=entry.draft.kind;
+    for(const [id,field] of [['review-content','content'],['review-owner','owner'],['review-supporter','supporter'],['review-due','due_raw'],['review-condition','condition']])$(id).value=entry.draft[field]||'';
+    reviewKindSettings(entry.draft.meeting_status);
+    $('review-sources').value=entry.source_ids.join(', ');$('review-reason').value='';$('review-checked').checked=false;
+    if(!entry.history.length)$('review-history').append(node('p','','Chưa có thao tác của người dùng.'));
+    entry.history.forEach(h=>{const detail=node('details');detail.append(node('summary','',`${new Date(h.at).toLocaleString('vi-VN')} · ${h.actor} · ${{confirmed:'Xác nhận',edited:'Chỉnh sửa, chờ xác nhận',rejected:'Từ chối',reopened:'Mở lại'}[h.action]}`));detail.append(node('p','',h.reason||'Xác nhận nội dung sau đối chiếu.'),node('pre','',JSON.stringify(h,null,2)));$('review-history').append(detail);});
+  }
+  const ready=MeetingReview.confirmed(currentReview);
+  $('confirmed-records').replaceChildren(node('h3','','Bản đã xác nhận để xuất dữ liệu'));
+  if(!ready.length)$('confirmed-records').append(node('p','','Chưa có bản được xác nhận. Bản chờ hoặc bị từ chối không vào CSV.'));
+  ready.forEach(r=>$('confirmed-records').append(node('article','confirmed-item',`${kinds[r.kind]} · ${statuses[r.meeting_status]} · ${r.content}`)));
+}
+function applyHumanReview(confirm=false) {
+  if(busy||!currentReview||!$('stale').hidden)throw new Error('Kết quả đang cũ hoặc đang chạy. Hãy mở đúng kết quả trước khi rà soát.');
+  if(confirm&&!$('review-checked').checked)throw new Error('Hãy đánh dấu đã đối chiếu câu nguồn trước khi xác nhận.');
+  const patch={kind:$('review-kind').value,content:$('review-content').value.trim(),meeting_status:$('review-meeting-status').value};
+  for(const [id,key] of [['review-owner','owner'],['review-supporter','supporter'],['review-due','due_raw'],['review-condition','condition']])patch[key]=$(id).value.trim()||null;
+  const ids=$('review-sources').value.split(',').map(v=>v.trim()).filter(Boolean);
+  MeetingReview.update(currentReview,selected,patch,ids,$('review-actor').value,$('review-reason').value,confirm);
+  renderRecords();renderHumanReview();$('review-message').textContent=confirm?'Đã xác nhận bản rà soát. Đầu ra AI và điểm kiểm thử gốc vẫn giữ nguyên.':'Đã lưu chỉnh sửa trong phiên, cần xác nhận lại để đưa vào CSV.';
+}
+function downloadText(text,filename,type){const url=URL.createObjectURL(new Blob([text],{type}));const link=node('a');link.href=url;link.download=filename;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function reviewAction(action){try{action();}catch(error){$('review-message').textContent=error.message;}}
+$('review-kind').addEventListener('change',()=>reviewKindSettings($('review-meeting-status').value));
+$('human-review-form').addEventListener('submit',event=>{event.preventDefault();reviewAction(()=>applyHumanReview(true));});
+$('review-edit').addEventListener('click',()=>reviewAction(()=>applyHumanReview(false)));
+for(const [id,decision] of [['review-reject','rejected'],['review-reopen','pending']])$(id).addEventListener('click',()=>reviewAction(()=>{
+  if(busy||!$('stale').hidden)throw new Error('Hãy mở đúng kết quả trước khi rà soát.');
+  MeetingReview.decide(currentReview,selected,decision,$('review-actor').value,$('review-reason').value);renderRecords();renderHumanReview();$('review-message').textContent=decision==='rejected'?'Đã từ chối; giữ bản gốc và lý do, không đưa bản này vào CSV.':'Đã mở lại; bản này không còn trong danh sách đã xác nhận.';
+}));
+$('export-review-json').addEventListener('click',()=>reviewAction(()=>downloadText(JSON.stringify(MeetingReview.exportJSON(currentReview),null,2),'meeting-human-review.json','application/json;charset=utf-8')));
+$('export-review-csv').addEventListener('click',()=>reviewAction(()=>downloadText(MeetingReview.exportCSV(currentReview),'meeting-confirmed.csv','text/csv;charset=utf-8')));
+$('save-review').addEventListener('click',()=>reviewAction(()=>{
+  if(busy||!$('stale').hidden)throw new Error('Mở đúng kết quả trước khi lưu phiên; transcript/tùy chọn đã thay đổi.');
+  localStorage.setItem(REVIEW_STORAGE_KEY,JSON.stringify({session:currentReview,result,input_transcript:$('transcript').value,saved_at:new Date().toISOString()}));
+  $('review-save-status').textContent=`Đã lưu phiên gần nhất (${result.provenance?.case||'phân tích mới'}) trên trình duyệt này. Không gửi dữ liệu lên server.`;
+}));
+$('restore-review').addEventListener('click',()=>{
+  try{
+    if(busy)throw new Error('Chờ lượt phân tích hoàn tất trước khi mở phiên.');
+    const raw=localStorage.getItem(REVIEW_STORAGE_KEY);if(!raw)throw new Error('Chưa có phiên đã lưu trên trình duyệt này.');
+    const saved=JSON.parse(raw);const session=MeetingReview.restore(saved.session,saved.result.analysis,saved.session.id);
+    result=structuredClone(saved.result);result.restored_from_local=true;resultSessionIds.set(result,session.id);reviewSessions.set(session.id,session);
+    $('transcript').value=saved.input_transcript;$('sample').value=demoData?.cases.some(c=>c.id===result.provenance?.case)?result.provenance.case:'custom';
+    countText();renderResult();$('stale').hidden=true;
+    $('recorded-notice').hidden=false;$('recorded-notice').textContent='Đang xem phiên rà soát đã lưu trên máy; không chạy LLM mới. Nội dung AI gốc và chỉnh sửa người dùng được giữ riêng.';
+    $('review-save-status').textContent=`Đã mở phiên lưu ${new Date(saved.saved_at).toLocaleString('vi-VN')}.`; $('download').disabled=false;
+  }catch(error){$('review-save-status').textContent=error.message;}
+});
 
 function setResultTab(view) {
   for (const name of ['records','json']) {

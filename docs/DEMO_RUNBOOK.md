@@ -29,7 +29,7 @@ Không quay màn hình `.env`, header Authorization hoặc terminal có key. Ch�
 | 0:35–1:10 | Phần chọn chứng minh: transcript → sự kiện có nguồn → trạng thái cuối → evidence từng trường; audit hỗ trợ rà soát |
 | 1:10–2:30 | Case thành công: chỉ vào câu chốt/câu sửa, trạng thái, phạm vi, điều kiện và nguồn của kết quả. Dùng case thực sự đạt ở phiên bản đã công bố; nếu xem artifact thì nói rõ |
 | 2:30–3:25 | Case khó LC03: hủy task nhưng giữ phạm vi và request; audit vẫn cảnh báo sai về owner lịch sử. Chỉ rõ cảnh báo không phải kết luận đúng |
-| 3:25–4:20 | Case thất bại LC01/D06: action hủy đúng nhưng request thừa; xem cảnh báo và evidence. Không gọi cảnh báo là đã sửa nội dung |
+| 3:25–4:20 | Case thất bại LC01: request thừa; xem evidence rồi từ chối request ở mục 05, xác nhận action đã hủy và xuất CSV. Chỉ rõ người dùng xử lý lỗi; AI gốc/điểm test không đổi |
 | 4:20–5:00 | Kết quả kiểm thử, giới hạn dataset tổng hợp/nhãn cùng trợ lý, quota, transcript dài và bước tiếp theo |
 
 H03 ở hồi quy mới chỉ còn decision chưa chọn ngày/người, thiếu request và hạn tương đối. Có thể dùng làm ví dụ bỏ sót thông tin; không dùng kết quả tốt cũ để tuyên bố H03 hiện đã đạt. Không chọn artifact khác phiên bản rồi trình bày như cùng một bản demo đã ổn định.

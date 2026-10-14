@@ -24,4 +24,4 @@ Theo lựa chọn của ứng viên: Local/Go Live trước, chuẩn bị gói d
 
 Ứng viên rà lại ba câu trả lời, quay video ≤5 phút, tạo GitHub public và điền link; nếu muốn online thì deploy ZIP static hoặc bố trí backend phù hợp. Repo cần build lại ZIP sau khi chỉnh file. Không gọi local URL là demo online hoặc nói walkthrough là phân tích mới.
 
-UI hiện chỉ xem/tải kết quả, chưa sửa/xác nhận bản ghi có lưu lịch sử hoặc xuất CSV. Core còn lỗi đã ghi ở báo cáo 8 case; demo hoàn chỉnh để kiểm tra và trình bày không đồng nghĩa sản phẩm production-ready.
+UI nay có [bản rà soát của con người](HUMAN_REVIEW.md): sửa/xác nhận/từ chối, lịch sử cục bộ và JSON/CSV bản đã xác nhận, giữ gốc AI riêng. Đã kiểm tra 8 Node tests và luồng Edge save/restore/download thực tế ngoài 108 Python tests. Chưa tách/gộp hay thêm bản ghi AI bỏ sót, chưa lưu nhiều người trên server. Core còn lỗi đã ghi ở báo cáo 8 case; demo hoàn chỉnh để kiểm tra và trình bày không đồng nghĩa sản phẩm production-ready.

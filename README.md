@@ -8,6 +8,8 @@ GitHub: [Vie-is-mee/Meeting-Intelligence](https://github.com/Vie-is-mee/Meeting-
 
 Hoặc nhấp đúp `run_demo.cmd`, mở `http://127.0.0.1:5501` để xem bản tĩnh bằng Python có sẵn. Nếu `web.py` đang chạy từ phiên bản cũ, dừng và chạy lại để tải route demo mới.
 
+**Rà soát để dùng tiếp:** tại mục 05, sửa/xác nhận/từ chối từng bản ghi, ghi lý do và câu nguồn; lưu phiên gần nhất trên trình duyệt hoặc tải JSON kèm lịch sử. CSV chỉ chứa bản đã xác nhận. AI gốc và điểm kiểm thử không đổi; xác nhận không phải phê duyệt tổ chức. Xem [hướng dẫn và giới hạn](docs/HUMAN_REVIEW.md).
+
 **Muốn phân tích mới:** nhấp đúp `run_web.cmd`, mở `http://127.0.0.1:8765`, chuyển sang LLM API. Python cần dependencies trong requirements nếu máy chưa có; key đặt trong `.env`, không gửi ra frontend. Baseline offline là luật hẹp, được ghi nhãn riêng.
 
 **Gói đóng sẵn:** `dist/meeting-intelligence-demo-static.zip` để xem/deploy trang tĩnh sau; `dist/meeting-intelligence-mission2-source.zip` để chia sẻ source không có `.env`. Repo đã công khai; website chưa deploy online. Xem [hướng dẫn](docs/STATIC_DEMO.md), [kịch bản video](docs/DEMO_RUNBOOK.md), [ba câu trả lời và nội dung form](docs/MISSION2_SUBMISSION.md), [kết quả 8 case cùng phiên bản](docs/FINAL_REGRESSION_RESULTS.md).

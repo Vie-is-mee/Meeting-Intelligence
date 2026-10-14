@@ -61,7 +61,7 @@ class WebTests(unittest.TestCase):
             return response.status, response.read(), response.headers
 
     def test_page_and_assets_are_served(self):
-        for path, mime in [('/', 'text/html'), ('/app.js', 'text/javascript'), ('/styles.css', 'text/css')]:
+        for path, mime in [('/', 'text/html'), ('/app.js', 'text/javascript'), ('/styles.css', 'text/css'), ('/review.js','text/javascript'), ('/review.css','text/css')]:
             status, body, headers = self.request(path)
             self.assertEqual(status, 200)
             self.assertIn(mime, headers['Content-Type'])

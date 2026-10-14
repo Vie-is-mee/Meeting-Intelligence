@@ -18,7 +18,7 @@ Proposal đã chọn transcript, Python gọi API, lịch sử theo vấn đề,
 - Cụ thể hóa “nối diễn biến” thành events và resolver xác định, thêm clear_fields để phân biệt “không cập nhật” với “xóa giá trị cũ”, và nguồn riêng cho từng trường. Lỗi giữ hạn cũ khi vừa hủy vừa bỏ hạn đã buộc tôi sửa resolver.
 - Cụ thể hóa kiểm chứng bằng lượt audit LLM thứ hai. Thực nghiệm cho thấy audit cũng cảnh báo sai, nên finding chỉ là giả thuyết cần rà soát, không được tự thay kết luận bằng một kết luận khác.
 - Chưa hoàn thành so sánh A/B/C và đo công sức sửa như kế hoạch trang 5; không tuyên bố cơ chế C đã tốt hơn B. Các case reserved đã được dùng để sửa không còn là đánh giá độc lập.
-- Chưa làm sửa/xác nhận lưu lịch sử, tách/gộp chủ đề hoặc xuất CSV như kế hoạch trang 2–5. UI hiện tập trung xem nguồn/lịch sử/cảnh báo và tải JSON; không có phê duyệt tổ chức hay đồng bộ công việc.
+- Ban đầu thu hẹp UI thành xem nguồn/lịch sử/cảnh báo. Sau khi chốt hồi quy, tôi bổ sung bản người dùng sửa/xác nhận/từ chối, lưu lịch sử cục bộ và xuất JSON/CSV chỉ bản đã xác nhận, giữ gốc AI riêng. Chưa tách/gộp chủ đề, thêm bản ghi bị bỏ sót, lưu nhiều người trên server, phê duyệt tổ chức hoặc đồng bộ công việc.
 - Quota TPD thực tế khiến nhiều lượt bị chặn. Tôi bổ sung dừng ở 429, lưu lỗi và chế độ demo kết quả đã ghi để giám khảo kiểm tra được dù không đủ quota. Chế độ này luôn ghi rõ không phải phân tích mới.
 
 ### 3. Loại thông tin dễ sai nhất và cách tránh tạo dữ liệu không tồn tại?
@@ -29,7 +29,7 @@ Biện pháp hiện có: schema và kiểm tra cặp kind/event_type; từ chố
 
 ## Đoạn trình bày bài làm để dán vào form
 
-MVP nhận transcript tiếng Việt, trích sự kiện, nối diễn biến và hiển thị bản ghi có trạng thái cuối, lịch sử và evidence theo từng trường. Chạy local bằng run_web.cmd hoặc python -X utf8 web.py, mở http://127.0.0.1:8765. Có demo 8 đầu ra LLM đã lưu xem được bằng Go Live, không cần key; phân tích mới cần cấu hình .env phía Python. Hồi quy cùng phiên bản hoàn tất 8/8 case, 4/8 đạt đầy đủ và 5/8 đúng dữ liệu lõi. D01 chứng minh thay đổi lựa chọn và giữ đúng kết luận cuối. Hạn chế: có bản ghi thừa/thiếu, audit sai, quota API; dataset tổng hợp và chưa có gán nhãn độc lập. Không tự tạo việc hoặc tuyên bố mọi kết quả đều đúng. Báo cáo và đầu ra nguyên bản nằm trong docs/evaluation.
+MVP nhận transcript tiếng Việt, trích sự kiện, nối diễn biến và hiển thị bản ghi có trạng thái cuối, lịch sử và evidence theo từng trường. Chạy local bằng run_web.cmd hoặc python -X utf8 web.py, mở http://127.0.0.1:8765. Có demo 8 đầu ra LLM đã lưu xem được bằng Go Live, không cần key; phân tích mới cần cấu hình .env phía Python. Người dùng sửa/xác nhận/từ chối tại mục 05, lưu lịch sử trên máy và xuất JSON/CSV; gốc AI luôn giữ riêng. Hồi quy cùng phiên bản hoàn tất 8/8 case, 4/8 đạt đầy đủ và 5/8 đúng dữ liệu lõi trước khi người dùng sửa. D01 chứng minh thay đổi lựa chọn và giữ đúng kết luận cuối. Hạn chế: có bản ghi thừa/thiếu, audit sai, quota API; dataset tổng hợp và chưa có gán nhãn độc lập. Không tự tạo việc hoặc tuyên bố mọi kết quả đều đúng. Báo cáo và đầu ra nguyên bản nằm trong docs/evaluation.
 
 ## Các đường dẫn phải điền trước khi nộp
 
