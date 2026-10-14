@@ -9,7 +9,7 @@ def main():
     p.add_argument('--draft',required=True);p.add_argument('--code-commit',required=True)
     p.add_argument('--scope',choices=['full_regression','targeted_pilot'],default='full_regression')
     args=p.parse_args();version=args.version
-    if version not in {'B1','B2','C1'}:p.error('Use B1/B2/C1')
+    if version not in {'B1','B2','C1','C2'}:p.error('Use B1/B2/C1/C2')
     run_path=ROOT/args.run;input_path=ROOT/args.input;draft_path=ROOT/args.draft
     run=json.loads(run_path.read_text(encoding='utf8'));inputs=json.loads(input_path.read_text(encoding='utf8'));draft=json.loads(draft_path.read_text(encoding='utf8'))
     expected=run['requested_cases'];rows=draft['cases']

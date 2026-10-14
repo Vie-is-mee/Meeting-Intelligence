@@ -147,6 +147,25 @@
       "current_role": "targeted_development_pilot",
       "independence_claim": false,
       "selected_for_main": false
+    },
+    {
+      "version": "C2",
+      "source": "docs/evaluation/candidate_c2_pilot_v1.json",
+      "case_ids": [
+        "LC03",
+        "D01",
+        "LC01",
+        "H01"
+      ],
+      "current_role": "targeted_development_pilot",
+      "independence_claim": false,
+      "selected_for_main": false,
+      "not_run_case_ids": [
+        "D03",
+        "D04",
+        "H03",
+        "LC02"
+      ]
     }
   ]
 }
