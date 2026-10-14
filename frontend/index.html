@@ -7,38 +7,44 @@
   <title>Trí tuệ cuộc họp · Bàn kiểm chứng</title>
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./review.css">
+  <link rel="stylesheet" href="./workspace.css">
   <script src="./review.js" defer></script>
   <script src="./app.js" defer></script>
 </head>
-<body>
+<body data-workspace-view="analysis">
   <aside class="sidebar">
     <a class="brand" href="./index.html" aria-label="Trí tuệ cuộc họp, trang chính">
       <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10v4m4-8v12m4-15v18m4-15v12m4-8v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
       <span>Trí tuệ<br><strong>cuộc họp</strong></span>
     </a>
     <div class="sidebar-label">KHÔNG GIAN LÀM VIỆC</div>
-    <div class="nav-current"><span class="nav-dot"></span>Bàn kiểm chứng <span class="nav-count">01</span></div>
-    <div class="sidebar-note">Theo dõi điều còn hiệu lực sau cuộc họp.</div>
+    <nav class="workspace-navigation" aria-label="Điều hướng không gian làm việc">
+      <button class="workspace-nav active" data-workspace-target="analysis" aria-current="page"><span class="nav-step">01</span><span>Phân tích<small>Transcript & kết quả</small></span></button>
+      <button class="workspace-nav" data-workspace-target="evidence" disabled><span class="nav-step">02</span><span>Kiểm chứng<small>Nguồn & diễn biến</small></span></button>
+      <button class="workspace-nav" data-workspace-target="review" disabled><span class="nav-step">03</span><span>Rà soát & xuất<small>Xác minh từng bản ghi</small></span></button>
+    </nav>
+    <div class="sidebar-note">Từ lời nói trong cuộc họp đến dữ liệu có thể sử dụng.</div>
     <div class="sidebar-bottom"><span class="local-dot"></span> Mission 2<div>Demo có bằng chứng · MVP</div></div>
   </aside>
 
   <main>
     <header class="topbar"><span>WORKSPACE <span class="slash">/</span> MEETING INTELLIGENCE</span><span class="top-badge">Transcript → bằng chứng</span></header>
     <section class="page-heading">
-      <div><div class="eyebrow">HIỂU DIỄN BIẾN. GIỮ ĐÚNG KẾT LUẬN.</div><h1>Bàn kiểm chứng cuộc họp<span>.</span></h1><p>Xem hệ thống ghi nhận điều gì, thay đổi ra sao và dựa vào câu nói nào.</p></div>
-      <button class="button secondary" id="download" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-3-3 3 3 3-3M4 13v4h12v-4"/></svg>Tải JSON gốc AI</button>
+      <div><div class="eyebrow">MEETING INTELLIGENCE</div><h1 id="workspace-title">Phân tích cuộc họp<span>.</span></h1><p id="workspace-description">Đưa transcript vào và xem những thông tin còn giá trị sau cuộc họp.</p></div>
+      <div class="heading-actions"><button class="button secondary" id="download" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-3-3 3 3 3-3M4 13v4h12v-4"/></svg>Tải JSON gốc AI</button><button class="button secondary" id="restore-review">Mở phiên đã lưu trên máy</button></div>
     </section>
 
     <div id="error" class="notice error" role="alert" hidden></div>
-    <div id="demo-summary" class="demo-summary" hidden></div>
+    <details class="demo-context"><summary>Thông tin demo & cách chạy</summary><div id="demo-summary" class="demo-summary" hidden></div><div id="static-preview" class="notice" hidden>Đang xem demo tĩnh: chọn một trong 8 tình huống để xem kết quả LLM đã lưu. Muốn phân tích transcript mới, chạy <code>python -X utf8 web.py</code> rồi mở <a href="http://127.0.0.1:8765">http://127.0.0.1:8765</a>.</div></details>
     <div id="recorded-notice" class="notice" role="status" hidden>Kết quả LLM thật đã lưu · Không gọi API hoặc phân tích transcript mới. Giữ nguyên cả kết quả sai để đối chiếu.</div>
-    <div id="static-preview" class="notice" hidden>Đang xem demo tĩnh: chọn một trong 8 tình huống để xem kết quả LLM đã lưu. Muốn phân tích transcript mới, chạy <code>python -X utf8 web.py</code> rồi mở <a href="http://127.0.0.1:8765">http://127.0.0.1:8765</a>.</div>
     <div id="stale" class="notice" hidden>Transcript hoặc tùy chọn đã thay đổi. Kết quả bên dưới thuộc lượt chạy trước; hãy phân tích lại để đối chiếu.</div>
 
-    <div class="review-restore"><button class="button secondary" id="restore-review">Mở phiên rà soát đã lưu trên máy này</button><span id="review-save-status" role="status"></span></div>
+    <div class="review-restore"><span id="review-save-status" role="status"></span></div>
+    <nav class="workflow-tabs" aria-label="Các bước làm việc"><button class="active" data-workspace-target="analysis" aria-current="page"><span>01</span> Phân tích</button><button data-workspace-target="evidence" disabled><span>02</span> Kiểm chứng</button><button data-workspace-target="review" disabled><span>03</span> Rà soát & xuất</button></nav>
+    <div class="workspace-context" id="workspace-context" hidden><label for="workspace-record">Đang kiểm tra</label><select id="workspace-record"></select><button class="button secondary" id="workspace-next" data-workspace-target="review">Rà soát bản ghi →</button></div>
     <section class="workspace" aria-label="Nhập và kiểm tra transcript">
       <section class="panel input-panel">
-        <div class="panel-heading"><div><span class="section-number">01</span><h2>Nội dung cuộc họp</h2></div><span class="muted small">Đầu vào</span></div>
+        <div class="panel-heading"><div><h2>Nội dung cuộc họp</h2></div><span class="muted small">Đầu vào</span></div>
         <label for="sample">Tình huống mẫu</label>
         <select id="sample" disabled><option>Đang tải tình huống…</option></select>
         <p class="help" id="sample-description">Các tình huống tổng hợp dùng để phát triển và kiểm tra.</p>
@@ -51,12 +57,14 @@
           <label class="toggle-row"><input type="checkbox" id="audit" checked><span class="switch" aria-hidden="true"></span><span>Rà soát lần hai bằng LLM<small>Có thể bỏ sót hoặc cảnh báo sai; cần đối chiếu nguồn</small></span></label>
         </div>
         <div class="engine-note" id="engine-note">Offline chỉ nhận diện một số mẫu quyết định; không đại diện cho năng lực LLM.</div>
-        <button class="button primary" id="analyze" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 8 6-8 6V4Z"/></svg><span>Phân tích cuộc họp</span></button>
+        <div class="input-actions"><button class="button primary" id="analyze" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 8 6-8 6V4Z"/></svg><span>Phân tích cuộc họp</span></button>
         <div class="run-state" id="run-state" role="status" aria-live="polite">Sẵn sàng khi dữ liệu được tải.</div>
+        </div>
       </section>
 
       <section class="panel output-panel">
-        <div class="panel-heading"><div><span class="section-number">02</span><h2>Kết quả sau họp</h2></div><span id="result-engine" class="badge neutral">Chưa phân tích</span></div>
+        <div class="panel-heading"><div><h2>Kết quả sau họp</h2></div><span id="result-engine" class="badge neutral">Chưa phân tích</span></div>
+        <div class="output-next"><span>Chọn bản ghi để kiểm tra kết luận.</span><button class="button secondary" data-workspace-target="evidence" disabled>Xem bằng chứng →</button></div>
         <div class="metrics"><div><span id="metric-records">—</span><small>Mục ghi nhận</small></div><div><span id="metric-review">—</span><small>Bản ghi cần rà soát</small></div><div><span id="metric-time">—</span><small>Thời gian chạy</small></div></div>
         <div class="result-toolbar"><div class="tabs" role="tablist" aria-label="Chế độ xem kết quả"><button class="tab active" id="tab-records" role="tab" aria-selected="true" aria-controls="records-view">Bản ghi</button><button class="tab" id="tab-json" role="tab" aria-selected="false" aria-controls="json-view">JSON gốc</button></div><span id="api-metrics" class="small muted">Chưa có lượt chạy</span></div>
         <div id="records-view" role="tabpanel" aria-labelledby="tab-records">
@@ -71,26 +79,27 @@
       </section>
 
       <section class="panel evidence-panel">
-        <div class="panel-heading"><div><span class="section-number">03</span><h2>Bằng chứng & diễn biến</h2></div></div>
+        <div class="panel-heading"><div><h2>Bằng chứng & diễn biến</h2></div></div>
         <div id="detail-empty" class="evidence-empty"><span class="small-caps">ĐỌC KẾT QUẢ CÙNG NGỮ CẢNH</span><p>Chọn một bản ghi để xem lịch sử và các phát biểu liên quan.</p><div class="legend"><span><i class="source-dot"></i>Câu nguồn</span><span><i class="change-dot"></i>Câu sửa đổi / audit</span></div></div>
         <div id="detail" hidden><div class="detail-heading"><span id="detail-kind" class="small-caps"></span><h3 id="detail-title"></h3><div id="detail-status"></div><div id="detail-conclusion"></div></div><div class="evidence-tabs"><button id="show-history" class="active">Lịch sử thay đổi</button><button id="show-transcript">Transcript</button></div><div id="timeline"></div><div id="source-view" hidden><div class="legend"><span><i class="source-dot"></i>Nguồn của bản ghi</span><span><i class="change-dot"></i>Thay đổi / audit</span></div><div id="source-lines"></div></div><div id="field-evidence" class="field-evidence"></div></div>
       </section>
       <section id="explanation-panel" class="panel explanation-panel" hidden aria-label="Bảng đối chiếu kết luận với câu nguồn">
-        <div class="panel-heading"><div><span class="section-number">04</span><h2>Bảng đối chiếu với câu nguồn</h2></div></div>
+        <div class="panel-heading"><div><h2>Kết luận dựa vào đâu?</h2></div></div>
+        <nav class="trace-tabs" aria-label="Các bảng kiểm chứng"><button data-trace-target="conclusion" class="active" aria-pressed="true">Kết luận & nguồn</button><button data-trace-target="events" aria-pressed="false">Diễn biến xử lý</button><button data-trace-target="audit" aria-pressed="false">Nhận xét audit</button></nav>
         <div class="explanation-body"><h3 id="explanation-title"></h3><p class="explanation-note">Đọc từ sự kiện và nguồn hệ thống đã trích, không phải suy nghĩ nội bộ của LLM. Cụm từ gợi ý không tự chứng minh cách phân loại đúng; hãy đọc toàn câu và diễn biến.</p>
-          <h4>Kết quả hiện tại dựa vào đâu?</h4><div id="conclusion-table" class="table-scroll" tabindex="0" aria-label="Nguồn theo từng trường"></div>
-          <h4>Từ phát biểu đến sự kiện và cách xử lý</h4><p class="help">“Quy tắc xử lý” mô tả logic phần mềm cho loại sự kiện đó; các sự kiện về sau có thể thay đổi kết quả.</p><div id="event-table" class="table-scroll" tabindex="0" aria-label="Diễn biến theo câu nguồn"></div>
-          <div id="audit-explanation" hidden><h4>Nhận xét audit — có thể sai, cần đối chiếu</h4><div id="audit-table" class="table-scroll" tabindex="0" aria-label="Nhận xét audit và câu trích"></div></div>
+          <div data-trace-panel="conclusion"><h4>Kết quả hiện tại dựa vào đâu?</h4><div id="conclusion-table" class="table-scroll" tabindex="0" aria-label="Nguồn theo từng trường"></div></div>
+          <div data-trace-panel="events" hidden><h4>Từ phát biểu đến sự kiện và cách xử lý</h4><p class="help">“Quy tắc xử lý” mô tả logic phần mềm cho loại sự kiện đó; các sự kiện về sau có thể thay đổi kết quả.</p><div id="event-table" class="table-scroll" tabindex="0" aria-label="Diễn biến theo câu nguồn"></div></div>
+          <div data-trace-panel="audit" hidden><p class="help">Audit là lượt kiểm tra của LLM, có thể bỏ sót hoặc nhận xét sai. Nếu không có nhận xét, điều đó chưa chứng minh bản ghi đúng.</p><div id="audit-explanation" hidden><h4>Nhận xét audit — cần đối chiếu</h4><div id="audit-table" class="table-scroll" tabindex="0" aria-label="Nhận xét audit và câu trích"></div></div></div>
         </div>
       </section>
       <section id="human-review-panel" class="panel human-review-panel" hidden aria-label="Rà soát của người dùng">
-        <div class="panel-heading"><div><span class="section-number">05</span><h2>Đối chiếu kết quả AI với transcript</h2></div></div>
+        <div class="panel-heading"><div><h2>Đối chiếu kết quả AI với transcript</h2></div><span class="badge neutral">Người dùng xác minh</span></div>
         <div class="human-review-body"><p>1. Đọc kết quả AI và câu nguồn bên dưới → 2. Chọn Đúng, Sai hoặc Chưa đủ bằng chứng → 3. Lưu đánh giá. Không cần nhập lại nội dung nếu AI đã ghi đúng.</p>
           <div id="review-counts" class="review-counts"></div><div id="review-record-selector" class="review-record-selector"></div>
           <h3 id="review-record-title"></h3><div class="review-comparison"><div id="review-original" class="review-original"></div><div id="review-evidence" class="review-evidence"></div></div>
           <form id="human-review-form" novalidate>
             <label>Tên người rà soát (tự khai)<input id="review-actor" maxlength="100" required autocomplete="name"></label>
-            <fieldset class="review-verdict"><legend>Kết quả này có đúng với transcript không?</legend><div class="review-choices"><button type="button" class="button secondary" data-review-choice="correct" aria-pressed="false">Đúng</button><button type="button" class="button secondary" data-review-choice="wrong" aria-pressed="false">Sai</button><button type="button" class="button secondary" data-review-choice="insufficient" aria-pressed="false">Chưa đủ bằng chứng</button></div><p id="review-choice-help">Chọn một đánh giá sau khi đọc các câu nguồn. Có thể xem thêm toàn bộ transcript bên trái.</p></fieldset>
+            <fieldset class="review-verdict"><legend>Kết quả này có đúng với transcript không?</legend><div class="review-choices"><button type="button" class="button secondary" data-review-choice="correct" aria-pressed="false">Đúng</button><button type="button" class="button secondary" data-review-choice="wrong" aria-pressed="false">Sai</button><button type="button" class="button secondary" data-review-choice="insufficient" aria-pressed="false">Chưa đủ bằng chứng</button></div><p id="review-choice-help">Chọn một đánh giá sau khi đọc các câu nguồn. Xem toàn bộ transcript ở bước Kiểm chứng.</p></fieldset>
             <div id="review-correction" hidden><h3>Sửa thông tin AI ghi sai</h3><p>Nếu bản ghi hoàn toàn không tồn tại hoặc bị trích xuất thừa, chọn “Loại bỏ bản ghi sai” bên dưới.</p><div class="review-form-grid">
             <label>Loại thông tin<select id="review-kind"></select></label>
             <label class="review-wide">Nội dung bản rà soát<textarea id="review-content" maxlength="10000" required></textarea></label>

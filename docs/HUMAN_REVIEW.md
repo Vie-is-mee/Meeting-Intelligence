@@ -1,10 +1,10 @@
 # Rà soát của con người và xuất dữ liệu
 
-Mục 05 trên giao diện khép thêm vòng sử dụng: AI đề xuất → người dùng đọc nguồn → sửa/xác nhận/từ chối → xuất dữ liệu đã rà soát. Nó hoạt động cả trên Go Live và backend, không gọi LLM thêm.
+Bước Rà soát & xuất trên giao diện khép thêm vòng sử dụng: AI đề xuất → người dùng đọc nguồn → sửa/xác nhận/từ chối → xuất dữ liệu đã rà soát. Nó hoạt động cả trên Go Live và backend, không gọi LLM thêm.
 
 ## Cách dùng
 
-1. Mở kết quả và xuống mục 05. Chọn mục cần kiểm tra; đọc **kết quả AI bên trái** và **câu nguồn bên phải**, gồm cả câu trong lịch sử thay đổi/thu hồi. Có thể đối chiếu thêm toàn bộ transcript ở mục 01/03.
+1. Mở kết quả, bấm **Rà soát & xuất** trên thanh điều hướng. Chọn mục cần kiểm tra; đọc **kết quả AI bên trái** và **câu nguồn bên phải**, gồm cả câu trong lịch sử thay đổi/thu hồi. Có thể đối chiếu thêm toàn bộ transcript ở bước Phân tích/Kiểm chứng. Chuyển bước giữ nguyên bản nháp đang nhập; đổi sang bản ghi khác cần lưu trước.
 2. Nhập tên người rà soát (tự khai), chọn **Đúng / Sai / Chưa đủ bằng chứng**. Chưa chọn đánh giá thì nút lưu bị khóa.
 3. **Đúng:** nhấn “Xác nhận: kết quả đúng”, không cần nhập lại dữ liệu. **Sai:** phần chỉnh sửa mới mở; sửa thông tin, ghi lý do/câu nguồn, đánh dấu đã đối chiếu và nhấn “Lưu bản sửa và xác nhận”. Có thể chỉ lưu bản sửa ở trạng thái chờ.
 4. Nếu bản ghi hoàn toàn không tồn tại hoặc bị trích xuất thừa như request LC01, chọn Sai, ghi lý do và “Loại bỏ bản ghi sai”. Nếu chưa xác minh được, chọn **Chưa đủ bằng chứng**, ghi điều chưa rõ rồi lưu; bản này tiếp tục chờ và không vào CSV. Bản gốc/lịch sử luôn được giữ.

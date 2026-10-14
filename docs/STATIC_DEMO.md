@@ -12,7 +12,7 @@ Các case nên xem: D01/D03/D04/H01 thành công; LC03 có audit sai; LC01 có r
 
 Sau khi chọn bản ghi, bấm “Xem bảng câu nguồn → kết luận” ở khung bằng chứng. Bảng 04 hiển thị giá trị hiện tại và nguồn từng trường, rồi đối chiếu phát biểu nguyên văn/cụm gợi ý/sự kiện/quy tắc xử lý. Bấm mã câu để về transcript. Nhận xét audit được tách riêng vì có thể sai. Cụm gợi ý chỉ được tìm trong câu có thật để hỗ trợ đọc; không quyết định phân loại và không phải suy nghĩ nội bộ của LLM.
 
-Mục 05 đặt kết quả cạnh câu nguồn để chọn Đúng / Sai / Chưa đủ bằng chứng. Ô sửa chỉ mở khi chọn Sai; có thể loại bỏ bản trích xuất thừa. Gốc AI không đổi, chỉ bản đã xác nhận vào CSV; bản chưa đủ bằng chứng vẫn chờ. Có lưu/mở phiên gần nhất trên trình duyệt và tải JSON kèm lịch sử, không cần backend. Xem HUMAN_REVIEW.md trong source để biết giới hạn.
+Bước Rà soát & xuất đặt kết quả cạnh câu nguồn để chọn Đúng / Sai / Chưa đủ bằng chứng. Ô sửa chỉ mở khi chọn Sai; có thể loại bỏ bản trích xuất thừa. Gốc AI không đổi, chỉ bản đã xác nhận vào CSV; bản chưa đủ bằng chứng vẫn chờ. Có lưu/mở phiên gần nhất trên trình duyệt và tải JSON kèm lịch sử, không cần backend. Xem HUMAN_REVIEW.md trong source để biết giới hạn.
 
 Không dùng double-click file:// làm cách chạy chính vì trình duyệt có thể chặn fetch JSON. Dùng Go Live hoặc HTTP server.
 

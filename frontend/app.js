@@ -10,6 +10,27 @@ let demoData = null, backendAvailable = false;
 let currentReview = null;
 const reviewSessions = new Map(), resultSessionIds = new WeakMap();
 const REVIEW_STORAGE_KEY = 'meeting-intelligence-review-last-v1';
+const workspaceScreens={analysis:['Phân tích cuộc họp','Đưa transcript vào và xem những thông tin còn giá trị sau cuộc họp.'],evidence:['Kiểm chứng kết luận','Đối chiếu câu nguồn, theo dõi thay đổi và hiểu kết luận cuối cùng.'],review:['Rà soát & xuất dữ liệu','Xác minh từng bản ghi trước khi đưa thông tin vào công việc.']};
+function setWorkspaceView(view){
+  if(!workspaceScreens[view]||(view!=='analysis'&&!result))return;
+  document.body.dataset.workspaceView=view;
+  $('workspace-title').replaceChildren(document.createTextNode(workspaceScreens[view][0]),node('span','','.'));
+  $('workspace-description').textContent=workspaceScreens[view][1];
+  document.querySelectorAll('[data-workspace-target]').forEach(b=>{const active=b.dataset.workspaceTarget===view;b.classList.toggle('active',active);if(active)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+  $('workspace-context').hidden=view!=='evidence';
+}
+function syncWorkspace(){
+  document.querySelectorAll('[data-workspace-target]').forEach(b=>b.disabled=b.dataset.workspaceTarget!=='analysis'&&(!result||busy));
+  const picker=$('workspace-record');picker.replaceChildren();
+  (result?.analysis.records||[]).forEach((r,i)=>{const option=node('option','',`${i+1}. ${r.topic} · ${kinds[r.kind]}`);option.value=i;picker.append(option);});
+  picker.value=selected;picker.disabled=!result?.analysis.records.length;
+}
+document.querySelectorAll('[data-workspace-target]').forEach(b=>b.addEventListener('click',()=>{setWorkspaceView(b.dataset.workspaceTarget);window.scrollTo({top:0,behavior:'instant'});}));
+$('workspace-record').addEventListener('change',()=>{selected=Number($('workspace-record').value);renderRecords();renderDetail();renderHumanReview();});
+document.querySelectorAll('[data-trace-target]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-trace-target]').forEach(tab=>{tab.classList.toggle('active',tab===b);tab.setAttribute('aria-pressed',String(tab===b));});
+  document.querySelectorAll('[data-trace-panel]').forEach(panel=>panel.hidden=panel.dataset.tracePanel!==b.dataset.traceTarget);
+}));
 
 function node(tag, className, text) {
   const element = document.createElement(tag);
@@ -157,6 +178,7 @@ function showEvidenceTab(view) {
   $('show-transcript').classList.toggle('active', view === 'transcript');
 }
 function focusSource(id) {
+  setWorkspaceView('evidence');
   showEvidenceTab('transcript');
   document.querySelectorAll('.source-line.focused').forEach(line => line.classList.remove('focused'));
   const line = document.getElementById(`source-${id}`);
@@ -253,7 +275,7 @@ function renderDetail() {
   $('detail-conclusion').replaceChildren(conclusionBlock(record),
     node('p','detail-review',`Rà soát bản ghi: ${reviewLabel(record.review_status)}. Đây là bước kiểm tra bản ghi, không phải trạng thái chốt của cuộc họp.`));
   const jump = node('button','button secondary trace-jump','Xem bảng câu nguồn → kết luận');
-  jump.addEventListener('click',() => $('explanation-panel').scrollIntoView({behavior:'smooth',block:'start'}));
+  jump.addEventListener('click',() => {setWorkspaceView('evidence');$('explanation-panel').scrollIntoView({behavior:'smooth',block:'start'});});
   $('detail-conclusion').append(jump);
   const utterances = new Map(result.analysis.utterances.map(u => [u.id,u]));
   const timeline = $('timeline');
@@ -385,6 +407,7 @@ function renderResult() {
   renderFilters(); renderRecords(); renderDetail(); renderEvaluation();
   renderHumanReview();
   setResultTab('records');
+  setWorkspaceView('analysis');
 }
 
 function reviewKindSettings(preferred) {
@@ -406,9 +429,10 @@ function chooseReview(value) {
   $('review-edit').hidden=value!=='wrong';$('review-reject').hidden=value!=='wrong';
   $('review-submit').disabled=!value;
   $('review-submit').textContent={correct:'Xác nhận: kết quả đúng',wrong:'Lưu bản sửa và xác nhận',insufficient:'Lưu: chưa đủ bằng chứng'}[value]||'Lưu đánh giá';
-  $('review-choice-help').textContent={correct:'Bạn xác nhận thông tin đang hiển thị phù hợp với transcript. Không cần chỉnh sửa.',wrong:'Sửa phần ghi sai và ghi lý do; hoặc loại bỏ nếu bản ghi không tồn tại trong cuộc họp.',insufficient:'Ghi rõ điều còn chưa xác minh được. Bản này tiếp tục chờ, không được đưa vào CSV đã xác nhận.'}[value]||'Chọn một đánh giá sau khi đọc các câu nguồn. Có thể xem thêm toàn bộ transcript bên trái.';
+  $('review-choice-help').textContent={correct:'Bạn xác nhận thông tin đang hiển thị phù hợp với transcript. Không cần chỉnh sửa.',wrong:'Sửa phần ghi sai và ghi lý do; hoặc loại bỏ nếu bản ghi không tồn tại trong cuộc họp.',insufficient:'Ghi rõ điều còn chưa xác minh được. Bản này tiếp tục chờ, không được đưa vào CSV đã xác nhận.'}[value]||'Chọn một đánh giá sau khi đọc các câu nguồn. Xem toàn bộ transcript ở bước Kiểm chứng.';
 }
 function renderHumanReview() {
+  syncWorkspace();
   chooseReview(null);
   $('review-message').textContent='';
   $('human-review-panel').hidden = !currentReview;
@@ -441,7 +465,7 @@ function renderHumanReview() {
     for(const event of original.history||[])for(const id of event.source_ids||[])sourceIds.add(id);
     currentReview.original_analysis.utterances.filter(u=>sourceIds.has(u.id)).forEach(u=>{const quote=node('blockquote');quote.append(node('strong','',`${u.id} · ${u.speaker||'Không rõ người nói'}`),node('p','',u.text));evidence.append(quote);});
     if(!sourceIds.size)evidence.append(node('p','','AI chưa cung cấp câu nguồn. Hãy xem toàn bộ transcript trước khi đánh giá.'));
-    evidence.append(node('p','help','Đây là các câu được liên kết, có thể chưa đầy đủ. Đọc cả câu trước/sau trong transcript để kiểm tra diễn biến cuối cuộc họp.'));
+    evidence.append(node('p','help','Đây là các câu được liên kết, có thể chưa đầy đủ. Xem toàn bộ transcript ở bước Kiểm chứng để kiểm tra diễn biến cuối cuộc họp.'));
     $('review-kind').replaceChildren();Object.entries(kinds).forEach(([value,label])=>{const option=node('option','',label);option.value=value;$('review-kind').append(option);});
     $('review-kind').value=entry.draft.kind;
     for(const [id,field] of [['review-content','content'],['review-owner','owner'],['review-supporter','supporter'],['review-due','due_raw'],['review-condition','condition']])$(id).value=entry.draft[field]||'';
@@ -498,7 +522,7 @@ $('restore-review').addEventListener('click',()=>{
     const saved=JSON.parse(raw);const session=MeetingReview.restore(saved.session,saved.result.analysis,saved.session.id);
     result=structuredClone(saved.result);result.restored_from_local=true;resultSessionIds.set(result,session.id);reviewSessions.set(session.id,session);
     $('transcript').value=saved.input_transcript;$('sample').value=demoData?.cases.some(c=>c.id===result.provenance?.case)?result.provenance.case:'custom';
-    countText();renderResult();$('stale').hidden=true;
+    countText();renderResult();setWorkspaceView('review');$('stale').hidden=true;
     $('recorded-notice').hidden=false;$('recorded-notice').textContent='Đang xem phiên rà soát đã lưu trên máy; không chạy LLM mới. Nội dung AI gốc và chỉnh sửa người dùng được giữ riêng.';
     $('review-save-status').textContent=`Đã mở phiên lưu ${new Date(saved.saved_at).toLocaleString('vi-VN')}.`; $('download').disabled=false;
   }catch(error){$('review-save-status').textContent=error.message;}

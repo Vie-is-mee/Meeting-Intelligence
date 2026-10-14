@@ -27,6 +27,7 @@ ASSETS = {
     '/app.js': ('app.js', 'text/javascript; charset=utf-8'),
     '/review.js': ('review.js', 'text/javascript; charset=utf-8'),
     '/review.css': ('review.css', 'text/css; charset=utf-8'),
+    '/workspace.css': ('workspace.css', 'text/css; charset=utf-8'),
     '/demo-data.json': ('demo-data.json', 'application/json; charset=utf-8'),
 }
 

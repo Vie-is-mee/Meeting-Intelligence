@@ -25,6 +25,7 @@ def main():
     static={'index.html':ROOT/'frontend/index.html','app.js':ROOT/'frontend/app.js',
             'review.js':ROOT/'frontend/review.js',
             'review.css':ROOT/'frontend/review.css',
+            'workspace.css':ROOT/'frontend/workspace.css',
             'styles.css':ROOT/'frontend/styles.css','demo-data.json':ROOT/'frontend/demo-data.json',
             'README.md':ROOT/'docs/STATIC_DEMO.md'}
     with zipfile.ZipFile(target/'meeting-intelligence-demo-static.zip','w',zipfile.ZIP_DEFLATED) as archive:
