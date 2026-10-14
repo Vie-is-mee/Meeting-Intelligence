@@ -81,6 +81,8 @@ def extract_events(utterances: list[Utterance], client: LLMClient, *, warnings: 
                     warnings.append('Mô tả mục chưa chốt được lấy nguyên văn từ nguồn vì LLM chưa thể hiện rõ nội dung chưa chốt; cần rà soát: '
                                     + ', '.join(event.source_ids))
     parsed.events = normalize_named_assignment_events(parsed.events, utterances, warnings=warnings)
+    from .evidence_repairs import repair_explicit_source_updates
+    parsed.events = repair_explicit_source_updates(parsed.events, utterances, warnings=warnings)
     groups = {(event.kind, event.issue_key) for event in parsed.events}
     for kind, key in groups:
         if not any(event.value and event.value.strip() for event in parsed.events
