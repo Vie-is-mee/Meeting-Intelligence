@@ -1,0 +1,32 @@
+{
+  "method": "Manual assistant review of frozen current-core API output; not independent review or dataset-wide metrics.",
+  "run_sha256": "bea1f4c7dc16f2f4e1002a922957e95738764d37bc157a4530fe62e8273c5b8e",
+  "core_matches_round5_manifest": true,
+  "cases": [
+    {
+      "id": "LC02",
+      "operational": "EXTRACTION_COMPLETED_AUDIT_HTTP_429_TPD",
+      "semantic_verdict": "FAIL",
+      "correct": [
+        "CSV request recorded",
+        "Library trial action cancelled, historical owner Dũng retained",
+        "Replacement implementation decision open; no invented new assignee"
+      ],
+      "incorrect": [
+        "due_raw still chiều mai despite explicit removal at L004"
+      ],
+      "observed_cause": "LLM action_cancelled event has clear_fields=[]; resolver preserves historical due_raw when no explicit clear is supplied. Not a recurrence of the fixed handler ignoring populated clear_fields.",
+      "audit": "No completed audit; TPD limit 200000, used 199798, requested 2255"
+    },
+    {
+      "id": "LC03",
+      "operational": "NOT_ATTEMPTED_AFTER_RATE_LIMIT",
+      "semantic_verdict": "NOT_EVALUATED"
+    },
+    {
+      "id": "H03",
+      "operational": "NOT_ATTEMPTED_AFTER_RATE_LIMIT",
+      "semantic_verdict": "NOT_EVALUATED"
+    }
+  ]
+}

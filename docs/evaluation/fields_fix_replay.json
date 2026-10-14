@@ -1,0 +1,205 @@
+{
+  "method": "Replay SAME saved events without calling model or audit; does not recover omitted model fields.",
+  "baseline_sha256": "3dae4ea325cc24fbd3c43864bf508a93653211cdc895dbd8cecd8dd2a2da28c0",
+  "cases": [
+    {
+      "id": "D03",
+      "records": [
+        {
+          "issue_key": "chuyen_nha_cung_cap",
+          "kind": "decision",
+          "meeting_status": "agreed",
+          "condition": "Chưa đủ điều kiện triển khai",
+          "due_raw": null,
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ],
+            "condition": [
+              "L005"
+            ],
+            "execution_status": [
+              "L005"
+            ]
+          }
+        },
+        {
+          "issue_key": "hop_dong_phap_che",
+          "kind": "issue",
+          "meeting_status": "open",
+          "condition": null,
+          "due_raw": null,
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L004"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "D04",
+      "records": [
+        {
+          "issue_key": "phat_hanh_beta",
+          "kind": "decision",
+          "meeting_status": "open",
+          "condition": null,
+          "due_raw": null,
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ],
+            "execution_status": [
+              "L003"
+            ],
+            "condition": [
+              "L003"
+            ]
+          }
+        },
+        {
+          "issue_key": "phat_hanh_beta",
+          "kind": "knowledge",
+          "meeting_status": "unverified",
+          "condition": null,
+          "due_raw": null,
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L005"
+            ],
+            "content": [
+              "L005"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "H01",
+      "records": [
+        {
+          "issue_key": "dong_bo_tu_dong",
+          "kind": "decision",
+          "meeting_status": "reopened",
+          "condition": null,
+          "due_raw": null,
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L001"
+            ],
+            "execution_status": [
+              "L004"
+            ],
+            "condition": [
+              "L004"
+            ]
+          }
+        },
+        {
+          "issue_key": "soan_danh_sach_quyen",
+          "kind": "action",
+          "meeting_status": "assigned",
+          "condition": null,
+          "due_raw": null,
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L002"
+            ],
+            "content": [
+              "L002"
+            ],
+            "owner": [
+              "L002"
+            ]
+          }
+        },
+        {
+          "issue_key": "quyen_doc_du_lieu_ca_nhan",
+          "kind": "issue",
+          "meeting_status": "open",
+          "condition": null,
+          "due_raw": null,
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "H03",
+      "records": [
+        {
+          "issue_key": "request_review",
+          "kind": "request",
+          "meeting_status": "recorded",
+          "condition": null,
+          "due_raw": null,
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L001"
+            ],
+            "content": [
+              "L001"
+            ]
+          }
+        },
+        {
+          "issue_key": "assign_review",
+          "kind": "issue",
+          "meeting_status": "open",
+          "condition": null,
+          "due_raw": null,
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L002",
+              "L003"
+            ],
+            "content": [
+              "L002",
+              "L003"
+            ]
+          }
+        },
+        {
+          "issue_key": "deadline_review",
+          "kind": "decision",
+          "meeting_status": "open",
+          "condition": null,
+          "due_raw": null,
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L006"
+            ],
+            "content": [
+              "L006"
+            ],
+            "condition": [
+              "L006"
+            ],
+            "execution_status": [
+              "L006"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

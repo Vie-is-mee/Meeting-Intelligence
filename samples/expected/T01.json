@@ -1,0 +1,52 @@
+{
+  "id": "T01",
+  "description": "Đa loại thông tin bình thường",
+  "expectations": [
+    {
+      "kind": "decision",
+      "status": "agreed",
+      "content_contains": "B",
+      "must_cite": [
+        "L003"
+      ]
+    },
+    {
+      "kind": "action",
+      "status": "assigned",
+      "owner": "Lan",
+      "supporter": "Minh",
+      "must_cite": [
+        "L004"
+      ]
+    },
+    {
+      "kind": "issue",
+      "status": "open",
+      "must_cite": [
+        "L005"
+      ]
+    },
+    {
+      "kind": "request",
+      "status": "recorded",
+      "must_cite": [
+        "L006"
+      ]
+    },
+    {
+      "kind": "feedback",
+      "status": "recorded",
+      "must_cite": [
+        "L007"
+      ]
+    },
+    {
+      "kind": "decision",
+      "status": "open",
+      "must_cite": [
+        "L008"
+      ]
+    }
+  ],
+  "category": "normal"
+}

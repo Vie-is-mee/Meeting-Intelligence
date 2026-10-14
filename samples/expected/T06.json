@@ -1,0 +1,36 @@
+{
+  "id": "T06",
+  "description": "Hai chủ đề xen kẽ, không ghép nhầm",
+  "expectations": [
+    {
+      "kind": "decision",
+      "status": "agreed",
+      "content_contains": "B",
+      "must_cite": [
+        "L006"
+      ]
+    },
+    {
+      "kind": "issue",
+      "status": "open",
+      "must_cite": [
+        "L007"
+      ]
+    },
+    {
+      "kind": "action",
+      "status": "assigned",
+      "owner": "Hương",
+      "must_cite": [
+        "L004"
+      ]
+    },
+    {
+      "kind": "feedback",
+      "status": "recorded",
+      "content_contains": "menu",
+      "must_cite": ["L005"]
+    }
+  ],
+  "category": "interleaved"
+}

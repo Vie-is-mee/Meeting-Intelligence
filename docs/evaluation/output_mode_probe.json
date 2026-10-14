@@ -1,0 +1,32 @@
+{
+  "case": "D15",
+  "max_completion_tokens": 8192,
+  "prompt_sha256": "16f6dbab51e91f2a82d95024368fb01a6fa42032a09f58b973400f2bcb8210d6",
+  "attempts": [
+    {
+      "mode": "strict",
+      "result": "ERROR",
+      "error": "LLM chưa hoàn tất phản hồi hoặc bị chặn; không dùng kết quả thiếu",
+      "api_calls": 1,
+      "api_tokens": {
+        "prompt_tokens": 4538,
+        "completion_tokens": 8192,
+        "total_tokens": 12730
+      }
+    },
+    {
+      "mode": "json",
+      "result": "ERROR",
+      "error": "API HTTP 413 (rate_limit_exceeded); kiểm tra giới hạn, model và chế độ đầu ra",
+      "api_calls": 2,
+      "api_tokens": {}
+    },
+    {
+      "mode": "text",
+      "result": "ERROR",
+      "error": "API HTTP 413 (rate_limit_exceeded); kiểm tra giới hạn, model và chế độ đầu ra",
+      "api_calls": 1,
+      "api_tokens": {}
+    }
+  ]
+}

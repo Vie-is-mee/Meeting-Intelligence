@@ -1,0 +1,5 @@
+L001 | Linh | Mai lập bảng đối soát cho đợt nhập kho, hạn sáng thứ Sáu.
+L002 | Mai | Tôi nhận việc lập bảng đó.
+L003 | Linh | Hủy việc lập bảng đối soát vì hệ thống đã có bản tự động.
+L004 | Linh | Bỏ luôn hạn sáng thứ Sáu; không giao việc thay thế.
+L005 | Mai | Tôi xác nhận dừng việc đã nhận.

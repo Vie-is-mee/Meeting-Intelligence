@@ -1,0 +1,87 @@
+{
+  "method": "Manual assistant semantic review of one frozen eight-case API run. Same-assistant authored labels; not independent evaluation. PASS requires required records/fields/evidence without unjustified audit findings.",
+  "run": "docs/evaluation/final_regression_round5_retry2.json",
+  "cases": [
+    {
+      "id": "H03",
+      "verdict": "FAIL",
+      "core_data": "FAIL",
+      "audit": "FALSE_POSITIVES",
+      "expectation": "Request rà soát trước lần thử tiếp theo, chưa chọn ngày/người.",
+      "observed": "Chỉ có decision open; thiếu request và hạn tương đối. Audit đòi thể hiện đề xuất ngày trong bản ghi cuối, không phát hiện request thiếu.",
+      "lesson": "Có kết luận cuối đúng vẫn chưa đủ nếu bỏ sót cả yêu cầu; chất lượng không ổn định giữa lần sinh."
+    },
+    {
+      "id": "LC03",
+      "verdict": "FAIL",
+      "core_data": "PASS",
+      "audit": "FALSE_POSITIVE",
+      "expectation": "Giữ scope thử nội bộ/request nút quay lại; task hướng dẫn cancelled, owner lịch sử Chi, hạn null.",
+      "observed": "Các bản ghi và trường lõi đúng; audit medium đòi xóa owner lịch sử sau hủy dù không có lệnh xóa.",
+      "lesson": "Phân biệt độ đúng dữ liệu và độ đúng cảnh báo audit; cảnh báo sai vẫn là hạn chế."
+    },
+    {
+      "id": "D01",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "Chuyển từ lưu máy chủ sang object storage cho thử nghiệm; nhà cung cấp chưa chọn.",
+      "observed": "Decision agreed object storage, decision open nhà cung cấp, nguồn trạng thái/nội dung L006, không tự đặt người/hạn.",
+      "lesson": "Tình huống đổi ý rồi chốt cuối hoạt động trong lượt này; chưa chứng minh độ ổn định nhiều lần sinh."
+    },
+    {
+      "id": "D03",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "Agreed trong phạm vi thiết kế, blocked đến khi pháp chế duyệt, issue hợp đồng riêng.",
+      "observed": "Đủ decision agreed/blocked/phạm vi/condition; nguồn nội dung L003, execution và condition L005; issue open L004, needs_review.",
+      "lesson": "Tách quyết định trong họp và điều kiện triển khai, giữ nguồn riêng từng trường."
+    },
+    {
+      "id": "D04",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "Conditional/pending_condition với 300 người đồng thời AND không lỗi nghiêm trọng; chưa đạt điều kiện.",
+      "observed": "Đúng đầy đủ điều kiện thay thế, nguồn L003; không bịa người/hạn; needs_review. Audit trống.",
+      "lesson": "Điều kiện chưa được xác nhận đạt không có nghĩa mở lại quyết định."
+    },
+    {
+      "id": "H01",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "Lựa chọn reopened/condition null; action Huy assigned không hạn.",
+      "observed": "Đúng hai bản ghi, nguồn mở lại L004, owner Huy L002; audit trống, không tự hủy action.",
+      "lesson": "Mở lại lựa chọn không tự hủy công việc độc lập; giữ điều kiện cũ trong history thay vì trường hiện hành."
+    },
+    {
+      "id": "LC01",
+      "verdict": "FAIL",
+      "core_data": "FAIL",
+      "audit": "SUPPORTED_FINDING",
+      "expectation": "Một action cancelled, owner lịch sử Mai, hạn null; không request/decision phụ.",
+      "observed": "Action đúng nhưng có request recorded trùng câu giao việc. Guard needs_review và audit high unsupported_fact dẫn L003 phát hiện request thừa.",
+      "lesson": "Một bản ghi có nguồn vẫn có thể sai vai trò nghiệp vụ. Cảnh báo giảm rủi ro, không sửa phân loại."
+    },
+    {
+      "id": "LC02",
+      "verdict": "FAIL",
+      "core_data": "FAIL",
+      "audit": "FALSE_POSITIVE",
+      "expectation": "Request CSV giữ, task thử thư viện X cancelled/Dũng/hạn null; cách thay thế open, không proposal phụ.",
+      "observed": "Request và task cancelled/Dũng/hạn null đúng, nhưng thiếu decision cách thay thế chưa chốt; thêm proposal thử thư viện X. Audit medium đòi lý do hủy giấy phép không phù hợp thành condition hiện hành.",
+      "lesson": "Lý do hủy không phải điều kiện triển khai; sửa xóa hạn chưa giải quyết bỏ sót/chia sai loại bản ghi."
+    }
+  ],
+  "run_sha256": "ef7e7638ddf367ed9f9c035530d939b1b93c108d0546721d8c6cd6d6647cdd1c",
+  "results": {
+    "pipeline_and_audit_completed": 8,
+    "requested": 8,
+    "strict_case_passed": 4,
+    "core_data_passed": 5,
+    "api_attempts": 16,
+    "provider_reported_tokens": 37817
+  }
+}

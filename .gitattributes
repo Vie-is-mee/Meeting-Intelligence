@@ -1,0 +1,2 @@
+# Preserve bytes: frozen evaluation artifacts use SHA-256 across Windows/Linux.
+* -text

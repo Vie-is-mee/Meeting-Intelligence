@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kiểm tra kết quả cuộc họp bằng lịch sử thay đổi và bằng chứng từ transcript.">
+  <title>Trí tuệ cuộc họp · Bàn kiểm chứng</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="./index.html" aria-label="Trí tuệ cuộc họp, trang chính">
+      <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 10v4m4-8v12m4-15v18m4-15v12m4-8v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      <span>Trí tuệ<br><strong>cuộc họp</strong></span>
+    </a>
+    <div class="sidebar-label">KHÔNG GIAN LÀM VIỆC</div>
+    <div class="nav-current"><span class="nav-dot"></span>Bàn kiểm chứng <span class="nav-count">01</span></div>
+    <div class="sidebar-note">Theo dõi điều còn hiệu lực sau cuộc họp.</div>
+    <div class="sidebar-bottom"><span class="local-dot"></span> Mission 2<div>Demo có bằng chứng · MVP</div></div>
+  </aside>
+
+  <main>
+    <header class="topbar"><span>WORKSPACE <span class="slash">/</span> MEETING INTELLIGENCE</span><span class="top-badge">Transcript → bằng chứng</span></header>
+    <section class="page-heading">
+      <div><div class="eyebrow">HIỂU DIỄN BIẾN. GIỮ ĐÚNG KẾT LUẬN.</div><h1>Bàn kiểm chứng cuộc họp<span>.</span></h1><p>Xem hệ thống ghi nhận điều gì, thay đổi ra sao và dựa vào câu nói nào.</p></div>
+      <button class="button secondary" id="download" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v9m-3-3 3 3 3-3M4 13v4h12v-4"/></svg>Tải kết quả JSON</button>
+    </section>
+
+    <div id="error" class="notice error" role="alert" hidden></div>
+    <div id="demo-summary" class="demo-summary" hidden></div>
+    <div id="recorded-notice" class="notice" role="status" hidden>Kết quả LLM thật đã lưu · Không gọi API hoặc phân tích transcript mới. Giữ nguyên cả kết quả sai để đối chiếu.</div>
+    <div id="static-preview" class="notice" hidden>Đang xem demo tĩnh: chọn một trong 8 tình huống để xem kết quả LLM đã lưu. Muốn phân tích transcript mới, chạy <code>python -X utf8 web.py</code> rồi mở <a href="http://127.0.0.1:8765">http://127.0.0.1:8765</a>.</div>
+    <div id="stale" class="notice" hidden>Transcript hoặc tùy chọn đã thay đổi. Kết quả bên dưới thuộc lượt chạy trước; hãy phân tích lại để đối chiếu.</div>
+
+    <section class="workspace" aria-label="Nhập và kiểm tra transcript">
+      <section class="panel input-panel">
+        <div class="panel-heading"><div><span class="section-number">01</span><h2>Nội dung cuộc họp</h2></div><span class="muted small">Đầu vào</span></div>
+        <label for="sample">Tình huống mẫu</label>
+        <select id="sample" disabled><option>Đang tải tình huống…</option></select>
+        <p class="help" id="sample-description">Các tình huống tổng hợp dùng để phát triển và kiểm tra.</p>
+        <div class="label-row"><label for="transcript">Transcript</label><label class="file-button" for="file">Mở tệp .txt</label><input id="file" type="file" accept=".txt,text/plain" hidden></div>
+        <textarea id="transcript" spellcheck="false" maxlength="100000" placeholder="Lan: Tôi đề xuất phương án A.&#10;Minh: Thống nhất chọn B.&#10;Lan: Khoan, hôm nay chưa chốt." aria-describedby="text-count"></textarea>
+        <div class="text-meta"><span>Giữ nguyên thứ tự phát biểu</span><span id="text-count">0 ký tự</span></div>
+
+        <div class="settings"><label for="engine">Chế độ xử lý</label><select id="engine"><option value="recorded">Demo · kết quả LLM đã lưu</option><option value="llm_api">LLM API · phân tích mới</option><option value="offline_rules">Offline · baseline theo luật</option></select>
+          <p id="config-status" class="help">Đang kiểm tra cấu hình…</p>
+          <label class="toggle-row"><input type="checkbox" id="audit" checked><span class="switch" aria-hidden="true"></span><span>Rà soát lần hai bằng LLM<small>Có thể bỏ sót hoặc cảnh báo sai; cần đối chiếu nguồn</small></span></label>
+        </div>
+        <div class="engine-note" id="engine-note">Offline chỉ nhận diện một số mẫu quyết định; không đại diện cho năng lực LLM.</div>
+        <button class="button primary" id="analyze" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 8 6-8 6V4Z"/></svg><span>Phân tích cuộc họp</span></button>
+        <div class="run-state" id="run-state" role="status" aria-live="polite">Sẵn sàng khi dữ liệu được tải.</div>
+      </section>
+
+      <section class="panel output-panel">
+        <div class="panel-heading"><div><span class="section-number">02</span><h2>Kết quả sau họp</h2></div><span id="result-engine" class="badge neutral">Chưa phân tích</span></div>
+        <div class="metrics"><div><span id="metric-records">—</span><small>Mục ghi nhận</small></div><div><span id="metric-review">—</span><small>Bản ghi cần rà soát</small></div><div><span id="metric-time">—</span><small>Thời gian chạy</small></div></div>
+        <div class="result-toolbar"><div class="tabs" role="tablist" aria-label="Chế độ xem kết quả"><button class="tab active" id="tab-records" role="tab" aria-selected="true" aria-controls="records-view">Bản ghi</button><button class="tab" id="tab-json" role="tab" aria-selected="false" aria-controls="json-view">JSON gốc</button></div><span id="api-metrics" class="small muted">Chưa có lượt chạy</span></div>
+        <div id="records-view" role="tabpanel" aria-labelledby="tab-records">
+          <div class="result-intro"><h3>Thông tin hệ thống ghi nhận</h3><p>Mỗi thẻ là một kết quả được trích từ cuộc họp. Xem trạng thái và cảnh báo; chọn thẻ để đối chiếu câu nguồn.</p></div>
+          <div id="filters" class="filters" aria-label="Lọc loại thông tin" hidden></div>
+          <div id="records" class="record-list"><div class="empty-state"><div class="empty-symbol"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="11" y="6" width="26" height="36" rx="4"/><path d="M18 17h12M18 24h12M18 31h7"/></svg></div><h3>Mỗi kết luận đều có dấu vết</h3><p>Chọn tình huống mẫu hoặc dán transcript,<br>rồi chạy phân tích để xem các bản ghi.</p><div class="empty-flow">Phát biểu <span>→</span> Diễn biến <span>→</span> Kết quả</div></div></div>
+        </div>
+        <div id="json-view" role="tabpanel" aria-labelledby="tab-json" hidden><pre id="raw-json">Chưa có kết quả.</pre></div>
+        <details id="demo-review" class="demo-review" hidden aria-label="Đánh giá kết quả đã lưu"><summary id="demo-review-summary">Đánh giá bộ kiểm thử — mở để xem</summary><div id="demo-review-body"></div></details>
+        <details id="evaluation" class="evaluation" hidden><summary id="evaluation-summary">Đối chiếu kỳ vọng</summary><div id="evaluation-body"></div></details>
+        <details id="warnings" class="warnings" hidden><summary id="warnings-summary">Lưu ý của lượt chạy</summary><ul id="warnings-list"></ul></details>
+      </section>
+
+      <section class="panel evidence-panel">
+        <div class="panel-heading"><div><span class="section-number">03</span><h2>Bằng chứng & diễn biến</h2></div></div>
+        <div id="detail-empty" class="evidence-empty"><span class="small-caps">ĐỌC KẾT QUẢ CÙNG NGỮ CẢNH</span><p>Chọn một bản ghi để xem lịch sử và các phát biểu liên quan.</p><div class="legend"><span><i class="source-dot"></i>Câu nguồn</span><span><i class="change-dot"></i>Câu sửa đổi / audit</span></div></div>
+        <div id="detail" hidden><div class="detail-heading"><span id="detail-kind" class="small-caps"></span><h3 id="detail-title"></h3><div id="detail-status"></div><div id="detail-conclusion"></div></div><div class="evidence-tabs"><button id="show-history" class="active">Lịch sử thay đổi</button><button id="show-transcript">Transcript</button></div><div id="timeline"></div><div id="source-view" hidden><div class="legend"><span><i class="source-dot"></i>Nguồn của bản ghi</span><span><i class="change-dot"></i>Thay đổi / audit</span></div><div id="source-lines"></div></div><div id="field-evidence" class="field-evidence"></div></div>
+      </section>
+    </section>
+    <footer><span>Trạng thái trong cuộc họp không đồng nghĩa phê duyệt của tổ chức.</span><span id="footer-model">Dữ liệu được xử lý khi bạn nhấn phân tích.</span></footer>
+  </main>
+</body>
+</html>

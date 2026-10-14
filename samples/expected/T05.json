@@ -1,0 +1,25 @@
+{
+  "id": "T05",
+  "description": "Đổi Minh thành Lan; hạn còn thiếu",
+  "expectations": [
+    {
+      "kind": "action",
+      "status": "assigned",
+      "owner": "Lan",
+      "supporter": "Minh",
+      "due_raw": null,
+      "must_cite": [
+        "L001",
+        "L003"
+      ]
+    },
+    {
+      "kind": "request",
+      "status": "recorded",
+      "must_cite": [
+        "L002"
+      ]
+    }
+  ],
+  "category": "assignment_change"
+}

@@ -1,0 +1,6 @@
+L001 | Hương | Khách hàng phản hồi bộ lọc tìm kiếm quá chậm.
+L002 | Minh | Yêu cầu bổ sung lọc theo ngày và vị trí.
+L003 | Lan | Tôi chưa rõ yêu cầu lọc theo ngày là ngày tạo hay ngày cập nhật.
+L004 | Khang | Hiện đường truyền VPN bị ngắt liên tục.
+L005 | Nam | Theo tài liệu bản thiết kế, API này dùng phân trang bằng cursor; cần đối chiếu tài liệu mới nhất.
+L006 | Minh | Chưa chốt cách tính ngày lọc, sẽ xác nhận lại với khách hàng.

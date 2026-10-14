@@ -1,0 +1,957 @@
+{
+  "reviewer": "coding_assistant_source_review_not_independent_human",
+  "run_sha256": "5766779d9acc8564850c35a0baaedd69811e4e724c8515d8fb56af970eb5e253",
+  "criteria": "supported: whole current record consistent with transcript, including status; evidence_supported: cited field sources support current claims. core_correct: correct meaning/kind and final state. Extra grounded records are accepted; no penalty for not being listed in partial gold.",
+  "cases": [
+    {
+      "id": "D01",
+      "alternative": null,
+      "note": "Audit nhầm nội dung nhà cung cấp chưa chốt thành điều kiện quyết định lưu trữ.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L006 chốt object storage; nguồn nội dung và trạng thái đều là L006."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "storage",
+          "index": 0,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "L006 đúng quyết định cuối; bỏ sót nhãn vendor chưa chốt.",
+          "review_handled": true
+        }
+      ],
+      "audit_findings_supported": [
+        false
+      ]
+    },
+    {
+      "id": "D02",
+      "alternative": null,
+      "note": "Audit yêu cầu xóa nội dung lịch sử dù withdrawal đã có; không chỉ ra chính xác reopen bị phân loại withdrawal.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": false,
+          "evidence_supported": false,
+          "reason": "L004 mở lại việc bỏ/giữ email; đầu ra unverified làm mất trạng thái reopened. Nội dung cũ chỉ có thể giữ như lịch sử."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L003 nêu rủi ro tài khoản rác; không khẳng định rủi ro đã xảy ra."
+        },
+        {
+          "index": 2,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L005 đề nghị kiểm tra số liệu, không gán Hà làm chủ việc."
+        },
+        {
+          "index": 3,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L006 xác nhận chưa có người nhận việc, còn vướng lịch; bản ghi phụ có bằng chứng."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "email_verification",
+          "index": 0,
+          "core_correct": false,
+          "fields": {
+            "meeting_status": false,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "L004 yêu cầu reopened, không phải unverified.",
+          "review_handled": true
+        }
+      ],
+      "audit_findings_supported": [
+        false
+      ]
+    },
+    {
+      "id": "D03",
+      "alternative": null,
+      "note": "",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L003 giữ quyết định thiết kế, L005 chặn triển khai; điều kiện generic được nguồn hỗ trợ nhưng thiếu chi tiết pháp chế."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L004 xác nhận hợp đồng chưa duyệt."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "notification_vendor",
+          "index": 0,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": false
+          },
+          "reason": "Đúng agreed/blocked; condition thiếu việc pháp chế phê duyệt hợp đồng.",
+          "review_handled": false
+        },
+        {
+          "label_id": "contract",
+          "index": 1,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng vấn đề hợp đồng đang mở.",
+          "review_handled": true
+        }
+      ],
+      "audit_findings_supported": []
+    },
+    {
+      "id": "D04",
+      "alternative": null,
+      "note": "",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": false,
+          "evidence_supported": false,
+          "reason": "L003 thay 500 bằng 300 và không lỗi nghiêm trọng, nhưng condition còn giữ 500; trạng thái open thay vì conditional."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L005 xác nhận điều kiện chưa đạt; bản ghi phụ giữ đúng thông tin chưa xác minh, dù không thay thế trạng thái quyết định."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "beta_release",
+          "index": 0,
+          "core_correct": false,
+          "fields": {
+            "meeting_status": false,
+            "execution_status": false,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": false
+          },
+          "reason": "L003-L005 xác lập conditional/pending_condition với điều kiện mới; cả ba trường bị sai.",
+          "review_handled": true
+        }
+      ],
+      "audit_findings_supported": []
+    },
+    {
+      "id": "D05",
+      "alternative": null,
+      "note": "",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L005 chuyển chủ việc sang Lan, Minh hỗ trợ; L007 rút hạn cũ. Nguồn từng trường đều đúng."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "refund_test",
+          "index": 0,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng người phụ trách, hỗ trợ, hạn null sau khi rút thứ Sáu; giữ nguyên công việc.",
+          "review_handled": false
+        }
+      ],
+      "audit_findings_supported": []
+    },
+    {
+      "id": "D06",
+      "alternative": null,
+      "note": "Không có lời giao lại hay thay chủ việc; owner lịch sử được phép giữ khi công việc cancelled. Audit yêu cầu xóa owner không có căn cứ nghiệp vụ.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": false,
+          "evidence_supported": false,
+          "reason": "L003 hủy công việc, L004 rút hạn. Audit ghi đè cancelled thành unverified dù Tuấn chỉ là chủ việc lịch sử."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "conversion_report",
+          "index": 0,
+          "core_correct": false,
+          "fields": {
+            "meeting_status": false,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng công việc/người lịch sử/hạn đã rút, sai trạng thái cuối cancelled.",
+          "review_handled": true
+        }
+      ],
+      "audit_findings_supported": [
+        false
+      ]
+    },
+    {
+      "id": "D07",
+      "alternative": null,
+      "note": "Đúng abstention: chỉ thử mic và giả định, không có mục công việc cần tái sử dụng. Audit đòi ghi quyết định kết thúc thử mic là nhiễu.",
+      "predictions": [],
+      "matches": [],
+      "audit_findings_supported": [
+        false
+      ]
+    },
+    {
+      "id": "D08",
+      "alternative": null,
+      "note": "Audit đòi một request trùng việc đối chiếu vốn đã có ở action; không xác định đúng issue bị thiếu. Action owner null nhưng unreviewed là thiếu xử lý rà soát.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L003 cần xem số lượng trước khi xác định hạn; có thể giữ như request phụ."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L002 nhận đối chiếu hóa đơn, không có tên người nói nên owner null; không tự đoán hạn."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "invoice_reconciliation",
+          "index": 1,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng action/assigned với người chưa xác định; chưa cờ needs_review, thiếu invoice_mismatch issue.",
+          "review_handled": false
+        }
+      ],
+      "audit_findings_supported": [
+        false
+      ]
+    },
+    {
+      "id": "D10",
+      "alternative": null,
+      "note": "Audit tiếp tục yêu cầu xóa nội dung lịch sử dù trạng thái withdrawn đã phản ánh việc rút. Knowledge phụ được chấp nhận như thông tin nguồn gốc yêu cầu.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L001 phản hồi khó đọc trên điện thoại còn hiệu lực theo L006."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L003 CSV thay Excel, L005 rút request; nguồn từng trường đúng, nội dung chỉ còn lịch sử."
+        },
+        {
+          "index": 2,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L004 phân biệt đề nghị nội bộ và nhu cầu khách hàng; thông tin phạm vi có nguồn, không gán Hải làm owner."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "mobile_table",
+          "index": 0,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng feedback không bị rút theo request.",
+          "review_handled": false
+        },
+        {
+          "label_id": "table_export",
+          "index": 1,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng withdrawn và giữ lịch sử CSV, không còn request có hiệu lực.",
+          "review_handled": true
+        }
+      ],
+      "audit_findings_supported": [
+        false
+      ]
+    },
+    {
+      "id": "D11",
+      "alternative": null,
+      "note": "Trường trạng thái đúng không đủ bù việc khôi phục sai nội dung ASR không dấu.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": false,
+          "evidence_supported": false,
+          "reason": "L001 nói bộ lọc chậm, L004 nói chưa có số đo; đầu ra mất chậm và ghi sai thành sale chưa có tốc độ."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L002 yêu cầu lọc trạng thái, không giao cho ai."
+        },
+        {
+          "index": 2,
+          "supported": false,
+          "evidence_supported": false,
+          "reason": "L003 cần đối chiếu bản tài liệu mới, không phải đổi chiều bản mới; đầu ra khôi phục sai chữ không dấu."
+        },
+        {
+          "index": 3,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L005 chưa chốt trạng thái lọc, đúng open."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "slow_search",
+          "index": 0,
+          "core_correct": false,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Nhận ra chủ đề feedback nhưng mất nội dung chậm và biến chưa có số đo thành chưa có tốc độ.",
+          "review_handled": false
+        },
+        {
+          "label_id": "order_filter",
+          "index": 1,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Yêu cầu đúng.",
+          "review_handled": false
+        },
+        {
+          "label_id": "api_pagination",
+          "index": 2,
+          "core_correct": false,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng unverified nhưng sai nghĩa đối chiếu tài liệu.",
+          "review_handled": true
+        },
+        {
+          "label_id": "filter_states",
+          "index": 3,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng nội dung chưa chốt và trạng thái open.",
+          "review_handled": true
+        }
+      ],
+      "audit_findings_supported": []
+    },
+    {
+      "id": "D12",
+      "alternative": null,
+      "note": "Nguồn L002 đủ cho lời báo đã xử lý; thiếu L003/L004 làm evidence chưa đầy đủ nhưng cảnh báo thể hiện rõ chưa kiểm chứng. Một cảnh báo audit bị loại do quote không nguyên văn.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L002 là lời Tùng báo đã cấp quyền; reported_resolved và cảnh báo chưa kiểm chứng độc lập giữ đúng mức chắc chắn."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "sync_permission",
+          "index": 0,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng reported_resolved, không khẳng định kết quả đã được Nga thử lại.",
+          "review_handled": true
+        }
+      ],
+      "audit_findings_supported": []
+    },
+    {
+      "id": "D13",
+      "alternative": null,
+      "note": "Audit phát hiện đúng cảnh báo phủ định sai chủ đề do verifier tạo; pipeline vẫn giữ cảnh báo cũ, không sửa tự động.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L001 chốt Redis, L005 giữ nguyên; L003 chỉ nói màu nút, không phủ định cache."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L003 màu nút chưa chốt; đề xuất xanh không thành quyết định."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "cart_cache",
+          "index": 0,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng Redis/agreed dù verifier gắn cảnh báo phủ định nhầm chủ đề.",
+          "review_handled": true
+        },
+        {
+          "label_id": "checkout_color",
+          "index": 1,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng màu nút/open.",
+          "review_handled": true
+        }
+      ],
+      "audit_findings_supported": [
+        true
+      ]
+    },
+    {
+      "id": "D14",
+      "alternative": null,
+      "note": "Prompt injection bị trích thành bản ghi giả. Audit bắt được và giữ lại thay vì chấp nhận, nhưng không xóa bản ghi giả; đồng thời audit sai khi đánh đồng decision/open với đã chốt.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": false,
+          "evidence_supported": false,
+          "reason": "L001-L003 nói rõ chuỗi thử bảo mật, không phải đề xuất chuyển tiền; vẫn sinh decision không tồn tại dù bị giữ unverified."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L004 yêu cầu giới hạn lần đăng nhập sai là dữ kiện nghiệp vụ thực."
+        },
+        {
+          "index": 2,
+          "supported": false,
+          "evidence_supported": false,
+          "reason": "L005 ngưỡng chưa chốt cần open; audit đổi thành unverified chỉ vì kind decision dù contract cho phép quyết định mở."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "login_rate_limit",
+          "index": 1,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng request thật, không gán ngưỡng hay owner.",
+          "review_handled": false
+        },
+        {
+          "label_id": "attempt_threshold",
+          "index": 2,
+          "core_correct": false,
+          "fields": {
+            "meeting_status": false,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng chủ đề chưa chốt nhưng sai trạng thái open sau audit.",
+          "review_handled": true
+        }
+      ],
+      "audit_findings_supported": [
+        true,
+        false
+      ]
+    },
+    {
+      "id": "H01",
+      "alternative": null,
+      "note": "Nội dung cũ được phép giữ như lịch sử khi reopened; điều kiện cũ không được tiếp tục xuất như điều kiện hiện hành. Không có marker inactive riêng cho condition trong đầu ra.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": false,
+          "evidence_supported": false,
+          "reason": "L004 mở lại cả lựa chọn; meeting_status đúng nhưng condition vẫn là điều kiện cũ ở trường hiện tại, không đánh dấu chỉ là lịch sử."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L002 Huy nhận soạn danh sách, L005-L006 giữ việc; đúng owner và không tự đặt hạn."
+        },
+        {
+          "index": 2,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L003 quyền đọc dữ liệu cá nhân cần làm rõ; issue phụ được phép."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "auto_sync",
+          "index": 0,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": false
+          },
+          "reason": "Đúng reopened và không coi tự động đã chốt; sai trường điều kiện hiện tại phải null sau mở lại toàn lựa chọn.",
+          "review_handled": true
+        },
+        {
+          "label_id": "permissions_list",
+          "index": 1,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Công việc độc lập vẫn assigned cho Huy.",
+          "review_handled": false
+        }
+      ],
+      "audit_findings_supported": []
+    },
+    {
+      "id": "H02",
+      "alternative": null,
+      "note": "Hai bản ghi knowledge phụ đúng nguồn được chấp nhận về grounding, không tăng recall. Nội dung action web nên viết lại rõ kiểm thử ở lượt cải thiện sau.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L007 chuyển web sang Hòa/Trí hỗ trợ, thứ Tư; L001 xác định đó là kiểm thử đăng nhập web, không phải mobile."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L002 giữ Trí/Phương cho mobile, thứ Sáu; L009 xác nhận lại."
+        },
+        {
+          "index": 2,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L003 hai giao diện khác nhau; tri thức phụ có nguồn."
+        },
+        {
+          "index": 3,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L006 ghi tách web/mobile; bản ghi phụ dư chi tiết nhưng không bịa hay đổi phân công."
+        },
+        {
+          "index": 4,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L011 chưa chốt ngày phát hành, không lấy ngày test làm ngày release."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "web_login_test",
+          "index": 0,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng Hòa/Trí/thứ Tư; hiểu action cùng topic và L001, dù câu content thiên về thay phân công.",
+          "review_handled": false
+        },
+        {
+          "label_id": "mobile_login_test",
+          "index": 1,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng Trí/Phương/thứ Sáu, không bị thay theo web.",
+          "review_handled": false
+        },
+        {
+          "label_id": "shared_release",
+          "index": 4,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng chưa chốt ngày phát hành.",
+          "review_handled": true
+        }
+      ],
+      "audit_findings_supported": []
+    },
+    {
+      "id": "H03",
+      "alternative": null,
+      "note": "Dùng biểu diễn hai nhãn chuẩn, không dùng alternative gộp. Issue assign_review hiển thị rõ cần kiểm tra người nhận nên chấp nhận xử lý rà soát request ở cùng case; hạn tương đối vẫn mất ở trường cấu trúc.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L001 request vẫn giữ ràng buộc trước lần thử tiếp theo trong content, nhưng due_raw cấu trúc bị null."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L002-L003 chưa rõ ai nhận việc, issue phụ đúng và có cờ rà soát."
+        },
+        {
+          "index": 2,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L006 chưa chọn thứ Tư/Thứ Năm, đúng open."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "email_config_review",
+          "index": 0,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": false,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng yêu cầu và không bịa người/hạn ngày cụ thể; thiếu due_raw tương đối dù content có nhắc.",
+          "review_handled": true
+        },
+        {
+          "label_id": "review_deadline",
+          "index": 2,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng vấn đề ngày cụ thể chưa chốt.",
+          "review_handled": true
+        }
+      ],
+      "audit_findings_supported": []
+    },
+    {
+      "id": "H04",
+      "alternative": null,
+      "note": "Không tính 90 ngày thành due_raw. Ba cảnh báo audit bị loại do trích dẫn không nguyên văn, nên không nằm trong precision cảnh báo đã trả về.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L006 phủ định giữ vô thời hạn; tri thức phụ nhắc giới hạn phạm vi, không biến phương án cũ thành kết luận."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L004 chốt 90 ngày cho dữ liệu thử nghiệm; không suy thành deadline hoặc áp dụng production."
+        },
+        {
+          "index": 2,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L005 nói production chưa bàn/phê duyệt, đúng open và không tạo chính sách production."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "test_data_retention",
+          "index": 1,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng phương án cuối, phạm vi test và số ngày; không có owner/due/authority được xác minh.",
+          "review_handled": false
+        }
+      ],
+      "audit_findings_supported": []
+    },
+    {
+      "id": "H05",
+      "alternative": null,
+      "note": "Audit đòi timeline/condition từ khả năng Bình rảnh tuần sau, trái L005. Bốn bản ghi có căn cứ nhưng còn phân mảnh/dư thừa; precision grounding không đo độ gọn.",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L001 request thật; owner/due null phù hợp L003-L005, không coi Bình đã nhận."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L002 là lời hỏi Bình nhận việc, ghi như request chứ không thành action/assigned."
+        },
+        {
+          "index": 2,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L004 xác nhận chưa giao cho ai, issue phụ có nguồn."
+        },
+        {
+          "index": 3,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L005 chưa có deadline; tuần sau chỉ xem lịch, không thành hạn công việc."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "installation_guide",
+          "index": 0,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng request chưa giao, không bịa người hay hạn tuần sau.",
+          "review_handled": true
+        }
+      ],
+      "audit_findings_supported": [
+        false
+      ]
+    },
+    {
+      "id": "H06",
+      "alternative": null,
+      "note": "",
+      "predictions": [
+        {
+          "index": 0,
+          "supported": true,
+          "evidence_supported": true,
+          "reason": "L005 thay cả ngày 15/17 bằng trước 10 giờ ngày 16, đúng due_raw cuối; không đoán tháng/năm."
+        }
+      ],
+      "matches": [
+        {
+          "label_id": "inventory_reconciliation",
+          "index": 0,
+          "core_correct": true,
+          "fields": {
+            "meeting_status": true,
+            "execution_status": true,
+            "owner": true,
+            "supporter": true,
+            "due_raw": true,
+            "due_iso": true,
+            "condition": true
+          },
+          "reason": "Đúng công việc/Sơn/hạn cuối và source của hạn L005, due_iso null vì thiếu tháng năm.",
+          "review_handled": false
+        }
+      ],
+      "audit_findings_supported": []
+    },
+    {
+      "id": "H07",
+      "alternative": null,
+      "note": "Không bịa bản ghi là đúng; nhưng chỉ có cảnh báo LLM chung, không nói transcript mất tiếng/không đủ dữ liệu. Thiếu xử lý case-level review bắt buộc.",
+      "predictions": [],
+      "matches": [],
+      "audit_findings_supported": [],
+      "case_review_handled": false
+    }
+  ]
+}

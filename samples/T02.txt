@@ -1,0 +1,4 @@
+L001 | Minh | Tôi đề xuất phương án A cho bản thử nghiệm.
+L002 | Lan | A quá tốn kém, cần cân nhắc phương án khác.
+L003 | Khang | Tôi đề xuất chuyển sang phương án B.
+L004 | Minh | Đồng ý, chốt phương án B cho bản thử nghiệm.

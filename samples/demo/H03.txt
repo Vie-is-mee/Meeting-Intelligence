@@ -1,0 +1,6 @@
+L001 | Điều phối | Cần rà soát cấu hình gửi email trước lần thử tiếp theo.
+L002 | Anh ấy nhận rà soát cấu hình đó, tôi nghe như vậy nhưng không biết đang nói tới ai.
+L003 | Điều phối | Chưa xác nhận ai nhận việc; câu vừa rồi không đủ để giao cho một người cụ thể.
+L004 | Người A | Hay đặt hạn thứ Tư?
+L005 | Người B | Thứ Năm có vẻ hợp hơn.
+L006 | Điều phối | Chưa chọn thứ Tư hay thứ Năm và chưa giao việc rà soát cho ai.

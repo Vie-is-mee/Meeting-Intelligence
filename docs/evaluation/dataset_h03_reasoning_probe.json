@@ -1,0 +1,117 @@
+{
+  "created_utc": "2026-10-13T13:23:53.011735+00:00",
+  "model": "openai/gpt-oss-120b",
+  "engine": "llm_api",
+  "audit": true,
+  "sha256": {
+    "datasets\\meeting_eval_v1.json": "49a4e75945e32e16e376c9d1ec47096dc464661dcb985ac67f5d75ca21ac5bc9",
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\auditor.py": "264f187a71324e91ab7277d81a996c56f6fd212cda26a766c1cbc24952bf99c1",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\extractor.py": "5089866521659a4264acf2095de5324c724a9f5de6cdbf304146442af38b48fc",
+    "meeting_intelligence\\llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence\\models.py": "96e7e38e155a14822dcfdca637882259ac20f7c7c341e1280f16a7f17ed4cab2",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "1f4dd16c7ff752e64ac09427befe266ac1ff9831ec1056dfa28125cc6e2af91c",
+    "meeting_intelligence\\resolver.py": "125bca906833b5b7b7ec3d8823f6c394b9b7cba7fa40b2ba74b702afea13888e",
+    "meeting_intelligence\\verifier.py": "47544462a1aa2103b41612a761b0a4667d45051d5ae0dcf316abadd251c0ecd6"
+  },
+  "call_interval_s": 60.0,
+  "structured_outputs": "auto",
+  "generation_settings": {
+    "max_completion_tokens": 2560,
+    "audit_max_completion_tokens": 1024,
+    "temperature": 0.2,
+    "reasoning_effort": "medium"
+  },
+  "requested_cases": [
+    "H03"
+  ],
+  "complete": true,
+  "cases": [
+    {
+      "id": "H03",
+      "split": "held_out",
+      "result": "ERROR",
+      "error": "LLM trả chủ đề nhưng thiếu nội dung sự kiện; chưa công bố kết quả",
+      "audit_completed": false,
+      "duration_s": 3.59,
+      "api_calls": 1,
+      "api_tokens": {
+        "prompt_tokens": 1699,
+        "completion_tokens": 1275,
+        "total_tokens": 2974
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "email_config_review",
+                "topic": "Rà soát cấu hình gửi email",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Cần rà soát cấu hình gửi email trước lần thử tiếp theo.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": "trước lần thử tiếp theo",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "email_config_review",
+                "topic": "Rà soát cấu hình gửi email",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": "thứ Tư",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "email_config_review",
+                "topic": "Rà soát cấu hình gửi email",
+                "kind": "decision",
+                "event_type": "counterproposal",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": "thứ Năm",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "email_config_review",
+                "topic": "Rà soát cấu hình gửi email",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L006"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 3.584241499993368
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "events": [
+    {
+      "issue_key": "filter_speed",
+      "topic": "Bộ lọc chậm",
+      "kind": "feedback",
+      "event_type": "feedback_given",
+      "source_ids": [
+        "L001"
+      ],
+      "value": "Khách hàng phản hồi bộ lọc tìm kiếm chậm",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "filter_fields",
+      "topic": "Bổ sung trường lọc",
+      "kind": "request",
+      "event_type": "request_made",
+      "source_ids": [
+        "L002"
+      ],
+      "value": "Bổ sung lọc theo ngày và vị trí",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "filter_date",
+      "topic": "Ngày lọc",
+      "kind": "decision",
+      "event_type": "unresolved",
+      "source_ids": [
+        "L003"
+      ],
+      "value": "Chưa rõ ngày tạo hay ngày cập nhật",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "vpn",
+      "topic": "VPN bị ngắt",
+      "kind": "issue",
+      "event_type": "issue_reported",
+      "source_ids": [
+        "L004"
+      ],
+      "value": "VPN bị ngắt liên tục",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "api_cursor",
+      "topic": "Cách phân trang API",
+      "kind": "knowledge",
+      "event_type": "knowledge_shared",
+      "source_ids": [
+        "L005"
+      ],
+      "value": "API sử dụng cursor pagination; cần kiểm tra tài liệu mới nhất",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "filter_date",
+      "topic": "Ngày lọc",
+      "kind": "decision",
+      "event_type": "unresolved",
+      "source_ids": [
+        "L006"
+      ],
+      "value": "Chưa chốt cách tính ngày lọc",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    }
+  ]
+}

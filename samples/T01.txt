@@ -1,0 +1,8 @@
+L001 | Minh | Hôm nay chúng ta họp về phiên bản thử nghiệm.
+L002 | Lan | Tôi đề xuất phương án B.
+L003 | Minh | Chốt phương án B cho bản thử nghiệm tuần này.
+L004 | Minh | Lan phụ trách kiểm thử B, Minh hỗ trợ.
+L005 | Lan | Môi trường kiểm thử đang thiếu quyền truy cập.
+L006 | Hương | Tôi yêu cầu bổ sung hướng dẫn cấu hình cho đội kiểm thử.
+L007 | Nam | Khách hàng phản hồi màn hình tải hơi chậm.
+L008 | Minh | Chưa chốt ngày phát hành, sẽ thảo luận sau.

@@ -1,0 +1,279 @@
+{
+  "case": "D15",
+  "max_completion_tokens": 3072,
+  "temperature": 0.6,
+  "reasoning_effort": "low",
+  "prompt_sha256": "16f6dbab51e91f2a82d95024368fb01a6fa42032a09f58b973400f2bcb8210d6",
+  "attempts": [
+    {
+      "mode": "strict",
+      "result": "COMPLETED",
+      "events": [
+        {
+          "issue_key": "phuong_an_thanh_toan",
+          "topic": "phương án thanh toán",
+          "kind": "decision",
+          "event_type": "proposal",
+          "source_ids": [
+            "L002"
+          ],
+          "value": "đề xuất dùng redirect sang cổng thanh toán",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "phuong_an_thanh_toan",
+          "topic": "phương án thanh toán",
+          "kind": "decision",
+          "event_type": "agreement",
+          "source_ids": [
+            "L004"
+          ],
+          "value": "tạm chốt redirect cho bản thử nghiệm",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "phuong_an_thanh_toan",
+          "topic": "phương án thanh toán",
+          "kind": "decision",
+          "event_type": "withdrawal",
+          "source_ids": [
+            "L065"
+          ],
+          "value": "rút đề xuất redirect",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "phuong_an_thanh_toan",
+          "topic": "phương án thanh toán",
+          "kind": "decision",
+          "event_type": "agreement",
+          "source_ids": [
+            "L065",
+            "L066"
+          ],
+          "value": "đồng ý dùng thanh toán nhúng thay redirect",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "kiem_thu_luong_thanh_toan",
+          "topic": "kiểm thử luồng thanh toán",
+          "kind": "action",
+          "event_type": "assignment",
+          "source_ids": [
+            "L005"
+          ],
+          "value": "kiểm thử luồng thanh toán",
+          "owner": "Bảo",
+          "supporter": "Châu",
+          "due_raw": "thứ Sáu",
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "kiem_thu_luong_thanh_toan",
+          "topic": "kiểm thử luồng thanh toán",
+          "kind": "action",
+          "event_type": "deadline_change",
+          "source_ids": [
+            "L069"
+          ],
+          "value": null,
+          "owner": null,
+          "supporter": null,
+          "due_raw": "thứ Hai tuần sau",
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "kiem_thu_luong_thanh_toan",
+          "topic": "kiểm thử luồng thanh toán",
+          "kind": "action",
+          "event_type": "reassignment",
+          "source_ids": [
+            "L067"
+          ],
+          "value": "đổi người kiểm thử thanh toán sang Châu",
+          "owner": "Châu",
+          "supporter": "Bảo",
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "staging_login",
+          "topic": "quyền staging",
+          "kind": "issue",
+          "event_type": "issue_reported",
+          "source_ids": [
+            "L006"
+          ],
+          "value": "QA không đăng nhập được staging vì thiếu quyền",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "staging_login",
+          "topic": "quyền staging",
+          "kind": "action",
+          "event_type": "assignment",
+          "source_ids": [
+            "L007"
+          ],
+          "value": "cấp lại quyền staging cho QA",
+          "owner": "Duyên",
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "staging_login",
+          "topic": "quyền staging",
+          "kind": "issue",
+          "event_type": "issue_reported",
+          "source_ids": [
+            "L025"
+          ],
+          "value": "vấn đề staging vẫn mở",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "huong_dan_tra_cuu",
+          "topic": "hướng dẫn tra cứu mã giao dịch",
+          "kind": "request",
+          "event_type": "request_made",
+          "source_ids": [
+            "L034"
+          ],
+          "value": "có hướng dẫn tra cứu mã giao dịch cho đội hỗ trợ",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "phản_hồi_màn_hình_xác_nhận",
+          "topic": "phản hồi màn hình xác nhận",
+          "kind": "feedback",
+          "event_type": "feedback_given",
+          "source_ids": [
+            "L008"
+          ],
+          "value": "màn hình xác nhận có quá nhiều chữ",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "hoan_tien",
+          "topic": "hoàn tiền",
+          "kind": "decision",
+          "event_type": "unresolved",
+          "source_ids": [
+            "L032",
+            "L033"
+          ],
+          "value": "chưa quyết định bổ sung hoàn tiền vào phạm vi thử nghiệm",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "huong_dan_tra_cuu",
+          "topic": "hướng dẫn tra cứu mã giao dịch",
+          "kind": "action",
+          "event_type": "assignment",
+          "source_ids": [
+            "L035"
+          ],
+          "value": "ghi nhận yêu cầu hướng dẫn, chưa phân công người viết",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "phản_hồi_màn_hình_xác_nhận",
+          "topic": "phản hồi màn hình xác nhận",
+          "kind": "feedback",
+          "event_type": "feedback_given",
+          "source_ids": [
+            "L075",
+            "L076"
+          ],
+          "value": "phản hồi màn hình nhiều chữ vẫn chưa chốt câu chữ",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "staging_quyen",
+          "topic": "cấp quyền staging",
+          "kind": "action",
+          "event_type": "assignment",
+          "source_ids": [
+            "L073"
+          ],
+          "value": "phụ trách cấp quyền staging",
+          "owner": "Duyên",
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        },
+        {
+          "issue_key": "staging_quyen",
+          "topic": "cấp quyền staging",
+          "kind": "action",
+          "event_type": "assignment",
+          "source_ids": [
+            "L074"
+          ],
+          "value": "không đổi chủ người chịu trách nhiệm khi đổi người kiểm thử thanh toán",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "condition": null,
+          "clear_fields": []
+        }
+      ],
+      "api_calls": 1,
+      "api_tokens": {
+        "prompt_tokens": 4490,
+        "completion_tokens": 1853,
+        "total_tokens": 6343
+      }
+    }
+  ]
+}

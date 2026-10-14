@@ -1,0 +1,12 @@
+{
+  "method": "Tiny transport-only probe, NOT a transcript evaluation.",
+  "created_utc": "2026-10-13T17:33:34.147431+00:00",
+  "model": "openai/gpt-oss-120b",
+  "result": "COMPLETED",
+  "api_calls": 1,
+  "api_tokens": {
+    "prompt_tokens": 114,
+    "completion_tokens": 30,
+    "total_tokens": 144
+  }
+}

@@ -1,0 +1,439 @@
+'use strict';
+
+const $ = id => document.getElementById(id);
+const kinds = {decision:'Quyết định',action:'Công việc',issue:'Vướng mắc',request:'Yêu cầu',feedback:'Phản hồi',knowledge:'Tri thức'};
+const statuses = {proposed:'Chỉ mới đề xuất',agreed:'Đã thống nhất',conditional:'Chốt có điều kiện',reopened:'Chưa chốt lại',withdrawn:'Đã rút',assigned:'Đã phân công',cancelled:'Đã hủy',open:'Chưa chốt / còn mở',reported_resolved:'Được báo đã xử lý',recorded:'Đã ghi nhận',unverified:'Chưa xác định chắc chắn'};
+const events = {proposal:'Đề xuất',counterproposal:'Đề xuất thay thế',agreement:'Thống nhất',conditional_agreement:'Thống nhất có điều kiện',reopen:'Mở lại kết luận',unresolved:'Chưa chốt',withdrawal:'Rút quyết định',execution_blocked:'Chặn triển khai',assignment:'Phân công',reassignment:'Đổi người phụ trách',deadline_change:'Thay đổi thời hạn',action_cancelled:'Hủy công việc',issue_reported:'Ghi nhận vướng mắc',issue_reported_resolved:'Báo đã xử lý',request_made:'Đưa ra yêu cầu',request_changed:'Sửa yêu cầu',request_withdrawn:'Rút yêu cầu',feedback_given:'Ghi nhận phản hồi',knowledge_shared:'Chia sẻ tri thức'};
+const fields = {content:'Nội dung',meeting_status:'Trạng thái',execution_status:'Trạng thái triển khai',owner:'Người phụ trách',supporter:'Người hỗ trợ',due_raw:'Thời hạn',condition:'Điều kiện'};
+let sampleData = [], result = null, selected = -1, filter = 'all', busy = false;
+let demoData = null, backendAvailable = false;
+
+function node(tag, className, text) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  if (text !== undefined && text !== null) element.textContent = text;
+  return element;
+}
+function statusBadge(status) {
+  const tone = ['agreed','assigned','recorded','reported_resolved'].includes(status) ? 'green' : status === 'unverified' ? 'red' : 'amber';
+  return node('span', `badge ${tone}`, statuses[status] || status);
+}
+function recordPresentation(record) {
+  const content = record.content || 'Nội dung chưa được xác định.';
+  if (record.kind === 'action' && record.meeting_status === 'cancelled') return {title:'Công việc đã bị hủy',context:`Công việc trước đó: ${content}. Không còn là việc đang được giao.`};
+  if (record.kind !== 'decision') return {title: content, context: ''};
+  switch (record.meeting_status) {
+    case 'reopened': {
+      const previous = [...(record.history || [])].reverse().find(event =>
+        ['agreement','conditional_agreement'].includes(event.event_type) && event.value);
+      return {title: 'Chưa có quyết định cuối — đã mở lại',
+        context: previous ? `Từng ${previous.event_type === 'conditional_agreement' ? 'chốt có điều kiện' : 'chốt'}: ${previous.value}. Kết luận đó đã được mở lại.`
+          : `Nội dung đang được xem xét: ${content}`};
+    }
+    case 'open': return {title: 'Chưa có quyết định cuối', context: `Nội dung còn bỏ ngỏ: ${content}`};
+    case 'proposed': return {title: 'Mới là đề xuất — chưa chốt', context: `Đề xuất: ${content}`};
+    case 'withdrawn': return {title: 'Quyết định đã bị rút', context: `Nội dung đã rút: ${content}`};
+    case 'unverified': return {title: 'Chưa xác định chắc chắn kết luận cuối', context: `Nội dung cần kiểm tra: ${content}. Chưa được coi là quyết định đã chốt.`};
+    case 'conditional': return {title: `Thống nhất có điều kiện: ${content}`, context: 'Không coi đây là quyết định vô điều kiện.'};
+    case 'agreed': return {title: `Đã thống nhất: ${content}`, context: record.execution_status === 'blocked'
+      ? 'Đã chốt trong cuộc họp, nhưng chưa được triển khai.' : ''};
+    default: return {title: content, context: ''};
+  }
+}
+function conclusionBlock(record) {
+  const presentation = recordPresentation(record);
+  const block = node('div', `conclusion${record.kind === 'decision' ? ' decision-conclusion' : ''}`);
+  block.append(node('span','conclusion-label',record.kind === 'decision' ? 'KẾT LUẬN HỆ THỐNG GHI NHẬN' : 'NỘI DUNG HỆ THỐNG GHI NHẬN'));
+  block.append(node('p','conclusion-title',presentation.title));
+  if (presentation.context) block.append(node('p','conclusion-context',presentation.context));
+  return block;
+}
+function reviewLabel(status) {
+  return status === 'reviewed' ? 'Đã được người dùng kiểm tra' : status === 'needs_review'
+    ? 'Cần người kiểm tra' : 'Chờ người dùng xác nhận';
+}
+function showError(message) { $('error').textContent = message; $('error').hidden = false; }
+function countText() { $('text-count').textContent = `${$('transcript').value.length.toLocaleString('vi-VN')} ký tự`; }
+function markChanged() { if (result) $('stale').hidden = false; countText(); }
+function engineSettings() {
+  const live = $('engine').value === 'llm_api';
+  const recorded = $('engine').value === 'recorded';
+  $('audit').disabled = !live || busy;
+  $('transcript').readOnly = recorded;
+  $('file').disabled = recorded || busy;
+  $('recorded-notice').hidden = !recorded;
+  const available = demoData?.cases.some(c => c.id === $('sample').value);
+  $('analyze').disabled = busy || (recorded ? !available : !backendAvailable);
+  $('engine-note').textContent = recorded ? 'Xem đầu ra nguyên bản của lượt hồi quy. Không phân tích mới; đổi sang LLM API để nhập transcript của bạn.' : live ? 'Transcript được gửi tới API đã cấu hình. Kết quả mới có thể khác lượt demo và vẫn cần đối chiếu bằng chứng.' : 'Offline chỉ nhận diện một số mẫu quyết định; không đại diện cho năng lực LLM.';
+  if (!busy) $('analyze').replaceChildren(node('span','',recorded ? 'Xem kết quả đã lưu' : 'Phân tích cuộc họp'));
+}
+function setBusy(value) {
+  busy = value;
+  ['sample','transcript','engine','file','analyze'].forEach(id => $(id).disabled = value);
+  $('download').disabled = value || !result;
+  engineSettings();
+  const button = $('analyze');
+  button.replaceChildren();
+  if (value) button.append(node('span','spinner'));
+  button.append(node('span','',value ? 'Đang phân tích…' : 'Phân tích cuộc họp'));
+  $('run-state').classList.toggle('running', value);
+}
+function chooseSample(id) {
+  const sample = sampleData.find(item => item.id === id);
+  if (sample) {
+    $('transcript').value = sample.transcript;
+    $('sample-description').textContent = sample.description;
+  } else {
+    $('sample-description').textContent = 'Dán transcript của bạn. Không có đáp án tham chiếu cho dữ liệu tùy chỉnh.';
+  }
+  markChanged();
+  engineSettings();
+}
+
+function renderFilters() {
+  const container = $('filters');
+  container.replaceChildren();
+  const records = result.analysis.records;
+  const options = [['all',`Tất cả · ${records.length}`], ...Object.entries(kinds)
+    .filter(([kind]) => records.some(record => record.kind === kind))
+    .map(([kind, label]) => [kind, `${label} · ${records.filter(r => r.kind === kind).length}`])];
+  for (const [value, label] of options) {
+    const button = node('button', `filter${filter === value ? ' active' : ''}`, label);
+    button.setAttribute('aria-pressed', String(filter === value));
+    button.addEventListener('click', () => { filter = value; renderFilters(); renderRecords(); });
+    container.append(button);
+  }
+  container.hidden = records.length === 0;
+}
+
+function renderRecords() {
+  const container = $('records');
+  container.replaceChildren();
+  const records = result.analysis.records;
+  let visible = 0;
+  records.forEach((record, index) => {
+    if (filter !== 'all' && filter !== record.kind) return;
+    visible++;
+    const button = node('button', `record${selected === index ? ' selected' : ''}`);
+    button.setAttribute('aria-pressed', String(selected === index));
+    const top = node('div','record-top');
+    top.append(node('span','record-kind',kinds[record.kind] || record.kind), statusBadge(record.meeting_status));
+    button.append(top, node('h3','',record.topic), conclusionBlock(record));
+    const details = node('div','record-fields');
+    if (record.kind === 'action') {
+      const cancelled = record.meeting_status === 'cancelled';
+      details.append(node('span','',`${cancelled ? 'Người từng phụ trách' : 'Phụ trách'}: ${record.owner || 'Chưa nêu / cần làm rõ'}`));
+      details.append(node('span','',`${cancelled ? 'Hạn còn lưu trong bản ghi' : 'Hạn'}: ${record.due_raw || (cancelled ? 'Không có' : 'Chưa nêu')}`));
+    }
+    if (record.supporter) details.append(node('span','',`Hỗ trợ: ${record.supporter}`));
+    if (record.condition) details.append(node('span','',`Điều kiện: ${record.condition}`));
+    if (record.execution_status === 'blocked') details.append(node('span','', 'Chưa được triển khai'));
+    if (details.childNodes.length) button.append(details);
+    const bottom = node('div','record-bottom');
+    const review = record.review_status === 'needs_review';
+    bottom.append(node('span',review ? 'review' : '', `Rà soát bản ghi: ${reviewLabel(record.review_status)}`),
+      node('span','',`${record.history.length} sự kiện · ${record.evidence_ids.length} câu nguồn`), node('span','arrow','↗'));
+    button.append(bottom);
+    button.addEventListener('click', () => { selected = index; renderRecords(); renderDetail(); });
+    container.append(button);
+  });
+  if (!visible) {
+    const empty = node('div','empty-state');
+    empty.append(node('h3','', 'Không có bản ghi được trích xuất'),
+      node('p','',result.analysis.engine === 'offline_rules' ? 'Baseline offline có phạm vi hẹp. Thử T02/T03/T04 hoặc chuyển sang LLM API.' : 'Đọc transcript và cảnh báo để kiểm tra liệu hệ thống đã bỏ sót thông tin.'));
+    container.append(empty);
+  }
+}
+
+function showEvidenceTab(view) {
+  $('timeline').hidden = view !== 'history';
+  $('source-view').hidden = view !== 'transcript';
+  $('show-history').classList.toggle('active', view === 'history');
+  $('show-transcript').classList.toggle('active', view === 'transcript');
+}
+function focusSource(id) {
+  showEvidenceTab('transcript');
+  document.querySelectorAll('.source-line.focused').forEach(line => line.classList.remove('focused'));
+  const line = document.getElementById(`source-${id}`);
+  if (line) { line.classList.add('focused'); line.scrollIntoView({behavior: 'smooth', block: 'nearest'}); }
+}
+function sourceLink(id) {
+  const button = node('button','source-link',id);
+  button.setAttribute('aria-label',`Xem câu nguồn ${id}`);
+  button.addEventListener('click',() => focusSource(id));
+  return button;
+}
+
+function renderDetail() {
+  const record = result.analysis.records[selected];
+  $('detail').hidden = !record;
+  $('detail-empty').hidden = !!record;
+  if (!record) return;
+  $('detail-kind').textContent = `${kinds[record.kind]} · ${record.issue_key}`;
+  $('detail-title').textContent = record.topic;
+  $('detail-status').replaceChildren(statusBadge(record.meeting_status));
+  $('detail-conclusion').replaceChildren(conclusionBlock(record),
+    node('p','detail-review',`Rà soát bản ghi: ${reviewLabel(record.review_status)}. Đây là bước kiểm tra bản ghi, không phải trạng thái chốt của cuộc họp.`));
+  const utterances = new Map(result.analysis.utterances.map(u => [u.id,u]));
+  const timeline = $('timeline');
+  timeline.replaceChildren();
+  record.history.forEach(event => {
+    const item = node('div','timeline-event');
+    const top = node('div','event-top');
+    top.append(node('strong','',events[event.event_type] || event.event_type),node('span','source-id',event.source_ids.join(', ')));
+    item.append(top);
+    if (event.value) item.append(node('p','',event.value));
+    const values = [];
+    for (const field of ['owner','supporter','due_raw','condition']) {
+      if (event[field]) values.push(`${fields[field]}: ${event[field]}`);
+    }
+    if (event.clear_fields?.length) values.push(`Thu hồi: ${event.clear_fields.map(f => fields[f] || f).join(', ')}`);
+    if (values.length) item.append(node('p','',values.join(' · ')));
+    for (const id of event.source_ids) {
+      const source = utterances.get(id);
+      const quote = node('button','quote',source ? `${source.speaker ? source.speaker + ': ' : ''}“${source.text}”` : `Không tìm thấy ${id}`);
+      quote.addEventListener('click',() => focusSource(id));
+      item.append(quote);
+    }
+    timeline.append(item);
+  });
+  for (const finding of result.analysis.audit_findings.filter(f => f.issue_key === record.issue_key && (!f.kind || f.kind === record.kind))) {
+    const item = node('div','timeline-event');
+    item.append(node('div','event-top','Audit · phát hiện cần rà soát'),node('p','',finding.explanation));
+    const quote = node('button','quote',`“${finding.source_quote}”`);
+    quote.addEventListener('click',() => focusSource(finding.source_ids[0]));
+    item.append(quote); timeline.append(item);
+  }
+  if (record.warnings.length) {
+    const warnings = node('div','engine-note');
+    warnings.append(node('strong','','Lưu ý của bản ghi'));
+    record.warnings.forEach(warning => warnings.append(node('p','',warning)));
+    timeline.append(warnings);
+  }
+  const sourceLines = $('source-lines');
+  sourceLines.replaceChildren();
+  for (const utterance of result.analysis.utterances) {
+    const tone = record.counter_evidence_ids.includes(utterance.id) ? 'changed' : record.evidence_ids.includes(utterance.id) ? 'cited' : '';
+    const line = node('article',`source-line ${tone}`);
+    line.id = `source-${utterance.id}`;
+    const header = node('header');
+    header.append(node('span','source-id',utterance.id),node('span','',[utterance.speaker,utterance.timestamp].filter(Boolean).join(' · ') || 'Không có người nói / thời gian'));
+    line.append(header,node('p','',utterance.text));
+    sourceLines.append(line);
+  }
+  const provenance = $('field-evidence');
+  provenance.replaceChildren(node('h4','','Nguồn theo từng trường'));
+  for (const [field, ids] of Object.entries(record.field_evidence_ids || {})) {
+    const row = node('div','field-row');
+    row.append(node('span','',fields[field] || field));
+    const links = node('span');
+    ids.forEach((id,index) => { if(index) links.append(document.createTextNode(' · ')); links.append(sourceLink(id)); });
+    row.append(links); provenance.append(row);
+  }
+  provenance.append(node('p','','Nguồn có thật chưa bảo đảm cách diễn giải đúng. Hãy đọc cả ngữ cảnh.'));
+  showEvidenceTab('history');
+}
+
+function renderEvaluation() {
+  const evaluation = result.evaluation;
+  $('evaluation').hidden = !evaluation;
+  if (!evaluation) return;
+  $('evaluation-summary').textContent = `${evaluation.case} · ${evaluation.status === 'PASS' ? 'Đạt' : 'Chưa đạt'} theo đáp án tham chiếu`;
+  $('evaluation-summary').className = evaluation.status === 'PASS' ? 'eval-pass' : 'eval-fail';
+  const body = $('evaluation-body');
+  body.replaceChildren(node('p','',evaluation.label));
+  if (evaluation.errors.length) {
+    const list = node('ul');
+    evaluation.errors.forEach(error => list.append(node('li','',error)));
+    body.append(list);
+  }
+  body.append(node('h4','','Kỳ vọng trước khi chạy'));
+  for (const expected of evaluation.expectations) {
+    const item = node('div','expectation');
+    item.append(node('strong','',`${kinds[expected.kind]} · ${statuses[expected.status] || expected.status}`));
+    const parts = [];
+    if (expected.content_contains) parts.push(`Có nội dung: ${expected.content_contains}`);
+    for (const field of ['owner','supporter','due_raw','condition']) {
+      if (field in expected) parts.push(`${fields[field]}: ${expected[field] ?? 'Chưa nêu'}`);
+    }
+    if (expected.must_cite?.length) parts.push(`Nguồn: ${expected.must_cite.join(', ')}`);
+    if (expected.counter_cite?.length) parts.push(`Nguồn thay đổi: ${expected.counter_cite.join(', ')}`);
+    item.append(node('p','',parts.join(' · '))); body.append(item);
+  }
+  body.append(node('p','','PASS chỉ kiểm tra các trường đã gán nhãn; vẫn cần đọc bằng chứng để đánh giá ngữ nghĩa.'));
+  $('evaluation').open = true;
+}
+
+function renderResult() {
+  const {analysis} = result;
+  const recorded = result.source_mode === 'recorded';
+  $('metric-records').textContent = analysis.records.length;
+  $('metric-review').textContent = analysis.records.filter(r => r.review_status === 'needs_review').length;
+  $('metric-time').textContent = recorded ? 'Đã lưu' : `${result.duration_s}s`;
+  $('result-engine').textContent = recorded ? 'Bản ghi LLM đã lưu' : analysis.engine === 'llm_api' ? 'LLM API mới' : 'Offline · theo luật';
+  $('result-engine').className = `badge ${analysis.engine === 'llm_api' ? 'green' : 'amber'}`;
+  $('api-metrics').textContent = recorded ? 'Lượt xem này: 0 API call' : `${result.api_calls} API call${result.token_usage.total_tokens ? ' · ' + result.token_usage.total_tokens.toLocaleString('vi-VN') + ' token' : ''}`;
+  $('demo-review').hidden = !recorded;
+  if (recorded) {
+    const review = result.review;
+    $('demo-review').open = false;
+    $('demo-review-summary').textContent = `Đánh giá bộ kiểm thử ${review.id}: ${review.verdict === 'PASS' ? 'đạt' : 'chưa đạt đầy đủ'} · Mở để xem`;
+    const panel = $('demo-review-body');
+    panel.replaceChildren(node('p','review-explainer','Đây là nhận xét đối chiếu với đáp án do trợ lý chuẩn bị, không phải nội dung cuộc họp hoặc kết quả LLM mới. “Đạt/chưa đạt” đánh giá chất lượng trích xuất, không nói cuộc họp đã chốt hay chưa.'));
+    for (const [label,key] of [['Đáp án mong đợi','expectation'],['Nhận xét về đầu ra hệ thống','observed'],['Điều học được khi kiểm thử','lesson']]) {
+      const p = node('p'); p.append(node('b','',label + ': '), document.createTextNode(review[key])); panel.append(p);
+    }
+    const date = new Date(result.provenance.created_utc).toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'});
+    panel.append(node('small','',`Review cùng trợ lý, chưa độc lập · Lượt hồi quy bắt đầu ${date} ICT · ${result.model}. Thời gian gốc ${result.duration_s}s gồm khoảng nghỉ; không phải thời gian xem hiện tại.`));
+    $('footer-model').textContent = `Đang xem kết quả đã lưu · SHA-256 ${result.provenance.run_sha256.slice(0,12)}…`;
+  } else {
+    $('footer-model').textContent = result.model ? `Lượt phân tích mới · ${result.model}` : 'Baseline offline · không gọi LLM.';
+  }
+  $('raw-json').textContent = JSON.stringify(result, null, 2);
+  $('warnings-list').replaceChildren();
+  analysis.warnings.forEach(warning => $('warnings-list').append(node('li','',warning)));
+  $('warnings').hidden = analysis.warnings.length === 0;
+  $('warnings-summary').textContent = `${analysis.warnings.length} lưu ý của lượt chạy`;
+  filter = 'all'; selected = analysis.records.length ? 0 : -1;
+  renderFilters(); renderRecords(); renderDetail(); renderEvaluation();
+  setResultTab('records');
+}
+
+function setResultTab(view) {
+  for (const name of ['records','json']) {
+    $(`${name}-view`).hidden = name !== view;
+    $(`tab-${name}`).classList.toggle('active', name === view);
+    $(`tab-${name}`).setAttribute('aria-selected',String(name === view));
+    $(`tab-${name}`).tabIndex = name === view ? 0 : -1;
+  }
+}
+
+async function runAnalysis() {
+  if (busy) return;
+  if ($('engine').value === 'recorded') {
+    const saved = demoData?.cases.find(c => c.id === $('sample').value);
+    if (!saved || $('transcript').value !== saved.transcript) { showError('Chọn tình huống demo nguyên bản. Transcript mới cần chế độ LLM API.'); return; }
+    $('error').hidden = true;
+    result = structuredClone(saved.result);
+    renderResult(); $('stale').hidden = true;
+    $('download').disabled = false;
+    $('run-state').textContent = 'Đã mở kết quả LLM lưu từ trước · không gọi API';
+    return;
+  }
+  const text = $('transcript').value;
+  if (!text.trim()) { showError('Hãy nhập transcript hoặc chọn một tình huống mẫu.'); $('transcript').focus(); return; }
+  $('error').hidden = true;
+  setBusy(true);
+  const start = Date.now();
+  const update = () => { $('run-state').textContent = `Đang chạy ${$('engine').value === 'llm_api' ? 'LLM và kiểm chứng' : 'baseline offline'} · ${Math.floor((Date.now()-start)/1000)}s`; };
+  update(); const timer = setInterval(update,1000);
+  try {
+    const response = await fetch('/api/analyze', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({transcript:text,engine:$('engine').value,audit:$('audit').checked,sample_id:$('sample').value})});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Không thể hoàn tất phân tích.');
+    result = data;
+    renderResult();
+    $('stale').hidden = true;
+    $('run-state').textContent = `Hoàn tất · ${data.duration_s}s · chọn bản ghi để xem nguồn`;
+  } catch(error) {
+    showError(error.message === 'Failed to fetch' ? 'Không kết nối được Python. Kiểm tra terminal đang chạy python web.py.' : error.message);
+    $('run-state').textContent = 'Lượt chạy chưa hoàn tất. Kiểm tra thông báo lỗi.';
+    if (result) $('stale').hidden = false;
+  } finally { clearInterval(timer); setBusy(false); }
+}
+
+$('sample').addEventListener('change',event => chooseSample(event.target.value));
+$('transcript').addEventListener('input',markChanged);
+$('engine').addEventListener('change',() => {
+  if ($('engine').value === 'recorded' && !demoData?.cases.some(c => c.id === $('sample').value)) {
+    $('sample').value = demoData?.cases[0]?.id || 'custom'; chooseSample($('sample').value);
+  }
+  engineSettings(); markChanged();
+});
+$('audit').addEventListener('change',markChanged);
+$('analyze').addEventListener('click',runAnalysis);
+$('show-history').addEventListener('click',() => showEvidenceTab('history'));
+$('show-transcript').addEventListener('click',() => showEvidenceTab('transcript'));
+for (const view of ['records','json']) {
+  $(`tab-${view}`).addEventListener('click',() => setResultTab(view));
+  $(`tab-${view}`).addEventListener('keydown',event => {
+    if (['ArrowLeft','ArrowRight'].includes(event.key)) {
+      event.preventDefault(); const next = view === 'records' ? 'json' : 'records'; setResultTab(next); $(`tab-${next}`).focus();
+    }
+  });
+}
+$('file').addEventListener('change',async event => {
+  const file = event.target.files[0];
+  if (!file) return;
+  try {
+    if (file.size > 600000) throw new Error('Tệp quá lớn. Hãy chọn transcript dưới 600 KB.');
+    const text = await file.text();
+    if (text.length > 100000) throw new Error('Tệp vượt giới hạn 100.000 ký tự.');
+    $('transcript').value = text; $('sample').value = 'custom'; chooseSample('custom');
+  } catch(error) { showError(error.message); }
+  event.target.value = '';
+});
+$('download').addEventListener('click',() => {
+  if (!result) return;
+  const blob = new Blob([JSON.stringify(result,null,2)],{type:'application/json;charset=utf-8'});
+  const url = URL.createObjectURL(blob), link = node('a');
+  link.href = url; link.download = `meeting-analysis-${new Date().toISOString().replace(/[:.]/g,'-')}.json`;
+  document.body.append(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url),1000);
+});
+
+function populateSamples(samples) {
+  sampleData = samples;
+  $('sample').replaceChildren();
+  sampleData.forEach(sample => {
+    const option = node('option','',`${sample.id} · ${sample.description}`);
+    option.value = sample.id; $('sample').append(option);
+  });
+  const custom = node('option','','Transcript của bạn'); custom.value = 'custom'; $('sample').append(custom);
+  $('sample').value = sampleData.some(sample => sample.id === 'D01') ? 'D01' : sampleData.some(sample => sample.id === 'T03') ? 'T03' : 'custom';
+  chooseSample($('sample').value);
+  $('sample').disabled = false;
+}
+
+async function staticPreview() {
+  $('static-preview').hidden = false;
+  $('config-status').textContent = 'Demo tĩnh đã sẵn sàng; phân tích transcript mới cần backend Python.';
+  $('footer-model').textContent = 'Demo tĩnh · kết quả LLM đã lưu · không gọi API.';
+  $('run-state').textContent = 'Chọn tình huống để xem kết quả đã lưu.';
+  $('engine').value = 'recorded';
+  [...$('engine').options].forEach(option => option.disabled = option.value !== 'recorded');
+  if (demoData) { populateSamples(demoData.cases); engineSettings(); await runAnalysis(); return; }
+  const loaded = await Promise.allSettled(['T01','T02','T03','T04','T05','T06','T07'].map(async id => {
+    const responses = await Promise.all([fetch(`../samples/expected/${id}.json`), fetch(`../samples/${id}.txt`)]);
+    if (responses.some(response => !response.ok)) throw new Error('Không tải được mẫu');
+    const [expected, transcript] = await Promise.all([responses[0].json(), responses[1].text()]);
+    return {...expected, transcript};
+  }));
+  populateSamples(loaded.filter(item => item.status === 'fulfilled').map(item => item.value));
+}
+
+async function initialize() {
+  try {
+    const response = await fetch('./demo-data.json');
+    if (!response.ok) throw new Error('Thiếu dữ liệu demo');
+    demoData = await response.json();
+    const stats = demoData.summary;
+    $('demo-summary').replaceChildren(node('strong','','Bộ demo đã lưu · 8 tình huống cùng phiên bản'),node('span','',`${stats.strict_case_passed}/8 đạt đầy đủ · ${stats.core_data_passed}/8 đúng dữ liệu lõi · Có cả lỗi thật để đối chiếu`));
+    $('demo-summary').hidden = false;
+  } catch { $('engine').querySelector('[value="recorded"]').disabled = true; $('engine').value = 'offline_rules'; }
+  try {
+    const responses = await Promise.all([fetch('/api/config'),fetch('/api/samples')]);
+    if (responses.some(response => !response.ok)) throw new Error('Backend chưa sẵn sàng.');
+    const [config,data] = await Promise.all(responses.map(response => response.json()));
+    backendAvailable = true;
+    populateSamples([...(demoData?.cases || []),...data.samples]);
+    $('config-status').textContent = config.api_configured ? `Đã có cấu hình · ${config.provider} · ${config.model}` : 'Chưa có khóa API hợp lệ trong .env. Bạn vẫn chạy được chế độ offline.';
+    $('footer-model').textContent = config.model ? `Model cấu hình: ${config.model}` : 'Chế độ offline không gọi API.';
+    $('sample').disabled = false;
+    $('run-state').textContent = 'Sẵn sàng · chưa gọi API';
+    engineSettings();
+    if (demoData && $('engine').value === 'recorded') await runAnalysis();
+  } catch(error) {
+    await staticPreview();
+  }
+}
+initialize();

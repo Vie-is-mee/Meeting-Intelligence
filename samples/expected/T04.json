@@ -1,0 +1,17 @@
+{
+  "id": "T04",
+  "description": "Đã chốt B trong cuộc họp, chặn triển khai vì chờ phê duyệt",
+  "expectations": [
+    {
+      "kind": "decision",
+      "status": "agreed",
+      "execution_status": "blocked",
+      "content_contains": "B",
+      "must_cite": [
+        "L002",
+        "L003"
+      ]
+    }
+  ],
+  "category": "subtle_distinction"
+}

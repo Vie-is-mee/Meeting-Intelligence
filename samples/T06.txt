@@ -1,0 +1,7 @@
+L001 | Minh | Tôi đề xuất phương án A cho giao diện.
+L002 | Lan | Máy chủ hiện chưa có tài khoản truy cập.
+L003 | Khang | A cho giao diện không ổn, nên chuyển sang phương án B.
+L004 | Minh | Việc cấp quyền máy chủ giao cho Hương xử lý.
+L005 | Lan | Tôi nghe phản hồi rằng menu đang khó tìm.
+L006 | Minh | Chốt phương án B cho giao diện nhé.
+L007 | Lan | Riêng chuyện tài khoản máy chủ vẫn chưa giải quyết xong.

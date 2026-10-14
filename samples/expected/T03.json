@@ -1,0 +1,18 @@
+{
+  "id": "T03",
+  "description": "B từng chốt nhưng cuối cuộc họp mở lại",
+  "expectations": [
+    {
+      "kind": "decision",
+      "status": "reopened",
+      "must_cite": [
+        "L002",
+        "L003"
+      ],
+      "counter_cite": [
+        "L003"
+      ]
+    }
+  ],
+  "category": "core_reopening"
+}

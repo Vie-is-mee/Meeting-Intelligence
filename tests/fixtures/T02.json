@@ -1,0 +1,46 @@
+{
+  "events": [
+    {
+      "issue_key": "option",
+      "topic": "Lựa chọn phương án",
+      "kind": "decision",
+      "event_type": "proposal",
+      "source_ids": [
+        "L001"
+      ],
+      "value": "Phương án A",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "option",
+      "topic": "Lựa chọn phương án",
+      "kind": "decision",
+      "event_type": "counterproposal",
+      "source_ids": [
+        "L003"
+      ],
+      "value": "Phương án B",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "option",
+      "topic": "Lựa chọn phương án",
+      "kind": "decision",
+      "event_type": "agreement",
+      "source_ids": [
+        "L004"
+      ],
+      "value": "Phương án B",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    }
+  ]
+}

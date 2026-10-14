@@ -1,0 +1,6 @@
+L001 | An | Mục tiêu hôm nay là chọn cách lưu tệp đính kèm cho bản thử nghiệm.
+L002 | Bình | Tôi đề xuất lưu trên ổ đĩa của máy chủ ứng dụng.
+L003 | Chi | Cách đó khó mở rộng nếu chạy hai máy chủ, tôi đề nghị dùng object storage.
+L004 | An | Ta chỉ bàn nơi lưu tệp, chưa bàn nhà cung cấp.
+L005 | Bình | Tôi rút đề xuất lưu trên máy chủ, đồng ý chuyển sang object storage.
+L006 | An | Chốt dùng object storage cho bản thử nghiệm. Nhà cung cấp để cuộc họp sau chọn.

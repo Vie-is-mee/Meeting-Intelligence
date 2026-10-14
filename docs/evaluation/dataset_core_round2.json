@@ -1,0 +1,2456 @@
+{
+  "created_utc": "2026-10-13T12:35:18.257828+00:00",
+  "model": "openai/gpt-oss-120b",
+  "engine": "llm_api",
+  "audit": true,
+  "sha256": {
+    "datasets\\meeting_eval_v1.json": "49a4e75945e32e16e376c9d1ec47096dc464661dcb985ac67f5d75ca21ac5bc9",
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\auditor.py": "42d0e80ef573a69536dea7076ed622fa635039de84b39d507eac0d905ac16903",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\extractor.py": "9526543069a50445ea4e4db3daeb91a7868096469775fbff650a693e32ebbb23",
+    "meeting_intelligence\\llm_client.py": "a4432a25057c4e6365a5a1960605635df91fb3349b893b4764249696a728b79c",
+    "meeting_intelligence\\models.py": "96e7e38e155a14822dcfdca637882259ac20f7c7c341e1280f16a7f17ed4cab2",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "1f4dd16c7ff752e64ac09427befe266ac1ff9831ec1056dfa28125cc6e2af91c",
+    "meeting_intelligence\\resolver.py": "125bca906833b5b7b7ec3d8823f6c394b9b7cba7fa40b2ba74b702afea13888e",
+    "meeting_intelligence\\verifier.py": "aa1c7a239f2f699a2f25112b57569681018d217031a85de33bfee2c00e259957"
+  },
+  "call_interval_s": 60.0,
+  "structured_outputs": "auto",
+  "generation_settings": {
+    "max_completion_tokens": 2560,
+    "audit_max_completion_tokens": 1024,
+    "temperature": 0.6,
+    "reasoning_effort": "low"
+  },
+  "requested_cases": [
+    "D03",
+    "D04",
+    "H01",
+    "H03",
+    "H08"
+  ],
+  "complete": true,
+  "cases": [
+    {
+      "id": "D03",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Tôi đề xuất chuyển thông báo sang nhà cung cấp mới.",
+            "speaker": "Long",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Kết quả thử gửi ổn hơn, tôi ủng hộ chuyển.",
+            "speaker": "Vy",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Chốt chuyển sang nhà cung cấp mới trong phạm vi thiết kế.",
+            "speaker": "Long",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Hợp đồng chưa được pháp chế duyệt.",
+            "speaker": "Phúc",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Chưa được triển khai việc chuyển này cho đến khi pháp chế phê duyệt hợp đồng. Quyết định chọn nhà cung cấp mới vẫn giữ.",
+            "speaker": "Long",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "chuyen_nha_cung_cap",
+            "topic": "chuyển thông báo sang nhà cung cấp mới",
+            "kind": "decision",
+            "content": "Chốt chuyển sang nhà cung cấp mới trong phạm vi thiết kế.",
+            "meeting_status": "agreed",
+            "execution_status": "blocked",
+            "authority_status": "unknown",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": "pháp chế phê duyệt hợp đồng",
+            "evidence_ids": [
+              "L001",
+              "L003",
+              "L005"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L003"
+              ],
+              "content": [
+                "L003"
+              ],
+              "condition": [
+                "L005"
+              ],
+              "execution_status": [
+                "L005"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "chuyen_nha_cung_cap",
+                "topic": "chuyển thông báo sang nhà cung cấp mới",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Tôi đề xuất chuyển thông báo sang nhà cung cấp mới.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "chuyen_nha_cung_cap",
+                "topic": "chuyển thông báo sang nhà cung cấp mới",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "Chốt chuyển sang nhà cung cấp mới trong phạm vi thiết kế.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "chuyen_nha_cung_cap",
+                "topic": "chuyển thông báo sang nhà cung cấp mới",
+                "kind": "decision",
+                "event_type": "execution_blocked",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "Chưa được triển khai việc chuyển này.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "pháp chế phê duyệt hợp đồng",
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "hop_dong_duyet",
+            "topic": "hợp đồng pháp chế duyệt",
+            "kind": "issue",
+            "content": "Hợp đồng chưa được pháp chế duyệt.",
+            "meeting_status": "open",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L004"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L004"
+              ],
+              "content": [
+                "L004"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "hop_dong_duyet",
+                "topic": "hợp đồng pháp chế duyệt",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "Hợp đồng chưa được pháp chế duyệt.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "audit_completed": true,
+      "duration_s": 61.0,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 4183,
+        "completion_tokens": 925,
+        "total_tokens": 5108
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "chuyen_nha_cung_cap",
+                "topic": "chuyển thông báo sang nhà cung cấp mới",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Tôi đề xuất chuyển thông báo sang nhà cung cấp mới.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "chuyen_nha_cung_cap",
+                "topic": "chuyển thông báo sang nhà cung cấp mới",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "Chốt chuyển sang nhà cung cấp mới trong phạm vi thiết kế.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "hop_dong_duyet",
+                "topic": "hợp đồng pháp chế duyệt",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "Hợp đồng chưa được pháp chế duyệt.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "chuyen_nha_cung_cap",
+                "topic": "chuyển thông báo sang nhà cung cấp mới",
+                "kind": "decision",
+                "event_type": "execution_blocked",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "Chưa được triển khai việc chuyển này.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "pháp chế phê duyệt hợp đồng",
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 2.4153469000011683
+        },
+        {
+          "response": {
+            "findings": []
+          },
+          "elapsed_s": 58.56939410000632
+        }
+      ]
+    },
+    {
+      "id": "D04",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Chốt phát hành bản beta nếu kiểm thử tải đạt 500 người đồng thời.",
+            "speaker": "Thu",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Môi trường hiện chỉ đo đáng tin đến 300 người.",
+            "speaker": "Kiên",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Sửa điều kiện: chỉ phát hành beta nếu kiểm thử tải đạt 300 người đồng thời và không có lỗi nghiêm trọng.",
+            "speaker": "Thu",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Tôi mới mô tả khả năng đo, chưa nói kiểm thử đã đạt.",
+            "speaker": "Kiên",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Đúng, các điều kiện đó chưa được xác nhận đạt.",
+            "speaker": "Thu",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "phat_hanh_beta",
+            "topic": "phát hành bản beta",
+            "kind": "decision",
+            "content": "phát hành bản beta",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001",
+              "L003",
+              "L005"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L005"
+              ],
+              "content": [
+                "L005"
+              ],
+              "condition": [
+                "L005"
+              ],
+              "execution_status": [
+                "L005"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "phat_hanh_beta",
+                "topic": "phát hành bản beta",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "phát hành bản beta",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "phat_hanh_beta",
+                "topic": "phát hành bản beta",
+                "kind": "decision",
+                "event_type": "counterproposal",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "phát hành bản beta",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "kiểm thử tải đạt 300 người đồng thời và không có lỗi nghiêm trọng",
+                "clear_fields": []
+              },
+              {
+                "issue_key": "phat_hanh_beta",
+                "topic": "phát hành bản beta",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "phát hành bản beta",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Audit trích dẫn không có nguyên văn trong câu nguồn; loại cảnh báo thiếu căn cứ",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "audit_completed": true,
+      "duration_s": 120.17,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 4038,
+        "completion_tokens": 880,
+        "total_tokens": 4918
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "phat_hanh_beta",
+                "topic": "phát hành bản beta",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "phát hành bản beta",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "phat_hanh_beta",
+                "topic": "phát hành bản beta",
+                "kind": "decision",
+                "event_type": "counterproposal",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "phát hành bản beta",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "kiểm thử tải đạt 300 người đồng thời và không có lỗi nghiêm trọng",
+                "clear_fields": []
+              },
+              {
+                "issue_key": "phat_hanh_beta",
+                "topic": "phát hành bản beta",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "phát hành bản beta",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 61.14887259999523
+        },
+        {
+          "response": {
+            "findings": [
+              {
+                "issue_key": "phat_hanh_beta",
+                "kind": "decision",
+                "category": "missing_late_change",
+                "severity": "high",
+                "source_ids": [
+                  "L003",
+                  "L005"
+                ],
+                "source_quote": "Sửa điều kiện: chỉ phát hành beta nếu kiểm thử tải đạt 300 người đồng thời và không có lỗi nghiêm trọng.\\nĐúng, các điều kiện đó chưa được xác nhận đạt.",
+                "explanation": "The transcript introduces a revised condition for the beta release (L003) and later confirms that the condition has not been met (L005). The final record does not capture this updated condition or the acknowledgment that it remains unmet, resulting in a missing late change."
+              }
+            ]
+          },
+          "elapsed_s": 59.01983950000431
+        }
+      ]
+    },
+    {
+      "id": "H01",
+      "split": "held_out",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Chốt bật đồng bộ tự động nếu bảo mật duyệt quyền đọc dữ liệu.",
+            "speaker": "Diệp",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Tôi nhận soạn danh sách quyền cần xin, chưa có hạn hoàn thành.",
+            "speaker": "Huy",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Quyền đọc dữ liệu cá nhân cần được làm rõ trước.",
+            "speaker": "Sang",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Tôi mở lại lựa chọn bật đồng bộ tự động; hôm nay chưa chốt bật hay giữ đồng bộ thủ công.",
+            "speaker": "Diệp",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Việc tôi soạn danh sách quyền vẫn thực hiện dù lựa chọn đồng bộ chưa chốt.",
+            "speaker": "Huy",
+            "timestamp": null
+          },
+          {
+            "id": "L006",
+            "order": 6,
+            "text": "Đúng, không hủy việc soạn danh sách quyền.",
+            "speaker": "Diệp",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "dong_bo_tu_dong",
+            "topic": "bật đồng bộ tự động",
+            "kind": "decision",
+            "content": "bật đồng bộ tự động nếu bảo mật duyệt quyền đọc dữ liệu",
+            "meeting_status": "reopened",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001",
+              "L004"
+            ],
+            "counter_evidence_ids": [
+              "L004"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L004"
+              ],
+              "content": [
+                "L001"
+              ],
+              "execution_status": [
+                "L004"
+              ],
+              "condition": [
+                "L004"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "dong_bo_tu_dong",
+                "topic": "bật đồng bộ tự động",
+                "kind": "decision",
+                "event_type": "conditional_agreement",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "bật đồng bộ tự động nếu bảo mật duyệt quyền đọc dữ liệu",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "nếu bảo mật duyệt quyền đọc dữ liệu",
+                "clear_fields": []
+              },
+              {
+                "issue_key": "dong_bo_tu_dong",
+                "topic": "bật đồng bộ tự động",
+                "kind": "decision",
+                "event_type": "reopen",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "mở lại lựa chọn bật đồng bộ tự động",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "soan_danh_sach_quyen",
+            "topic": "soạn danh sách quyền",
+            "kind": "action",
+            "content": "soạn danh sách quyền cần xin",
+            "meeting_status": "assigned",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "owner": "Huy",
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L002"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L002"
+              ],
+              "content": [
+                "L002"
+              ],
+              "owner": [
+                "L002"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "soan_danh_sach_quyen",
+                "topic": "soạn danh sách quyền",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "soạn danh sách quyền cần xin",
+                "owner": "Huy",
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Audit trích dẫn không có nguyên văn trong câu nguồn; loại cảnh báo thiếu căn cứ",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "audit_completed": true,
+      "duration_s": 121.73,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 4228,
+        "completion_tokens": 965,
+        "total_tokens": 5193
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "dong_bo_tu_dong",
+                "topic": "bật đồng bộ tự động",
+                "kind": "decision",
+                "event_type": "conditional_agreement",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "bật đồng bộ tự động nếu bảo mật duyệt quyền đọc dữ liệu",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "nếu bảo mật duyệt quyền đọc dữ liệu",
+                "clear_fields": []
+              },
+              {
+                "issue_key": "dong_bo_tu_dong",
+                "topic": "bật đồng bộ tự động",
+                "kind": "decision",
+                "event_type": "reopen",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "mở lại lựa chọn bật đồng bộ tự động",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "soan_danh_sach_quyen",
+                "topic": "soạn danh sách quyền",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "soạn danh sách quyền cần xin",
+                "owner": "Huy",
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 61.036847399998805
+        },
+        {
+          "response": {
+            "findings": [
+              {
+                "issue_key": "dong_bo_tu_dong",
+                "kind": "decision",
+                "category": "missing_late_change",
+                "severity": "high",
+                "source_ids": [
+                  "L001",
+                  "L004"
+                ],
+                "source_quote": "Chốt bật đồng bộ tự động nếu bảo mật duyệt quyền đọc dữ liệu. ... Tôi mở lại lựa chọn bật đồng bộ tự động; hôm nay chưa chốt bật hay giữ đồng bộ thủ công.",
+                "explanation": "Transcripts L001 và L004 đều chứa điều kiện \"nếu bảo mật duyệt quyền đọc dữ liệu\". Records only store the condition from L004, omitting the original condition stated in L001. This omission means the decision's conditional clause is incomplete, potentially leading to misinterpretation of the agreed requirement."
+              }
+            ]
+          },
+          "elapsed_s": 60.67562540000654
+        }
+      ]
+    },
+    {
+      "id": "H03",
+      "split": "held_out",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Cần rà soát cấu hình gửi email trước lần thử tiếp theo.",
+            "speaker": "Điều phối",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Anh ấy nhận rà soát cấu hình đó, tôi nghe như vậy nhưng không biết đang nói tới ai.",
+            "speaker": null,
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Chưa xác nhận ai nhận việc; câu vừa rồi không đủ để giao cho một người cụ thể.",
+            "speaker": "Điều phối",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Hay đặt hạn thứ Tư?",
+            "speaker": "Người A",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Thứ Năm có vẻ hợp hơn.",
+            "speaker": "Người B",
+            "timestamp": null
+          },
+          {
+            "id": "L006",
+            "order": 6,
+            "text": "Chưa chọn thứ Tư hay thứ Năm và chưa giao việc rà soát cho ai.",
+            "speaker": "Điều phối",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "review_email_config",
+            "topic": "rà soát cấu hình gửi email",
+            "kind": "request",
+            "content": "Cần rà soát cấu hình gửi email trước lần thử tiếp theo.",
+            "meeting_status": "recorded",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "review_email_config",
+                "topic": "rà soát cấu hình gửi email",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Cần rà soát cấu hình gửi email trước lần thử tiếp theo.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "deadline_rasoc",
+            "topic": "hạn ngày rà soát",
+            "kind": "decision",
+            "content": "Chưa chọn thứ Tư hay thứ Năm và chưa giao việc rà soát cho ai.",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L004",
+              "L005",
+              "L006"
+            ],
+            "counter_evidence_ids": [
+              "L004",
+              "L005",
+              "L006"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L004",
+                "L005",
+                "L006"
+              ],
+              "content": [
+                "L004",
+                "L005",
+                "L006"
+              ],
+              "condition": [
+                "L004",
+                "L005",
+                "L006"
+              ],
+              "execution_status": [
+                "L004",
+                "L005",
+                "L006"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Kiểm tra lại missing_late_change: The decision record for deadline_rasoc reflects only that a day and assignee were not chosen, but the meeting discussion actually considered specific days (Wednesday and Thursday) and should have captured the chosen deadline and assigned owner. The absence of this late change (selection of a day and assignment) constitutes a missing_late_change issue. (nguồn: L004, L005, L006)"
+            ],
+            "history": [
+              {
+                "issue_key": "deadline_rasoc",
+                "topic": "hạn ngày rà soát",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L004",
+                  "L005",
+                  "L006"
+                ],
+                "value": "Chưa chọn thứ Tư hay thứ Năm và chưa giao việc rà soát cho ai.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": [
+          {
+            "issue_key": "deadline_rasoc",
+            "kind": "decision",
+            "category": "missing_late_change",
+            "severity": "high",
+            "source_ids": [
+              "L004",
+              "L005",
+              "L006"
+            ],
+            "source_quote": "Chưa chọn thứ Tư hay thứ Năm và chưa giao việc rà soát cho ai.",
+            "explanation": "The decision record for deadline_rasoc reflects only that a day and assignee were not chosen, but the meeting discussion actually considered specific days (Wednesday and Thursday) and should have captured the chosen deadline and assigned owner. The absence of this late change (selection of a day and assignment) constitutes a missing_late_change issue."
+          }
+        ]
+      },
+      "audit_completed": true,
+      "duration_s": 119.86,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 4177,
+        "completion_tokens": 642,
+        "total_tokens": 4819
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "review_email_config",
+                "topic": "rà soát cấu hình gửi email",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Cần rà soát cấu hình gửi email trước lần thử tiếp theo.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "deadline_rasoc",
+                "topic": "hạn ngày rà soát",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L004",
+                  "L005",
+                  "L006"
+                ],
+                "value": "Chưa chọn thứ Tư hay thứ Năm và chưa giao việc rà soát cho ai.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 58.54005199999665
+        },
+        {
+          "response": {
+            "findings": [
+              {
+                "issue_key": "deadline_rasoc",
+                "kind": "decision",
+                "category": "missing_late_change",
+                "severity": "high",
+                "source_ids": [
+                  "L004",
+                  "L005",
+                  "L006"
+                ],
+                "source_quote": "Chưa chọn thứ Tư hay thứ Năm và chưa giao việc rà soát cho ai.",
+                "explanation": "The decision record for deadline_rasoc reflects only that a day and assignee were not chosen, but the meeting discussion actually considered specific days (Wednesday and Thursday) and should have captured the chosen deadline and assigned owner. The absence of this late change (selection of a day and assignment) constitutes a missing_late_change issue."
+              }
+            ]
+          },
+          "elapsed_s": 61.295137999986764
+        }
+      ]
+    },
+    {
+      "id": "H08",
+      "split": "held_out",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Hôm nay bàn thời gian lưu log thử nghiệm, bộ log mẫu và dữ liệu kiểm thử.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Tôi đề xuất lưu log thử nghiệm 14 ngày.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Chốt lưu log thử nghiệm 14 ngày cho đợt thử nội bộ.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Vũ xuất bộ log mẫu đã ẩn thông tin cá nhân, hạn thứ Sáu; Oanh hỗ trợ.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Duy xuất danh sách ID dữ liệu test, hạn thứ Tư; không gộp với bộ log mẫu.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L006",
+            "order": 6,
+            "text": "Tôi nhận danh sách ID test.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L007",
+            "order": 7,
+            "text": "Dashboard thiếu log của thiết bị Android.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L008",
+            "order": 8,
+            "text": "Tôi yêu cầu thêm chức năng xuất CSV trên dashboard.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L009",
+            "order": 9,
+            "text": "Đội hỗ trợ phản hồi vị trí menu bộ lọc khó tìm.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L010",
+            "order": 10,
+            "text": "Theo tài liệu cũ, log processor dùng hàng đợi để xử lý; cần đối chiếu cấu hình mới.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L011",
+            "order": 11,
+            "text": "Ta đang nói về đợt thử nội bộ, không chốt chính sách log production.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L012",
+            "order": 12,
+            "text": "Bộ log mẫu của tôi khác với danh sách ID test của Duy.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L013",
+            "order": 13,
+            "text": "Đúng, danh sách của tôi chỉ gồm ID dữ liệu test.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L014",
+            "order": 14,
+            "text": "Tôi không nói toàn bộ dashboard bị mất dữ liệu.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L015",
+            "order": 15,
+            "text": "Ghi đúng phạm vi log Android còn thiếu.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L016",
+            "order": 16,
+            "text": "Tôi chưa chạy tác vụ xuất log mẫu.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L017",
+            "order": 17,
+            "text": "Tôi cũng chưa xuất danh sách ID trong cuộc họp.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L018",
+            "order": 18,
+            "text": "Không có kết quả hoàn thành nào được xác nhận lúc này.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L019",
+            "order": 19,
+            "text": "Vị trí menu khó tìm là phản hồi của đội hỗ trợ, không phải lỗi truy cập.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L020",
+            "order": 20,
+            "text": "Tôi mở màn hình mô tả bộ lọc để mọi người xem.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L021",
+            "order": 21,
+            "text": "Ta xem mô tả, chưa giao việc sửa menu.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L022",
+            "order": 22,
+            "text": "Tôi đang ghi chú theo từng chủ đề.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L023",
+            "order": 23,
+            "text": "Ta giữ yêu cầu xuất CSV riêng với phản hồi menu.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L024",
+            "order": 24,
+            "text": "Đúng, người đưa yêu cầu không mặc nhiên nhận xây chức năng.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L025",
+            "order": 25,
+            "text": "Tôi chưa nhận xây chức năng CSV.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L026",
+            "order": 26,
+            "text": "Tài liệu log processor tôi nói là bản cũ.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L027",
+            "order": 27,
+            "text": "Đừng ghi mô tả hàng đợi thành thông tin đã xác minh cấu hình hiện tại.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L028",
+            "order": 28,
+            "text": "Tôi kiểm tra âm thanh, mọi người vẫn nghe được chứ?",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L029",
+            "order": 29,
+            "text": "Tôi nghe rõ.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L030",
+            "order": 30,
+            "text": "Tôi cũng nghe rõ.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L031",
+            "order": 31,
+            "text": "Ta tiếp tục xem phạm vi dữ liệu mẫu.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L032",
+            "order": 32,
+            "text": "Bộ log mẫu phải ẩn thông tin cá nhân như phân công đầu cuộc họp.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L033",
+            "order": 33,
+            "text": "Tôi đang là người hỗ trợ phần đó.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L034",
+            "order": 34,
+            "text": "Danh sách ID test không chứa dữ liệu khách hàng thật.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L035",
+            "order": 35,
+            "text": "Đây là mô tả phạm vi việc đã giao, không phải đầu việc mới.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L036",
+            "order": 36,
+            "text": "Tôi báo đã thấy log Android xuất hiện lại trên dashboard.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L037",
+            "order": 37,
+            "text": "Ghi là Oanh báo đã có log lại, chưa có kiểm tra độc lập.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L038",
+            "order": 38,
+            "text": "Chưa có ai đưa kết quả đối chiếu đủ log.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L039",
+            "order": 39,
+            "text": "Tôi chưa kiểm tra phần log Android.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L040",
+            "order": 40,
+            "text": "Chúng ta chưa thể ghi đã xác minh toàn bộ log.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L041",
+            "order": 41,
+            "text": "Phản hồi menu khó tìm vẫn chưa có cách xử lý được chốt.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L042",
+            "order": 42,
+            "text": "Tôi đang cân nhắc có còn cần CSV không.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L043",
+            "order": 43,
+            "text": "Khi nào rút yêu cầu thì nói rõ, hiện chưa rút.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L044",
+            "order": 44,
+            "text": "Tôi không dùng CSV dashboard cho việc xuất danh sách ID test.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L045",
+            "order": 45,
+            "text": "Vậy hai việc xuất dữ liệu không phụ thuộc việc có tính năng CSV mới.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L046",
+            "order": 46,
+            "text": "Ta nhắc lại tên môi trường đang xem là môi trường thử nội bộ.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L047",
+            "order": 47,
+            "text": "Tôi không đề nghị xuất dữ liệu production.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L048",
+            "order": 48,
+            "text": "Tôi không đề nghị truy cập thông tin khách hàng thật.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L049",
+            "order": 49,
+            "text": "Giữ đúng giới hạn này trong biên bản.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L050",
+            "order": 50,
+            "text": "Tôi đang nhìn lại khoảng trống ở biểu đồ.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L051",
+            "order": 51,
+            "text": "Khoảng trống đó chưa có số đo để giải thích nguyên nhân.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L052",
+            "order": 52,
+            "text": "Không tự kết luận nguyên nhân mất log.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L053",
+            "order": 53,
+            "text": "Ta còn phần rà lại thời gian lưu log.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L054",
+            "order": 54,
+            "text": "Tôi đang đọc ghi chú 14 ngày từ đầu cuộc họp.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L055",
+            "order": 55,
+            "text": "Quyết định ấy còn cần xem lại sau ý kiến bảo mật.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L056",
+            "order": 56,
+            "text": "Tôi chưa có ý kiến bảo mật được xác nhận.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L057",
+            "order": 57,
+            "text": "Chỉ có tài liệu cũ về cơ chế xử lý, không có phê duyệt lưu trữ.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L058",
+            "order": 58,
+            "text": "Không dùng tài liệu cơ chế làm bằng chứng phê duyệt chính sách.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L059",
+            "order": 59,
+            "text": "Tôi kiểm tra lịch làm bộ log mẫu.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L060",
+            "order": 60,
+            "text": "Lịch hỗ trợ của tôi có thể phải thay đổi.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L061",
+            "order": 61,
+            "text": "Chờ phần tổng kết mới đổi phân công, chưa coi câu vừa rồi là đổi người.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L062",
+            "order": 62,
+            "text": "Tôi vẫn làm danh sách ID test theo phân công.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L063",
+            "order": 63,
+            "text": "Phản hồi menu thuộc trải nghiệm tìm kiếm trong dashboard.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L064",
+            "order": 64,
+            "text": "Yêu cầu CSV thuộc tính năng xuất, không phải vị trí menu.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L065",
+            "order": 65,
+            "text": "Không gộp hai mục vì cùng nằm trên dashboard.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L066",
+            "order": 66,
+            "text": "Không có hạn mới nào được nêu cho danh sách ID test.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L067",
+            "order": 67,
+            "text": "Tôi đang ghi lại rằng chưa có kiểm tra độc lập log Android.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L068",
+            "order": 68,
+            "text": "Mọi người cho tôi thêm chút thời gian để đọc ghi chú.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L069",
+            "order": 69,
+            "text": "Ta dành phần còn lại cho những thay đổi thực sự cần chốt.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L070",
+            "order": 70,
+            "text": "Tôi không có thay đổi phạm vi việc của mình.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L071",
+            "order": 71,
+            "text": "Tôi đã đối chiếu một phần và thấy log Android vẫn bị thiếu ở khoảng thời gian khác.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L072",
+            "order": 72,
+            "text": "Vậy vấn đề thiếu log Android còn mở, lời báo xuất hiện lại trước đó chưa đủ kết luận đã hết.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L073",
+            "order": 73,
+            "text": "Tôi rút yêu cầu bổ sung tính năng xuất CSV trong đợt này.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L074",
+            "order": 74,
+            "text": "Ghi yêu cầu CSV đã rút, không ảnh hưởng hai đầu việc xuất dữ liệu đã giao.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L075",
+            "order": 75,
+            "text": "Tôi vẫn xuất danh sách ID test.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L076",
+            "order": 76,
+            "text": "Mở lại quyết định lưu log 14 ngày; cần xét lại số ngày và điều kiện bảo mật.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L077",
+            "order": 77,
+            "text": "Tôi đề nghị chỉ lưu 7 ngày nếu bảo mật duyệt phạm vi dữ liệu.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L078",
+            "order": 78,
+            "text": "Tôi đồng ý đề xuất 7 ngày có điều kiện, không giữ 14 ngày.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L079",
+            "order": 79,
+            "text": "Kết luận cuối: chỉ lưu log thử nghiệm 7 ngày nếu bảo mật phê duyệt phạm vi dữ liệu được lưu.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L080",
+            "order": 80,
+            "text": "Chưa có phê duyệt bảo mật, chưa được áp dụng thời gian lưu mới ngay.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L081",
+            "order": 81,
+            "text": "Bộ log mẫu đổi sang Oanh phụ trách, Vũ chỉ hỗ trợ; nội dung vẫn là xuất log đã ẩn thông tin cá nhân.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L082",
+            "order": 82,
+            "text": "Tôi nhận làm bộ log mẫu.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L083",
+            "order": 83,
+            "text": "Hạn bộ log mẫu dời từ thứ Sáu sang thứ Hai tuần sau.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L084",
+            "order": 84,
+            "text": "Tôi xác nhận không còn là người phụ trách chính bộ log mẫu.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L085",
+            "order": 85,
+            "text": "Hạn danh sách ID test của tôi vẫn là thứ Tư phải không?",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L086",
+            "order": 86,
+            "text": "Đúng, Duy giữ danh sách ID test và hạn thứ Tư.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L087",
+            "order": 87,
+            "text": "Phản hồi menu khó tìm vẫn được ghi nhận, chưa giao người sửa.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L088",
+            "order": 88,
+            "text": "Chưa chốt thiết kế menu mới ở cuộc họp này.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L089",
+            "order": 89,
+            "text": "Tôi không nhận xây chức năng CSV vì yêu cầu đã rút.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L090",
+            "order": 90,
+            "text": "Mô tả log processor trong tài liệu cũ vẫn cần đối chiếu cấu hình mới.",
+            "speaker": "Duy",
+            "timestamp": null
+          },
+          {
+            "id": "L091",
+            "order": 91,
+            "text": "Không ghi rằng tài liệu cũ đã được xác minh.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L092",
+            "order": 92,
+            "text": "Vấn đề log Android chưa được xác nhận xử lý xong.",
+            "speaker": "Oanh",
+            "timestamp": null
+          },
+          {
+            "id": "L093",
+            "order": 93,
+            "text": "Không có thêm phân công xử lý log Android trong cuộc họp này.",
+            "speaker": "Hân",
+            "timestamp": null
+          },
+          {
+            "id": "L094",
+            "order": 94,
+            "text": "Mọi thay đổi vừa nói chỉ cho phạm vi thử nội bộ.",
+            "speaker": "Vũ",
+            "timestamp": null
+          },
+          {
+            "id": "L095",
+            "order": 95,
+            "text": "Kết thúc, chính sách production chưa được bàn.",
+            "speaker": "Hân",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "luu_log_thoi_gian",
+            "topic": "thời gian lưu log thử nghiệm",
+            "kind": "decision",
+            "content": "chỉ lưu log thử nghiệm 7 ngày nếu bảo mật phê duyệt phạm vi dữ liệu",
+            "meeting_status": "unverified",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L003",
+              "L076",
+              "L077",
+              "L078",
+              "L079",
+              "L080"
+            ],
+            "counter_evidence_ids": [
+              "L076",
+              "L080"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L079"
+              ],
+              "content": [
+                "L079"
+              ],
+              "execution_status": [
+                "L079"
+              ],
+              "condition": [
+                "L079"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Có câu phủ định sau bằng chứng cuối có thể liên quan: L088",
+              "Kiểm tra lại missing_late_change: Mặc dù records đánh dấu quyết định lưu log 7 ngày với điều kiện bảo mật phê duyệt là \"agreed\", transcript có câu L080 khẳng định chưa có phê duyệt bảo mật và thời gian lưu mới chưa được áp dụng. Điều này cho thấy quyết định chưa thực sự được thực hiện và cần ghi nhận trạng thái chưa chốt hoặc điều kiện chưa đáp ứng, thay vì \"agreed\". (nguồn: L080)"
+            ],
+            "history": [
+              {
+                "issue_key": "luu_log_thoi_gian",
+                "topic": "thời gian lưu log thử nghiệm",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "lưu log thử nghiệm 14 ngày",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "luu_log_thoi_gian",
+                "topic": "thời gian lưu log thử nghiệm",
+                "kind": "decision",
+                "event_type": "reopen",
+                "source_ids": [
+                  "L076"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "luu_log_thoi_gian",
+                "topic": "thời gian lưu log thử nghiệm",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L077"
+                ],
+                "value": "lưu log 7 ngày nếu bảo mật duyệt phạm vi dữ liệu",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "luu_log_thoi_gian",
+                "topic": "thời gian lưu log thử nghiệm",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L078"
+                ],
+                "value": "lưu log 7 ngày nếu bảo mật phê duyệt phạm vi dữ liệu",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "bảo mật phê duyệt phạm vi dữ liệu",
+                "clear_fields": []
+              },
+              {
+                "issue_key": "luu_log_thoi_gian",
+                "topic": "thời gian lưu log thử nghiệm",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L079"
+                ],
+                "value": "chỉ lưu log thử nghiệm 7 ngày nếu bảo mật phê duyệt phạm vi dữ liệu",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "bảo mật phê duyệt phạm vi dữ liệu",
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "danh_sach_id_test",
+            "topic": "danh sách ID test",
+            "kind": "action",
+            "content": "xuất danh sách ID dữ liệu test",
+            "meeting_status": "assigned",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "owner": "Duy",
+            "supporter": null,
+            "due_raw": "thứ Tư",
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L005"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L005"
+              ],
+              "content": [
+                "L005"
+              ],
+              "owner": [
+                "L005"
+              ],
+              "due_raw": [
+                "L005"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "danh_sach_id_test",
+                "topic": "danh sách ID test",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "xuất danh sách ID dữ liệu test",
+                "owner": "Duy",
+                "supporter": null,
+                "due_raw": "thứ Tư",
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "log_android_missing",
+            "topic": "log Android thiếu",
+            "kind": "issue",
+            "content": "vấn đề thiếu log Android còn mở",
+            "meeting_status": "open",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L007",
+              "L036",
+              "L072"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L072"
+              ],
+              "content": [
+                "L072"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "log_android_missing",
+                "topic": "log Android thiếu",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L007"
+                ],
+                "value": "Dashboard thiếu log của thiết bị Android",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "log_android_missing",
+                "topic": "log Android thiếu",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L036"
+                ],
+                "value": "log Android xuất hiện lại trên dashboard",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "log_android_missing",
+                "topic": "log Android thiếu",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L072"
+                ],
+                "value": "vấn đề thiếu log Android còn mở",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "yeu_cau_csv",
+            "topic": "yêu cầu xuất CSV",
+            "kind": "request",
+            "content": "thêm chức năng xuất CSV trên dashboard",
+            "meeting_status": "withdrawn",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L008",
+              "L073"
+            ],
+            "counter_evidence_ids": [
+              "L073"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L073"
+              ],
+              "content": [
+                "L008"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "yeu_cau_csv",
+                "topic": "yêu cầu xuất CSV",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L008"
+                ],
+                "value": "thêm chức năng xuất CSV trên dashboard",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "yeu_cau_csv",
+                "topic": "yêu cầu xuất CSV",
+                "kind": "request",
+                "event_type": "request_withdrawn",
+                "source_ids": [
+                  "L073"
+                ],
+                "value": "yêu cầu CSV",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "feedback_menu",
+            "topic": "phản hồi menu khó tìm",
+            "kind": "feedback",
+            "content": "vị trí menu bộ lọc khó tìm",
+            "meeting_status": "recorded",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L009"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L009"
+              ],
+              "content": [
+                "L009"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "feedback_menu",
+                "topic": "phản hồi menu khó tìm",
+                "kind": "feedback",
+                "event_type": "feedback_given",
+                "source_ids": [
+                  "L009"
+                ],
+                "value": "vị trí menu bộ lọc khó tìm",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "knowledge_log_processor",
+            "topic": "cơ chế log processor",
+            "kind": "knowledge",
+            "content": "log processor dùng hàng đợi để xử lý; cần đối chiếu cấu hình mới",
+            "meeting_status": "unverified",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L010"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L010"
+              ],
+              "content": [
+                "L010"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Không thể xác định trạng thái cuối; cần người kiểm tra"
+            ],
+            "history": [
+              {
+                "issue_key": "knowledge_log_processor",
+                "topic": "cơ chế log processor",
+                "kind": "knowledge",
+                "event_type": "knowledge_shared",
+                "source_ids": [
+                  "L010"
+                ],
+                "value": "log processor dùng hàng đợi để xử lý; cần đối chiếu cấu hình mới",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "bo_log_mau",
+            "topic": "bộ log mẫu",
+            "kind": "action",
+            "content": "bộ log mẫu nội dung xuất log đã ẩn thông tin cá nhân",
+            "meeting_status": "assigned",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "owner": "Oanh",
+            "supporter": "Vũ",
+            "due_raw": "thứ Hai tuần sau",
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L081",
+              "L083"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L081"
+              ],
+              "content": [
+                "L081"
+              ],
+              "owner": [
+                "L081"
+              ],
+              "supporter": [
+                "L081"
+              ],
+              "due_raw": [
+                "L083"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "bo_log_mau",
+                "topic": "bộ log mẫu",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L081"
+                ],
+                "value": "bộ log mẫu nội dung xuất log đã ẩn thông tin cá nhân",
+                "owner": "Oanh",
+                "supporter": "Vũ",
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "bo_log_mau",
+                "topic": "bộ log mẫu",
+                "kind": "action",
+                "event_type": "deadline_change",
+                "source_ids": [
+                  "L083"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": "thứ Hai tuần sau",
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": [
+          {
+            "issue_key": "luu_log_thoi_gian",
+            "kind": "decision",
+            "category": "missing_late_change",
+            "severity": "high",
+            "source_ids": [
+              "L080"
+            ],
+            "source_quote": "Chưa có phê duyệt bảo mật, chưa được áp dụng thời gian lưu mới ngay.",
+            "explanation": "Mặc dù records đánh dấu quyết định lưu log 7 ngày với điều kiện bảo mật phê duyệt là \"agreed\", transcript có câu L080 khẳng định chưa có phê duyệt bảo mật và thời gian lưu mới chưa được áp dụng. Điều này cho thấy quyết định chưa thực sự được thực hiện và cần ghi nhận trạng thái chưa chốt hoặc điều kiện chưa đáp ứng, thay vì \"agreed\"."
+          }
+        ]
+      },
+      "audit_completed": true,
+      "duration_s": 119.26,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 10020,
+        "completion_tokens": 2576,
+        "total_tokens": 12596
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "luu_log_thoi_gian",
+                "topic": "thời gian lưu log thử nghiệm",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "lưu log thử nghiệm 14 ngày",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "luu_log_thoi_gian",
+                "topic": "thời gian lưu log thử nghiệm",
+                "kind": "decision",
+                "event_type": "reopen",
+                "source_ids": [
+                  "L076"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "luu_log_thoi_gian",
+                "topic": "thời gian lưu log thử nghiệm",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L077"
+                ],
+                "value": "lưu log 7 ngày nếu bảo mật duyệt phạm vi dữ liệu",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "luu_log_thoi_gian",
+                "topic": "thời gian lưu log thử nghiệm",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L078"
+                ],
+                "value": "lưu log 7 ngày nếu bảo mật phê duyệt phạm vi dữ liệu",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "bảo mật phê duyệt phạm vi dữ liệu",
+                "clear_fields": []
+              },
+              {
+                "issue_key": "luu_log_thoi_gian",
+                "topic": "thời gian lưu log thử nghiệm",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L079"
+                ],
+                "value": "chỉ lưu log thử nghiệm 7 ngày nếu bảo mật phê duyệt phạm vi dữ liệu",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "bảo mật phê duyệt phạm vi dữ liệu",
+                "clear_fields": []
+              },
+              {
+                "issue_key": "bo_log_mau",
+                "topic": "bộ log mẫu",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L081"
+                ],
+                "value": "bộ log mẫu nội dung xuất log đã ẩn thông tin cá nhân",
+                "owner": "Oanh",
+                "supporter": "Vũ",
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "bo_log_mau",
+                "topic": "bộ log mẫu",
+                "kind": "action",
+                "event_type": "deadline_change",
+                "source_ids": [
+                  "L083"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": "thứ Hai tuần sau",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "danh_sach_id_test",
+                "topic": "danh sách ID test",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "xuất danh sách ID dữ liệu test",
+                "owner": "Duy",
+                "supporter": null,
+                "due_raw": "thứ Tư",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "yeu_cau_csv",
+                "topic": "yêu cầu xuất CSV",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L008"
+                ],
+                "value": "thêm chức năng xuất CSV trên dashboard",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "yeu_cau_csv",
+                "topic": "yêu cầu xuất CSV",
+                "kind": "request",
+                "event_type": "request_withdrawn",
+                "source_ids": [
+                  "L073"
+                ],
+                "value": "yêu cầu CSV",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "feedback_menu",
+                "topic": "phản hồi menu khó tìm",
+                "kind": "feedback",
+                "event_type": "feedback_given",
+                "source_ids": [
+                  "L009"
+                ],
+                "value": "vị trí menu bộ lọc khó tìm",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "log_android_missing",
+                "topic": "log Android thiếu",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L007"
+                ],
+                "value": "Dashboard thiếu log của thiết bị Android",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "log_android_missing",
+                "topic": "log Android thiếu",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L036"
+                ],
+                "value": "log Android xuất hiện lại trên dashboard",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "log_android_missing",
+                "topic": "log Android thiếu",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L072"
+                ],
+                "value": "vấn đề thiếu log Android còn mở",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "knowledge_log_processor",
+                "topic": "cơ chế log processor",
+                "kind": "knowledge",
+                "event_type": "knowledge_shared",
+                "source_ids": [
+                  "L010"
+                ],
+                "value": "log processor dùng hàng đợi để xử lý; cần đối chiếu cấu hình mới",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 63.5173233999958
+        },
+        {
+          "response": {
+            "findings": [
+              {
+                "issue_key": "luu_log_thoi_gian",
+                "kind": "decision",
+                "category": "missing_late_change",
+                "severity": "high",
+                "source_ids": [
+                  "L080"
+                ],
+                "source_quote": "Chưa có phê duyệt bảo mật, chưa được áp dụng thời gian lưu mới ngay.",
+                "explanation": "Mặc dù records đánh dấu quyết định lưu log 7 ngày với điều kiện bảo mật phê duyệt là \"agreed\", transcript có câu L080 khẳng định chưa có phê duyệt bảo mật và thời gian lưu mới chưa được áp dụng. Điều này cho thấy quyết định chưa thực sự được thực hiện và cần ghi nhận trạng thái chưa chốt hoặc điều kiện chưa đáp ứng, thay vì \"agreed\"."
+              }
+            ]
+          },
+          "elapsed_s": 55.7277705000015
+        }
+      ]
+    }
+  ]
+}

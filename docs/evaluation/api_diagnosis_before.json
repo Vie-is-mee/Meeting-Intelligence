@@ -1,0 +1,51 @@
+{
+  "model": "openai/gpt-oss-120b",
+  "prompt_sha256": "16f6dbab51e91f2a82d95024368fb01a6fa42032a09f58b973400f2bcb8210d6",
+  "purpose": "Separate diagnostic rerun, does not replace baseline outcomes.",
+  "cases": [
+    {
+      "id": "D09",
+      "result": "COMPLETED",
+      "event_count": 11
+    },
+    {
+      "id": "D15",
+      "result": "ERROR",
+      "error": "API HTTP 400; kiểm tra giới hạn, model và JSON mode",
+      "http_status": 400,
+      "provider_code": "json_validate_failed",
+      "provider_type": "invalid_request_error",
+      "provider_message": "Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.",
+      "rejected_generation_length": 0,
+      "rejected_generation_json_valid": false,
+      "json_error": "Expecting value",
+      "json_error_position": 0
+    },
+    {
+      "id": "D16",
+      "result": "ERROR",
+      "error": "API HTTP 400; kiểm tra giới hạn, model và JSON mode",
+      "http_status": 400,
+      "provider_code": "json_validate_failed",
+      "provider_type": "invalid_request_error",
+      "provider_message": "Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.",
+      "rejected_generation_length": 0,
+      "rejected_generation_json_valid": false,
+      "json_error": "Expecting value",
+      "json_error_position": 0
+    },
+    {
+      "id": "H08",
+      "result": "ERROR",
+      "error": "API HTTP 400; kiểm tra giới hạn, model và JSON mode",
+      "http_status": 400,
+      "provider_code": "json_validate_failed",
+      "provider_type": "invalid_request_error",
+      "provider_message": "Failed to validate JSON. Please adjust your prompt. See 'failed_generation' for more details.",
+      "rejected_generation_length": 0,
+      "rejected_generation_json_valid": false,
+      "json_error": "Expecting value",
+      "json_error_position": 0
+    }
+  ]
+}

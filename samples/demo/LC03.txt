@@ -1,0 +1,5 @@
+L001 | An | Chốt chỉ thử luồng thanh toán mới ở nhóm nội bộ.
+L002 | Bình | Yêu cầu có nút quay lại bước trước.
+L003 | An | Chi viết hướng dẫn cho nhóm nội bộ, hạn cuối ngày mai.
+L004 | Chi | Tôi nhận viết hướng dẫn.
+L005 | An | Hủy việc viết hướng dẫn, bỏ hạn đã giao. Phạm vi thử nội bộ và yêu cầu nút quay lại vẫn giữ.

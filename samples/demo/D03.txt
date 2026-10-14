@@ -1,0 +1,5 @@
+L001 | Long | Tôi đề xuất chuyển thông báo sang nhà cung cấp mới.
+L002 | Vy | Kết quả thử gửi ổn hơn, tôi ủng hộ chuyển.
+L003 | Long | Chốt chuyển sang nhà cung cấp mới trong phạm vi thiết kế.
+L004 | Phúc | Hợp đồng chưa được pháp chế duyệt.
+L005 | Long | Chưa được triển khai việc chuyển này cho đến khi pháp chế phê duyệt hợp đồng. Quyết định chọn nhà cung cấp mới vẫn giữ.

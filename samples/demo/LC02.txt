@@ -1,0 +1,5 @@
+L001 | Hà | Khách hàng yêu cầu có xuất báo cáo dạng CSV.
+L002 | Sơn | Dũng thử làm bộ xuất CSV bằng thư viện X, hạn chiều mai.
+L003 | Dũng | Tôi nhận thử bộ xuất đó.
+L004 | Sơn | Hủy việc thử thư viện X vì giấy phép không phù hợp, bỏ hạn chiều mai.
+L005 | Hà | Yêu cầu xuất CSV của khách hàng vẫn giữ. Chưa chọn cách triển khai thay thế và chưa giao việc mới.

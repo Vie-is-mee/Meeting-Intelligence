@@ -1,0 +1,46 @@
+{
+  "events": [
+    {
+      "issue_key": "test_B",
+      "topic": "Kiểm thử B",
+      "kind": "action",
+      "event_type": "assignment",
+      "source_ids": [
+        "L001"
+      ],
+      "value": "Kiểm thử B",
+      "owner": "Minh",
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "login",
+      "topic": "Kiểm thử đăng nhập",
+      "kind": "request",
+      "event_type": "request_made",
+      "source_ids": [
+        "L002"
+      ],
+      "value": "Kiểm thử thêm luồng đăng nhập",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "test_B",
+      "topic": "Kiểm thử B",
+      "kind": "action",
+      "event_type": "reassignment",
+      "source_ids": [
+        "L003"
+      ],
+      "value": "Kiểm thử B",
+      "owner": "Lan",
+      "supporter": "Minh",
+      "due_raw": null,
+      "condition": null
+    }
+  ]
+}

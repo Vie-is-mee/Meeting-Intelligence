@@ -1,0 +1,16 @@
+{
+  "case": "D15",
+  "max_completion_tokens": 4096,
+  "temperature": 0.6,
+  "reasoning_effort": "low",
+  "prompt_sha256": "16f6dbab51e91f2a82d95024368fb01a6fa42032a09f58b973400f2bcb8210d6",
+  "attempts": [
+    {
+      "mode": "strict",
+      "result": "ERROR",
+      "error": "API HTTP 413 (rate_limit_exceeded) {\"rate_limit_unit\": \"TPM\", \"limit\": 8000, \"requested\": 8586}; kiểm tra giới hạn, model và chế độ đầu ra",
+      "api_calls": 1,
+      "api_tokens": {}
+    }
+  ]
+}

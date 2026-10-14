@@ -1,0 +1,1496 @@
+{
+  "engine": "llm_api",
+  "audit": "on",
+  "created_utc": "2026-10-12T16:46:33.071515+00:00",
+  "requested_cases": [
+    "T07",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T01",
+    "T02"
+  ],
+  "complete": true,
+  "summary": {
+    "PASS": 2,
+    "FAIL": 5,
+    "ERROR": 0
+  },
+  "cases": [
+    {
+      "case": "T07",
+      "category": "broad_coverage",
+      "engine": "llm_api",
+      "result": "FAIL",
+      "errors": [
+        "DƯ bản ghi ngoài đáp án: issue/loc_ngay"
+      ],
+      "records": 6,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 3579,
+        "completion_tokens": 2083,
+        "total_tokens": 5662
+      },
+      "audit_findings": 0,
+      "audit_details": [],
+      "notes": [
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "duration_s": 47.89,
+      "observed_records": [
+        {
+          "issue_key": "phan_hoi_khach_hang",
+          "topic": "bộ lọc tìm kiếm",
+          "kind": "feedback",
+          "content": "bộ lọc tìm kiếm quá chậm",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L001"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L001"
+            ],
+            "content": [
+              "L001"
+            ]
+          },
+          "review_status": "unreviewed",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "phan_hoi_khach_hang",
+              "topic": "bộ lọc tìm kiếm",
+              "kind": "feedback",
+              "event_type": "feedback_given",
+              "source_ids": [
+                "L001"
+              ],
+              "value": "bộ lọc tìm kiếm quá chậm",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "recorded"
+        },
+        {
+          "issue_key": "loc_ngay",
+          "topic": "bổ sung lọc theo ngày và vị trí",
+          "kind": "request",
+          "content": "bổ sung lọc theo ngày và vị trí",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L002"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L002"
+            ],
+            "content": [
+              "L002"
+            ]
+          },
+          "review_status": "unreviewed",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "loc_ngay",
+              "topic": "bổ sung lọc theo ngày và vị trí",
+              "kind": "request",
+              "event_type": "request_made",
+              "source_ids": [
+                "L002"
+              ],
+              "value": "bổ sung lọc theo ngày và vị trí",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "recorded"
+        },
+        {
+          "issue_key": "loc_ngay",
+          "topic": "yêu cầu lọc theo ngày",
+          "kind": "issue",
+          "content": "chưa rõ yêu cầu lọc theo ngày là ngày tạo hay ngày cập nhật",
+          "meeting_status": "open",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L003"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ]
+          },
+          "review_status": "needs_review",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "loc_ngay",
+              "topic": "yêu cầu lọc theo ngày",
+              "kind": "issue",
+              "event_type": "issue_reported",
+              "source_ids": [
+                "L003"
+              ],
+              "value": "chưa rõ yêu cầu lọc theo ngày là ngày tạo hay ngày cập nhật",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "open"
+        },
+        {
+          "issue_key": "vpn_ngat",
+          "topic": "đường truyền VPN",
+          "kind": "issue",
+          "content": "đường truyền VPN bị ngắt liên tục",
+          "meeting_status": "open",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L004"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L004"
+            ]
+          },
+          "review_status": "needs_review",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "vpn_ngat",
+              "topic": "đường truyền VPN",
+              "kind": "issue",
+              "event_type": "issue_reported",
+              "source_ids": [
+                "L004"
+              ],
+              "value": "đường truyền VPN bị ngắt liên tục",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "open"
+        },
+        {
+          "issue_key": "phan_trang_api",
+          "topic": "phân trang API",
+          "kind": "knowledge",
+          "content": "API này dùng phân trang bằng cursor; cần đối chiếu tài liệu mới nhất",
+          "meeting_status": "unverified",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L005"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L005"
+            ],
+            "content": [
+              "L005"
+            ]
+          },
+          "review_status": "needs_review",
+          "warnings": [
+            "Không thể xác định trạng thái cuối; cần người kiểm tra"
+          ],
+          "history": [
+            {
+              "issue_key": "phan_trang_api",
+              "topic": "phân trang API",
+              "kind": "knowledge",
+              "event_type": "knowledge_shared",
+              "source_ids": [
+                "L005"
+              ],
+              "value": "API này dùng phân trang bằng cursor; cần đối chiếu tài liệu mới nhất",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "unverified"
+        },
+        {
+          "issue_key": "loc_ngay",
+          "topic": "cách tính ngày lọc",
+          "kind": "decision",
+          "content": "chưa chốt cách tính ngày lọc, sẽ xác nhận lại với khách hàng",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L006"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L006"
+            ],
+            "content": [
+              "L006"
+            ]
+          },
+          "review_status": "needs_review",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "loc_ngay",
+              "topic": "cách tính ngày lọc",
+              "kind": "decision",
+              "event_type": "unresolved",
+              "source_ids": [
+                "L006"
+              ],
+              "value": "chưa chốt cách tính ngày lọc, sẽ xác nhận lại với khách hàng",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "open"
+        }
+      ],
+      "model": "openai/gpt-oss-120b"
+    },
+    {
+      "case": "T03",
+      "category": "core_reopening",
+      "engine": "llm_api",
+      "result": "FAIL",
+      "errors": [
+        "decision: status='unverified', cần 'reopened'"
+      ],
+      "records": 1,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 2383,
+        "completion_tokens": 1388,
+        "total_tokens": 3771
+      },
+      "audit_findings": 1,
+      "audit_details": [
+        {
+          "issue_key": "chon_phuong_an",
+          "kind": "decision",
+          "category": "missing_late_change",
+          "severity": "high",
+          "source_ids": [
+            "L003"
+          ],
+          "source_quote": "hôm nay chưa chốt phương án nào, cần nghe ý kiến pháp chế",
+          "explanation": "L003 reopens the decision, stating that no option has been finalized. However, the record still lists the content as \"chốt phương án B cho phần giao diện\" and includes L003 as evidence for the content field, which contradicts the later statement. The decision should be cleared or updated to reflect the reopening."
+        }
+      ],
+      "notes": [
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "duration_s": 88.89,
+      "observed_records": [
+        {
+          "issue_key": "chon_phuong_an",
+          "topic": "phương án",
+          "kind": "decision",
+          "content": "chốt phương án B cho phần giao diện",
+          "meeting_status": "unverified",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L001",
+            "L002",
+            "L003"
+          ],
+          "counter_evidence_ids": [
+            "L003"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ]
+          },
+          "review_status": "needs_review",
+          "warnings": [
+            "Kiểm tra lại missing_late_change: L003 reopens the decision, stating that no option has been finalized. However, the record still lists the content as \"chốt phương án B cho phần giao diện\" and includes L003 as evidence for the content field, which contradicts the later statement. The decision should be cleared or updated to reflect the reopening. (nguồn: L003)"
+          ],
+          "history": [
+            {
+              "issue_key": "chon_phuong_an",
+              "topic": "phương án",
+              "kind": "decision",
+              "event_type": "proposal",
+              "source_ids": [
+                "L001"
+              ],
+              "value": "đề xuất phương án B",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            },
+            {
+              "issue_key": "chon_phuong_an",
+              "topic": "phương án",
+              "kind": "decision",
+              "event_type": "agreement",
+              "source_ids": [
+                "L001",
+                "L002"
+              ],
+              "value": "chốt phương án B cho phần giao diện",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            },
+            {
+              "issue_key": "chon_phuong_an",
+              "topic": "phương án",
+              "kind": "decision",
+              "event_type": "reopen",
+              "source_ids": [
+                "L003"
+              ],
+              "value": "hôm nay chưa chốt phương án nào, cần nghe ý kiến pháp chế",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "unverified"
+        }
+      ],
+      "model": "openai/gpt-oss-120b"
+    },
+    {
+      "case": "T04",
+      "category": "subtle_distinction",
+      "engine": "llm_api",
+      "result": "FAIL",
+      "errors": [
+        "decision: status='unverified', cần 'agreed'"
+      ],
+      "records": 1,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 2403,
+        "completion_tokens": 1720,
+        "total_tokens": 4123
+      },
+      "audit_findings": 0,
+      "audit_details": [],
+      "notes": [
+        "Audit lỗi, các bản ghi có tác động cao bị giữ để kiểm tra: LLM audit trả dữ liệu không đúng mẫu; không xác nhận bản ghi",
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "duration_s": 91.26,
+      "observed_records": [
+        {
+          "issue_key": "chon_phuong_an",
+          "topic": "phương án B",
+          "kind": "decision",
+          "content": "chốt phương án B để phát triển",
+          "meeting_status": "unverified",
+          "execution_status": "blocked",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": "Chưa đủ điều kiện triển khai",
+          "evidence_ids": [
+            "L001",
+            "L002",
+            "L003"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L002",
+              "L003"
+            ],
+            "content": [
+              "L002",
+              "L003"
+            ]
+          },
+          "review_status": "needs_review",
+          "warnings": [
+            "Audit không hoàn tất; không được xem bản ghi này là đã xác nhận"
+          ],
+          "history": [
+            {
+              "issue_key": "chon_phuong_an",
+              "topic": "phương án B",
+              "kind": "decision",
+              "event_type": "proposal",
+              "source_ids": [
+                "L001"
+              ],
+              "value": "đề xuất phương án B",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            },
+            {
+              "issue_key": "chon_phuong_an",
+              "topic": "phương án B",
+              "kind": "decision",
+              "event_type": "agreement",
+              "source_ids": [
+                "L001",
+                "L002"
+              ],
+              "value": "chốt phương án B để phát triển",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            },
+            {
+              "issue_key": "chon_phuong_an",
+              "topic": "phương án B",
+              "kind": "decision",
+              "event_type": "execution_blocked",
+              "source_ids": [
+                "L002",
+                "L003"
+              ],
+              "value": "chưa được triển khai phương án B, chờ phê duyệt của pháp chế",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "unverified"
+        }
+      ],
+      "model": "openai/gpt-oss-120b"
+    },
+    {
+      "case": "T05",
+      "category": "assignment_change",
+      "engine": "llm_api",
+      "result": "FAIL",
+      "errors": [
+        "action: status='unverified', cần 'assigned'"
+      ],
+      "records": 2,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 2714,
+        "completion_tokens": 2194,
+        "total_tokens": 4908
+      },
+      "audit_findings": 2,
+      "audit_details": [
+        {
+          "issue_key": "kiem_thu_phuong_an_B",
+          "kind": "action",
+          "category": "missing_issue",
+          "severity": "high",
+          "source_ids": [
+            "L001"
+          ],
+          "source_quote": "Minh phụ trách kiểm thử phương án B.",
+          "explanation": "Bản ghi 'content' chỉ chứa \"chưa có ngày hoàn thành cụ thể\" (lấy từ L004) mà không ghi lại mô tả hành động \"kiểm thử phương án B\" được nêu trong L001 và L003. Thiếu thông tin này làm cho nội dung công việc không đầy đủ."
+        },
+        {
+          "issue_key": "kiem_thu_phuong_an_B",
+          "kind": "action",
+          "category": "unsupported_fact",
+          "severity": "medium",
+          "source_ids": [
+            "L004"
+          ],
+          "source_quote": "Chưa có ngày hoàn thành cụ thể.",
+          "explanation": "Trường 'meeting_status' trong bản ghi được gắn nguồn bằng L004, tuy nhiên L004 chỉ nói về deadline, không liên quan tới trạng thái họp/được giao việc. Nguồn đúng nên là các sự kiện assignment/reassignment (L001, L003). Việc gán sai nguồn gây hiểu lầm về trạng thái công việc."
+        }
+      ],
+      "notes": [
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "duration_s": 91.13,
+      "observed_records": [
+        {
+          "issue_key": "kiem_thu_phuong_an_B",
+          "topic": "kiểm thử phương án B",
+          "kind": "action",
+          "content": "chưa có ngày hoàn thành cụ thể",
+          "meeting_status": "unverified",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": "Lan",
+          "supporter": "Minh",
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L001",
+            "L003",
+            "L004"
+          ],
+          "counter_evidence_ids": [
+            "L001",
+            "L004"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L004"
+            ],
+            "owner": [
+              "L003"
+            ],
+            "supporter": [
+              "L003"
+            ],
+            "due_raw": [
+              "L004"
+            ]
+          },
+          "review_status": "needs_review",
+          "warnings": [
+            "Kiểm tra lại missing_issue: Bản ghi 'content' chỉ chứa \"chưa có ngày hoàn thành cụ thể\" (lấy từ L004) mà không ghi lại mô tả hành động \"kiểm thử phương án B\" được nêu trong L001 và L003. Thiếu thông tin này làm cho nội dung công việc không đầy đủ. (nguồn: L001)",
+            "Kiểm tra lại unsupported_fact: Trường 'meeting_status' trong bản ghi được gắn nguồn bằng L004, tuy nhiên L004 chỉ nói về deadline, không liên quan tới trạng thái họp/được giao việc. Nguồn đúng nên là các sự kiện assignment/reassignment (L001, L003). Việc gán sai nguồn gây hiểu lầm về trạng thái công việc. (nguồn: L004)"
+          ],
+          "history": [
+            {
+              "issue_key": "kiem_thu_phuong_an_B",
+              "topic": "kiểm thử phương án B",
+              "kind": "action",
+              "event_type": "assignment",
+              "source_ids": [
+                "L001"
+              ],
+              "value": "kiểm thử phương án B",
+              "owner": "Minh",
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            },
+            {
+              "issue_key": "kiem_thu_phuong_an_B",
+              "topic": "kiểm thử phương án B",
+              "kind": "action",
+              "event_type": "reassignment",
+              "source_ids": [
+                "L003"
+              ],
+              "value": "kiểm thử B",
+              "owner": "Lan",
+              "supporter": "Minh",
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            },
+            {
+              "issue_key": "kiem_thu_phuong_an_B",
+              "topic": "deadline for kiểm thử phương án B",
+              "kind": "action",
+              "event_type": "deadline_change",
+              "source_ids": [
+                "L004"
+              ],
+              "value": "chưa có ngày hoàn thành cụ thể",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": [
+                "due_raw"
+              ]
+            }
+          ],
+          "status": "unverified"
+        },
+        {
+          "issue_key": "kiem_thu_luong_dang_nhap",
+          "topic": "kiểm thử thêm luồng đăng nhập",
+          "kind": "request",
+          "content": "kiểm thử thêm luồng đăng nhập",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L002"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L002"
+            ],
+            "content": [
+              "L002"
+            ]
+          },
+          "review_status": "unreviewed",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "kiem_thu_luong_dang_nhap",
+              "topic": "kiểm thử thêm luồng đăng nhập",
+              "kind": "request",
+              "event_type": "request_made",
+              "source_ids": [
+                "L002"
+              ],
+              "value": "kiểm thử thêm luồng đăng nhập",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "recorded"
+        }
+      ],
+      "model": "openai/gpt-oss-120b"
+    },
+    {
+      "case": "T06",
+      "category": "interleaved",
+      "engine": "llm_api",
+      "result": "FAIL",
+      "errors": [
+        "issue: thiếu source L007",
+        "THIẾU bản ghi riêng cho kỳ vọng 4, loại feedback",
+        "DƯ bản ghi ngoài đáp án: knowledge/menu_kho_tim",
+        "DƯ bản ghi ngoài đáp án: decision/tai_khoan_may_chu"
+      ],
+      "records": 5,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 3479,
+        "completion_tokens": 3254,
+        "total_tokens": 6733
+      },
+      "audit_findings": 1,
+      "audit_details": [
+        {
+          "issue_key": "tai_khoan_may_chu",
+          "kind": "decision",
+          "category": "topic_mismatch",
+          "severity": "medium",
+          "source_ids": [
+            "L007"
+          ],
+          "source_quote": "Riêng chuyện tài khoản máy chủ vẫn chưa giải quyết xong.",
+          "explanation": "The later statement L007 was recorded as a separate decision record (kind='decision') while the same issue_key already has an 'issue' record. This creates duplicate records for the same topic with different kinds, indicating a mismatch in extraction; the unresolved status should update the existing issue record rather than create a new decision record."
+        }
+      ],
+      "notes": [
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "duration_s": 92.2,
+      "observed_records": [
+        {
+          "issue_key": "phuong_an_giao_diện",
+          "topic": "phương án giao diện",
+          "kind": "decision",
+          "content": "chốt phương án B cho giao diện",
+          "meeting_status": "agreed",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L001",
+            "L003",
+            "L006"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L006"
+            ],
+            "content": [
+              "L006"
+            ]
+          },
+          "review_status": "unreviewed",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "phuong_an_giao_diện",
+              "topic": "phương án giao diện",
+              "kind": "decision",
+              "event_type": "proposal",
+              "source_ids": [
+                "L001"
+              ],
+              "value": "đề xuất phương án A cho giao diện",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            },
+            {
+              "issue_key": "phuong_an_giao_diện",
+              "topic": "phương án giao diện",
+              "kind": "decision",
+              "event_type": "counterproposal",
+              "source_ids": [
+                "L003"
+              ],
+              "value": "chuyển sang phương án B cho giao diện",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            },
+            {
+              "issue_key": "phuong_an_giao_diện",
+              "topic": "phương án giao diện",
+              "kind": "decision",
+              "event_type": "agreement",
+              "source_ids": [
+                "L006"
+              ],
+              "value": "chốt phương án B cho giao diện",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "issue_key": "tai_khoan_may_chu",
+          "topic": "tài khoản máy chủ",
+          "kind": "issue",
+          "content": "máy chủ hiện chưa có tài khoản truy cập",
+          "meeting_status": "open",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L002"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L002"
+            ],
+            "content": [
+              "L002"
+            ]
+          },
+          "review_status": "needs_review",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "tai_khoan_may_chu",
+              "topic": "tài khoản máy chủ",
+              "kind": "issue",
+              "event_type": "issue_reported",
+              "source_ids": [
+                "L002"
+              ],
+              "value": "máy chủ hiện chưa có tài khoản truy cập",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "open"
+        },
+        {
+          "issue_key": "cap_quyen_may_chu",
+          "topic": "cấp quyền máy chủ",
+          "kind": "action",
+          "content": "cấp quyền máy chủ",
+          "meeting_status": "assigned",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": "Hương",
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L004"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L004"
+            ],
+            "owner": [
+              "L004"
+            ]
+          },
+          "review_status": "unreviewed",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "cap_quyen_may_chu",
+              "topic": "cấp quyền máy chủ",
+              "kind": "action",
+              "event_type": "assignment",
+              "source_ids": [
+                "L004"
+              ],
+              "value": "cấp quyền máy chủ",
+              "owner": "Hương",
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "assigned"
+        },
+        {
+          "issue_key": "menu_kho_tim",
+          "topic": "menu khó tìm",
+          "kind": "knowledge",
+          "content": "menu đang khó tìm",
+          "meeting_status": "unverified",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L005"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L005"
+            ],
+            "content": [
+              "L005"
+            ]
+          },
+          "review_status": "needs_review",
+          "warnings": [
+            "Không thể xác định trạng thái cuối; cần người kiểm tra"
+          ],
+          "history": [
+            {
+              "issue_key": "menu_kho_tim",
+              "topic": "menu khó tìm",
+              "kind": "knowledge",
+              "event_type": "knowledge_shared",
+              "source_ids": [
+                "L005"
+              ],
+              "value": "menu đang khó tìm",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "unverified"
+        },
+        {
+          "issue_key": "tai_khoan_may_chu",
+          "topic": "tài khoản máy chủ",
+          "kind": "decision",
+          "content": "chưa giải quyết xong tài khoản máy chủ",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L007"
+          ],
+          "counter_evidence_ids": [
+            "L007"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L007"
+            ],
+            "content": [
+              "L007"
+            ]
+          },
+          "review_status": "needs_review",
+          "warnings": [
+            "Kiểm tra lại topic_mismatch: The later statement L007 was recorded as a separate decision record (kind='decision') while the same issue_key already has an 'issue' record. This creates duplicate records for the same topic with different kinds, indicating a mismatch in extraction; the unresolved status should update the existing issue record rather than create a new decision record. (nguồn: L007)"
+          ],
+          "history": [
+            {
+              "issue_key": "tai_khoan_may_chu",
+              "topic": "tài khoản máy chủ",
+              "kind": "decision",
+              "event_type": "unresolved",
+              "source_ids": [
+                "L007"
+              ],
+              "value": "chưa giải quyết xong tài khoản máy chủ",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "open"
+        }
+      ],
+      "model": "openai/gpt-oss-120b"
+    },
+    {
+      "case": "T01",
+      "category": "normal",
+      "engine": "llm_api",
+      "result": "PASS",
+      "errors": [],
+      "records": 6,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 3699,
+        "completion_tokens": 1519,
+        "total_tokens": 5218
+      },
+      "audit_findings": 0,
+      "audit_details": [],
+      "notes": [
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "duration_s": 85.52,
+      "observed_records": [
+        {
+          "issue_key": "chon_phuong_an",
+          "topic": "phương án B",
+          "kind": "decision",
+          "content": "chốt phương án B cho bản thử nghiệm tuần này",
+          "meeting_status": "agreed",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L002",
+            "L003"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ]
+          },
+          "review_status": "needs_review",
+          "warnings": [
+            "Có câu phủ định sau bằng chứng cuối có thể liên quan: L008"
+          ],
+          "history": [
+            {
+              "issue_key": "chon_phuong_an",
+              "topic": "phương án B",
+              "kind": "decision",
+              "event_type": "proposal",
+              "source_ids": [
+                "L002"
+              ],
+              "value": "đề xuất phương án B",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            },
+            {
+              "issue_key": "chon_phuong_an",
+              "topic": "phương án B",
+              "kind": "decision",
+              "event_type": "agreement",
+              "source_ids": [
+                "L003"
+              ],
+              "value": "chốt phương án B cho bản thử nghiệm tuần này",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "issue_key": "kiem_thu_B",
+          "topic": "kiểm thử B",
+          "kind": "action",
+          "content": "Lan phụ trách kiểm thử B, Minh hỗ trợ",
+          "meeting_status": "assigned",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": "Lan",
+          "supporter": "Minh",
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L004"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L004"
+            ],
+            "owner": [
+              "L004"
+            ],
+            "supporter": [
+              "L004"
+            ]
+          },
+          "review_status": "unreviewed",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "kiem_thu_B",
+              "topic": "kiểm thử B",
+              "kind": "action",
+              "event_type": "assignment",
+              "source_ids": [
+                "L004"
+              ],
+              "value": "Lan phụ trách kiểm thử B, Minh hỗ trợ",
+              "owner": "Lan",
+              "supporter": "Minh",
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "assigned"
+        },
+        {
+          "issue_key": "truy_cap_moi_truong",
+          "topic": "Môi trường kiểm thử",
+          "kind": "issue",
+          "content": "Môi trường kiểm thử đang thiếu quyền truy cập",
+          "meeting_status": "open",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L005"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L005"
+            ],
+            "content": [
+              "L005"
+            ]
+          },
+          "review_status": "needs_review",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "truy_cap_moi_truong",
+              "topic": "Môi trường kiểm thử",
+              "kind": "issue",
+              "event_type": "issue_reported",
+              "source_ids": [
+                "L005"
+              ],
+              "value": "Môi trường kiểm thử đang thiếu quyền truy cập",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "open"
+        },
+        {
+          "issue_key": "huong_dan_cau_hinh",
+          "topic": "hướng dẫn cấu hình",
+          "kind": "request",
+          "content": "bổ sung hướng dẫn cấu hình cho đội kiểm thử",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L006"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L006"
+            ],
+            "content": [
+              "L006"
+            ]
+          },
+          "review_status": "unreviewed",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "huong_dan_cau_hinh",
+              "topic": "hướng dẫn cấu hình",
+              "kind": "request",
+              "event_type": "request_made",
+              "source_ids": [
+                "L006"
+              ],
+              "value": "bổ sung hướng dẫn cấu hình cho đội kiểm thử",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "recorded"
+        },
+        {
+          "issue_key": "phan_hoi_khach_hang",
+          "topic": "màn hình tải",
+          "kind": "feedback",
+          "content": "màn hình tải hơi chậm",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L007"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L007"
+            ],
+            "content": [
+              "L007"
+            ]
+          },
+          "review_status": "unreviewed",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "phan_hoi_khach_hang",
+              "topic": "màn hình tải",
+              "kind": "feedback",
+              "event_type": "feedback_given",
+              "source_ids": [
+                "L007"
+              ],
+              "value": "màn hình tải hơi chậm",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "recorded"
+        },
+        {
+          "issue_key": "ngay_phat_hanh",
+          "topic": "ngày phát hành",
+          "kind": "decision",
+          "content": "chưa chốt ngày phát hành",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L008"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L008"
+            ],
+            "content": [
+              "L008"
+            ]
+          },
+          "review_status": "needs_review",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "ngay_phat_hanh",
+              "topic": "ngày phát hành",
+              "kind": "decision",
+              "event_type": "unresolved",
+              "source_ids": [
+                "L008"
+              ],
+              "value": "chưa chốt ngày phát hành",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "open"
+        }
+      ],
+      "model": "openai/gpt-oss-120b"
+    },
+    {
+      "case": "T02",
+      "category": "core_positive",
+      "engine": "llm_api",
+      "result": "PASS",
+      "errors": [],
+      "records": 1,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 2526,
+        "completion_tokens": 1598,
+        "total_tokens": 4124
+      },
+      "audit_findings": 0,
+      "audit_details": [],
+      "notes": [
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "duration_s": 89.95,
+      "observed_records": [
+        {
+          "issue_key": "chon_phuong_an",
+          "topic": "phương án cho bản thử nghiệm",
+          "kind": "decision",
+          "content": "chốt phương án B cho bản thử nghiệm",
+          "meeting_status": "agreed",
+          "execution_status": "unknown",
+          "authority_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "condition": null,
+          "evidence_ids": [
+            "L001",
+            "L002",
+            "L003",
+            "L004"
+          ],
+          "counter_evidence_ids": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L004"
+            ]
+          },
+          "review_status": "unreviewed",
+          "warnings": [],
+          "history": [
+            {
+              "issue_key": "chon_phuong_an",
+              "topic": "phương án cho bản thử nghiệm",
+              "kind": "decision",
+              "event_type": "proposal",
+              "source_ids": [
+                "L001"
+              ],
+              "value": "đề xuất phương án A cho bản thử nghiệm",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            },
+            {
+              "issue_key": "chon_phuong_an",
+              "topic": "phương án cho bản thử nghiệm",
+              "kind": "decision",
+              "event_type": "counterproposal",
+              "source_ids": [
+                "L002"
+              ],
+              "value": "A quá tốn kém, cần cân nhắc phương án khác",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            },
+            {
+              "issue_key": "chon_phuong_an",
+              "topic": "phương án cho bản thử nghiệm",
+              "kind": "decision",
+              "event_type": "proposal",
+              "source_ids": [
+                "L003"
+              ],
+              "value": "đề xuất chuyển sang phương án B",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            },
+            {
+              "issue_key": "chon_phuong_an",
+              "topic": "phương án cho bản thử nghiệm",
+              "kind": "decision",
+              "event_type": "agreement",
+              "source_ids": [
+                "L004"
+              ],
+              "value": "chốt phương án B cho bản thử nghiệm",
+              "owner": null,
+              "supporter": null,
+              "due_raw": null,
+              "condition": null,
+              "clear_fields": []
+            }
+          ],
+          "status": "agreed"
+        }
+      ],
+      "model": "openai/gpt-oss-120b"
+    }
+  ],
+  "disclaimer": "Actual LLM API outputs on development cases; not held-out accuracy"
+}

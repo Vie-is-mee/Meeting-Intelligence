@@ -1,0 +1,4 @@
+L001 | Minh | Minh phụ trách kiểm thử phương án B.
+L002 | Lan | Yêu cầu kiểm thử thêm luồng đăng nhập.
+L003 | Minh | Đổi lại: Lan phụ trách kiểm thử B, Minh chỉ hỗ trợ.
+L004 | Khang | Chưa có ngày hoàn thành cụ thể.

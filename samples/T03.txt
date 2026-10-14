@@ -1,0 +1,3 @@
+L001 | Minh | Tôi đề xuất phương án B.
+L002 | Lan | Chốt phương án B cho phần giao diện.
+L003 | Minh | Khoan, hôm nay chưa chốt phương án nào, cần nghe ý kiến pháp chế.

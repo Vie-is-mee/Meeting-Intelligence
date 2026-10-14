@@ -1,0 +1,31 @@
+{
+  "method": "Manual assistant semantic review of one frozen current-core run; not independent human review and not dataset-wide metrics.",
+  "run_sha256": "340d906daceb3546291e916759500cf7822ff9eb1b4a0d9c4495c092fa7c658a",
+  "core_matches_round5_manifest": true,
+  "cases": [
+    {
+      "id": "LC01",
+      "operational": "EXTRACTION_AND_AUDIT_COMPLETED",
+      "semantic_verdict": "FAIL",
+      "observed": "Action cancelled, owner Mai, due_raw null. Duplicate request still recorded with old due_raw sáng thứ Sáu. Mechanical guard and high-severity audit finding both flag it for review.",
+      "lesson": "Correct task lifecycle fields do not suffice when an extra active request can mislead downstream work. Detection does not equal correction."
+    },
+    {
+      "id": "LC02",
+      "operational": "HTTP_429_TPD",
+      "semantic_verdict": "NOT_EVALUATED",
+      "observed": "API reported limit 200000, used 198312, requested 2791; no extraction response.",
+      "lesson": "Separate operational quota failure from model misunderstanding."
+    },
+    {
+      "id": "LC03",
+      "operational": "NOT_ATTEMPTED_AFTER_RATE_LIMIT",
+      "semantic_verdict": "NOT_EVALUATED"
+    },
+    {
+      "id": "H03",
+      "operational": "NOT_ATTEMPTED_AFTER_RATE_LIMIT",
+      "semantic_verdict": "NOT_EVALUATED"
+    }
+  ]
+}

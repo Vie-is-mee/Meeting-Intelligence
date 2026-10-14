@@ -1,0 +1,42 @@
+{
+  "id": "T07",
+  "description": "Phản hồi, yêu cầu, vấn đề và tri thức chưa xác minh",
+  "expectations": [
+    {
+      "kind": "feedback",
+      "status": "recorded",
+      "must_cite": [
+        "L001"
+      ]
+    },
+    {
+      "kind": "request",
+      "status": "recorded",
+      "must_cite": [
+        "L002"
+      ]
+    },
+    {
+      "kind": "issue",
+      "status": "open",
+      "must_cite": [
+        "L004"
+      ]
+    },
+    {
+      "kind": "knowledge",
+      "status": "unverified",
+      "must_cite": [
+        "L005"
+      ]
+    },
+    {
+      "kind": "decision",
+      "status": "open",
+      "must_cite": [
+        "L006"
+      ]
+    }
+  ],
+  "category": "broad_coverage"
+}

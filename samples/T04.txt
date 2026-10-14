@@ -1,0 +1,3 @@
+L001 | Minh | Tôi đề xuất phương án B.
+L002 | Lan | Chốt phương án B để phát triển.
+L003 | Minh | Chưa được triển khai phương án B, chờ phê duyệt của pháp chế.

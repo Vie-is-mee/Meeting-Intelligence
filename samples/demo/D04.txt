@@ -1,0 +1,5 @@
+L001 | Thu | Chốt phát hành bản beta nếu kiểm thử tải đạt 500 người đồng thời.
+L002 | Kiên | Môi trường hiện chỉ đo đáng tin đến 300 người.
+L003 | Thu | Sửa điều kiện: chỉ phát hành beta nếu kiểm thử tải đạt 300 người đồng thời và không có lỗi nghiêm trọng.
+L004 | Kiên | Tôi mới mô tả khả năng đo, chưa nói kiểm thử đã đạt.
+L005 | Thu | Đúng, các điều kiện đó chưa được xác nhận đạt.

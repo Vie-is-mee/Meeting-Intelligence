@@ -1,0 +1,18 @@
+{
+  "id": "T02",
+  "description": "Thay A bằng B và chốt B",
+  "expectations": [
+    {
+      "kind": "decision",
+      "status": "agreed",
+      "content_contains": "B",
+      "must_cite": [
+        "L004"
+      ],
+      "must_not_final_contain": [
+        "A"
+      ]
+    }
+  ],
+  "category": "core_positive"
+}

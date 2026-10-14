@@ -1,0 +1,102 @@
+{
+  "events": [
+    {
+      "issue_key": "ui",
+      "topic": "Lựa chọn giao diện",
+      "kind": "decision",
+      "event_type": "proposal",
+      "source_ids": [
+        "L001"
+      ],
+      "value": "Phương án A",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "server_account",
+      "topic": "Tài khoản máy chủ",
+      "kind": "issue",
+      "event_type": "issue_reported",
+      "source_ids": [
+        "L002"
+      ],
+      "value": "Chưa có tài khoản máy chủ",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "ui",
+      "topic": "Lựa chọn giao diện",
+      "kind": "decision",
+      "event_type": "counterproposal",
+      "source_ids": [
+        "L003"
+      ],
+      "value": "Phương án B",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "server_access_task",
+      "topic": "Cấp quyền máy chủ",
+      "kind": "action",
+      "event_type": "assignment",
+      "source_ids": [
+        "L004"
+      ],
+      "value": "Cấp quyền máy chủ",
+      "owner": "Hương",
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "menu_feedback",
+      "topic": "Menu khó tìm",
+      "kind": "feedback",
+      "event_type": "feedback_given",
+      "source_ids": [
+        "L005"
+      ],
+      "value": "Menu đang khó tìm",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "ui",
+      "topic": "Lựa chọn giao diện",
+      "kind": "decision",
+      "event_type": "agreement",
+      "source_ids": [
+        "L006"
+      ],
+      "value": "Phương án B",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    },
+    {
+      "issue_key": "server_account",
+      "topic": "Tài khoản máy chủ",
+      "kind": "issue",
+      "event_type": "issue_reported",
+      "source_ids": [
+        "L007"
+      ],
+      "value": "Chưa có tài khoản máy chủ",
+      "owner": null,
+      "supporter": null,
+      "due_raw": null,
+      "condition": null
+    }
+  ]
+}

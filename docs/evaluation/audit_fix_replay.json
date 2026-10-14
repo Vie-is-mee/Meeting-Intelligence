@@ -1,0 +1,85 @@
+{
+  "method": "Replay saved real extraction/findings through current code, NOT new LLM accuracy.",
+  "baseline_sha256": "3dae4ea325cc24fbd3c43864bf508a93653211cdc895dbd8cecd8dd2a2da28c0",
+  "cases": [
+    {
+      "id": "D02",
+      "records": [
+        {
+          "issue_key": "bo_xac_nhan_email",
+          "kind": "decision",
+          "before_audit": "withdrawn",
+          "baseline_after_audit": "unverified",
+          "new_after_audit": "withdrawn",
+          "review_status": "needs_review"
+        },
+        {
+          "issue_key": "tai_khoan_rac",
+          "kind": "issue",
+          "before_audit": "open",
+          "baseline_after_audit": "open",
+          "new_after_audit": "open",
+          "review_status": "needs_review"
+        },
+        {
+          "issue_key": "kiem_tra_so_lieu",
+          "kind": "request",
+          "before_audit": "recorded",
+          "baseline_after_audit": "recorded",
+          "new_after_audit": "recorded",
+          "review_status": "unreviewed"
+        },
+        {
+          "issue_key": "chua_nhan_viec",
+          "kind": "issue",
+          "before_audit": "open",
+          "baseline_after_audit": "open",
+          "new_after_audit": "open",
+          "review_status": "needs_review"
+        }
+      ]
+    },
+    {
+      "id": "D06",
+      "records": [
+        {
+          "issue_key": "bao_cao_chuyen_doi",
+          "kind": "action",
+          "before_audit": "cancelled",
+          "baseline_after_audit": "unverified",
+          "new_after_audit": "cancelled",
+          "review_status": "needs_review"
+        }
+      ]
+    },
+    {
+      "id": "D14",
+      "records": [
+        {
+          "issue_key": "chuyen_tien",
+          "kind": "decision",
+          "before_audit": "agreed",
+          "baseline_after_audit": "unverified",
+          "new_after_audit": "unverified",
+          "review_status": "needs_review"
+        },
+        {
+          "issue_key": "gioi_han_dang_nhap",
+          "kind": "request",
+          "before_audit": "recorded",
+          "baseline_after_audit": "recorded",
+          "new_after_audit": "recorded",
+          "review_status": "unreviewed"
+        },
+        {
+          "issue_key": "gioi_han_dang_nhap",
+          "kind": "decision",
+          "before_audit": "open",
+          "baseline_after_audit": "unverified",
+          "new_after_audit": "open",
+          "review_status": "needs_review"
+        }
+      ]
+    }
+  ]
+}

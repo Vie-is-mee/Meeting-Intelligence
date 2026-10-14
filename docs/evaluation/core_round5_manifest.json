@@ -1,0 +1,54 @@
+{
+  "created_utc": "2026-10-13T17:44:59.764425+00:00",
+  "sha256": {
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\auditor.py": "3c1ef3ba528d3fcfdc0e494a8bdd23f88e3c6fb1bb1d998fe58d3001b71738c6",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\extractor.py": "1d8f3662d4b16de3ff68f2e61b1d57d9df70e802334c37264ffb3ef0e5b46a68",
+    "meeting_intelligence\\llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence\\models.py": "96e7e38e155a14822dcfdca637882259ac20f7c7c341e1280f16a7f17ed4cab2",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "66a5cf23ac51b1245b857a549b79c3d3066eb28a40736df11e692dd02d3805b7",
+    "meeting_intelligence\\resolver.py": "3d7eb6c7220b8f72a2d8d26883bd65e0d2744f7c273d21cea2e662e2bb267ecc",
+    "meeting_intelligence\\verifier.py": "805f0fcde122c2c81dc9d5c64080c107118f3335a8969a13b1429f1839fecb8d",
+    "datasets\\meeting_eval_v1.json": "49a4e75945e32e16e376c9d1ec47096dc464661dcb985ac67f5d75ca21ac5bc9",
+    "datasets\\task_lifecycle_regression_v1.json": "96249144b21e9e598e6179c211f441afb894a22042e59d1f50e2b801e890f59c",
+    "scripts\\run_dataset.py": "f78fabc6010df29b8eb8834a96ce686f7ee2b71cc8c2dcb2854d71cdb6041dd6",
+    "scripts\\check_api_limit.py": "2dc9b8772c8ebe5d4dc85244134ef778e720f04c022343a71f889b47da7ea761",
+    "scripts\\replay_task_lifecycle_guard.py": "71f3a9af9222a28946e9fa8e9681682ec00a180fce8ac3eee51704cb35bd2db1",
+    "tests\\test_core.py": "f8aafe3ed39089db06b4c1f72daa6663298bb26a1d87f110cc5db0162a7350e8",
+    "tests\\test_dataset_metrics.py": "71c69b174b5881327331dd7fd19ae81102f96dd18b733d9b68eadd1c49b69e93",
+    "tests\\test_field_updates.py": "3f0852bb96a739d1c4fe44aa5056efeb0025c5adb84233f8ac48aa18207a80f4",
+    "tests\\test_lifecycle_scenarios.py": "08f57aa40adb10c5bfa35bb9409499b8aeba058f3da624691606be2e4e4b9060",
+    "tests\\test_llm_contract.py": "a5174dd1e5aba2a0cbe95b8d83af14ed37119043a8fec06b6e26de69971139e5",
+    "tests\\test_regressions.py": "5f43dc3e61d62709485c68d81569c90e935ffeccd86b29cfd8f707abe35fe9da",
+    "tests\\test_request_task_overlap.py": "72a38eaa563370215a662116ab746aff547beed442008ec508364a0cb76cd49e",
+    "tests\\test_stage2.py": "2f5a34a684afee5e91a4e4c28237da79ae05f24a343e08357f716057b5259957",
+    "tests\\test_structured_audit.py": "f18df388ba17b9dab1e033c84d82b972150e6e5fde801a2f7160441a857aa257",
+    "tests\\test_web.py": "e2731c9b765b728c2d068d001610f5ae049f69f846ade0b2636b9269381921b4"
+  },
+  "model": "openai/gpt-oss-120b",
+  "generation_settings": {
+    "temperature": 0.6,
+    "reasoning_effort": "low",
+    "max_completion_tokens": 2560,
+    "audit_max_completion_tokens": 1024,
+    "structured_outputs": "auto"
+  },
+  "validation": {
+    "software_tests": {
+      "command": "python -m unittest discover -s tests -q",
+      "passed": 105,
+      "total": 105
+    },
+    "saved_extraction_replay": "4 saved generations; mechanical checks passed, NOT new LLM calls",
+    "current_core_end_to_end_api": "Not completed; TPD quota blocked LC01 before resolver change; LC02/LC03/H03 not attempted in this turn"
+  },
+  "artifacts": [
+    "docs\\evaluation\\dataset_lifecycle_round4_check.json",
+    "docs\\evaluation\\rate_limit_diagnosis_round4.json",
+    "docs\\evaluation\\dataset_lifecycle_round4_verified.json",
+    "docs\\evaluation\\request_task_guard_replay_round5.json"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "purpose": "Counterexamples for task-lifecycle prompt changes; synthetic, same-assistant authored, not an independent benchmark.",
+  "cases": [
+    {
+      "id": "LC01",
+      "split": "development",
+      "title": "Giao trực tiếp rồi hủy; không tạo request và decision phụ",
+      "transcript": "L001 | Linh | Mai lập bảng đối soát cho đợt nhập kho, hạn sáng thứ Sáu.\nL002 | Mai | Tôi nhận việc lập bảng đó.\nL003 | Linh | Hủy việc lập bảng đối soát vì hệ thống đã có bản tự động.\nL004 | Linh | Bỏ luôn hạn sáng thứ Sáu; không giao việc thay thế.\nL005 | Mai | Tôi xác nhận dừng việc đã nhận.",
+      "expected": {
+        "required": ["Một action lập bảng đối soát, cancelled, owner lịch sử Mai, due_raw null; nguồn giao L001/L002, hủy L003, bỏ hạn L004"],
+        "forbidden": ["Request còn hiệu lực chỉ lặp lại câu giao L001", "Decision riêng chỉ lặp lại xác nhận dừng việc L005", "Action mới thay thế hoặc còn assigned"],
+        "allowed": ["Lý do hệ thống có bản tự động chỉ là thông tin được báo; không được coi là đã kiểm chứng độc lập"]
+      }
+    },
+    {
+      "id": "LC02",
+      "split": "development",
+      "title": "Yêu cầu nghiệp vụ vẫn giữ khi hủy một việc triển khai",
+      "transcript": "L001 | Hà | Khách hàng yêu cầu có xuất báo cáo dạng CSV.\nL002 | Sơn | Dũng thử làm bộ xuất CSV bằng thư viện X, hạn chiều mai.\nL003 | Dũng | Tôi nhận thử bộ xuất đó.\nL004 | Sơn | Hủy việc thử thư viện X vì giấy phép không phù hợp, bỏ hạn chiều mai.\nL005 | Hà | Yêu cầu xuất CSV của khách hàng vẫn giữ. Chưa chọn cách triển khai thay thế và chưa giao việc mới.",
+      "expected": {
+        "required": ["Request xuất CSV vẫn recorded", "Action thử thư viện X cancelled, owner lịch sử Dũng, due_raw null", "Cách triển khai thay thế chưa chốt, decision open"],
+        "forbidden": ["Rút hoặc xóa yêu cầu CSV vì hủy việc thử", "Chốt dùng thư viện X", "Giao Dũng hoặc người khác việc mới"],
+        "allowed": ["Issue giấy phép không phù hợp nếu có nguồn L004"]
+      }
+    },
+    {
+      "id": "LC03",
+      "split": "development",
+      "title": "Quyết định phạm vi và công việc độc lập cùng một chủ đề",
+      "transcript": "L001 | An | Chốt chỉ thử luồng thanh toán mới ở nhóm nội bộ.\nL002 | Bình | Yêu cầu có nút quay lại bước trước.\nL003 | An | Chi viết hướng dẫn cho nhóm nội bộ, hạn cuối ngày mai.\nL004 | Chi | Tôi nhận viết hướng dẫn.\nL005 | An | Hủy việc viết hướng dẫn, bỏ hạn đã giao. Phạm vi thử nội bộ và yêu cầu nút quay lại vẫn giữ.",
+      "expected": {
+        "required": ["Decision thử luồng thanh toán agreed, giữ giới hạn nhóm nội bộ", "Request nút quay lại recorded", "Action viết hướng dẫn cancelled, owner lịch sử Chi, due_raw null"],
+        "forbidden": ["Gộp/xóa decision hoặc request vì cùng chủ đề với action", "Mở rộng thử sang khách hàng", "Action viết hướng dẫn còn assigned", "Decision hủy hướng dẫn phụ chỉ lặp action_cancelled"],
+        "allowed": []
+      }
+    }
+  ]
+}

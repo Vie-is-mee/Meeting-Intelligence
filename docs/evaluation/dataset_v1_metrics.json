@@ -1,0 +1,7478 @@
+{
+  "metrics": {
+    "all": {
+      "cases": 24,
+      "reviewed_cases": 20,
+      "semantic_scoring_complete": true,
+      "pipeline_completion": {
+        "correct": 20,
+        "total": 24,
+        "rate": 0.8333333333333334
+      },
+      "audit_completion": {
+        "correct": 20,
+        "total": 24,
+        "rate": 0.8333333333333334
+      },
+      "supported_record_precision": {
+        "correct": 37,
+        "total": 45,
+        "rate": 0.8222222222222222
+      },
+      "required_record_recall_end_to_end": {
+        "correct": 23,
+        "total": 57,
+        "rate": 0.40350877192982454
+      },
+      "required_record_recall_on_completed_cases": {
+        "correct": 23,
+        "total": 31,
+        "rate": 0.7419354838709677
+      },
+      "evidence_support_accuracy": {
+        "correct": 37,
+        "total": 45,
+        "rate": 0.8222222222222222
+      },
+      "field_accuracy_on_matched_records": {
+        "meeting_status": {
+          "correct": 25,
+          "total": 29,
+          "rate": 0.8620689655172413
+        },
+        "execution_status": {
+          "correct": 28,
+          "total": 29,
+          "rate": 0.9655172413793104
+        },
+        "owner": {
+          "correct": 29,
+          "total": 29,
+          "rate": 1.0
+        },
+        "supporter": {
+          "correct": 29,
+          "total": 29,
+          "rate": 1.0
+        },
+        "due_raw": {
+          "correct": 28,
+          "total": 29,
+          "rate": 0.9655172413793104
+        },
+        "due_iso": {
+          "correct": 29,
+          "total": 29,
+          "rate": 1.0
+        },
+        "condition": {
+          "correct": 26,
+          "total": 29,
+          "rate": 0.896551724137931
+        }
+      },
+      "nonnull_field_accuracy_on_matched_records": {
+        "meeting_status": {
+          "correct": 25,
+          "total": 29,
+          "rate": 0.8620689655172413
+        },
+        "execution_status": {
+          "correct": 28,
+          "total": 29,
+          "rate": 0.9655172413793104
+        },
+        "owner": {
+          "correct": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "supporter": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "due_raw": {
+          "correct": 3,
+          "total": 4,
+          "rate": 0.75
+        },
+        "due_iso": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "condition": {
+          "correct": 0,
+          "total": 2,
+          "rate": 0.0
+        }
+      },
+      "nonnull_field_recall_end_to_end": {
+        "meeting_status": {
+          "correct": 25,
+          "total": 57,
+          "rate": 0.43859649122807015
+        },
+        "execution_status": {
+          "correct": 28,
+          "total": 57,
+          "rate": 0.49122807017543857
+        },
+        "owner": {
+          "correct": 6,
+          "total": 13,
+          "rate": 0.46153846153846156
+        },
+        "supporter": {
+          "correct": 3,
+          "total": 7,
+          "rate": 0.42857142857142855
+        },
+        "due_raw": {
+          "correct": 3,
+          "total": 9,
+          "rate": 0.3333333333333333
+        },
+        "due_iso": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "condition": {
+          "correct": 0,
+          "total": 4,
+          "rate": 0.0
+        }
+      },
+      "final_decision_accuracy_on_matched_decisions": {
+        "correct": 9,
+        "total": 12,
+        "rate": 0.75
+      },
+      "final_decision_recall_end_to_end": {
+        "correct": 9,
+        "total": 20,
+        "rate": 0.45
+      },
+      "audit_finding_precision": {
+        "correct": 2,
+        "total": 10,
+        "rate": 0.2
+      },
+      "required_review_handling_recall": {
+        "correct": 14,
+        "total": 29,
+        "rate": 0.4827586206896552
+      },
+      "correct_abstention": {
+        "correct": 2,
+        "total": 2,
+        "rate": 1.0
+      }
+    },
+    "development": {
+      "cases": 16,
+      "reviewed_cases": 13,
+      "semantic_scoring_complete": true,
+      "pipeline_completion": {
+        "correct": 13,
+        "total": 16,
+        "rate": 0.8125
+      },
+      "audit_completion": {
+        "correct": 13,
+        "total": 16,
+        "rate": 0.8125
+      },
+      "supported_record_precision": {
+        "correct": 19,
+        "total": 26,
+        "rate": 0.7307692307692307
+      },
+      "required_record_recall_end_to_end": {
+        "correct": 13,
+        "total": 39,
+        "rate": 0.3333333333333333
+      },
+      "required_record_recall_on_completed_cases": {
+        "correct": 13,
+        "total": 21,
+        "rate": 0.6190476190476191
+      },
+      "evidence_support_accuracy": {
+        "correct": 19,
+        "total": 26,
+        "rate": 0.7307692307692307
+      },
+      "field_accuracy_on_matched_records": {
+        "meeting_status": {
+          "correct": 15,
+          "total": 19,
+          "rate": 0.7894736842105263
+        },
+        "execution_status": {
+          "correct": 18,
+          "total": 19,
+          "rate": 0.9473684210526315
+        },
+        "owner": {
+          "correct": 19,
+          "total": 19,
+          "rate": 1.0
+        },
+        "supporter": {
+          "correct": 19,
+          "total": 19,
+          "rate": 1.0
+        },
+        "due_raw": {
+          "correct": 19,
+          "total": 19,
+          "rate": 1.0
+        },
+        "due_iso": {
+          "correct": 19,
+          "total": 19,
+          "rate": 1.0
+        },
+        "condition": {
+          "correct": 17,
+          "total": 19,
+          "rate": 0.8947368421052632
+        }
+      },
+      "nonnull_field_accuracy_on_matched_records": {
+        "meeting_status": {
+          "correct": 15,
+          "total": 19,
+          "rate": 0.7894736842105263
+        },
+        "execution_status": {
+          "correct": 18,
+          "total": 19,
+          "rate": 0.9473684210526315
+        },
+        "owner": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "supporter": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "due_raw": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "due_iso": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "condition": {
+          "correct": 0,
+          "total": 2,
+          "rate": 0.0
+        }
+      },
+      "nonnull_field_recall_end_to_end": {
+        "meeting_status": {
+          "correct": 15,
+          "total": 39,
+          "rate": 0.38461538461538464
+        },
+        "execution_status": {
+          "correct": 18,
+          "total": 39,
+          "rate": 0.46153846153846156
+        },
+        "owner": {
+          "correct": 2,
+          "total": 7,
+          "rate": 0.2857142857142857
+        },
+        "supporter": {
+          "correct": 1,
+          "total": 4,
+          "rate": 0.25
+        },
+        "due_raw": {
+          "correct": 0,
+          "total": 3,
+          "rate": 0.0
+        },
+        "due_iso": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "condition": {
+          "correct": 0,
+          "total": 3,
+          "rate": 0.0
+        }
+      },
+      "final_decision_accuracy_on_matched_decisions": {
+        "correct": 5,
+        "total": 8,
+        "rate": 0.625
+      },
+      "final_decision_recall_end_to_end": {
+        "correct": 5,
+        "total": 14,
+        "rate": 0.35714285714285715
+      },
+      "audit_finding_precision": {
+        "correct": 2,
+        "total": 9,
+        "rate": 0.2222222222222222
+      },
+      "required_review_handling_recall": {
+        "correct": 9,
+        "total": 18,
+        "rate": 0.5
+      },
+      "correct_abstention": {
+        "correct": 1,
+        "total": 1,
+        "rate": 1.0
+      }
+    },
+    "held_out": {
+      "cases": 8,
+      "reviewed_cases": 7,
+      "semantic_scoring_complete": true,
+      "pipeline_completion": {
+        "correct": 7,
+        "total": 8,
+        "rate": 0.875
+      },
+      "audit_completion": {
+        "correct": 7,
+        "total": 8,
+        "rate": 0.875
+      },
+      "supported_record_precision": {
+        "correct": 18,
+        "total": 19,
+        "rate": 0.9473684210526315
+      },
+      "required_record_recall_end_to_end": {
+        "correct": 10,
+        "total": 18,
+        "rate": 0.5555555555555556
+      },
+      "required_record_recall_on_completed_cases": {
+        "correct": 10,
+        "total": 10,
+        "rate": 1.0
+      },
+      "evidence_support_accuracy": {
+        "correct": 18,
+        "total": 19,
+        "rate": 0.9473684210526315
+      },
+      "field_accuracy_on_matched_records": {
+        "meeting_status": {
+          "correct": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "execution_status": {
+          "correct": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "owner": {
+          "correct": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "supporter": {
+          "correct": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "due_raw": {
+          "correct": 9,
+          "total": 10,
+          "rate": 0.9
+        },
+        "due_iso": {
+          "correct": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "condition": {
+          "correct": 9,
+          "total": 10,
+          "rate": 0.9
+        }
+      },
+      "nonnull_field_accuracy_on_matched_records": {
+        "meeting_status": {
+          "correct": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "execution_status": {
+          "correct": 10,
+          "total": 10,
+          "rate": 1.0
+        },
+        "owner": {
+          "correct": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "supporter": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "due_raw": {
+          "correct": 3,
+          "total": 4,
+          "rate": 0.75
+        },
+        "due_iso": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "condition": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "nonnull_field_recall_end_to_end": {
+        "meeting_status": {
+          "correct": 10,
+          "total": 18,
+          "rate": 0.5555555555555556
+        },
+        "execution_status": {
+          "correct": 10,
+          "total": 18,
+          "rate": 0.5555555555555556
+        },
+        "owner": {
+          "correct": 4,
+          "total": 6,
+          "rate": 0.6666666666666666
+        },
+        "supporter": {
+          "correct": 2,
+          "total": 3,
+          "rate": 0.6666666666666666
+        },
+        "due_raw": {
+          "correct": 3,
+          "total": 6,
+          "rate": 0.5
+        },
+        "due_iso": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "condition": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        }
+      },
+      "final_decision_accuracy_on_matched_decisions": {
+        "correct": 4,
+        "total": 4,
+        "rate": 1.0
+      },
+      "final_decision_recall_end_to_end": {
+        "correct": 4,
+        "total": 6,
+        "rate": 0.6666666666666666
+      },
+      "audit_finding_precision": {
+        "correct": 0,
+        "total": 1,
+        "rate": 0.0
+      },
+      "required_review_handling_recall": {
+        "correct": 5,
+        "total": 11,
+        "rate": 0.45454545454545453
+      },
+      "correct_abstention": {
+        "correct": 1,
+        "total": 1,
+        "rate": 1.0
+      }
+    }
+  },
+  "caveats": [
+    "Partial gold: supported extra records count in precision, not required-record recall. No F1 is computed across different target universes.",
+    "Field accuracy is conditional on semantic matches and includes null fields; inspect non-null fields and missing records separately.",
+    "Synthetic same-author dataset and same-assistant review, not independent human validation.",
+    "Pending semantic review is not a model failure or a model success."
+  ],
+  "inputs_sha256": {
+    "dataset": "62c150a3dd5ddfc074bb41ba5cc208661bd2eb38392b075cececf221c6294590",
+    "run": "5766779d9acc8564850c35a0baaedd69811e4e724c8515d8fb56af970eb5e253",
+    "review": "86b1e6fc0637d3b1be08cdd6fa5e49193a605c3d5631651e70625e79f2835e1d"
+  },
+  "by_kind": {
+    "action": {
+      "supported_record_precision": {
+        "correct": 6,
+        "total": 7,
+        "rate": 0.8571428571428571
+      },
+      "required_record_recall_end_to_end": {
+        "correct": 6,
+        "total": 14,
+        "rate": 0.42857142857142855
+      },
+      "evidence_support_accuracy": {
+        "correct": 6,
+        "total": 7,
+        "rate": 0.8571428571428571
+      }
+    },
+    "decision": {
+      "supported_record_precision": {
+        "correct": 9,
+        "total": 14,
+        "rate": 0.6428571428571429
+      },
+      "required_record_recall_end_to_end": {
+        "correct": 9,
+        "total": 20,
+        "rate": 0.45
+      },
+      "evidence_support_accuracy": {
+        "correct": 9,
+        "total": 14,
+        "rate": 0.6428571428571429
+      }
+    },
+    "feedback": {
+      "supported_record_precision": {
+        "correct": 1,
+        "total": 2,
+        "rate": 0.5
+      },
+      "required_record_recall_end_to_end": {
+        "correct": 1,
+        "total": 6,
+        "rate": 0.16666666666666666
+      },
+      "evidence_support_accuracy": {
+        "correct": 1,
+        "total": 2,
+        "rate": 0.5
+      }
+    },
+    "issue": {
+      "supported_record_precision": {
+        "correct": 8,
+        "total": 8,
+        "rate": 1.0
+      },
+      "required_record_recall_end_to_end": {
+        "correct": 2,
+        "total": 7,
+        "rate": 0.2857142857142857
+      },
+      "evidence_support_accuracy": {
+        "correct": 8,
+        "total": 8,
+        "rate": 1.0
+      }
+    },
+    "knowledge": {
+      "supported_record_precision": {
+        "correct": 5,
+        "total": 6,
+        "rate": 0.8333333333333334
+      },
+      "required_record_recall_end_to_end": {
+        "correct": 0,
+        "total": 2,
+        "rate": 0.0
+      },
+      "evidence_support_accuracy": {
+        "correct": 5,
+        "total": 6,
+        "rate": 0.8333333333333334
+      }
+    },
+    "request": {
+      "supported_record_precision": {
+        "correct": 8,
+        "total": 8,
+        "rate": 1.0
+      },
+      "required_record_recall_end_to_end": {
+        "correct": 5,
+        "total": 8,
+        "rate": 0.625
+      },
+      "evidence_support_accuracy": {
+        "correct": 8,
+        "total": 8,
+        "rate": 1.0
+      }
+    }
+  },
+  "breakdowns": {
+    "length_band": {
+      "long_for_mvp": {
+        "cases": 3,
+        "reviewed_cases": 0,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 0,
+          "total": 3,
+          "rate": 0.0
+        },
+        "audit_completion": {
+          "correct": 0,
+          "total": 3,
+          "rate": 0.0
+        },
+        "supported_record_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 0,
+          "total": 20,
+          "rate": 0.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "evidence_support_accuracy": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 20,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 20,
+            "rate": 0.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 5,
+            "rate": 0.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 3,
+            "rate": 0.0
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 3,
+            "rate": 0.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 5,
+          "rate": 0.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 0,
+          "total": 9,
+          "rate": 0.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "medium": {
+        "cases": 3,
+        "reviewed_cases": 2,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 2,
+          "total": 3,
+          "rate": 0.6666666666666666
+        },
+        "audit_completion": {
+          "correct": 2,
+          "total": 3,
+          "rate": 0.6666666666666666
+        },
+        "supported_record_precision": {
+          "correct": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 4,
+          "total": 10,
+          "rate": 0.4
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 4,
+            "total": 10,
+            "rate": 0.4
+          },
+          "execution_status": {
+            "correct": 4,
+            "total": 10,
+            "rate": 0.4
+          },
+          "owner": {
+            "correct": 3,
+            "total": 5,
+            "rate": 0.6
+          },
+          "supporter": {
+            "correct": 3,
+            "total": 4,
+            "rate": 0.75
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 4,
+            "rate": 0.5
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "short": {
+        "cases": 18,
+        "reviewed_cases": 18,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 18,
+          "total": 18,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 18,
+          "total": 18,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 31,
+          "total": 39,
+          "rate": 0.7948717948717948
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 19,
+          "total": 27,
+          "rate": 0.7037037037037037
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 19,
+          "total": 27,
+          "rate": 0.7037037037037037
+        },
+        "evidence_support_accuracy": {
+          "correct": 31,
+          "total": 39,
+          "rate": 0.7948717948717948
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 21,
+            "total": 25,
+            "rate": 0.84
+          },
+          "execution_status": {
+            "correct": 24,
+            "total": 25,
+            "rate": 0.96
+          },
+          "owner": {
+            "correct": 25,
+            "total": 25,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 25,
+            "total": 25,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 24,
+            "total": 25,
+            "rate": 0.96
+          },
+          "due_iso": {
+            "correct": 25,
+            "total": 25,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 22,
+            "total": 25,
+            "rate": 0.88
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 21,
+            "total": 25,
+            "rate": 0.84
+          },
+          "execution_status": {
+            "correct": 24,
+            "total": 25,
+            "rate": 0.96
+          },
+          "owner": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 21,
+            "total": 27,
+            "rate": 0.7777777777777778
+          },
+          "execution_status": {
+            "correct": 24,
+            "total": 27,
+            "rate": 0.8888888888888888
+          },
+          "owner": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 8,
+          "total": 11,
+          "rate": 0.7272727272727273
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 8,
+          "total": 12,
+          "rate": 0.6666666666666666
+        },
+        "audit_finding_precision": {
+          "correct": 2,
+          "total": 10,
+          "rate": 0.2
+        },
+        "required_review_handling_recall": {
+          "correct": 13,
+          "total": 17,
+          "rate": 0.7647058823529411
+        },
+        "correct_abstention": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        }
+      }
+    },
+    "business_scenarios": {
+      "action_cancelled": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "authority_unknown": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "condition_changed": {
+        "cases": 2,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "supported_record_precision": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 0,
+          "total": 6,
+          "rate": 0.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 6,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 6,
+            "rate": 0.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "conditional_decision": {
+        "cases": 2,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "supported_record_precision": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 0,
+          "total": 9,
+          "rate": 0.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 9,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 9,
+            "rate": 0.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 3,
+          "rate": 0.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 6,
+          "rate": 0.16666666666666666
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "conditional_then_reopened": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 2,
+          "total": 3,
+          "rate": 0.6666666666666666
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 2,
+          "total": 3,
+          "rate": 0.6666666666666666
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "conflicting_deadline_proposals": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "deadline_changed": {
+        "cases": 3,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "supported_record_precision": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 16,
+          "rate": 0.0625
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 16,
+            "rate": 0.0625
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 16,
+            "rate": 0.0625
+          },
+          "owner": {
+            "correct": 1,
+            "total": 5,
+            "rate": 0.2
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 4,
+            "rate": 0.25
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 4,
+          "rate": 0.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 0,
+          "total": 7,
+          "rate": 0.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "deadline_retained": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 5,
+          "total": 5,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 5,
+          "total": 5,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "deadline_withdrawn": {
+        "cases": 3,
+        "reviewed_cases": 2,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 2,
+          "total": 3,
+          "rate": 0.6666666666666666
+        },
+        "audit_completion": {
+          "correct": 2,
+          "total": 3,
+          "rate": 0.6666666666666666
+        },
+        "supported_record_precision": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 7,
+          "rate": 0.14285714285714285
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "evidence_support_accuracy": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 7,
+            "rate": 0.14285714285714285
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 7,
+            "rate": 0.2857142857142857
+          },
+          "owner": {
+            "correct": 2,
+            "total": 3,
+            "rate": 0.6666666666666666
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "execution_blocked": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "feedback": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "feedback_vs_knowledge": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "evidence_support_accuracy": {
+          "correct": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "final_decision": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "evidence_support_accuracy": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "hypothetical": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "evidence_support_accuracy": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "correct_abstention": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        }
+      },
+      "independent_action": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 2,
+          "total": 3,
+          "rate": 0.6666666666666666
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 2,
+          "total": 3,
+          "rate": 0.6666666666666666
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "missing_deadline": {
+        "cases": 2,
+        "reviewed_cases": 2,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 2,
+          "total": 3,
+          "rate": 0.6666666666666666
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 2,
+          "total": 3,
+          "rate": 0.6666666666666666
+        },
+        "evidence_support_accuracy": {
+          "correct": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 3,
+            "rate": 0.6666666666666666
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 3,
+            "rate": 0.6666666666666666
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "missing_meeting_date": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "missing_owner": {
+        "cases": 2,
+        "reviewed_cases": 2,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 5,
+          "total": 6,
+          "rate": 0.8333333333333334
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "evidence_support_accuracy": {
+          "correct": 5,
+          "total": 6,
+          "rate": 0.8333333333333334
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 3,
+            "rate": 0.3333333333333333
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 3,
+            "rate": 0.6666666666666666
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "negation_scope": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "negative_control": {
+        "cases": 2,
+        "reviewed_cases": 2,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "evidence_support_accuracy": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "correct_abstention": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        }
+      },
+      "no_assignment": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "partial_recovery": {
+        "cases": 1,
+        "reviewed_cases": 0,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "audit_completion": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "supported_record_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 0,
+          "total": 8,
+          "rate": 0.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "evidence_support_accuracy": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 8,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 0,
+            "total": 8,
+            "rate": 0.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 0,
+          "total": 5,
+          "rate": 0.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "prompt_injection": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "evidence_support_accuracy": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "audit_finding_precision": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "proposal_replaced": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "evidence_support_accuracy": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 2,
+            "rate": 0.5
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "quoted_historical_decision": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "reassignment": {
+        "cases": 5,
+        "reviewed_cases": 2,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 2,
+          "total": 5,
+          "rate": 0.4
+        },
+        "audit_completion": {
+          "correct": 2,
+          "total": 5,
+          "rate": 0.4
+        },
+        "supported_record_precision": {
+          "correct": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 4,
+          "total": 25,
+          "rate": 0.16
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 6,
+          "total": 6,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 4,
+            "total": 25,
+            "rate": 0.16
+          },
+          "execution_status": {
+            "correct": 4,
+            "total": 25,
+            "rate": 0.16
+          },
+          "owner": {
+            "correct": 3,
+            "total": 9,
+            "rate": 0.3333333333333333
+          },
+          "supporter": {
+            "correct": 3,
+            "total": 6,
+            "rate": 0.5
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 7,
+            "rate": 0.2857142857142857
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 7,
+          "rate": 0.14285714285714285
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 10,
+          "rate": 0.1
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "relative_date": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "reopened": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 3,
+          "total": 4,
+          "rate": 0.75
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 3,
+          "total": 4,
+          "rate": 0.75
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "reported_resolved": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "request_changed": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "request_withdrawn": {
+        "cases": 2,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "supported_record_precision": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 2,
+          "total": 10,
+          "rate": 0.2
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 10,
+            "rate": 0.2
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 10,
+            "rate": 0.2
+          },
+          "owner": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 2,
+          "rate": 0.0
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 6,
+          "rate": 0.16666666666666666
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "similar_tasks": {
+        "cases": 3,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "supported_record_precision": {
+          "correct": 5,
+          "total": 5,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 3,
+          "total": 17,
+          "rate": 0.17647058823529413
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 3,
+          "total": 3,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 5,
+          "total": 5,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 3,
+            "total": 3,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 3,
+            "total": 17,
+            "rate": 0.17647058823529413
+          },
+          "execution_status": {
+            "correct": 3,
+            "total": 17,
+            "rate": 0.17647058823529413
+          },
+          "owner": {
+            "correct": 2,
+            "total": 6,
+            "rate": 0.3333333333333333
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 4,
+            "rate": 0.5
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 6,
+            "rate": 0.3333333333333333
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 5,
+          "rate": 0.2
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 8,
+          "rate": 0.125
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "tentative_offer": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 4,
+          "total": 4,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 1,
+          "rate": 0.0
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "topic_separation": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "audit_finding_precision": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "uncertain_knowledge": {
+        "cases": 2,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 2,
+          "rate": 0.5
+        },
+        "supported_record_precision": {
+          "correct": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 2,
+          "total": 12,
+          "rate": 0.16666666666666666
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "evidence_support_accuracy": {
+          "correct": 2,
+          "total": 4,
+          "rate": 0.5
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 4,
+            "total": 4,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 4,
+            "total": 12,
+            "rate": 0.3333333333333333
+          },
+          "execution_status": {
+            "correct": 4,
+            "total": 12,
+            "rate": 0.3333333333333333
+          },
+          "owner": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 2,
+            "rate": 0.0
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 1,
+            "rate": 0.0
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 1,
+          "total": 3,
+          "rate": 0.3333333333333333
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 2,
+          "total": 7,
+          "rate": 0.2857142857142857
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "unrelated_negation": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 2,
+            "total": 2,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 2,
+          "total": 2,
+          "rate": 1.0
+        },
+        "audit_finding_precision": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      },
+      "verification_not_done": {
+        "cases": 1,
+        "reviewed_cases": 1,
+        "semantic_scoring_complete": true,
+        "pipeline_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "audit_completion": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "supported_record_precision": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_end_to_end": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "required_record_recall_on_completed_cases": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "evidence_support_accuracy": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "supporter": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_raw": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "due_iso": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "condition": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          }
+        },
+        "nonnull_field_accuracy_on_matched_records": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "nonnull_field_recall_end_to_end": {
+          "meeting_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "execution_status": {
+            "correct": 1,
+            "total": 1,
+            "rate": 1.0
+          },
+          "owner": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "supporter": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_raw": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "due_iso": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          },
+          "condition": {
+            "correct": 0,
+            "total": 0,
+            "rate": null
+          }
+        },
+        "final_decision_accuracy_on_matched_decisions": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "final_decision_recall_end_to_end": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "audit_finding_precision": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        },
+        "required_review_handling_recall": {
+          "correct": 1,
+          "total": 1,
+          "rate": 1.0
+        },
+        "correct_abstention": {
+          "correct": 0,
+          "total": 0,
+          "rate": null
+        }
+      }
+    }
+  }
+}

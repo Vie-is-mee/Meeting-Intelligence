@@ -1,0 +1,6 @@
+L001 | Diệp | Chốt bật đồng bộ tự động nếu bảo mật duyệt quyền đọc dữ liệu.
+L002 | Huy | Tôi nhận soạn danh sách quyền cần xin, chưa có hạn hoàn thành.
+L003 | Sang | Quyền đọc dữ liệu cá nhân cần được làm rõ trước.
+L004 | Diệp | Tôi mở lại lựa chọn bật đồng bộ tự động; hôm nay chưa chốt bật hay giữ đồng bộ thủ công.
+L005 | Huy | Việc tôi soạn danh sách quyền vẫn thực hiện dù lựa chọn đồng bộ chưa chốt.
+L006 | Diệp | Đúng, không hủy việc soạn danh sách quyền.
