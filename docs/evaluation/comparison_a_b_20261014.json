@@ -91,6 +91,12 @@
           "core": "FAIL",
           "audit": "MISSED_MISSING_RECORD",
           "observed": "Request recorded v? h?n t??ng ??i L001 ??ng, kh?ng t? ??t owner. Thi?u decision open v? kh?ng ghi chi ti?t ng?y ch?a ch?t trong request theo ph??ng ?n g?p ?? cho ph?p; request unreviewed, kh?ng ngu?n L006. Audit tr?ng."
+        },
+        "C1": {
+          "strict": "NOT_RUN",
+          "core": "NOT_EVALUATED",
+          "audit": "NOT_RUN",
+          "observed": "Outside targeted C1 pilot; do not fill with another version output."
         }
       }
     },
@@ -116,6 +122,12 @@
           "core": "PASS",
           "audit": "NO_FINDINGS",
           "observed": "Ba b?n ghi ??ng vai tr? v? tr??ng: decision agreed ch? nh?m n?i b? L001, request L002, action cancelled/Chi L003 v? h?y/x?a h?n L005. Kh?ng t?o quy?t ??nh ph?. Audit tr?ng, kh?ng ??i x?a owner l?ch s?."
+        },
+        "C1": {
+          "strict": "FAIL",
+          "core": "FAIL",
+          "audit": "SUPPORTED_FINDING",
+          "observed": "?? ba vai tr?, scope/owner/status ??ng. Model b? clear_fields khi tr?ch c?u h?y L005; due_raw ng?y mai c?n gi? t? L003. Audit medium missing_late_change ??ng, tr?ch ch?nh x?c c?u b? h?n L005; kh?ng ??i x?a Chi."
         }
       }
     },
@@ -141,6 +153,12 @@
           "core": "FAIL",
           "audit": "MISSED_EXTRA_RECORD",
           "observed": "Hai quy?t ??nh b?t bu?c v? ngu?n L006 ??ng, nh?ng th?m request recorded t? m?c ti?u bu?i h?p L001. Audit tr?ng, kh?ng ph?t hi?n nh?m agenda th?nh nhu c?u nghi?p v?."
+        },
+        "C1": {
+          "strict": "FAIL",
+          "core": "FAIL",
+          "audit": "MISSED_FIELD_EVIDENCE",
+          "observed": "?? hai quy?t ??nh, kh?ng request t? agenda; gi? tr?/tr?ng th?i cu?i ??ng. Tuy nhi?n storage agreement/content ngu?n L005, kh?ng c? event/evidence L006 cho ch?t cu?i. L005 ch? n?i ??ng ? chuy?n, kh?ng n?u ph?m vi b?n th? nghi?m trong value. Audit tr?ng b? s?t ch?ng c? tr??ng ch?a ??."
         }
       }
     },
@@ -166,6 +184,12 @@
           "core": "PASS",
           "audit": "NO_FINDINGS",
           "observed": "Hai b?n ghi b?t bu?c ??ng. Content/status L003; execution blocked v? condition ph?p ch? ph? duy?t L005. Issue open/needs_review L004. Kh?ng b?a ng??i/h?n ho?c cho ph?p tri?n khai ngay. Audit tr?ng."
+        },
+        "C1": {
+          "strict": "NOT_RUN",
+          "core": "NOT_EVALUATED",
+          "audit": "NOT_RUN",
+          "observed": "Outside targeted C1 pilot; do not fill with another version output."
         }
       }
     },
@@ -191,6 +215,12 @@
           "core": "PASS",
           "audit": "NO_FINDINGS",
           "observed": "M?t decision ??ng ?? ?i?u ki?n hi?n h?nh L003 v? tr?ng th?i conditional/pending_condition/needs_review. Kh?ng gi? ng??ng 500, kh?ng nh?n ?? ??t, kh?ng t? giao Ki?n ki?m th?. Audit tr?ng."
+        },
+        "C1": {
+          "strict": "NOT_RUN",
+          "core": "NOT_EVALUATED",
+          "audit": "NOT_RUN",
+          "observed": "Outside targeted C1 pilot; do not fill with another version output."
         }
       }
     },
@@ -216,6 +246,12 @@
           "core": "PASS",
           "audit": "FALSE_POSITIVE",
           "observed": "Hai b?n ghi b?t bu?c ??ng, ngu?n reopen L004/owner Huy L002; request l?m r? quy?n L003 l? extra c? c?n c?. Audit medium unsupported_fact ??i condition kh?ng null v? L004 n?i m? l?i, nh?ng ??y l? tr?ng th?i ch?a ch?t, kh?ng ph?i ?i?u ki?n tri?n khai m?i."
+        },
+        "C1": {
+          "strict": "PASS",
+          "core": "PASS",
+          "audit": "NO_FINDINGS",
+          "observed": "Hai b?n ghi b?t bu?c ??ng ngu?n L004 v? L002; kh?ng h?y task. Issue quy?n c?n l?m r? L003 c? c?n c?, n?m trong extra ?? cho ph?p. Audit tr?ng, kh?ng c?nh b?o sai v? condition null."
         }
       }
     },
@@ -241,6 +277,12 @@
           "core": "PASS",
           "audit": "NO_FINDINGS",
           "observed": "M?t action cancelled/Mai/due null, assignment L001-L002, h?y L003, clear h?n L004. Chu?n h?a request L001 th?nh assignment c? c?u giao ??ch danh v? nh?n vi?c h? tr?, raw LLM v?n gi?. Audit tr?ng."
+        },
+        "C1": {
+          "strict": "PASS",
+          "core": "PASS",
+          "audit": "NO_FINDINGS",
+          "observed": "Action cancelled ??ng, owner Mai L002, h?y L003, x?a h?n L004. Request L001 ???c chu?n h?a c? c?u giao ??ch danh v? nh?n vi?c c?ng key/n?i dung. Kh?ng b?n ghi ph?; audit tr?ng."
         }
       }
     },
@@ -266,6 +308,12 @@
           "core": "FAIL",
           "audit": "MISSED_EXTRA_AND_MISSING_RECORD",
           "observed": "Request CSV v? action cancelled/D?ng/h?n null ??ng; thi?u decision c?ch thay th? ch?a ch?n L005. C? th?m request th? th? vi?n X v?i h?n chi?u mai d? c?ng vi?c ?? h?y. Gi? tr? request g?m deadline v? kh?c m? t? action n?n guard c?ng n?i dung kh?ng g?p. Audit tr?ng."
+        },
+        "C1": {
+          "strict": "NOT_RUN",
+          "core": "NOT_EVALUATED",
+          "audit": "NOT_RUN",
+          "observed": "Outside targeted C1 pilot; do not fill with another version output."
         }
       }
     }
@@ -314,5 +362,26 @@
     "All eight cases are development regression; same-assistant review, no independent benchmark.",
     "Case success counts are not dataset-wide precision/recall.",
     "No post-hoc gold or acceptance changes, no rerun replacing failed cases."
-  ]
+  ],
+  "candidate_c1": {
+    "status": "targeted_pilot_complete_not_accepted",
+    "source_commit": "68fc350",
+    "experimental_branch": "candidate/c1-narrow-repair-20261014",
+    "scope": "targeted_pilot_four_cases_not_full_regression",
+    "summary": {
+      "requested": 4,
+      "attempted": 4,
+      "pipeline_and_audit_completed": 4,
+      "strict_case_passed": 2,
+      "core_data_passed": 2,
+      "api_attempts": 8,
+      "provider_reported_tokens": 19834
+    },
+    "run_artifact": "docs/evaluation/candidate_c1_pilot_v1.json",
+    "review_artifact": "docs/evaluation/candidate_c1_pilot_v1_review.json",
+    "run_sha256": "a7512f48f376fb690084de3efd7c19a3b310ba124b72089f2921800194264291",
+    "gate": "Four complete strict passes required; observed 2/4. Keep A.",
+    "prompts_identical_to_A": true,
+    "new_dataset_used_to_tune": false
+  }
 }

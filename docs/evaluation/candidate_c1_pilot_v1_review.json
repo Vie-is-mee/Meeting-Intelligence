@@ -1,0 +1,56 @@
+{
+  "version": "C1",
+  "scope": "targeted_pilot",
+  "method": "Same-assistant semantic review of a frozen development regression, not independent generalization. Include all failures and incomplete calls.",
+  "source_code_commit": "68fc350",
+  "run": "docs/evaluation/candidate_c1_pilot_v1.json",
+  "run_sha256": "a7512f48f376fb690084de3efd7c19a3b310ba124b72089f2921800194264291",
+  "input_sha256": "a74109f797f13933651501b45303c9388abfbfaf2372e0d11d24d1c762963b15",
+  "results": {
+    "requested": 4,
+    "attempted": 4,
+    "pipeline_and_audit_completed": 4,
+    "strict_case_passed": 2,
+    "core_data_passed": 2,
+    "api_attempts": 8,
+    "provider_reported_tokens": 19834
+  },
+  "cases": [
+    {
+      "id": "LC01",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "M?t action cancelled/Mai/h?n null, kh?ng request tr?ng ho?c quy?t ??nh x?c nh?n d?ng ph?.",
+      "observed": "Action cancelled ??ng, owner Mai L002, h?y L003, x?a h?n L004. Request L001 ???c chu?n h?a c? c?u giao ??ch danh v? nh?n vi?c c?ng key/n?i dung. Kh?ng b?n ghi ph?; audit tr?ng.",
+      "lesson": "S?a speech act c? ngu?n h? tr? hi?u qu? tr?n l??t th?t n?y, nh?ng raw LLM v?n ph?n lo?i L001 th?nh request; kh?ng quy to?n b? th?nh c?ng cho model."
+    },
+    {
+      "id": "LC03",
+      "verdict": "FAIL",
+      "core_data": "FAIL",
+      "audit": "SUPPORTED_FINDING",
+      "expectation": "Decision ph?m vi n?i b? v? request gi?; action cancelled/Chi/due null theo L005.",
+      "observed": "?? ba vai tr?, scope/owner/status ??ng. Model b? clear_fields khi tr?ch c?u h?y L005; due_raw ng?y mai c?n gi? t? L003. Audit medium missing_late_change ??ng, tr?ch ch?nh x?c c?u b? h?n L005; kh?ng ??i x?a Chi.",
+      "lesson": "Ng? c?nh owner l?ch s? tr?nh nh?m owner trong l??t n?y nh?ng kh?ng s?a thi?u thao t?c x?a h?n. C?n ph?n bi?t c?nh b?o ??ng v?i d? li?u ?? ???c s?a; kh?ng t? x?a h?n ch? v? task cancelled."
+    },
+    {
+      "id": "D01",
+      "verdict": "FAIL",
+      "core_data": "FAIL",
+      "audit": "MISSED_FIELD_EVIDENCE",
+      "expectation": "Object storage agreed ph?m vi b?n th? nghi?m v? nh? cung c?p open; ngu?n k?t lu?n/content storage L006, kh?ng request agenda.",
+      "observed": "?? hai quy?t ??nh, kh?ng request t? agenda; gi? tr?/tr?ng th?i cu?i ??ng. Tuy nhi?n storage agreement/content ngu?n L005, kh?ng c? event/evidence L006 cho ch?t cu?i. L005 ch? n?i ??ng ? chuy?n, kh?ng n?u ph?m vi b?n th? nghi?m trong value. Audit tr?ng b? s?t ch?ng c? tr??ng ch?a ??.",
+      "lesson": "C?n ch?m evidence ? c?p tr??ng, kh?ng ch? ki?m tra k?t lu?n ??c c? ??ng. Prompt A gi?ng h?t v?n sinh kh?c ngu?n so v?i l??t baseline; kh?ng th? quy m?i kh?c bi?t cho s?a ph?n m?m."
+    },
+    {
+      "id": "H01",
+      "verdict": "PASS",
+      "core_data": "PASS",
+      "audit": "NO_FINDINGS",
+      "expectation": "Reopened/condition null; action Huy v?n assigned kh?ng h?n; kh?ng audit ??i ?i?u ki?n c?.",
+      "observed": "Hai b?n ghi b?t bu?c ??ng ngu?n L004 v? L002; kh?ng h?y task. Issue quy?n c?n l?m r? L003 c? c?n c?, n?m trong extra ?? cho ph?p. Audit tr?ng, kh?ng c?nh b?o sai v? condition null.",
+      "lesson": "Gi? ???c case H01 tr?n l??t C1 n?y, nh?ng m?t l??t kh?ng ?? ch?ng minh audit lu?n ?n ??nh."
+    }
+  ]
+}
