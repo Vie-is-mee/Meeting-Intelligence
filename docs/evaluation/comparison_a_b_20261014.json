@@ -97,6 +97,12 @@
           "core": "NOT_EVALUATED",
           "audit": "NOT_RUN",
           "observed": "Outside targeted C1 pilot; do not fill with another version output."
+        },
+        "C2": {
+          "strict": "NOT_RUN",
+          "core": "NOT_EVALUATED",
+          "audit": "NOT_RUN",
+          "observed": "Completion gate failed; no API call for this case in C2."
         }
       }
     },
@@ -128,6 +134,12 @@
           "core": "FAIL",
           "audit": "SUPPORTED_FINDING",
           "observed": "?? ba vai tr?, scope/owner/status ??ng. Model b? clear_fields khi tr?ch c?u h?y L005; due_raw ng?y mai c?n gi? t? L003. Audit medium missing_late_change ??ng, tr?ch ch?nh x?c c?u b? h?n L005; kh?ng ??i x?a Chi."
+        },
+        "C2": {
+          "strict": "PASS",
+          "core": "PASS",
+          "audit": "NO_FINDINGS",
+          "observed": "?? ba b?n ghi ??ng vai tr?/scope/status; action cancelled gi? Chi L003, x?a due ngu?n L005. Raw model l?n n?y ?? tr? clear_fields due_raw, guard kh?ng c?n s?a. Audit tr?ng, kh?ng ??i x?a owner l?ch s?."
         }
       }
     },
@@ -159,6 +171,12 @@
           "core": "FAIL",
           "audit": "MISSED_FIELD_EVIDENCE",
           "observed": "?? hai quy?t ??nh, kh?ng request t? agenda; gi? tr?/tr?ng th?i cu?i ??ng. Tuy nhi?n storage agreement/content ngu?n L005, kh?ng c? event/evidence L006 cho ch?t cu?i. L005 ch? n?i ??ng ? chuy?n, kh?ng n?u ph?m vi b?n th? nghi?m trong value. Audit tr?ng b? s?t ch?ng c? tr??ng ch?a ??."
+        },
+        "C2": {
+          "strict": "FAIL",
+          "core": "FAIL",
+          "audit": "FALSE_POSITIVE_AND_MISSED_RECORD",
+          "observed": "Storage agreed v? content/status ngu?n L006 ??ng, kh?ng request agenda. Thi?u record provider open. Audit medium missing_late_change ??i provider ch?a ch?n v?o condition storage; ??y l? m?t l?a ch?n ri?ng, kh?ng ph?i ?i?u ki?n ?? ch?t."
         }
       }
     },
@@ -190,6 +208,12 @@
           "core": "NOT_EVALUATED",
           "audit": "NOT_RUN",
           "observed": "Outside targeted C1 pilot; do not fill with another version output."
+        },
+        "C2": {
+          "strict": "NOT_RUN",
+          "core": "NOT_EVALUATED",
+          "audit": "NOT_RUN",
+          "observed": "Completion gate failed; no API call for this case in C2."
         }
       }
     },
@@ -221,6 +245,12 @@
           "core": "NOT_EVALUATED",
           "audit": "NOT_RUN",
           "observed": "Outside targeted C1 pilot; do not fill with another version output."
+        },
+        "C2": {
+          "strict": "NOT_RUN",
+          "core": "NOT_EVALUATED",
+          "audit": "NOT_RUN",
+          "observed": "Completion gate failed; no API call for this case in C2."
         }
       }
     },
@@ -252,6 +282,12 @@
           "core": "PASS",
           "audit": "NO_FINDINGS",
           "observed": "Hai b?n ghi b?t bu?c ??ng ngu?n L004 v? L002; kh?ng h?y task. Issue quy?n c?n l?m r? L003 c? c?n c?, n?m trong extra ?? cho ph?p. Audit tr?ng, kh?ng c?nh b?o sai v? condition null."
+        },
+        "C2": {
+          "strict": "FAIL",
+          "core": "PASS",
+          "audit": "FALSE_POSITIVE",
+          "observed": "D? li?u v? ngu?n ??ng: reopened L004, condition null, Huy L002 kh?ng h?n; issue L003 l? extra c? c?n c?. Audit medium unsupported_fact d?n L001 ??i condition b?o m?t t? tr?ng th?i c? tr? l?i; false positive."
         }
       }
     },
@@ -283,6 +319,12 @@
           "core": "PASS",
           "audit": "NO_FINDINGS",
           "observed": "Action cancelled ??ng, owner Mai L002, h?y L003, x?a h?n L004. Request L001 ???c chu?n h?a c? c?u giao ??ch danh v? nh?n vi?c c?ng key/n?i dung. Kh?ng b?n ghi ph?; audit tr?ng."
+        },
+        "C2": {
+          "strict": "FAIL",
+          "core": "PASS",
+          "audit": "FALSE_POSITIVE",
+          "observed": "D? li?u l?i ??ng, request L001 ?? chu?n h?a v? gi? trong history/evidence union. Owner/content hi?n h?nh ngu?n nh?n vi?c L002 ??ng. Audit medium missing_issue ??i L001 v?o c?c field cu?i d? events ?? gi? L001, g?y c?nh b?o sai."
         }
       }
     },
@@ -314,6 +356,12 @@
           "core": "NOT_EVALUATED",
           "audit": "NOT_RUN",
           "observed": "Outside targeted C1 pilot; do not fill with another version output."
+        },
+        "C2": {
+          "strict": "NOT_RUN",
+          "core": "NOT_EVALUATED",
+          "audit": "NOT_RUN",
+          "observed": "Completion gate failed; no API call for this case in C2."
         }
       }
     }
@@ -383,5 +431,40 @@
     "gate": "Four complete strict passes required; observed 2/4. Keep A.",
     "prompts_identical_to_A": true,
     "new_dataset_used_to_tune": false
+  },
+  "candidate_c2": {
+    "status": "pilot_complete_not_accepted_keep_A",
+    "source_commit": "8df1365",
+    "experimental_branch": "candidate/c2-source-repair-20261014",
+    "scope": "four_case_targeted_pilot_not_full_regression",
+    "summary": {
+      "requested": 4,
+      "attempted": 4,
+      "pipeline_and_audit_completed": 4,
+      "strict_case_passed": 1,
+      "core_data_passed": 3,
+      "api_attempts": 8,
+      "provider_reported_tokens": 19446
+    },
+    "run_artifact": "docs/evaluation/candidate_c2_pilot_v1.json",
+    "review_artifact": "docs/evaluation/candidate_c2_pilot_v1_review.json",
+    "run_sha256": "56ece12c2a81e6d6fe5fd0ce2b0b59ed42e9c4daad70f04aa76f01faa9837093",
+    "gate": "4/4 strict required; 1/4 observed. Preserve all failures, keep A.",
+    "completion_batch": {
+      "case_ids": [
+        "D03",
+        "D04",
+        "H03",
+        "LC02"
+      ],
+      "input": "docs/evaluation/candidate_c2_completion_planned_input_v1.json",
+      "status": "NOT_RUN_pilot_gate_failed"
+    },
+    "prompts_identical_to_A": true,
+    "N_cases_used_to_tune": false,
+    "measurement_limits": [
+      "No fresh A run; same-output D01 replay shows identical audit request/final record.",
+      "Same-assistant semantic review, one pilot run at temperature 0.6; not independent accuracy."
+    ]
   }
 }

@@ -1,0 +1,15 @@
+{
+  "case": "D01",
+  "method": "Same saved C2 extraction and audit response replayed through A/C2, not a fresh A API run. Compare exact audit request before supplying the saved response.",
+  "audit_request_identical": true,
+  "final_records_identical": true,
+  "source_run": "docs/evaluation/candidate_c2_pilot_v1.json",
+  "A_C2_audit_request_sha256": {
+    "A": "88b459bfd5177761e4c15febad7f18565ddda895f91dedaa2dc9326fb0394a21",
+    "C2": "88b459bfd5177761e4c15febad7f18565ddda895f91dedaa2dc9326fb0394a21"
+  },
+  "interpretation": "The missing provider and false condition finding occur in A as well on these same saved outputs. This does not establish fresh-run A accuracy or isolate all model sampling effects.",
+  "source_run_sha256": "56ece12c2a81e6d6fe5fd0ce2b0b59ed42e9c4daad70f04aa76f01faa9837093",
+  "baseline_source_commit": "4aecdc91f1c526773c7bae0a7dfdebfe5e658d2d",
+  "candidate_code_commit": "8df1365"
+}

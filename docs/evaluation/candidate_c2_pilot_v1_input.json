@@ -1,0 +1,376 @@
+{
+  "version": "final-regression-1",
+  "purpose": "Targeted C2 source-repair pilot, NOT full regression or independent evaluation. Four cases locked before outputs; same gold and transcript as prior versions; only transcript sent to model.",
+  "source_sha256": {
+    "datasets/meeting_eval_v1.json": "49a4e75945e32e16e376c9d1ec47096dc464661dcb985ac67f5d75ca21ac5bc9",
+    "datasets/task_lifecycle_regression_v1.json": "96249144b21e9e598e6179c211f441afb894a22042e59d1f50e2b801e890f59c"
+  },
+  "core_sha256": {
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\auditor.py": "de6ae74c4e45a2d28d89bf84a68467ef131cd6263278989aacd8e35d8d355af5",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\evidence_repairs.py": "f72ac88384c63e1b7491c33d106873836a689bca243e2924419958effd0fde33",
+    "meeting_intelligence\\extractor.py": "de7eac12b839d24eb672a80125ec1acd2476dd81a4f41d9ffb73147fedc73ef3",
+    "meeting_intelligence\\llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence\\models.py": "96e7e38e155a14822dcfdca637882259ac20f7c7c341e1280f16a7f17ed4cab2",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "66a5cf23ac51b1245b857a549b79c3d3066eb28a40736df11e692dd02d3805b7",
+    "meeting_intelligence\\resolver.py": "3d7eb6c7220b8f72a2d8d26883bd65e0d2744f7c273d21cea2e662e2bb267ecc",
+    "meeting_intelligence\\verifier.py": "805f0fcde122c2c81dc9d5c64080c107118f3335a8969a13b1429f1839fecb8d"
+  },
+  "cases": [
+    {
+      "id": "LC03",
+      "split": "development",
+      "title": "Quyết định phạm vi và công việc độc lập cùng một chủ đề",
+      "transcript": "L001 | An | Chốt chỉ thử luồng thanh toán mới ở nhóm nội bộ.\nL002 | Bình | Yêu cầu có nút quay lại bước trước.\nL003 | An | Chi viết hướng dẫn cho nhóm nội bộ, hạn cuối ngày mai.\nL004 | Chi | Tôi nhận viết hướng dẫn.\nL005 | An | Hủy việc viết hướng dẫn, bỏ hạn đã giao. Phạm vi thử nội bộ và yêu cầu nút quay lại vẫn giữ.",
+      "expected": {
+        "required": [
+          "Decision thử luồng thanh toán agreed, giữ giới hạn nhóm nội bộ",
+          "Request nút quay lại recorded",
+          "Action viết hướng dẫn cancelled, owner lịch sử Chi, due_raw null"
+        ],
+        "forbidden": [
+          "Gộp/xóa decision hoặc request vì cùng chủ đề với action",
+          "Mở rộng thử sang khách hàng",
+          "Action viết hướng dẫn còn assigned",
+          "Decision hủy hướng dẫn phụ chỉ lặp action_cancelled"
+        ],
+        "allowed": []
+      },
+      "source_dataset": "datasets/task_lifecycle_regression_v1.json"
+    },
+    {
+      "id": "D01",
+      "title": "Đổi lựa chọn hạ tầng và chốt phương án cuối",
+      "split": "development",
+      "difficulty_tags": [
+        "clean",
+        "short",
+        "proposal_replaced",
+        "final_decision"
+      ],
+      "transcript": "L001 | An | Mục tiêu hôm nay là chọn cách lưu tệp đính kèm cho bản thử nghiệm.\nL002 | Bình | Tôi đề xuất lưu trên ổ đĩa của máy chủ ứng dụng.\nL003 | Chi | Cách đó khó mở rộng nếu chạy hai máy chủ, tôi đề nghị dùng object storage.\nL004 | An | Ta chỉ bàn nơi lưu tệp, chưa bàn nhà cung cấp.\nL005 | Bình | Tôi rút đề xuất lưu trên máy chủ, đồng ý chuyển sang object storage.\nL006 | An | Chốt dùng object storage cho bản thử nghiệm. Nhà cung cấp để cuộc họp sau chọn.",
+      "utterance_count": 6,
+      "word_count": 84,
+      "annotation_status": "assistant_semantically_reviewed_pending_human_signoff",
+      "required_records": [
+        {
+          "label_id": "storage",
+          "kind": "decision",
+          "meaning": "Dùng object storage cho bản thử nghiệm",
+          "meeting_status": "agreed",
+          "execution_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "authority_status": "unknown",
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L002",
+              "quote": "Tôi đề xuất lưu trên ổ đĩa của máy chủ ứng dụng."
+            },
+            {
+              "source_id": "L003",
+              "quote": "Cách đó khó mở rộng nếu chạy hai máy chủ, tôi đề nghị dùng object storage."
+            },
+            {
+              "source_id": "L006",
+              "quote": "Chốt dùng object storage cho bản thử nghiệm. Nhà cung cấp để cuộc họp sau chọn."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L006",
+                "quote": "Chốt dùng object storage cho bản thử nghiệm. Nhà cung cấp để cuộc họp sau chọn."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L006",
+                "quote": "Chốt dùng object storage cho bản thử nghiệm. Nhà cung cấp để cuộc họp sau chọn."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false,
+          "execution_status_note": "Không có kết luận cho phép triển khai được xác minh; unknown không phải phủ nhận quyết định trong họp."
+        },
+        {
+          "label_id": "vendor",
+          "kind": "decision",
+          "meaning": "Chưa chọn nhà cung cấp object storage",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "authority_status": "unknown",
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L006",
+              "quote": "Chốt dùng object storage cho bản thử nghiệm. Nhà cung cấp để cuộc họp sau chọn."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L006",
+                "quote": "Chốt dùng object storage cho bản thử nghiệm. Nhà cung cấp để cuộc họp sau chọn."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L006",
+                "quote": "Chốt dùng object storage cho bản thử nghiệm. Nhà cung cấp để cuộc họp sau chọn."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": true,
+          "execution_status_note": "Không có kết luận cho phép triển khai được xác minh; unknown không phải phủ nhận quyết định trong họp."
+        }
+      ],
+      "allowed_additional_records": [],
+      "forbidden_claims": [
+        "Lưu trên ổ đĩa máy chủ là quyết định cuối.",
+        "Đã chọn một nhà cung cấp cụ thể.",
+        "Có người được giao triển khai hoặc có deadline."
+      ],
+      "checkpoints": [
+        {
+          "at_source_id": "L002",
+          "label_id": "storage",
+          "meeting_status": "proposed",
+          "meaning": "Lưu trên máy chủ ứng dụng"
+        },
+        {
+          "at_source_id": "L006",
+          "label_id": "storage",
+          "meeting_status": "agreed",
+          "meaning": "Object storage"
+        }
+      ],
+      "annotation_notes": "",
+      "business_scenarios": [
+        "proposal_replaced",
+        "final_decision"
+      ],
+      "transcript_challenges": [],
+      "context": {
+        "meeting_date": null,
+        "timezone": null,
+        "note": "No external date/project/participant roster supplied. Infer only from transcript, not execution date."
+      },
+      "case_review_required": false,
+      "case_review_reason": null,
+      "length_band": "short",
+      "annotation_review": {
+        "reviewer": "coding_assistant_same_author_not_independent_human",
+        "date": "2026-10-13",
+        "scope": "Transcript and annotations only; no inference or pipeline tuning.",
+        "finding": "L006 chốt object storage; nhà cung cấp vẫn mở. Không có phân công hoặc hạn."
+      },
+      "representation_alternatives": [],
+      "source_dataset": "datasets/meeting_eval_v1.json"
+    },
+    {
+      "id": "LC01",
+      "split": "development",
+      "title": "Giao trực tiếp rồi hủy; không tạo request và decision phụ",
+      "transcript": "L001 | Linh | Mai lập bảng đối soát cho đợt nhập kho, hạn sáng thứ Sáu.\nL002 | Mai | Tôi nhận việc lập bảng đó.\nL003 | Linh | Hủy việc lập bảng đối soát vì hệ thống đã có bản tự động.\nL004 | Linh | Bỏ luôn hạn sáng thứ Sáu; không giao việc thay thế.\nL005 | Mai | Tôi xác nhận dừng việc đã nhận.",
+      "expected": {
+        "required": [
+          "Một action lập bảng đối soát, cancelled, owner lịch sử Mai, due_raw null; nguồn giao L001/L002, hủy L003, bỏ hạn L004"
+        ],
+        "forbidden": [
+          "Request còn hiệu lực chỉ lặp lại câu giao L001",
+          "Decision riêng chỉ lặp lại xác nhận dừng việc L005",
+          "Action mới thay thế hoặc còn assigned"
+        ],
+        "allowed": [
+          "Lý do hệ thống có bản tự động chỉ là thông tin được báo; không được coi là đã kiểm chứng độc lập"
+        ]
+      },
+      "source_dataset": "datasets/task_lifecycle_regression_v1.json"
+    },
+    {
+      "id": "H01",
+      "title": "Giữ riêng: chốt có điều kiện rồi mở lại, phân công vẫn còn",
+      "split": "held_out",
+      "difficulty_tags": [
+        "clean",
+        "short",
+        "conditional_then_reopened",
+        "independent_action"
+      ],
+      "transcript": "L001 | Diệp | Chốt bật đồng bộ tự động nếu bảo mật duyệt quyền đọc dữ liệu.\nL002 | Huy | Tôi nhận soạn danh sách quyền cần xin, chưa có hạn hoàn thành.\nL003 | Sang | Quyền đọc dữ liệu cá nhân cần được làm rõ trước.\nL004 | Diệp | Tôi mở lại lựa chọn bật đồng bộ tự động; hôm nay chưa chốt bật hay giữ đồng bộ thủ công.\nL005 | Huy | Việc tôi soạn danh sách quyền vẫn thực hiện dù lựa chọn đồng bộ chưa chốt.\nL006 | Diệp | Đúng, không hủy việc soạn danh sách quyền.",
+      "utterance_count": 6,
+      "word_count": 83,
+      "annotation_status": "assistant_semantically_reviewed_pending_human_signoff",
+      "required_records": [
+        {
+          "label_id": "auto_sync",
+          "kind": "decision",
+          "meaning": "Chưa chốt tự động hay thủ công sau khi mở lại lựa chọn",
+          "meeting_status": "reopened",
+          "execution_status": "unknown",
+          "owner": null,
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "authority_status": "unknown",
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L001",
+              "quote": "Chốt bật đồng bộ tự động nếu bảo mật duyệt quyền đọc dữ liệu."
+            },
+            {
+              "source_id": "L004",
+              "quote": "Tôi mở lại lựa chọn bật đồng bộ tự động; hôm nay chưa chốt bật hay giữ đồng bộ thủ công."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L001",
+                "quote": "Chốt bật đồng bộ tự động nếu bảo mật duyệt quyền đọc dữ liệu."
+              },
+              {
+                "source_id": "L004",
+                "quote": "Tôi mở lại lựa chọn bật đồng bộ tự động; hôm nay chưa chốt bật hay giữ đồng bộ thủ công."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L004",
+                "quote": "Tôi mở lại lựa chọn bật đồng bộ tự động; hôm nay chưa chốt bật hay giữ đồng bộ thủ công."
+              }
+            ],
+            "condition": [
+              {
+                "source_id": "L004",
+                "quote": "Tôi mở lại lựa chọn bật đồng bộ tự động; hôm nay chưa chốt bật hay giữ đồng bộ thủ công."
+              }
+            ]
+          },
+          "counter_evidence": [
+            {
+              "source_id": "L004",
+              "quote": "Tôi mở lại lựa chọn bật đồng bộ tự động; hôm nay chưa chốt bật hay giữ đồng bộ thủ công."
+            }
+          ],
+          "must_flag_for_review": true,
+          "historical_content": "Từng chốt tự động nếu bảo mật duyệt; sau đó mở lại cả lựa chọn.",
+          "execution_status_note": "Không có kết luận cho phép triển khai được xác minh; unknown không phải phủ nhận quyết định trong họp."
+        },
+        {
+          "label_id": "permissions_list",
+          "kind": "action",
+          "meaning": "Soạn danh sách quyền cần xin",
+          "meeting_status": "assigned",
+          "execution_status": "unknown",
+          "owner": "Huy",
+          "supporter": null,
+          "due_raw": null,
+          "due_iso": null,
+          "authority_status": "unknown",
+          "condition": null,
+          "evidence": [
+            {
+              "source_id": "L002",
+              "quote": "Tôi nhận soạn danh sách quyền cần xin, chưa có hạn hoàn thành."
+            },
+            {
+              "source_id": "L005",
+              "quote": "Việc tôi soạn danh sách quyền vẫn thực hiện dù lựa chọn đồng bộ chưa chốt."
+            }
+          ],
+          "field_evidence": {
+            "content": [
+              {
+                "source_id": "L002",
+                "quote": "Tôi nhận soạn danh sách quyền cần xin, chưa có hạn hoàn thành."
+              },
+              {
+                "source_id": "L005",
+                "quote": "Việc tôi soạn danh sách quyền vẫn thực hiện dù lựa chọn đồng bộ chưa chốt."
+              }
+            ],
+            "meeting_status": [
+              {
+                "source_id": "L002",
+                "quote": "Tôi nhận soạn danh sách quyền cần xin, chưa có hạn hoàn thành."
+              },
+              {
+                "source_id": "L005",
+                "quote": "Việc tôi soạn danh sách quyền vẫn thực hiện dù lựa chọn đồng bộ chưa chốt."
+              }
+            ],
+            "owner": [
+              {
+                "source_id": "L002",
+                "quote": "Tôi nhận soạn danh sách quyền cần xin, chưa có hạn hoàn thành."
+              }
+            ],
+            "due_raw": [
+              {
+                "source_id": "L002",
+                "quote": "Tôi nhận soạn danh sách quyền cần xin, chưa có hạn hoàn thành."
+              }
+            ]
+          },
+          "counter_evidence": [],
+          "must_flag_for_review": false
+        }
+      ],
+      "allowed_additional_records": [
+        {
+          "meaning": "Quyền đọc dữ liệu cá nhân cần làm rõ",
+          "evidence": [
+            {
+              "source_id": "L003",
+              "quote": "Quyền đọc dữ liệu cá nhân cần được làm rõ trước."
+            }
+          ]
+        }
+      ],
+      "forbidden_claims": [
+        "Đã chốt đồng bộ tự động có hiệu lực cuối họp.",
+        "Việc soạn quyền đã bị hủy.",
+        "Bảo mật đã duyệt.",
+        "Tự đặt hạn cho Huy."
+      ],
+      "checkpoints": [],
+      "annotation_notes": "",
+      "business_scenarios": [
+        "conditional_then_reopened",
+        "independent_action"
+      ],
+      "transcript_challenges": [],
+      "context": {
+        "meeting_date": null,
+        "timezone": null,
+        "note": "No external date/project/participant roster supplied. Infer only from transcript, not execution date."
+      },
+      "case_review_required": false,
+      "case_review_reason": null,
+      "length_band": "short",
+      "annotation_review": {
+        "reviewer": "coding_assistant_same_author_not_independent_human",
+        "date": "2026-10-13",
+        "scope": "Transcript and annotations only; no inference or pipeline tuning.",
+        "finding": "L004 mở lại cả lựa chọn nên điều kiện cũ không còn là điều kiện đang có hiệu lực; việc Huy vẫn giữ."
+      },
+      "representation_alternatives": [],
+      "source_dataset": "datasets/meeting_eval_v1.json"
+    }
+  ]
+}
