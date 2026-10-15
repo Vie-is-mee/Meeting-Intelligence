@@ -65,12 +65,13 @@
       </section>
 
       <section class="panel output-panel">
-        <div class="panel-heading"><div><h2>Kết quả sau họp</h2></div><span id="result-engine" class="badge neutral">Chưa phân tích</span></div>
+        <div class="panel-heading"><div><span class="section-kicker">BẢN TIN SAU CUỘC HỌP</span><h2>Kết quả sau họp</h2></div><span id="result-engine" class="badge neutral">Chưa phân tích</span></div>
         <div class="output-next"><span>Chọn bản ghi để kiểm tra kết luận.</span><button class="button secondary" data-workspace-target="evidence" disabled>Xem bằng chứng →</button></div>
         <div class="metrics"><div><span id="metric-records">—</span><small>Mục ghi nhận</small></div><div><span id="metric-review">—</span><small title="Các mục hệ thống đề nghị đối chiếu; mọi mục vẫn cần người dùng xác nhận trước khi xuất CSV.">Hệ thống đánh dấu xem lại</small></div><div><span id="metric-time">—</span><small>Thời gian chạy</small></div></div>
         <div class="result-toolbar"><div class="tabs" role="tablist" aria-label="Chế độ xem kết quả"><button class="tab active" id="tab-records" role="tab" aria-selected="true" aria-controls="records-view">Bản ghi</button><button class="tab" id="tab-json" role="tab" aria-selected="false" aria-controls="json-view">JSON gốc</button></div><span id="api-metrics" class="small muted">Chưa có lượt chạy</span></div>
         <div id="records-view" role="tabpanel" aria-labelledby="tab-records">
-          <div class="result-intro"><h3>Thông tin hệ thống ghi nhận</h3><p>Đây là bản AI gốc. Trạng thái cuộc họp, nhận xét kiểm tra của AI và xác nhận của người dùng là ba thông tin riêng. Chọn thẻ → xem câu nguồn → rà soát; CSV chỉ chứa bản người dùng đã xác nhận.</p></div>
+          <div class="result-intro"><h3>Cuộc họp để lại những gì?</h3><p>Đọc tổng quan, rồi xem từng nhóm bên dưới. Đây là kết quả AI gốc; chỉ bản người dùng xác nhận mới được xuất CSV.</p></div>
+          <div id="result-overview" class="result-overview" aria-label="Tổng quan kết quả AI"></div>
           <div id="filters" class="filters" aria-label="Lọc loại thông tin" hidden></div>
           <div id="records" class="record-list"><div class="empty-state"><div class="empty-symbol"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="11" y="6" width="26" height="36" rx="4"/><path d="M18 17h12M18 24h12M18 31h7"/></svg></div><h3>Mỗi kết luận đều có dấu vết</h3><p>Chọn tình huống mẫu hoặc dán transcript,<br>rồi chạy phân tích để xem các bản ghi.</p><div class="empty-flow">Phát biểu <span>→</span> Diễn biến <span>→</span> Kết quả</div></div></div>
         </div>
@@ -81,14 +82,14 @@
       </section>
 
       <section class="panel evidence-panel">
-        <div class="panel-heading"><div><h2>Bằng chứng & diễn biến</h2></div></div>
+        <div class="panel-heading"><div><span class="section-kicker">01 · ĐỌC CÙNG NGỮ CẢNH</span><h2>Bản ghi & transcript</h2></div></div>
         <div id="detail-empty" class="evidence-empty"><span class="small-caps">ĐỌC KẾT QUẢ CÙNG NGỮ CẢNH</span><p>Chọn một bản ghi để xem lịch sử và các phát biểu liên quan.</p><div class="legend"><span><i class="source-dot"></i>Câu nguồn</span><span><i class="change-dot"></i>Câu sửa đổi / audit</span></div></div>
         <div id="detail" hidden><div class="detail-heading"><span id="detail-kind" class="small-caps"></span><h3 id="detail-title"></h3><div id="detail-status"></div><div id="detail-conclusion"></div></div><div class="evidence-tabs"><button id="show-history" class="active">Lịch sử thay đổi</button><button id="show-transcript">Transcript</button></div><div id="timeline"></div><div id="source-view" hidden><div class="legend"><span><i class="source-dot"></i>Nguồn của bản ghi</span><span><i class="change-dot"></i>Thay đổi / audit</span></div><div id="source-lines"></div></div><div id="field-evidence" class="field-evidence"></div></div>
       </section>
       <section id="explanation-panel" class="panel explanation-panel" hidden aria-label="Bảng đối chiếu kết luận với câu nguồn">
-        <div class="panel-heading"><div><h2>Kết luận dựa vào đâu?</h2></div></div>
+        <div class="panel-heading"><div><span class="section-kicker">02 · ĐỐI CHIẾU TỪNG THÔNG TIN</span><h2>Kết luận dựa vào đâu?</h2></div></div>
         <nav class="trace-tabs" aria-label="Các bảng kiểm chứng"><button data-trace-target="conclusion" class="active" aria-pressed="true">Kết luận & nguồn</button><button data-trace-target="events" aria-pressed="false">Diễn biến xử lý</button><button data-trace-target="audit" aria-pressed="false">Nhận xét audit</button></nav>
-        <div class="explanation-body"><h3 id="explanation-title"></h3><p class="explanation-note">Đọc từ sự kiện và nguồn hệ thống đã trích, không phải suy nghĩ nội bộ của LLM. Cụm từ gợi ý không tự chứng minh cách phân loại đúng; hãy đọc toàn câu và diễn biến.</p>
+        <div class="explanation-body"><h3 id="explanation-title"></h3><p class="explanation-note">Mỗi dòng nối một giá trị AI ghi nhận với câu nguồn. Kiểm tra cả ngữ cảnh bên trái; mở “Diễn biến xử lý” khi có thay đổi. Nhận xét audit là đề nghị kiểm tra, có thể sai.</p>
           <div data-trace-panel="conclusion"><h4>Kết quả hiện tại dựa vào đâu?</h4><div id="conclusion-table" class="table-scroll" tabindex="0" aria-label="Nguồn theo từng trường"></div></div>
           <div data-trace-panel="events" hidden><h4>Từ phát biểu đến sự kiện và cách xử lý</h4><p class="help">“Quy tắc xử lý” mô tả logic phần mềm cho loại sự kiện đó; các sự kiện về sau có thể thay đổi kết quả.</p><div id="event-table" class="table-scroll" tabindex="0" aria-label="Diễn biến theo câu nguồn"></div></div>
           <div data-trace-panel="audit" hidden><p class="help">Audit là lượt kiểm tra của LLM, có thể bỏ sót hoặc nhận xét sai. Nếu không có nhận xét, điều đó chưa chứng minh bản ghi đúng.</p><div id="audit-explanation" hidden><h4>Nhận xét audit — cần đối chiếu</h4><div id="audit-table" class="table-scroll" tabindex="0" aria-label="Nhận xét audit và câu trích"></div></div></div>
@@ -96,10 +97,11 @@
       </section>
       <section id="human-review-panel" class="panel human-review-panel" hidden aria-label="Rà soát của người dùng">
         <div class="panel-heading"><div><h2>Đối chiếu kết quả AI với transcript</h2></div><span class="badge neutral">Người dùng xác minh</span></div>
-        <div class="human-review-body"><p>1. Đọc kết quả AI và câu nguồn bên dưới → 2. Chọn Đúng, Sai hoặc Chưa đủ bằng chứng → 3. Lưu đánh giá. Không cần nhập lại nội dung nếu AI đã ghi đúng.</p>
+        <div class="human-review-body"><div class="review-guide"><div><span>01</span><strong>Đọc & đối chiếu</strong><p>Kết quả bên trái, câu nguồn bên phải.</p></div><div><span>02</span><strong>Đánh giá từng mục</strong><p>Đúng, cần sửa hoặc chưa đủ bằng chứng.</p></div><div><span>03</span><strong>Xuất bản đã xác nhận</strong><p>AI gốc và lịch sử luôn được giữ riêng.</p></div></div>
           <div id="review-counts" class="review-counts"></div><div id="review-record-selector" class="review-record-selector"></div>
           <h3 id="review-record-title"></h3><div class="review-comparison"><div id="review-original" class="review-original"></div><div id="review-evidence" class="review-evidence"></div></div>
           <form id="human-review-form" novalidate>
+            <h3 class="review-section-title">02 · Đánh giá của bạn</h3>
             <label>Tên người rà soát (tự khai)<input id="review-actor" maxlength="100" required autocomplete="name"></label>
             <fieldset class="review-verdict"><legend>Kết quả này có đúng với transcript không?</legend><div class="review-choices"><button type="button" class="button secondary" data-review-choice="correct" aria-pressed="false">Đúng</button><button type="button" class="button secondary" data-review-choice="wrong" aria-pressed="false">Sai</button><button type="button" class="button secondary" data-review-choice="insufficient" aria-pressed="false">Chưa đủ bằng chứng</button></div><p id="review-choice-help">Chọn một đánh giá sau khi đọc các câu nguồn. Xem toàn bộ transcript ở bước Kiểm chứng.</p></fieldset>
             <div id="review-correction" hidden><h3>Sửa thông tin AI ghi sai</h3><p>Nếu bản ghi hoàn toàn không tồn tại hoặc bị trích xuất thừa, chọn “Loại bỏ bản ghi sai” bên dưới.</p><div class="review-form-grid">
@@ -113,7 +115,7 @@
           <label class="review-check" id="review-check-label" hidden><input id="review-checked" type="checkbox"><span>Tôi đã đối chiếu phiên bản sửa với transcript.</span></label>
           <div class="review-actions"><button type="submit" id="review-submit" class="button primary" disabled>Lưu đánh giá</button><button type="button" class="button secondary" id="review-edit" hidden>Lưu bản sửa, chưa xác nhận</button><button type="button" class="button secondary" id="review-reject" hidden>Loại bỏ bản ghi sai</button><button type="button" class="button secondary" id="review-reopen" hidden>Đánh giá lại bản ghi</button></div></form>
           <div id="review-message" role="status" class="review-message"></div><details><summary>Lịch sử thao tác của người dùng</summary><div id="review-history"></div></details>
-          <div class="review-export"><button class="button secondary" id="save-review">Lưu phiên trên trình duyệt này</button><button class="button secondary" id="export-review-json">Xuất JSON kèm lịch sử rà soát</button><button class="button secondary" id="export-review-csv">Xuất CSV bản đã xác nhận</button></div>
+          <h3 class="review-section-title export-heading">03 · Lưu và sử dụng kết quả</h3><div class="review-export"><button class="button secondary" id="save-review">Lưu phiên trên trình duyệt này</button><button class="button secondary" id="export-review-json">Xuất JSON kèm lịch sử rà soát</button><button class="button primary" id="export-review-csv">Xuất CSV bản đã xác nhận</button></div>
           <p class="help">Chỉ bản được xác nhận mới vào danh sách sử dụng; bản chờ hoặc bị từ chối vẫn nằm trong lịch sử. Trình duyệt giữ một phiên đã lưu gần nhất; tải JSON để giữ các phiên khác. Lưu phiên không gửi dữ liệu lên GitHub/server.</p>
           <div id="confirmed-records" class="confirmed-records"></div>
         </div>

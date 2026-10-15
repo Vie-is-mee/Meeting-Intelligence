@@ -145,11 +145,39 @@ function renderRecords() {
   const container = $('records');
   container.replaceChildren();
   const records = result.analysis.records;
+  const groups=[
+    {key:'decisions',title:'Quyết định đã thống nhất',hint:'Phân biệt quyết định đã chốt với quyết định còn điều kiện.',test:r=>r.kind==='decision'&&['agreed','conditional'].includes(r.meeting_status)},
+    {key:'tasks',title:'Công việc cần theo dõi',hint:'Đọc người nhận việc, hạn và điều kiện trước khi sử dụng.',test:r=>r.kind==='action'&&r.meeting_status!=='cancelled'},
+    {key:'open',title:'Chưa chốt · cần làm rõ',hint:'Chưa được coi là quyết định cuối cùng của cuộc họp.',test:r=>r.kind==='decision'&&!['agreed','conditional','withdrawn'].includes(r.meeting_status)},
+    {key:'requests',title:'Yêu cầu & phản hồi',hint:'Nhu cầu được ghi nhận không tự trở thành công việc đã giao.',test:r=>['request','feedback'].includes(r.kind)&&r.meeting_status!=='withdrawn'},
+    {key:'issues',title:'Vướng mắc & tri thức',hint:'Vấn đề cần theo dõi và thông tin được chia sẻ trong cuộc họp.',test:r=>['issue','knowledge'].includes(r.kind)},
+    {key:'inactive',title:'Đã hủy · đã rút',hint:'Giữ để tra cứu lịch sử, không coi là cam kết đang có hiệu lực.',test:r=>['cancelled','withdrawn'].includes(r.meeting_status)}
+  ];
+  const groupOf=r=>{const index=groups.findIndex(g=>g.test(r));return index<0?groups.length-1:index;};
+  const overview=$('result-overview');overview.replaceChildren();
+  for(const [label,count,tone] of [
+    ['Đã chốt / có điều kiện',records.filter(groups[0].test).length,'settled'],
+    ['Việc đang được giao',records.filter(r=>r.kind==='action'&&r.meeting_status==='assigned').length,'tasks'],
+    ['Chưa chốt / cần làm rõ',records.filter(groups[2].test).length,'open']]){
+    const tile=node('div',`overview-tile ${tone}`);tile.append(node('strong','',count),node('span','',label));overview.append(tile);
+  }
+  const pending=currentReview?.records.filter(r=>r.decision==='pending').length||0;
+  const confirmed=currentReview?.records.filter(r=>r.decision==='confirmed').length||0;
+  overview.append(node('p','overview-note',`Theo bản AI gốc · ${pending} mục chờ người dùng xác nhận · ${confirmed} mục đã xác nhận để xuất CSV.`));
+  let groupElement=null,lastGroup=-1;
   let visible = 0;
-  records.forEach((record, index) => {
+  records.map((record,index)=>({record,index})).sort((a,b)=>groupOf(a.record)-groupOf(b.record)||a.index-b.index).forEach(({record,index}) => {
     if (filter !== 'all' && filter !== record.kind) return;
     visible++;
+    const groupIndex=groupOf(record),group=groups[groupIndex];
+    if(groupIndex!==lastGroup){
+      groupElement=node('section',`record-group group-${group.key}`);
+      const heading=node('div','record-group-heading');
+      heading.append(node('h4','',group.title),node('span','group-count',records.filter(r=>groupOf(r)===groupIndex&&(filter==='all'||r.kind===filter)).length));
+      groupElement.append(heading,node('p','record-group-hint',group.hint));container.append(groupElement);lastGroup=groupIndex;
+    }
     const button = node('button', `record${selected === index ? ' selected' : ''}`);
+    button.dataset.recordIndex=index;
     button.setAttribute('aria-pressed', String(selected === index));
     const top = node('div','record-top');
     top.append(node('span','record-kind',kinds[record.kind] || record.kind), statusBadge(record.meeting_status));
@@ -175,7 +203,7 @@ function renderRecords() {
     bottom.append(node('span',human?.decision==='confirmed'?'human-confirmed':human?.decision==='rejected'?'human-rejected':'human-pending',`Người dùng: ${humanText}`));
     button.append(bottom);
     button.addEventListener('click', () => { selected = index; renderRecords(); renderDetail(); renderHumanReview(); });
-    container.append(button);
+    groupElement.append(button);
   });
   if (!visible) {
     const empty = node('div','empty-state');
@@ -237,7 +265,7 @@ function makeTraceTable(headers, rows) {
   headers.forEach(label => { const th = node('th','',label); th.scope = 'col'; tr.append(th); });
   head.append(tr); table.append(head);
   const body = node('tbody');
-  rows.forEach(cells => { const row = node('tr'); cells.forEach(value => { const td = node('td'); td.append(typeof value === 'string' ? document.createTextNode(value) : value); row.append(td); }); body.append(row); });
+  rows.forEach(cells => { const row = node('tr'); cells.forEach((value,index) => { const td = node('td'); td.dataset.label=headers[index];td.append(typeof value === 'string' ? document.createTextNode(value) : value); row.append(td); }); body.append(row); });
   table.append(body); return table;
 }
 function renderExplanation(record, utterances) {
@@ -353,7 +381,7 @@ function renderDetail() {
   }
   provenance.append(node('p','','Nguồn có thật chưa bảo đảm cách diễn giải đúng. Hãy đọc cả ngữ cảnh.'));
   renderExplanation(record,utterances);
-  showEvidenceTab('history');
+  showEvidenceTab('transcript');
 }
 
 function renderEvaluation() {
@@ -457,7 +485,10 @@ function renderHumanReview() {
   if (!currentReview) return;
   const counts = {pending:0,confirmed:0,rejected:0}; currentReview.records.forEach(r=>counts[r.decision]++);
   const insufficient=currentReview.records.filter(r=>r.assessment==='insufficient').length;
-  $('review-counts').textContent = `${counts.pending} chưa xác nhận${insufficient?` (gồm ${insufficient} chưa đủ bằng chứng)`:''} · ${counts.confirmed} đã xác nhận · ${counts.rejected} bản sai đã loại bỏ`;
+  $('review-counts').replaceChildren();
+  for(const [count,label,tone] of [[counts.pending,`Chờ xác nhận${insufficient?` · ${insufficient} chưa đủ bằng chứng`:''}`,'pending'],[counts.confirmed,'Đã xác nhận · có thể xuất CSV','confirmed'],[counts.rejected,'Đã loại bỏ · không xuất CSV','rejected']]){
+    const stat=node('div',`review-stat ${tone}`);stat.append(node('strong','',count),node('span','',label));$('review-counts').append(stat);
+  }
   $('export-review-csv').disabled = !counts.confirmed;
   const selector = node('select'); selector.setAttribute('aria-label','Chọn bản ghi để rà soát');
   currentReview.records.forEach((r,i)=>{const option=node('option','',`${i+1}. ${result.analysis.records[i].topic} · ${r.assessment==='insufficient'?'Chưa đủ bằng chứng':{pending:'Chưa xác nhận',confirmed:'Đã xác nhận',rejected:'Sai, đã loại bỏ'}[r.decision]}`);option.value=i;selector.append(option);});
@@ -473,8 +504,13 @@ function renderHumanReview() {
     const original=currentReview.original_analysis.records[selected];
     const changed=JSON.stringify(entry.draft)!==JSON.stringify(Object.fromEntries(MeetingReview.editable.map(k=>[k,original[k]??null])));
     const display=entry.draft;
-    $('review-original').append(node('strong','',changed?'Phiên bản đã sửa — đang đối chiếu':'Kết quả AI cần kiểm tra'),node('p','',`${kinds[display.kind]} · ${statuses[display.meeting_status]} · ${display.content||'Chưa có nội dung'}`));
-    for(const [key,label] of [['owner','Người phụ trách'],['supporter','Người hỗ trợ'],['due_raw','Hạn'],['condition','Điều kiện']])if(display[key])$('review-original').append(node('p','',`${label}: ${display[key]}`));
+    $('review-original').append(node('strong','',changed?'Bản người dùng đã chỉnh sửa':'Kết quả AI gốc'),node('p','',`${kinds[display.kind]} · ${statuses[display.meeting_status]} · ${display.content||'Chưa có nội dung'}`));
+    for(const [key,label] of [['owner','Người phụ trách'],['supporter','Người hỗ trợ'],['due_raw','Hạn'],['condition','Điều kiện']]){
+      if(display[key]||(display.kind==='action'&&['owner','due_raw'].includes(key))){
+        const name=key==='owner'&&display.meeting_status==='cancelled'?'Người từng phụ trách':label;
+        $('review-original').append(node('p','',`${name}: ${display[key]||'Chưa ghi nhận'}`));
+      }
+    }
     $('review-original').append(node('p','review-state',entry.assessment==='insufficient'?'Đánh giá đã lưu: chưa đủ bằng chứng':`Đánh giá đã lưu: ${{pending:'chưa xác nhận',confirmed:'đã xác nhận nội dung',rejected:'bản ghi sai, đã loại bỏ'}[entry.decision]}`));
     if(changed){const old=node('details');old.append(node('summary','','Xem kết quả AI ban đầu'),node('p','',`${kinds[original.kind]} · ${statuses[original.meeting_status]} · ${original.content}`));$('review-original').append(old);}
     const evidence=$('review-evidence');evidence.replaceChildren(node('strong','','Câu nguồn để đối chiếu'));
