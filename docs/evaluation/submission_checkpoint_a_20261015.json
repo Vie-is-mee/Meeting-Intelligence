@@ -1,0 +1,89 @@
+{
+  "checkpoint_id": "submission-A-20261015-step1",
+  "checked_at_utc": "2026-10-15T02:16:25.939Z",
+  "client_timezone": "Asia/Saigon",
+  "branch": "main",
+  "source_commit_before_checkpoint": "c74af24e36463221224b0aacc0d58f4bf6c0a22d",
+  "selected_core": "baseline A",
+  "core_baseline_manifest": "docs/evaluation/baseline_a_20261014.json",
+  "baseline_files_verified": 19,
+  "experiment_branches_promoted": false,
+  "runtime_code_or_prompt_changes_in_this_step": false,
+  "release_files_sha256": {
+    "frontend/app.js": "0ba165b848991446bacf79dcc08c4a280e02375a22aa553b2ec790dd28cec36e",
+    "frontend/config.js": "ee491de4c73f2ba2d1f20c354121c46aa2f259c03e3aec2a3eea19a32290eb4b",
+    "frontend/demo-data.json": "7d82b1838a9d5a66b77e42ee1326985829d0c11ce12f2dc6e54e73d8db9a0f2b",
+    "frontend/index.html": "4f74bba9845d2597d277ddd2ef492e9ac715d60687de02f7c7226ef05cc8a78b",
+    "frontend/review.css": "18315a71885e25b6057d7130759679601874b8e0b44d66ee257f05cf932ab3bc",
+    "frontend/review.js": "0eab64cf8f960eaca2bafde16692d240c307f349297d360832beea5de010a6c1",
+    "frontend/styles.css": "e7fe3b6b7d1210afb1d8ab7b6a059ce60ebbe5048e038df1556a4b6c4788d291",
+    "frontend/workspace.css": "6a44548aa8a541781b2c1b508c439557cac07ad48b1b2591f8cf4305244c17d6",
+    "meeting_intelligence/__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence/auditor.py": "3c1ef3ba528d3fcfdc0e494a8bdd23f88e3c6fb1bb1d998fe58d3001b71738c6",
+    "meeting_intelligence/config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence/extractor.py": "1d8f3662d4b16de3ff68f2e61b1d57d9df70e802334c37264ffb3ef0e5b46a68",
+    "meeting_intelligence/llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence/models.py": "96e7e38e155a14822dcfdca637882259ac20f7c7c341e1280f16a7f17ed4cab2",
+    "meeting_intelligence/offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence/parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence/pipeline.py": "66a5cf23ac51b1245b857a549b79c3d3066eb28a40736df11e692dd02d3805b7",
+    "meeting_intelligence/resolver.py": "3d7eb6c7220b8f72a2d8d26883bd65e0d2744f7c273d21cea2e662e2bb267ecc",
+    "meeting_intelligence/verifier.py": "805f0fcde122c2c81dc9d5c64080c107118f3335a8969a13b1429f1839fecb8d",
+    "render.yaml": "8b9ac8597e66af4406a0ba21d1ed2a99c2003f6666b6ee8c39a326a3c5029314",
+    "requirements.txt": "d82c886d29af6d44dcb338774ac8a0d1fa600f24fe4e18c421fa420c6c64d702",
+    "run_demo.cmd": "741f7a81dade7bef53eb99b44a9aa4e66dd1366a888f51ad6238b3f4fc92f988",
+    "run_web.cmd": "1d59a532f72f0019239dff212fa7d54a476fc54cec527beaf4d130ceb4394c00",
+    "vercel.json": "6dddd4fa31e0766354d3b81d6ccfbb0edc763bbf1a12241db75d4540693c81cb",
+    "web.py": "d5a37e9ca78cb5d1b83632ffafe0830c61893d0e377853e33463221c09efcf57"
+  },
+  "online_browser": {
+    "checked_at_utc": "2026-10-15T02:16:25.939Z",
+    "url": "https://meeting-intelligence-sable.vercel.app/",
+    "recorded_D01_records": 2,
+    "final_source": "L006",
+    "styles_applied": true,
+    "backend_connected": true,
+    "llm_option_selectable": true,
+    "offline_option_selectable": true,
+    "post_requests": 0,
+    "llm_calls": 0,
+    "browser_exceptions": []
+  },
+  "http_check": {
+    "vercel_status": 200,
+    "public_backend_origin": "https://meeting-intelligence-5jk5.onrender.com",
+    "render_first_attempt": "health/config/samples timed out at 25 seconds",
+    "render_second_attempt": {
+      "healthz": 200,
+      "config": 200,
+      "samples": 200,
+      "samples_count": 7,
+      "cors_origin": "https://meeting-intelligence-sable.vercel.app",
+      "api_configured": true,
+      "model": "openai/gpt-oss-120b",
+      "provider": "api.groq.com"
+    }
+  },
+  "local_browser": {
+    "backend_replay": "PASS",
+    "static_replay": "PASS",
+    "recorded_failures_visible": "PASS",
+    "source_links_history": "PASS",
+    "review_save_restore_csv_json": "PASS",
+    "mobile_reduced_motion": "PASS",
+    "cross_origin_get_options_offline_post": "PASS",
+    "llm_calls": 0
+  },
+  "not_verified": [
+    "Fresh remote LLM analysis or remaining Groq quota",
+    "Remote running source commit/hash",
+    "New model accuracy or repeatability",
+    "YouTube upload or form submission"
+  ],
+  "fallbacks": [
+    "run_web.cmd -> http://127.0.0.1:8765",
+    "run_demo.cmd -> http://127.0.0.1:5501",
+    "Go Live frontend/index.html -> recorded playback only"
+  ],
+  "next_step": "Small demo-blocking fixes and clarification of final state/evidence/human review, then submission documents/video."
+}
