@@ -1,0 +1,41 @@
+{
+  "checkpoint_id": "submission-A-UI-20261015-step2",
+  "baseline_manifest": "docs/evaluation/baseline_a_20261014.json",
+  "baseline_files_verified": 19,
+  "core_or_prompt_changes": false,
+  "previous_checkpoint": "docs/evaluation/submission_checkpoint_a_20261015.json",
+  "previous_UI_hashes_are_historical": true,
+  "frontend_sha256": {
+    "frontend/app.js": "c3103ab8c4af491354ffa3b308d45dd6f944828f8d5ce7e95c60a490560b63b9",
+    "frontend/config.js": "ee491de4c73f2ba2d1f20c354121c46aa2f259c03e3aec2a3eea19a32290eb4b",
+    "frontend/demo-data.json": "7d82b1838a9d5a66b77e42ee1326985829d0c11ce12f2dc6e54e73d8db9a0f2b",
+    "frontend/index.html": "4de9363af4dae5c1a7fbfca863ea9b472b38825854aee1b5b6cd0bde38615630",
+    "frontend/review.css": "89e2edb56f190507c11c160cb84f323928db94568440ddef11b2bfbaa9aa43e9",
+    "frontend/review.js": "0eab64cf8f960eaca2bafde16692d240c307f349297d360832beea5de010a6c1",
+    "frontend/styles.css": "e7fe3b6b7d1210afb1d8ab7b6a059ce60ebbe5048e038df1556a4b6c4788d291",
+    "frontend/workspace.css": "6a44548aa8a541781b2c1b508c439557cac07ad48b1b2591f8cf4305244c17d6"
+  },
+  "browser_validation": {
+    "backend_and_static_replay": "PASS",
+    "AI_human_confirmation_separate": "PASS",
+    "audit_hypothesis_disclosed": "PASS",
+    "unknown_vs_cleared_fields": "PASS",
+    "review_save_restore_exports": "PASS",
+    "mobile_and_split_origin": "PASS",
+    "cache_disabled_after_stale_static_asset_assertion": true
+  },
+  "review_build_tests": {
+    "passed": 12,
+    "failed": 0
+  },
+  "fresh_remote_smoke": {
+    "input": "docs/evaluation/submission_live_smoke_20261015_input.json",
+    "output": "docs/evaluation/submission_live_smoke_20261015_output.json",
+    "output_sha256": "4f8e666f91a2170ddd2f6b94448f833b56ac0943531b6454c721bccea8da764f",
+    "verdict": "PASS_single_smoke_case",
+    "api_calls": 2,
+    "tokens": 4536,
+    "duration_s": 3.51
+  },
+  "historical_regression_scores_changed": false
+}

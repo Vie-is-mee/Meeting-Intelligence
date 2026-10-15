@@ -13,6 +13,6 @@
 .review-actions,.review-export{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}.review-message{color:#906329;min-height:22px;line-height:1.8;margin:10px 0}
 .review-restore{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:18px;font-size:12px;color:var(--muted)}.review-restore .button{font-size:11px}
 .confirmed-item{padding:12px;margin:8px 0;border:1px solid #cde1d5;border-radius:6px;background:#f4faf4}
-.human-confirmed,.human-rejected{flex-basis:100%;font-size:10px;line-height:1.8}.human-confirmed{color:var(--teal)}.human-rejected{color:#a6453a}
+.human-confirmed,.human-rejected,.human-pending{flex-basis:100%;font-size:10px;line-height:1.8}.human-confirmed{color:var(--teal)}.human-rejected{color:#a6453a}.human-pending{color:var(--muted)}
 #review-history pre{max-height:240px;overflow:auto}#review-history details{margin:10px 0;border-bottom:1px solid var(--line);padding-bottom:8px}
 @media(max-width:650px){.review-form-grid{grid-template-columns:1fr}.human-review-body{padding:0 15px 18px}.review-wide{grid-column:auto}.review-actions .button,.review-export .button{width:100%;justify-content:center}}

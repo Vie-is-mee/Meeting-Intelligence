@@ -67,10 +67,10 @@
       <section class="panel output-panel">
         <div class="panel-heading"><div><h2>Kết quả sau họp</h2></div><span id="result-engine" class="badge neutral">Chưa phân tích</span></div>
         <div class="output-next"><span>Chọn bản ghi để kiểm tra kết luận.</span><button class="button secondary" data-workspace-target="evidence" disabled>Xem bằng chứng →</button></div>
-        <div class="metrics"><div><span id="metric-records">—</span><small>Mục ghi nhận</small></div><div><span id="metric-review">—</span><small>Bản ghi cần rà soát</small></div><div><span id="metric-time">—</span><small>Thời gian chạy</small></div></div>
+        <div class="metrics"><div><span id="metric-records">—</span><small>Mục ghi nhận</small></div><div><span id="metric-review">—</span><small title="Các mục hệ thống đề nghị đối chiếu; mọi mục vẫn cần người dùng xác nhận trước khi xuất CSV.">Hệ thống đánh dấu xem lại</small></div><div><span id="metric-time">—</span><small>Thời gian chạy</small></div></div>
         <div class="result-toolbar"><div class="tabs" role="tablist" aria-label="Chế độ xem kết quả"><button class="tab active" id="tab-records" role="tab" aria-selected="true" aria-controls="records-view">Bản ghi</button><button class="tab" id="tab-json" role="tab" aria-selected="false" aria-controls="json-view">JSON gốc</button></div><span id="api-metrics" class="small muted">Chưa có lượt chạy</span></div>
         <div id="records-view" role="tabpanel" aria-labelledby="tab-records">
-          <div class="result-intro"><h3>Thông tin hệ thống ghi nhận</h3><p>Mỗi thẻ là một kết quả được trích từ cuộc họp. Xem trạng thái và cảnh báo; chọn thẻ để đối chiếu câu nguồn.</p></div>
+          <div class="result-intro"><h3>Thông tin hệ thống ghi nhận</h3><p>Đây là bản AI gốc. Trạng thái cuộc họp, nhận xét kiểm tra của AI và xác nhận của người dùng là ba thông tin riêng. Chọn thẻ → xem câu nguồn → rà soát; CSV chỉ chứa bản người dùng đã xác nhận.</p></div>
           <div id="filters" class="filters" aria-label="Lọc loại thông tin" hidden></div>
           <div id="records" class="record-list"><div class="empty-state"><div class="empty-symbol"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="11" y="6" width="26" height="36" rx="4"/><path d="M18 17h12M18 24h12M18 31h7"/></svg></div><h3>Mỗi kết luận đều có dấu vết</h3><p>Chọn tình huống mẫu hoặc dán transcript,<br>rồi chạy phân tích để xem các bản ghi.</p><div class="empty-flow">Phát biểu <span>→</span> Diễn biến <span>→</span> Kết quả</div></div></div>
         </div>

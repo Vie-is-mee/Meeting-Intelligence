@@ -1,0 +1,17 @@
+{
+  "id": "SUBMISSION-LIVE-01",
+  "scope": "One fresh remote synthetic smoke test; not a dataset score, independent benchmark or proof of repeatability.",
+  "input": "docs/evaluation/submission_live_smoke_20261015_input.json",
+  "output": "docs/evaluation/submission_live_smoke_20261015_output.json",
+  "review_author": "same coding assistant, not independent human",
+  "expected": "Mẫu B là quyết định cuối cho trang đăng ký, nguồn L003; Hà nhận kiểm tra trên điện thoại, hạn nguyên văn 10 giờ sáng mai, nguồn L004; không tự gán ngày tuyệt đối.",
+  "observed": "HTTP 200, hai API calls, hai bản ghi bắt buộc đúng nội dung/trạng thái/người/hạn và nguồn L003/L004; due_iso null; audit không có finding.",
+  "verdict": "PASS",
+  "lesson": "Đường gọi LLM online thực sự hoạt động trong lượt này và giữ được kết luận thay đổi. Không suy ra độ đúng tổng quát hoặc tính ổn định từ một lần chạy. Audit rỗng không phải chứng nhận đúng; kết quả được đối chiếu với kỳ vọng đã khóa trước request.",
+  "historical_regression_scores_changed": false,
+  "limitations": [
+    "Không kiểm tra transcript dài hoặc nhiều người nói mơ hồ.",
+    "Không chứng minh quota còn lại hoặc thời gian đáp ứng ở lượt tiếp theo.",
+    "Không dùng người dùng sửa đầu ra để tính điểm model."
+  ]
+}

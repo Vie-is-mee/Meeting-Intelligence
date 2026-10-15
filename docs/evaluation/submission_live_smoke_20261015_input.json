@@ -1,0 +1,15 @@
+{
+  "id": "SUBMISSION-LIVE-01",
+  "purpose": "Single fresh remote smoke test, labels declared before request; not an independent benchmark or dataset accuracy score.",
+  "engine": "llm_api",
+  "audit": true,
+  "transcript": "Lan: Tôi đề xuất chọn mẫu A cho trang đăng ký.\nMinh: Mẫu A khó đọc trên điện thoại, tôi đề nghị mẫu B.\nLan: Chốt mẫu B cho trang đăng ký. Không dùng mẫu A.\nHà: Tôi nhận kiểm tra mẫu B trên điện thoại, hạn 10 giờ sáng mai.",
+  "expected": [
+    "Final decision: mẫu B for the registration page, not A; evidence L003.",
+    "Action: test mẫu B on mobile, assigned to Hà; raw deadline 10 giờ sáng mai; evidence L004.",
+    "No absolute calendar date may be inferred without a supplied meeting date.",
+    "Any additional feedback/problem must have actual transcript support. Audit findings are reviewed separately; empty findings are not proof."
+  ],
+  "label_author": "same coding assistant, not independent human",
+  "endpoint": "https://meeting-intelligence-5jk5.onrender.com/api/analyze"
+}

@@ -73,14 +73,14 @@ function recordPresentation(record) {
 function conclusionBlock(record) {
   const presentation = recordPresentation(record);
   const block = node('div', `conclusion${record.kind === 'decision' ? ' decision-conclusion' : ''}`);
-  block.append(node('span','conclusion-label',record.kind === 'decision' ? 'KẾT LUẬN HỆ THỐNG GHI NHẬN' : 'NỘI DUNG HỆ THỐNG GHI NHẬN'));
+  block.append(node('span','conclusion-label',record.kind === 'decision' ? 'KẾT LUẬN AI GỐC' : 'NỘI DUNG AI GỐC'));
   block.append(node('p','conclusion-title',presentation.title));
   if (presentation.context) block.append(node('p','conclusion-context',presentation.context));
   return block;
 }
 function reviewLabel(status) {
   return status === 'reviewed' ? 'Đã được người dùng kiểm tra' : status === 'needs_review'
-    ? 'Cần người kiểm tra' : 'Chờ người dùng xác nhận';
+    ? 'Cần đối chiếu câu nguồn' : 'Chờ người dùng xác nhận';
 }
 function showError(message) { $('error').textContent = message; $('error').hidden = false; }
 function fitTranscript(){
@@ -168,8 +168,11 @@ function renderRecords() {
     const review = record.review_status === 'needs_review';
     bottom.append(node('span',review ? 'review' : '', `Rà soát bản ghi: ${reviewLabel(record.review_status)}`),
       node('span','',`${record.history.length} sự kiện · ${record.evidence_ids.length} câu nguồn`), node('span','arrow','↗'));
+    const findings=result.analysis.audit_findings.filter(f=>f.issue_key===record.issue_key&&(!f.kind||f.kind===record.kind));
+    if(findings.length) bottom.append(node('span','review',`AI đề nghị kiểm tra: ${findings.length} nhận xét — có thể cảnh báo sai.`));
     const human=currentReview?.records[index];
-    if(human && human.decision!=='pending') bottom.append(node('span',human.decision==='rejected'?'human-rejected':'human-confirmed',human.decision==='rejected'?'Bản người dùng: đã từ chối, không xuất CSV':'Bản người dùng: đã xác nhận nội dung (AI gốc vẫn giữ nguyên)'));
+    const humanText=human?.decision==='confirmed'?'Đã xác nhận bản người dùng; xem Rà soát & xuất':human?.decision==='rejected'?'Đã loại bỏ; không xuất CSV':human?.assessment==='insufficient'?'Chưa đủ bằng chứng; không xuất CSV':'Chưa xác nhận; chưa xuất CSV';
+    bottom.append(node('span',human?.decision==='confirmed'?'human-confirmed':human?.decision==='rejected'?'human-rejected':'human-pending',`Người dùng: ${humanText}`));
     button.append(bottom);
     button.addEventListener('click', () => { selected = index; renderRecords(); renderDetail(); renderHumanReview(); });
     container.append(button);
@@ -243,11 +246,15 @@ function renderExplanation(record, utterances) {
   $('explanation-title').textContent = `${kinds[record.kind]} · ${record.topic}`;
   const execution = {unknown:'Chưa xác định',blocked:'Chưa được triển khai',pending_condition:'Chờ đáp ứng điều kiện',not_applicable:'Không áp dụng'};
   const provenance = record.field_evidence_ids || {};
-  const fieldRows = Object.entries(provenance).map(([field,ids]) => {
+  const relevant=['content','meeting_status',...(record.kind==='decision'?['execution_status','condition']:[]),...(record.kind==='action'?['owner','supporter','due_raw','condition']:[]),...(record.kind==='request'?['due_raw']:[])];
+  const fieldRows = [...new Set([...relevant,...Object.keys(provenance)])].map(field => {
+    const ids=provenance[field]||[];
     const sources = node('div'); ids.forEach(id => sources.append(sourceQuote(id,utterances)));
     if (!ids.length) sources.append(node('p','','Chưa có câu nguồn riêng cho trường này.'));
     const raw = record[field];
-    const value = field === 'meeting_status' ? statuses[raw] || raw : field === 'execution_status' ? execution[raw] || raw : raw ?? 'Không có giá trị hiện hành';
+    const cleared=record.history.some(e=>(e.clear_fields||[]).includes(field)&&(e.source_ids||[]).some(id=>ids.includes(id)));
+    const missing=cleared?'Không có giá trị hiện hành — hệ thống có ghi thao tác xóa; đối chiếu câu nguồn.':field==='condition'&&record.meeting_status==='reopened'?'Không có điều kiện hiện hành sau khi mở lại. Điều kiện cũ nằm trong lịch sử.':'Chưa ghi nhận — không tự suy đoán.';
+    const value = field === 'meeting_status' ? statuses[raw] || raw : field === 'execution_status' ? execution[raw] || raw : raw ?? missing;
     const label = field === 'owner' && record.meeting_status === 'cancelled' ? 'Người từng phụ trách' : fields[field] || field;
     return [label,String(value),sources];
   });
@@ -270,7 +277,7 @@ function renderExplanation(record, utterances) {
   $('audit-explanation').hidden = !findings.length;
   $('audit-table').replaceChildren(makeTraceTable(['Nguồn audit dẫn','Nhận xét của LLM audit','Cách sử dụng nhận xét'],findings.map(f => {
     const source = node('div'); f.source_ids.forEach(id => source.append(sourceLink(id))); source.append(node('p','',`“${f.source_quote}”`));
-    return [source,f.explanation,'Đây là cảnh báo cần rà soát, không phải kết luận thay thế hay bằng chứng audit luôn đúng.'];
+    return [source,f.explanation,'AI đề nghị kiểm tra; chưa được người dùng xác minh. Đọc câu nguồn rồi đánh giá tại Rà soát & xuất; nhận xét này có thể sai.'];
   })));
 }
 
@@ -313,7 +320,7 @@ function renderDetail() {
   });
   for (const finding of result.analysis.audit_findings.filter(f => f.issue_key === record.issue_key && (!f.kind || f.kind === record.kind))) {
     const item = node('div','timeline-event');
-    item.append(node('div','event-top','Audit · phát hiện cần rà soát'),node('p','',finding.explanation));
+    item.append(node('div','event-top','AI đề nghị kiểm tra · chưa được xác minh'),node('p','',finding.explanation));
     const quote = node('button','quote',`“${finding.source_quote}”`);
     quote.addEventListener('click',() => focusSource(finding.source_ids[0]));
     item.append(quote); timeline.append(item);
