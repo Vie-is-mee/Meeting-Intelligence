@@ -17,6 +17,7 @@ MeetingStatus = Literal[
 ]
 ExecutionStatus = Literal["unknown", "pending_condition", "blocked", "not_applicable"]
 ReviewStatus = Literal["unreviewed", "needs_review", "reviewed"]
+InformationUtility = Literal["current_work", "reusable_candidate", "historical_context", "needs_verification"]
 
 class Utterance(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -75,6 +76,8 @@ class ResultRecord(BaseModel):
     meeting_status: MeetingStatus
     execution_status: ExecutionStatus = "not_applicable"
     authority_status: Literal["unknown", "verified"] = "unknown"
+    information_utility: InformationUtility | None = None
+    information_utility_note: str | None = None
     owner: str | None = None
     supporter: str | None = None
     due_raw: str | None = None

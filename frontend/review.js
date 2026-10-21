@@ -35,12 +35,12 @@
     const before=entry.decision;entry.decision=decision==='insufficient'?'pending':decision;entry.assessment=decision==='insufficient'?'insufficient':null;
     entry.history.push({at:new Date().toISOString(),actor,action:decision==='insufficient'?'insufficient':decision==='rejected'?'rejected':'reopened',reason:reason.trim(),before_decision:before,after_decision:entry.decision});return entry;
   }
-  function confirmed(session){return session.records.filter(r=>r.decision==='confirmed').map(r=>({original_index:r.index,...clone(r.draft),source_ids:[...r.source_ids],human_review:'confirmed',reviewed_by:r.history.at(-1)?.actor,reviewed_at:r.history.at(-1)?.at,authority_status:'unknown',confirmation_scope:'Nội dung do người dùng rà soát, không phải phê duyệt tổ chức.',review_history:clone(r.history)}));}
+  function confirmed(session){return session.records.filter(r=>r.decision==='confirmed').map(r=>{const source=session.original_analysis.records[r.index]||{};const sameKind=source.kind===r.draft.kind;return {original_index:r.index,...clone(r.draft),source_ids:[...r.source_ids],human_review:'confirmed',reviewed_by:r.history.at(-1)?.actor,reviewed_at:r.history.at(-1)?.at,authority_status:'unknown',ai_information_utility:sameKind?(source.information_utility??null):null,ai_utility_note:sameKind?(source.information_utility_note??null):null,confirmation_scope:'Nội dung do người dùng rà soát, không phải phê duyệt tổ chức.',review_history:clone(r.history)};});}
   function exportJSON(session){return {format:'meeting-human-review-v1',session_id:session.id,source_metadata:clone(session.source_metadata||{}),original_analysis:clone(session.original_analysis),review:clone(session.records),confirmed_records:confirmed(session)};}
   function csvCell(value){let text=String(value??'');if(/^[\s]*[=+\-@]/u.test(text)||/^[\t\r\n]/u.test(text))text="'"+text;return '"'+text.replaceAll('"','""')+'"';}
   function exportCSV(session){
     const rows=confirmed(session);if(!rows.length)throw new Error('Chưa có bản ghi được xác nhận để xuất CSV.');
-    const headers=['original_index','kind','content','meeting_status','owner','supporter','due_raw','condition','source_ids','human_review','reviewed_by','reviewed_at','authority_status'];
+    const headers=['original_index','kind','content','meeting_status','owner','supporter','due_raw','condition','source_ids','human_review','reviewed_by','reviewed_at','authority_status','ai_information_utility','ai_utility_note'];
     return '\ufeff'+[headers.map(csvCell).join(','),...rows.map(r=>headers.map(k=>csvCell(k==='source_ids'?r.source_ids.join('; '):r[k])).join(','))].join('\r\n');
   }
   function restore(value,analysis,id){

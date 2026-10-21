@@ -61,7 +61,11 @@ def condensed(rows):
         "meeting_status":r["meeting_status"],"execution_status":r.get("execution_status"),
         "owner":r.get("owner"),"due_raw":r.get("due_raw"),"condition":r.get("condition"),
         "review_status":r["review_status"],"warnings":r.get("warnings",[]),
-        "field_evidence_ids":r.get("field_evidence_ids",{})
+        "authority_status":r.get("authority_status"),
+        "information_utility":r.get("information_utility"),
+        "information_utility_note":r.get("information_utility_note"),
+        "field_evidence_ids":r.get("field_evidence_ids",{}),
+        "counter_evidence_ids":r.get("counter_evidence_ids",[])
     } for r in rows]
 
 def main():
@@ -96,7 +100,7 @@ def main():
               "audits",len(findings),"->",len(result.audit_findings),flush=True)
     report={
         "created_utc":datetime.now(timezone.utc).isoformat(),
-        "purpose":"Deterministic M2-event replay through Stage1 code. No fresh LLM calls.",
+        "purpose":"Deterministic archived-M2-events replay through current branch code; NO fresh LLM calls. The old source outputs are kept as originally recorded.",
         "source":str(src.relative_to(ROOT)).replace("\\","/"),
         "source_sha256":digest(src),
         "code_hashes":core_hashes(),

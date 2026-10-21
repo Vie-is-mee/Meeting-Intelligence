@@ -10,6 +10,7 @@ from .extractor import extract_events
 from .completeness import recover_explicit_omissions
 from .resolver import resolve_events
 from .verifier import verify_records
+from .information_utility import classify_information_utility
 from .models import AnalysisResult
 from .offline_rules import offline_extract_decisions
 from .llm_client import LLMClient, LLMError
@@ -56,5 +57,6 @@ def analyze(text: str, engine: Literal['llm_api', 'offline_rules'] = 'llm_api',
         warnings.append('Đã TẮT audit thứ hai: chưa rà soát độc lập mâu thuẫn/ngữ cảnh')
     if engine == 'llm_api':
         warnings.append('Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa.')
+    classify_information_utility(records, utterances)
     return AnalysisResult(engine=engine, utterances=utterances, records=records,
                           warnings=warnings, audit_findings=[f.model_dump() for f in audit_findings])
