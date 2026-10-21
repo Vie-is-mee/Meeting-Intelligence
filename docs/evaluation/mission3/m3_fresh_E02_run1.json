@@ -1,0 +1,157 @@
+{
+  "started_utc": "2026-10-21T15:53:38.293713+00:00",
+  "manifest": {
+    "version": "m3",
+    "transport": "local",
+    "core_commit": "0e00f9b24b5f7554975fd05b055a9921678be4d8",
+    "source_files_sha256": {
+      "meeting_intelligence/__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+      "meeting_intelligence/auditor.py": "1b5b6a6ed244621c816afaed2e03349d2b673267113305068d00874e657fa297",
+      "meeting_intelligence/completeness.py": "c5473a2f7d0970facc2429b8afa2ae69dc6a3ce3d4c80eba13718f9775e337f4",
+      "meeting_intelligence/config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+      "meeting_intelligence/extractor.py": "1152b3fe8d98791122cff5a1f530b0aff12b61274b565c9597fdb4ecac39b059",
+      "meeting_intelligence/information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+      "meeting_intelligence/llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+      "meeting_intelligence/models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+      "meeting_intelligence/offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+      "meeting_intelligence/parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+      "meeting_intelligence/pipeline.py": "35ba8a06416ef099a6fd49c6efe8d53f8bd83ea60afaf31b86c15dd79c442f74",
+      "meeting_intelligence/resolver.py": "3d7eb6c7220b8f72a2d8d26883bd65e0d2744f7c273d21cea2e662e2bb267ecc",
+      "meeting_intelligence/verifier.py": "0b796ac3f21d1bc8a6f6d33c91f335a5541fd36b4c6c6d7ecf8823e46f97188d"
+    },
+    "frozen_input_sha256": "d01ea985df426a4e2fc9360056838122d22773a71303fcf3c3b5cc5fe8926852",
+    "frozen_labels_sha256": "464045dc9216a93776da6a9b2f1ede667c15fbd5d7c9a86ce5448edb9a12daf6",
+    "audit": "on",
+    "cases": [
+      "M3-E02"
+    ],
+    "remote_url": null,
+    "interpretation": "Direct LLM execution against the selected local source tree"
+  },
+  "results": [
+    {
+      "id": "M3-E02",
+      "status": "COMPLETED",
+      "started_utc": "2026-10-21T15:53:38.298871+00:00",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Giao Lan thử thư viện X để tạo CSV mẫu nội bộ.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Tôi nhận.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Hủy việc thử thư viện X, không cần làm nữa.",
+            "speaker": "Bình",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "task_try_libX",
+            "topic": "thử thư viện X để tạo CSV mẫu nội bộ",
+            "kind": "action",
+            "content": "Thử thư viện X để tạo CSV mẫu nội bộ",
+            "meeting_status": "cancelled",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "historical_context",
+            "information_utility_note": "Giữ trạng thái/lịch sử; không phải cam kết cần thực hiện mới.",
+            "owner": "Lan",
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001",
+              "L003"
+            ],
+            "counter_evidence_ids": [
+              "L003"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L003"
+              ],
+              "content": [
+                "L001"
+              ],
+              "owner": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001",
+                "L003"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "task_try_libX",
+                "topic": "thử thư viện X để tạo CSV mẫu nội bộ",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Thử thư viện X để tạo CSV mẫu nội bộ",
+                "owner": "Lan",
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "task_try_libX",
+                "topic": "hủy việc thử thư viện X",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "api_calls_cumulative": 2,
+      "token_usage_cumulative": {
+        "prompt_tokens": 3551,
+        "completion_tokens": 540,
+        "total_tokens": 4091
+      },
+      "duration_s": 60.98
+    }
+  ],
+  "complete": true,
+  "model": "openai/gpt-oss-120b",
+  "generation_settings": {
+    "temperature": 0.6,
+    "reasoning_effort": "low",
+    "max_completion_tokens": 2560,
+    "structured_outputs": "auto"
+  }
+}

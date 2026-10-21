@@ -1,0 +1,293 @@
+{
+  "started_utc": "2026-10-21T15:56:37.569579+00:00",
+  "manifest": {
+    "version": "m3",
+    "transport": "local",
+    "core_commit": "0e00f9b24b5f7554975fd05b055a9921678be4d8",
+    "source_files_sha256": {
+      "meeting_intelligence/__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+      "meeting_intelligence/auditor.py": "1b5b6a6ed244621c816afaed2e03349d2b673267113305068d00874e657fa297",
+      "meeting_intelligence/completeness.py": "c5473a2f7d0970facc2429b8afa2ae69dc6a3ce3d4c80eba13718f9775e337f4",
+      "meeting_intelligence/config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+      "meeting_intelligence/extractor.py": "1152b3fe8d98791122cff5a1f530b0aff12b61274b565c9597fdb4ecac39b059",
+      "meeting_intelligence/information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+      "meeting_intelligence/llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+      "meeting_intelligence/models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+      "meeting_intelligence/offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+      "meeting_intelligence/parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+      "meeting_intelligence/pipeline.py": "35ba8a06416ef099a6fd49c6efe8d53f8bd83ea60afaf31b86c15dd79c442f74",
+      "meeting_intelligence/resolver.py": "3d7eb6c7220b8f72a2d8d26883bd65e0d2744f7c273d21cea2e662e2bb267ecc",
+      "meeting_intelligence/verifier.py": "0b796ac3f21d1bc8a6f6d33c91f335a5541fd36b4c6c6d7ecf8823e46f97188d"
+    },
+    "frozen_input_sha256": "d01ea985df426a4e2fc9360056838122d22773a71303fcf3c3b5cc5fe8926852",
+    "frozen_labels_sha256": "464045dc9216a93776da6a9b2f1ede667c15fbd5d7c9a86ce5448edb9a12daf6",
+    "audit": "on",
+    "cases": [
+      "M3-R01"
+    ],
+    "remote_url": null,
+    "interpretation": "Direct LLM execution against the selected local source tree"
+  },
+  "results": [
+    {
+      "id": "M3-R01",
+      "status": "COMPLETED",
+      "started_utc": "2026-10-21T15:56:37.576098+00:00",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Ban đầu đề xuất phương án A cho kho dữ liệu.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Phương án B phù hợp hơn.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Thống nhất phương án B cho bản thử nghiệm.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Chưa được triển khai B cho khách hàng đến khi pháp chế duyệt.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Việc chọn nhà cung cấp B chưa bàn đến, chưa chốt nhà cung cấp.",
+            "speaker": "Bình",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "method_choice",
+            "topic": "phương án cho kho dữ liệu",
+            "kind": "decision",
+            "content": "phương án B cho bản thử nghiệm",
+            "meeting_status": "agreed",
+            "execution_status": "blocked",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": "đến khi pháp chế duyệt",
+            "evidence_ids": [
+              "L001",
+              "L002",
+              "L003",
+              "L004"
+            ],
+            "counter_evidence_ids": [
+              "L001",
+              "L002"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L003"
+              ],
+              "content": [
+                "L003"
+              ],
+              "condition": [
+                "L004"
+              ],
+              "execution_status": [
+                "L004"
+              ],
+              "information_utility": [
+                "L003",
+                "L004"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Kiểm tra lại missing_late_change: The transcript shows an initial proposal of method A (L001) that was later superseded by proposal B (L002) before the final agreement. The final record only captures the agreed B decision and does not reflect the earlier change from A to B, constituting a missed late change. (nguồn: L001, L002)"
+            ],
+            "history": [
+              {
+                "issue_key": "method_choice",
+                "topic": "phương án cho kho dữ liệu",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "phương án A cho kho dữ liệu",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "method_choice",
+                "topic": "phương án cho kho dữ liệu",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "phương án B cho kho dữ liệu",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "method_choice",
+                "topic": "phương án cho kho dữ liệu",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "phương án B cho bản thử nghiệm",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "method_choice",
+                "topic": "phương án cho kho dữ liệu",
+                "kind": "decision",
+                "event_type": "execution_blocked",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "đến khi pháp chế duyệt",
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "supplier_choice",
+            "topic": "nhà cung cấp",
+            "kind": "decision",
+            "content": "chưa chốt nhà cung cấp B",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L005"
+            ],
+            "counter_evidence_ids": [
+              "L005"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L005"
+              ],
+              "content": [
+                "L005"
+              ],
+              "condition": [
+                "L005"
+              ],
+              "execution_status": [
+                "L005"
+              ],
+              "information_utility": [
+                "L005"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Kiểm tra lại unsupported_fact: The record lists a condition field citing L005, but the utterance contains no condition statement. Citing L005 as evidence for a condition is unsupported. (nguồn: L005)"
+            ],
+            "history": [
+              {
+                "issue_key": "supplier_choice",
+                "topic": "nhà cung cấp",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "chưa chốt nhà cung cấp B",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": [
+          {
+            "issue_key": "supplier_choice",
+            "kind": "decision",
+            "category": "unsupported_fact",
+            "severity": "medium",
+            "source_ids": [
+              "L005"
+            ],
+            "source_quote": "Việc chọn nhà cung cấp B chưa bàn đến, chưa chốt nhà cung cấp.",
+            "explanation": "The record lists a condition field citing L005, but the utterance contains no condition statement. Citing L005 as evidence for a condition is unsupported."
+          },
+          {
+            "issue_key": "method_choice",
+            "kind": "decision",
+            "category": "missing_late_change",
+            "severity": "medium",
+            "source_ids": [
+              "L001",
+              "L002"
+            ],
+            "source_quote": "Ban đầu đề xuất phương án A cho kho dữ liệu.",
+            "explanation": "The transcript shows an initial proposal of method A (L001) that was later superseded by proposal B (L002) before the final agreement. The final record only captures the agreed B decision and does not reflect the earlier change from A to B, constituting a missed late change."
+          }
+        ]
+      },
+      "api_calls_cumulative": 2,
+      "token_usage_cumulative": {
+        "prompt_tokens": 3884,
+        "completion_tokens": 1425,
+        "total_tokens": 5309
+      },
+      "duration_s": 62.3
+    }
+  ],
+  "complete": true,
+  "model": "openai/gpt-oss-120b",
+  "generation_settings": {
+    "temperature": 0.6,
+    "reasoning_effort": "low",
+    "max_completion_tokens": 2560,
+    "structured_outputs": "auto"
+  }
+}
