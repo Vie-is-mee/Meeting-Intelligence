@@ -333,6 +333,15 @@ def verify_records(records: list[ResultRecord], utterances: list[Utterance],
                     record.warnings.append("Phương án được chốt không xuất hiện trong bằng chứng; giữ để người dùng kiểm tra")
                     record.meeting_status = "unverified"
                     record.review_status = "needs_review"
+        # A pure unresolved choice has NO operative condition; some LLM events
+        # emit a condition source id despite condition=None. Keep its actual
+        # unresolved source and history, but do not imply a current condition.
+        # Never apply this cleanup to cancelled/reopened records: historical
+        # proof of a cleared condition must remain in field provenance.
+        if (record.kind=="decision" and record.meeting_status=="open" and
+                record.condition is None and record.history and
+                all(h.event_type=="unresolved" for h in record.history)):
+            record.field_evidence_ids.pop("condition",None)
         # A source-backed record is still not necessarily approved by the company.
         record.authority_status = "unknown"
     flag_request_task_overlap(records, lookup)

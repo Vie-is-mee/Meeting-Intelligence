@@ -74,13 +74,13 @@ class Stage35LiveFailureTests(unittest.TestCase):
         self.assertTrue(any(x.kind=="decision" and x.meeting_status=="open"
                             for x in result.records))
 
-    def test_R01_null_condition_preserves_historical_source(self):
+    def test_R01_unresolved_choice_does_not_assert_operational_condition_source(self):
         events=[Event.model_validate(e) for e in provider_events("M3-R01")]
         lines=parse_transcript(TRANSCRIPTS["M3-R01"])
         records=verify_records(resolve_events(events,lines),lines)
         vendor=next(r for r in records if r.issue_key=="supplier_choice")
         self.assertIsNone(vendor.condition)
-        self.assertIn("L005",vendor.field_evidence_ids.get("condition",[]))
+        self.assertNotIn("condition",vendor.field_evidence_ids)
         self.assertTrue(any(e.event_type=="unresolved" and "L005" in e.source_ids for e in vendor.history))
 
     def test_R01_real_operative_condition_and_source_stay(self):
@@ -134,6 +134,25 @@ class Stage35LiveFailureTests(unittest.TestCase):
         events,keys=recover_explicit_omissions([],lines,[])
         self.assertEqual(events,[])
         self.assertFalse(keys)
+
+    def test_R01_fresh_run3_false_null_condition_audit_is_filtered(self):
+        d=json.loads((ROOT/"docs/evaluation/mission3/m3_fresh_R01_run3.json").read_text(encoding="utf-8"))
+        out=d["results"][0]["output"]
+        seen=set()
+        events=[]
+        for record in out["records"]:
+            for e in record["history"]:
+                marker=json.dumps(e,ensure_ascii=False,sort_keys=True)
+                if marker not in seen:
+                    seen.add(marker)
+                    events.append(e)
+        result=analyze(TRANSCRIPTS["M3-R01"],
+                       client=ArchivedClient(events,out["audit_findings"]),audit=True)
+        self.assertEqual(result.audit_findings,[])
+        vendor=next(x for x in result.records if x.meeting_status=="open")
+        self.assertIsNone(vendor.condition)
+        self.assertNotIn("condition",vendor.field_evidence_ids)
+        self.assertTrue(any("condition field" in warning for warning in result.warnings))
 
 if __name__=="__main__":
     unittest.main()

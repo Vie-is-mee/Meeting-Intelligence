@@ -201,7 +201,7 @@ def _mistakes_null_condition_for_claimed_condition(
     criticism, not all unsupported_fact reports.
     """
     if (item.category!='unsupported_fact' or not item.issue_key or
-            not re.search(r'(?i)\bcondition\s+field\s+citing\b', item.explanation)):
+            not re.search(r'(?i)\bcondition\s+field\s*(?:\(\s*null\s*\)|citing\b)', item.explanation)):
         return False
     candidates=[r for r in records if r.issue_key==item.issue_key and
                 (item.kind is None or r.kind==item.kind)]
