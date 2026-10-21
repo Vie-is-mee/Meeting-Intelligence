@@ -1,0 +1,621 @@
+{
+  "created_utc": "2026-10-21T17:16:25.064973+00:00",
+  "model": "openai/gpt-oss-120b",
+  "engine": "llm_api",
+  "audit": true,
+  "sha256": {
+    "docs\\evaluation\\final_regression_input_v2.json": "fd20a7b307307e4df785e022c8f236079b42b6d43014770f3116194d1a021d21",
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\auditor.py": "9525dfdd908b4f970250832f4af54ba1fab7c8daa7360175b0750ce9a605b2b7",
+    "meeting_intelligence\\completeness.py": "40912600676cb7c19df0caa50c33834fdee4ee81598ea14e3922fa8216fa89d5",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\extractor.py": "1152b3fe8d98791122cff5a1f530b0aff12b61274b565c9597fdb4ecac39b059",
+    "meeting_intelligence\\information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+    "meeting_intelligence\\llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence\\models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "35ba8a06416ef099a6fd49c6efe8d53f8bd83ea60afaf31b86c15dd79c442f74",
+    "meeting_intelligence\\resolver.py": "3d7eb6c7220b8f72a2d8d26883bd65e0d2744f7c273d21cea2e662e2bb267ecc",
+    "meeting_intelligence\\verifier.py": "41612e62f1f6612ed862e89c10877d1e6931bc4a74104468a7886d018cc63ae4"
+  },
+  "call_interval_s": 60.0,
+  "structured_outputs": "auto",
+  "max_retries": 0,
+  "generation_settings": {
+    "max_completion_tokens": 2560,
+    "audit_max_completion_tokens": 1024,
+    "temperature": 0.6,
+    "reasoning_effort": "low"
+  },
+  "requested_cases": [
+    "H03",
+    "LC01"
+  ],
+  "complete": true,
+  "cases": [
+    {
+      "id": "H03",
+      "split": "held_out",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Cần rà soát cấu hình gửi email trước lần thử tiếp theo.",
+            "speaker": "Điều phối",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Anh ấy nhận rà soát cấu hình đó, tôi nghe như vậy nhưng không biết đang nói tới ai.",
+            "speaker": null,
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Chưa xác nhận ai nhận việc; câu vừa rồi không đủ để giao cho một người cụ thể.",
+            "speaker": "Điều phối",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Hay đặt hạn thứ Tư?",
+            "speaker": "Người A",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Thứ Năm có vẻ hợp hơn.",
+            "speaker": "Người B",
+            "timestamp": null
+          },
+          {
+            "id": "L006",
+            "order": 6,
+            "text": "Chưa chọn thứ Tư hay thứ Năm và chưa giao việc rà soát cho ai.",
+            "speaker": "Điều phối",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "email_review_request",
+            "topic": "rà soát cấu hình gửi email",
+            "kind": "request",
+            "content": "rà soát cấu hình gửi email trước lần thử tiếp theo",
+            "meeting_status": "recorded",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": "trước lần thử tiếp theo",
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ],
+              "due_raw": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Hạn tương đối được giữ nguyên văn từ nội dung và câu nguồn; cần rà soát vì LLM bỏ trống due_raw"
+            ],
+            "history": [
+              {
+                "issue_key": "email_review_request",
+                "topic": "rà soát cấu hình gửi email",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "rà soát cấu hình gửi email trước lần thử tiếp theo",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "email_review_deadline",
+            "topic": "hạn hoàn thành rà soát cấu hình email",
+            "kind": "decision",
+            "content": "chưa chọn ngày thực hiện (thứ Tư hay thứ Năm)",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L004",
+              "L005",
+              "L006"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L006"
+              ],
+              "content": [
+                "L006"
+              ],
+              "condition": [
+                "L006"
+              ],
+              "execution_status": [
+                "L006"
+              ],
+              "information_utility": [
+                "L006"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "email_review_deadline",
+                "topic": "hạn hoàn thành rà soát cấu hình email",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "đặt hạn vào thứ Tư",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "email_review_deadline",
+                "topic": "hạn hoàn thành rà soát cấu hình email",
+                "kind": "decision",
+                "event_type": "counterproposal",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "đặt hạn vào thứ Năm",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "email_review_deadline",
+                "topic": "hạn hoàn thành rà soát cấu hình email",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L006"
+                ],
+                "value": "chưa chọn ngày thực hiện (thứ Tư hay thứ Năm)",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "email_review_assignment",
+            "topic": "phân công người thực hiện rà soát cấu hình email",
+            "kind": "decision",
+            "content": "Chưa chọn thứ Tư hay thứ Năm và chưa giao việc rà soát cho ai.",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L006"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L006"
+              ],
+              "content": [
+                "L006"
+              ],
+              "execution_status": [
+                "L006"
+              ],
+              "information_utility": [
+                "L006"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "email_review_assignment",
+                "topic": "phân công người thực hiện rà soát cấu hình email",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L006"
+                ],
+                "value": "Chưa chọn thứ Tư hay thứ Năm và chưa giao việc rà soát cho ai.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Mô tả mục chưa chốt được lấy nguyên văn từ nguồn vì LLM chưa thể hiện rõ nội dung chưa chốt; cần rà soát: L006",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "audit_completed": true,
+      "duration_s": 61.07,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 4184,
+        "completion_tokens": 952,
+        "total_tokens": 5136
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "email_review_request",
+                "topic": "rà soát cấu hình gửi email",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "rà soát cấu hình gửi email trước lần thử tiếp theo",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "email_review_deadline",
+                "topic": "hạn hoàn thành rà soát cấu hình email",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "đặt hạn vào thứ Tư",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "email_review_deadline",
+                "topic": "hạn hoàn thành rà soát cấu hình email",
+                "kind": "decision",
+                "event_type": "counterproposal",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "đặt hạn vào thứ Năm",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "email_review_deadline",
+                "topic": "hạn hoàn thành rà soát cấu hình email",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L006"
+                ],
+                "value": "chưa chọn ngày thực hiện (thứ Tư hay thứ Năm)",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "email_review_assignment",
+                "topic": "phân công người thực hiện rà soát cấu hình email",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L006"
+                ],
+                "value": "chưa giao việc rà soát cho ai",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 3.593648000009125
+        },
+        {
+          "response": {
+            "findings": []
+          },
+          "elapsed_s": 57.40405839998857
+        }
+      ]
+    },
+    {
+      "id": "LC01",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Mai lập bảng đối soát cho đợt nhập kho, hạn sáng thứ Sáu.",
+            "speaker": "Linh",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Tôi nhận việc lập bảng đó.",
+            "speaker": "Mai",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Hủy việc lập bảng đối soát vì hệ thống đã có bản tự động.",
+            "speaker": "Linh",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Bỏ luôn hạn sáng thứ Sáu; không giao việc thay thế.",
+            "speaker": "Linh",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Tôi xác nhận dừng việc đã nhận.",
+            "speaker": "Mai",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "lap_bang_doi_sat",
+            "topic": "lập bảng đối soát",
+            "kind": "action",
+            "content": "lập bảng đối soát cho đợt nhập kho",
+            "meeting_status": "cancelled",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "historical_context",
+            "information_utility_note": "Giữ trạng thái/lịch sử; không phải cam kết cần thực hiện mới.",
+            "owner": "Mai",
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L002",
+              "L003",
+              "L004"
+            ],
+            "counter_evidence_ids": [
+              "L003"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L003"
+              ],
+              "content": [
+                "L002"
+              ],
+              "owner": [
+                "L002"
+              ],
+              "due_raw": [
+                "L004"
+              ],
+              "information_utility": [
+                "L002",
+                "L003"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "lap_bang_doi_sat",
+                "topic": "lập bảng đối soát",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "lập bảng đối soát cho đợt nhập kho",
+                "owner": "Mai",
+                "supporter": null,
+                "due_raw": "sáng thứ Sáu",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "lap_bang_doi_sat",
+                "topic": "lập bảng đối soát",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "lap_bang_doi_sat",
+                "topic": "lập bảng đối soát",
+                "kind": "action",
+                "event_type": "deadline_change",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": [
+                  "due_raw"
+                ]
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Loại request trùng câu giao việc đã hủy (giữ action lịch sử); chỉ áp dụng mẫu đã xác nhận bởi người nhận. Nguồn: L001",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "audit_completed": true,
+      "duration_s": 60.98,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 3771,
+        "completion_tokens": 929,
+        "total_tokens": 4700
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "lap_bang_doi_sat",
+                "topic": "lập bảng đối soát",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "lập bảng đối soát cho đợt nhập kho",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "lap_bang_doi_sat",
+                "topic": "lập bảng đối soát",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "lập bảng đối soát cho đợt nhập kho",
+                "owner": "Mai",
+                "supporter": null,
+                "due_raw": "sáng thứ Sáu",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "lap_bang_doi_sat",
+                "topic": "lập bảng đối soát",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "lap_bang_doi_sat",
+                "topic": "lập bảng đối soát",
+                "kind": "action",
+                "event_type": "deadline_change",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": [
+                  "due_raw"
+                ]
+              }
+            ]
+          },
+          "elapsed_s": 2.5800663999980316
+        },
+        {
+          "response": {
+            "findings": []
+          },
+          "elapsed_s": 58.381155300012324
+        }
+      ]
+    }
+  ]
+}

@@ -8,8 +8,29 @@ import re
 from .models import Event, ResultRecord, Utterance
 
 
+def _explicit_cancel_owner_release(event: Event, source: dict[str, Utterance]) -> bool:
+    """Only clear a historical assignee when cancellation literally releases them.
+
+    'Hủy việc ... bỏ hạn' and 'chưa giao việc mới' are NOT owner removal.
+    The extractor's clear_fields list is a hypothesis, not source evidence.
+    """
+    for sid in event.source_ids:
+        line = source.get(sid)
+        if not line:
+            continue
+        statement = line.text.casefold()
+        if re.search(r'\b(?:bỏ|gỡ|xóa|rút|hủy)\s+(?:phân\s+công|vai\s+trò\s+phụ\s+trách)\b', statement):
+            return True
+        if re.search(r'\b(?:bỏ|gỡ|xóa)\s+\S+(?:\s+\S+){0,2}\s+khỏi\s+(?:vai\s+trò\s+)?(?:phụ\s+trách|phân\s+công)\b', statement):
+            return True
+        if re.search(r'\b(?:không\s+còn|thôi)\s+(?:giao|phân\s+công)\s+(?:cho\s+)?\S+', statement):
+            return True
+    return False
+
+
 def resolve_events(events: list[Event], utterances: list[Utterance]) -> list[ResultRecord]:
     position = {u.id: u.order for u in utterances}
+    sources = {u.id: u for u in utterances}
     # Earlier context may be cited together with the actual later correction.
     # The event takes effect at its latest supporting utterance, not its first.
     events = sorted(events, key=lambda e: max(position.get(s, 10**9) for s in e.source_ids))
@@ -22,6 +43,15 @@ def resolve_events(events: list[Event], utterances: list[Utterance]) -> list[Res
                               content=None, meeting_status="unverified")
         for event in history:
             typ = event.event_type
+            if (kind == 'action' and typ == 'action_cancelled'
+                    and 'owner' in event.clear_fields
+                    and not _explicit_cancel_owner_release(event, sources)):
+                # Model clear_fields may misread 'bỏ hạn' as 'bỏ người nhận'.
+                event = event.model_copy(update={
+                    'clear_fields': [x for x in event.clear_fields if x != 'owner']})
+                record.warnings.append(
+                    'Câu hủy không ghi rút người phụ trách; giữ owner lịch sử và yêu cầu rà soát')
+                record.review_status = 'needs_review'
             record.history.append(event)
             if typ not in {'deadline_change', 'execution_blocked'}:
                 record.field_evidence_ids['meeting_status'] = list(event.source_ids)

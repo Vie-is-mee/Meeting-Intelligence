@@ -52,7 +52,7 @@ Avoid unsupported demands:
 - An offer if free, or a time to check one's schedule, is not acceptance or a deadline.
 - Do not treat clear_fields in model events as authoritative. Cancellation alone does not remove the former owner's historical identity.
 - A separate undecided provider/visual detail is not automatically a condition of an already settled architecture choice.
-- A task cancelled BECAUSE of an unsuitable license or cost has a cancellation REASON, not an operative action condition. Do not demand copying that reason into the cancelled record's condition field. A genuinely missed state transition is still a valid finding.
+- An earlier assignment is already captured when a cancelled action has that assignment in its history. Do not demand a second active action for the same task. An actually new assignment after cancellation still requires its own representation.\n- A task cancelled BECAUSE of an unsuitable license or cost has a cancellation REASON, not an operative action condition. Do not demand copying that reason into the cancelled record's condition field. A genuinely missed state transition is still a valid finding.
 - A negation concerning another topic does not invalidate the current record. Do flag a verifier warning that wrongly conflates unrelated topics.
 - Old minutes, hypothetical examples and quoted security-test instructions are not current meeting decisions. If someone explicitly says a quoted money-transfer command is test data and NOT a decision, absence of that decision is CORRECT. Do not report it as missing.
 - Greetings, mic tests and closing a mic test have no business value after the meeting; do not demand records for them.
@@ -337,6 +337,36 @@ def _mistakes_reopened_decision_for_missing_old_condition(
     return True
 
 
+def _mistakes_cancelled_task_history_for_missing_assignment(
+    item: AuditFinding, records: list[ResultRecord],
+    utterances: list[Utterance],
+) -> bool:
+    """Assignment already exists in history of the cancelled action.
+
+    Do not hide genuine missing or NEW assignments; the cited source must
+    belong to the older assignment that precedes cancellation.
+    """
+    if (item.category != 'missing_issue' or item.kind != 'action'
+            or not item.issue_key):
+        return False
+    reason = item.explanation.casefold()
+    if not ('assignment' in reason and
+            re.search(r'\b(?:missing|not\s+captured|not\s+recorded|omitted)\b', reason)):
+        return False
+    rows = [r for r in records if r.kind == 'action'
+            and r.issue_key == item.issue_key and r.meeting_status == 'cancelled']
+    if len(rows) != 1:
+        return False
+    order = {u.id: u.order for u in utterances}
+    history = rows[0].history
+    assignments = [e for e in history if e.event_type in {'assignment', 'reassignment'}
+                   and set(item.source_ids).issubset(set(e.source_ids))]
+    cancels = [e for e in history if e.event_type == 'action_cancelled']
+    earlier = max((order.get(s, -1) for e in assignments for s in e.source_ids), default=-1)
+    later = max((order.get(s, -1) for e in cancels for s in e.source_ids), default=-1)
+    return bool(assignments and cancels and 0 <= earlier < later)
+
+
 def audit_events(utterances: list[Utterance], events: list[Event],
                  records: list[ResultRecord], client) -> tuple[list[AuditFinding], list[str]]:
     """LLM audit followed by strict, code-level quote and ID validation."""
@@ -376,6 +406,9 @@ def audit_events(utterances: list[Utterance], events: list[Event],
             continue
         if not any(_norm(item.source_quote) in _norm(source[s]) for s in item.source_ids):
             skipped.append('Audit trích dẫn không có nguyên văn trong câu nguồn; loại cảnh báo thiếu căn cứ')
+            continue
+        if _mistakes_cancelled_task_history_for_missing_assignment(item, records, utterances):
+            skipped.append('Assignment đã nằm trong history của action bị hủy; không tạo thêm action trùng')
             continue
         if _mistakes_reopened_decision_for_missing_old_condition(item, records, utterances):
             skipped.append('Điều kiện cũ đã hết hiệu lực sau khi quyết định mở lại; loại cảnh báo phục hồi điều kiện lịch sử')

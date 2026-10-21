@@ -91,7 +91,9 @@ def recover_explicit_omissions(events: list[Event], utterances: list[Utterance],
                         # Distinct issues about a related problem are left intact.
                         misclassified=[(i,e) for i,e in enumerate(result)
                             if e.kind=='issue' and e.event_type=='issue_reported'
-                            and e.source_ids==[u.id] and norm(e.value)==norm(sentence)
+                            and e.source_ids==[u.id] and
+                            norm(re.sub(r'(?i)^khách\s+hàng\s+yêu\s+cầu\s+có\s+', 'khách hàng yêu cầu ', e.value or '')) ==
+                            norm(re.sub(r'(?i)^khách\s+hàng\s+yêu\s+cầu\s+có\s+', 'khách hàng yêu cầu ', sentence))
                             and re.search(r'(?i)^khách\s+hàng\s+yêu\s+cầu\b',sentence)]
                         if len(misclassified)==1:
                             i,e=misclassified[0]

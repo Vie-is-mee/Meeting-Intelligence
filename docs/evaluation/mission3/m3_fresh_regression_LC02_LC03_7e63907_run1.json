@@ -1,0 +1,814 @@
+{
+  "created_utc": "2026-10-21T17:19:46.303569+00:00",
+  "model": "openai/gpt-oss-120b",
+  "engine": "llm_api",
+  "audit": true,
+  "sha256": {
+    "docs\\evaluation\\final_regression_input_v2.json": "fd20a7b307307e4df785e022c8f236079b42b6d43014770f3116194d1a021d21",
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\auditor.py": "9525dfdd908b4f970250832f4af54ba1fab7c8daa7360175b0750ce9a605b2b7",
+    "meeting_intelligence\\completeness.py": "40912600676cb7c19df0caa50c33834fdee4ee81598ea14e3922fa8216fa89d5",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\extractor.py": "1152b3fe8d98791122cff5a1f530b0aff12b61274b565c9597fdb4ecac39b059",
+    "meeting_intelligence\\information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+    "meeting_intelligence\\llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence\\models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "35ba8a06416ef099a6fd49c6efe8d53f8bd83ea60afaf31b86c15dd79c442f74",
+    "meeting_intelligence\\resolver.py": "3d7eb6c7220b8f72a2d8d26883bd65e0d2744f7c273d21cea2e662e2bb267ecc",
+    "meeting_intelligence\\verifier.py": "41612e62f1f6612ed862e89c10877d1e6931bc4a74104468a7886d018cc63ae4"
+  },
+  "call_interval_s": 60.0,
+  "structured_outputs": "auto",
+  "max_retries": 0,
+  "generation_settings": {
+    "max_completion_tokens": 2560,
+    "audit_max_completion_tokens": 1024,
+    "temperature": 0.6,
+    "reasoning_effort": "low"
+  },
+  "requested_cases": [
+    "LC03",
+    "LC02"
+  ],
+  "complete": true,
+  "cases": [
+    {
+      "id": "LC03",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Chốt chỉ thử luồng thanh toán mới ở nhóm nội bộ.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Yêu cầu có nút quay lại bước trước.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Chi viết hướng dẫn cho nhóm nội bộ, hạn cuối ngày mai.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Tôi nhận viết hướng dẫn.",
+            "speaker": "Chi",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Hủy việc viết hướng dẫn, bỏ hạn đã giao. Phạm vi thử nội bộ và yêu cầu nút quay lại vẫn giữ.",
+            "speaker": "An",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "test_payment_flow",
+            "topic": "luồng thanh toán mới",
+            "kind": "decision",
+            "content": "chỉ thử luồng thanh toán mới ở nhóm nội bộ",
+            "meeting_status": "agreed",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ],
+              "execution_status": [
+                "L001"
+              ],
+              "condition": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "test_payment_flow",
+                "topic": "luồng thanh toán mới",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "chỉ thử luồng thanh toán mới ở nhóm nội bộ",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "back_button",
+            "topic": "nút quay lại",
+            "kind": "request",
+            "content": "có nút quay lại bước trước",
+            "meeting_status": "recorded",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L002"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L002"
+              ],
+              "content": [
+                "L002"
+              ],
+              "information_utility": [
+                "L002"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "back_button",
+                "topic": "nút quay lại",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "có nút quay lại bước trước",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "write_guide",
+            "topic": "viết hướng dẫn",
+            "kind": "action",
+            "content": "viết hướng dẫn cho nhóm nội bộ",
+            "meeting_status": "cancelled",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "historical_context",
+            "information_utility_note": "Giữ trạng thái/lịch sử; không phải cam kết cần thực hiện mới.",
+            "owner": "Chi",
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L003",
+              "L005"
+            ],
+            "counter_evidence_ids": [
+              "L005"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L005"
+              ],
+              "content": [
+                "L003"
+              ],
+              "owner": [
+                "L003"
+              ],
+              "due_raw": [
+                "L005"
+              ],
+              "information_utility": [
+                "L003",
+                "L005"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "write_guide",
+                "topic": "viết hướng dẫn",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "viết hướng dẫn cho nhóm nội bộ",
+                "owner": "Chi",
+                "supporter": null,
+                "due_raw": "ngày mai",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "write_guide",
+                "topic": "viết hướng dẫn",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": [
+                  "due_raw"
+                ]
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Đã loại cảnh báo audit yêu cầu xóa người phụ trách lịch sử của việc đã hủy",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "audit_completed": true,
+      "duration_s": 61.23,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 3986,
+        "completion_tokens": 1075,
+        "total_tokens": 5061
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "test_payment_flow",
+                "topic": "luồng thanh toán mới",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "chỉ thử luồng thanh toán mới ở nhóm nội bộ",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "back_button",
+                "topic": "nút quay lại",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "có nút quay lại bước trước",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "write_guide",
+                "topic": "viết hướng dẫn",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "viết hướng dẫn cho nhóm nội bộ",
+                "owner": "Chi",
+                "supporter": null,
+                "due_raw": "ngày mai",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "write_guide",
+                "topic": "viết hướng dẫn",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": [
+                  "due_raw"
+                ]
+              }
+            ]
+          },
+          "elapsed_s": 2.348137399996631
+        },
+        {
+          "response": {
+            "findings": [
+              {
+                "issue_key": "write_guide",
+                "kind": "action",
+                "category": "missing_late_change",
+                "severity": "medium",
+                "source_ids": [
+                  "L005"
+                ],
+                "source_quote": "Hủy việc viết hướng dẫn, bỏ hạn đã giao. Phạm vi thử nội bộ và yêu cầu nút quay lại vẫn giữ.",
+                "explanation": "The record marks the action as cancelled and clears the due date, but retains the owner \"Chi\" despite the cancellation. The cancellation should also remove the owner assignment."
+              }
+            ]
+          },
+          "elapsed_s": 58.851956500002416
+        }
+      ]
+    },
+    {
+      "id": "LC02",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Khách hàng yêu cầu có xuất báo cáo dạng CSV.",
+            "speaker": "Hà",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Dũng thử làm bộ xuất CSV bằng thư viện X, hạn chiều mai.",
+            "speaker": "Sơn",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Tôi nhận thử bộ xuất đó.",
+            "speaker": "Dũng",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Hủy việc thử thư viện X vì giấy phép không phù hợp, bỏ hạn chiều mai.",
+            "speaker": "Sơn",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Yêu cầu xuất CSV của khách hàng vẫn giữ. Chưa chọn cách triển khai thay thế và chưa giao việc mới.",
+            "speaker": "Hà",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "csv_requirement",
+            "topic": "Yêu cầu CSV",
+            "kind": "issue",
+            "content": "Khách hàng yêu cầu xuất báo cáo dạng CSV.",
+            "meeting_status": "open",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "csv_requirement",
+                "topic": "Yêu cầu CSV",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Khách hàng yêu cầu xuất báo cáo dạng CSV.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "m3_recovered_request_L001",
+            "topic": "Khách hàng yêu cầu có xuất báo cáo dạng CSV",
+            "kind": "request",
+            "content": "Khách hàng yêu cầu có xuất báo cáo dạng CSV",
+            "meeting_status": "recorded",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "M3 Stage 2: khôi phục từ phát biểu tường minh; cần người đối chiếu trước khi dùng"
+            ],
+            "history": [
+              {
+                "issue_key": "m3_recovered_request_L001",
+                "topic": "Khách hàng yêu cầu có xuất báo cáo dạng CSV",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Khách hàng yêu cầu có xuất báo cáo dạng CSV",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "csv_export_implementation",
+            "topic": "Triển khai CSV",
+            "kind": "decision",
+            "content": "Chưa chọn cách triển khai thay thế cho yêu cầu CSV và chưa giao việc mới.",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L002",
+              "L005"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L005"
+              ],
+              "content": [
+                "L005"
+              ],
+              "condition": [
+                "L005"
+              ],
+              "execution_status": [
+                "L005"
+              ],
+              "information_utility": [
+                "L005"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "csv_export_implementation",
+                "topic": "Triển khai CSV",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "Thử bộ xuất CSV bằng thư viện X.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": "chiều mai",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "csv_export_implementation",
+                "topic": "Triển khai CSV",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "Chưa chọn cách triển khai thay thế cho yêu cầu CSV và chưa giao việc mới.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "csv_export_implementation",
+            "topic": "Triển khai CSV",
+            "kind": "action",
+            "content": "Thử bộ xuất CSV bằng thư viện X.",
+            "meeting_status": "cancelled",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "historical_context",
+            "information_utility_note": "Giữ trạng thái/lịch sử; không phải cam kết cần thực hiện mới.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L003",
+              "L004"
+            ],
+            "counter_evidence_ids": [
+              "L004",
+              "L003"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L004"
+              ],
+              "content": [
+                "L003"
+              ],
+              "owner": [
+                "L004"
+              ],
+              "due_raw": [
+                "L004"
+              ],
+              "information_utility": [
+                "L003",
+                "L004"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Kiểm tra lại missing_issue: The assignment of the task to try the CSV export (event type assignment) is not captured in any action record. An action record documenting this assignment is missing. (nguồn: L003)"
+            ],
+            "history": [
+              {
+                "issue_key": "csv_export_implementation",
+                "topic": "Triển khai CSV",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "Thử bộ xuất CSV bằng thư viện X.",
+                "owner": "Dũng",
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "csv_export_implementation",
+                "topic": "Triển khai CSV",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "Hủy việc thử thư viện X vì giấy phép không phù hợp.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": [
+                  "owner",
+                  "due_raw"
+                ]
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Bổ sung yêu cầu tường minh còn thiếu từ nguồn L001; đây là bản ghi do kiểm tra bổ sung, cần người xác nhận",
+          "Audit trích dẫn không có nguyên văn trong câu nguồn; loại cảnh báo thiếu căn cứ",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": [
+          {
+            "issue_key": "csv_export_implementation",
+            "kind": "action",
+            "category": "missing_issue",
+            "severity": "medium",
+            "source_ids": [
+              "L003"
+            ],
+            "source_quote": "Tôi nhận thử bộ xuất đó.",
+            "explanation": "The assignment of the task to try the CSV export (event type assignment) is not captured in any action record. An action record documenting this assignment is missing."
+          }
+        ]
+      },
+      "audit_completed": true,
+      "duration_s": 120.64,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 4267,
+        "completion_tokens": 1338,
+        "total_tokens": 5605
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "csv_requirement",
+                "topic": "Yêu cầu CSV",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Khách hàng yêu cầu xuất báo cáo dạng CSV.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "csv_export_implementation",
+                "topic": "Triển khai CSV",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "Thử bộ xuất CSV bằng thư viện X.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": "chiều mai",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "csv_export_implementation",
+                "topic": "Triển khai CSV",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "Thử bộ xuất CSV bằng thư viện X.",
+                "owner": "Dũng",
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "csv_export_implementation",
+                "topic": "Triển khai CSV",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "Hủy việc thử thư viện X vì giấy phép không phù hợp.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": [
+                  "owner",
+                  "due_raw"
+                ]
+              },
+              {
+                "issue_key": "csv_export_implementation",
+                "topic": "Triển khai CSV",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "Chưa chọn cách triển khai thay thế cho yêu cầu CSV và chưa giao việc mới.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 61.424832199991215
+        },
+        {
+          "response": {
+            "findings": [
+              {
+                "issue_key": "csv_export_implementation",
+                "kind": "decision",
+                "category": "missing_issue",
+                "severity": "medium",
+                "source_ids": [
+                  "L002"
+                ],
+                "source_quote": "Thử bộ xuất CSV bằng thư viện X.",
+                "explanation": "The proposal to try the CSV export using library X (event type proposal) is not represented in any final record. A decision record for this proposal is missing."
+              },
+              {
+                "issue_key": "csv_export_implementation",
+                "kind": "action",
+                "category": "missing_issue",
+                "severity": "medium",
+                "source_ids": [
+                  "L003"
+                ],
+                "source_quote": "Tôi nhận thử bộ xuất đó.",
+                "explanation": "The assignment of the task to try the CSV export (event type assignment) is not captured in any action record. An action record documenting this assignment is missing."
+              }
+            ]
+          },
+          "elapsed_s": 59.17764099998749
+        }
+      ]
+    }
+  ]
+}
