@@ -16,6 +16,7 @@ Choose the SPEECH ACT, not a default proposal:
 - "Các điều kiện chưa được xác nhận đạt" reports unmet/unverified prerequisites. It does NOT reopen the choice or make it unresolved. Do not emit an unresolved event for this sentence.
 - Example: "Chốt mở beta nếu test đạt 200" -> conditional_agreement. "Sửa điều kiện: test đạt 120 và không có lỗi" -> conditional_agreement with the new complete condition. "Chưa xác nhận test đạt" -> keep the conditional decision; no new decision-state event.
 - "Mở lại / rút lời chốt, hôm nay chưa quyết định" is reopen after an earlier agreement. Withdrawing a choice without reopening it is withdrawal. A choice never agreed and still undecided is unresolved.
+- "Hôm nay chưa chọn X hay Y", "chưa chốt nhà cung cấp", or "giữ benchmark cho lần sau, hôm nay chưa chọn thư viện" mean unresolved/open choice, NOT a selected proposal or an agreed winner. Do not mistake a decision to defer work for an agreement to select an option.
 - "Đã chốt X nhưng chưa được triển khai, chờ phê duyệt" is execution_blocked, not reopen. Copy the specific approval/prerequisite into condition. If the same sentence both agrees and blocks, emit agreement then execution_blocked.
 
 Task identity and responsibility:
@@ -67,6 +68,17 @@ def extract_events(utterances: list[Utterance], client: LLMClient, *, warnings: 
         if not all(s in known for s in event.source_ids):
             raise LLMError("LLM trích dẫn mã câu không có trong transcript; chưa công bố kết quả")
     source = {u.id:u.text for u in utterances}
+    for event in parsed.events:
+        if event.kind == 'decision' and event.event_type in {'proposal', 'counterproposal'}:
+            # Re-type only when BOTH value and cited source explicitly state
+            # there was no selection; never guess an alternative or an owner.
+            no_choice = r'(?i)\b(?:chưa|không)\s+(?:chốt|chọn|quyết\s+định)\b'
+            if (re.search(no_choice, event.value or '') and
+                    any(re.search(no_choice, source[s]) for s in event.source_ids)):
+                event.event_type = 'unresolved'
+                if warnings is not None:
+                    warnings.append('Lựa chọn chưa chốt được giữ đúng trạng thái theo nội dung và nguồn: '
+                                    + ', '.join(event.source_ids))
     for event in parsed.events:
         if event.kind == 'decision' and event.event_type == 'unresolved' and not re.search(
             r'\b(?:chưa|không)\s+(?:chốt|chọn|quyết\s+định)\b',event.value or '',re.IGNORECASE

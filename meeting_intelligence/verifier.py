@@ -5,6 +5,50 @@ from .models import ResultRecord, Utterance
 
 NEGATION = re.compile(r"(?i)\b(chưa\s+chốt|không\s+chốt|hủy\s+quyết\s+định|mở\s+lại|chưa\s+quyết\s+định)\b")
 
+# Only a source-grounded signal. Never claim this lexical test settles semantics.
+_TOPIC_STOP = {
+    "chưa", "chốt", "không", "quyết", "định", "phương", "án", "lựa", "chọn",
+    "đề", "xuất", "của", "cho", "với", "trong", "được", "cần", "đang", "làm",
+    "việc", "này", "đó", "hôm", "nay", "lại", "chúng", "tôi", "ban", "đầu",
+    "mới", "cũ", "trên", "sau", "trước", "các", "một", "theo", "đã",
+}
+
+
+def late_negation_about_decision(record: ResultRecord, utterance: Utterance) -> bool:
+    """Flag a later negation only with an explicit reference to this decision.
+
+    A late 'chưa chốt nhà cung cấp B' is NOT evidence that an earlier choice
+    of architecture B was reopened. Weak one-word overlaps are insufficient.
+    No match means 'unknown topical relation', NOT a proof that no correction
+    exists; the LLM audit and human review still handle unscoped corrections.
+    """
+    sentence = utterance.text.casefold()
+    if not NEGATION.search(sentence):
+        return False
+    focus = " ".join(x for x in [record.content, record.topic] if x).casefold()
+    # Shared generic context is not enough when a named alternative differs.
+    # E.g. 'thử nghiệm gói A' vs 'lịch thử nghiệm gói B'.
+    for noun in ('gói', 'mẫu', 'thư viện', 'phương án'):
+        old = re.search(r'\b' + noun + r'\s+([a-z])\b', focus)
+        newer = re.search(r'\b' + noun + r'\s+([a-z])\b', sentence)
+        if old and newer and old.group(1) != newer.group(1):
+            return False
+    words = lambda s: {
+        term for term in re.findall(r"\w+", s)
+        if len(term) >= 3 and term not in _TOPIC_STOP
+    }
+    if len(words(focus) & words(sentence)) >= 2:
+        return True
+    # A literal option name can be sufficient when the negation explicitly
+    # refers to that option; a lone 'B' in 'nhà cung cấp B' cannot.
+    option = re.search(r"\bphương\s+án\s+([a-z])\b", focus)
+    if option and re.search(r"\b(?:phương\s+án|lựa\s+chọn)\s+" +
+                            re.escape(option.group(1)) + r"\b", sentence):
+        return True
+    if re.search(r"\b(?:quyết\s+định|phương\s+án)\s+(?:này|đó|vừa\s+chốt)\b", sentence):
+        return True
+    return False
+
 
 def explicitly_denies_owner(record: ResultRecord, lookup: dict[str, Utterance]) -> bool:
     """Narrow guard for explicit role denial; not general semantic verification."""
@@ -58,7 +102,68 @@ def flag_request_task_overlap(records: list[ResultRecord], lookup: dict[str, Utt
             if message not in request.warnings:
                 request.warnings.append(message)
 
-def verify_records(records: list[ResultRecord], utterances: list[Utterance]) -> list[ResultRecord]:
+def drop_proven_assignment_echoes(records: list[ResultRecord],
+                                 lookup: dict[str, Utterance],
+                                 diagnostics: list[str] | None = None) -> list[ResultRecord]:
+    """Suppress ONLY a demonstrable duplicate request inferred from a named task.
+
+    This is a narrow guard, not semantic deduplication. The request must
+    come solely from a first-person, *named direct instruction*; the same
+    normalized work must have a cancelled action, an explicitly accepted
+    assignment by the named owner, and no independent requirement assertion.
+    The suppressed record is explained in the global analysis warnings.
+    Ambiguous cases remain in human review.
+    """
+    def norm(v: str | None) -> str:
+        return ' '.join(re.sub(r'[^\w\s]', ' ', (v or '').casefold()).split())
+
+    suppressed: set[int] = set()
+    for idx, request in enumerate(records):
+        if request.kind != 'request' or request.meeting_status != 'recorded':
+            continue
+        if len(request.history) != 1 or request.history[0].event_type != 'request_made':
+            continue
+        request_sources = request.field_evidence_ids.get('content', request.history[0].source_ids)
+        if len(request_sources) != 1 or request_sources[0] not in lookup:
+            continue
+        origin = lookup[request_sources[0]]
+        words = origin.text.casefold()
+        if re.search(r'\b(?:khách\s+hàng|người\s+dùng|yêu\s+cầu|nhu\s+cầu|đề\s+nghị)\b', words):
+            continue
+        for action in records:
+            if action.kind != 'action' or action.issue_key != request.issue_key or (
+                    action.meeting_status != 'cancelled' or norm(action.content) != norm(request.content)
+                    or not action.owner):
+                continue
+            name = re.escape(action.owner.casefold())
+            if not re.match(r'(?i)^(?:giao\s+)?' + name + r'\b\s+', words):
+                continue
+            confirmations = [e for e in action.history if e.event_type == 'assignment' and
+                             e.owner and e.owner.casefold() == action.owner.casefold() and
+                             all(s in lookup and lookup[s].order > origin.order for s in e.source_ids) and
+                             any((lookup[s].speaker or '').casefold() == action.owner.casefold() and
+                                 re.search(r'(?i)\b(?:tôi|mình)\s+nhận\b', lookup[s].text)
+                                 for s in e.source_ids)]
+            if not confirmations:
+                continue
+            # An independent requirement anywhere in the conversation makes
+            # this a disputed case; do not auto-delete it.
+            if any(re.search(r'(?i)\b(?:yêu\s+cầu|nhu\s+cầu)\b', u.text) and
+                   u.id != origin.id and norm(request.content) and
+                   len(set(norm(request.content).split()) & set(norm(u.text).split())) >= 2
+                   for u in lookup.values()):
+                continue
+            suppressed.add(idx)
+            if diagnostics is not None:
+                diagnostics.append('Loại request trùng câu giao việc đã hủy (giữ action lịch sử); '
+                                   'chỉ áp dụng mẫu đã xác nhận bởi người nhận. Nguồn: '
+                                   + ', '.join(request_sources))
+            break
+    return [r for i,r in enumerate(records) if i not in suppressed]
+
+
+def verify_records(records: list[ResultRecord], utterances: list[Utterance],
+                   *, warnings: list[str] | None = None) -> list[ResultRecord]:
     lookup = {u.id: u for u in utterances}
     for record in records:
         valid = set(lookup)
@@ -95,7 +200,8 @@ def verify_records(records: list[ResultRecord], utterances: list[Utterance]) -> 
         if record.kind == "decision" and record.meeting_status in {"agreed", "conditional"}:
             evidence_order = [lookup[x].order for x in record.evidence_ids if x in lookup]
             last_event_at = max(evidence_order, default=0)
-            late_negations = [u.id for u in utterances if u.order > last_event_at and NEGATION.search(u.text)]
+            late_negations = [u.id for u in utterances
+                              if u.order > last_event_at and late_negation_about_decision(record, u)]
             if late_negations:
                 record.review_status = "needs_review"
                 record.warnings.append("Có câu phủ định sau bằng chứng cuối có thể liên quan: " + ", ".join(late_negations))
@@ -112,4 +218,4 @@ def verify_records(records: list[ResultRecord], utterances: list[Utterance]) -> 
         # A source-backed record is still not necessarily approved by the company.
         record.authority_status = "unknown"
     flag_request_task_overlap(records, lookup)
-    return records
+    return drop_proven_assignment_echoes(records, lookup, diagnostics=warnings)

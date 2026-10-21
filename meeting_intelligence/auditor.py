@@ -5,6 +5,7 @@ but it must never silently fabricate a replacement final decision.
 """
 from __future__ import annotations
 import json
+import re
 from typing import Literal
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from .models import Event, Kind, ResultRecord, Utterance
@@ -51,6 +52,7 @@ Avoid unsupported demands:
 - An offer if free, or a time to check one's schedule, is not acceptance or a deadline.
 - Do not treat clear_fields in model events as authoritative. Cancellation alone does not remove the former owner's historical identity.
 - A separate undecided provider/visual detail is not automatically a condition of an already settled architecture choice.
+- A task cancelled BECAUSE of an unsuitable license or cost has a cancellation REASON, not an operative action condition. Do not demand copying that reason into the cancelled record's condition field. A genuinely missed state transition is still a valid finding.
 - A negation concerning another topic does not invalidate the current record. Do flag a verifier warning that wrongly conflates unrelated topics.
 - Old minutes, hypothetical examples and quoted security-test instructions are not current meeting decisions. If someone explicitly says a quoted money-transfer command is test data and NOT a decision, absence of that decision is CORRECT. Do not report it as missing.
 - Greetings, mic tests and closing a mic test have no business value after the meeting; do not demand records for them.
@@ -62,6 +64,65 @@ Prioritize wrong final choices, mistaken assignments/conditions/deadlines, misse
 
 def _norm(s: str) -> str:
     return ' '.join(s.casefold().split())
+
+
+def _mistakes_cancel_reason_for_condition(item: AuditFinding, records: list[ResultRecord],
+                                         events: list[Event], source: dict[str, str]) -> bool:
+    """Reject only a narrowly identifiable false claim about a *cancelled* task.
+
+    The audit must cite a cancellation event, and demand that its causal reason
+    be placed in an active 'condition' field. This does NOT suppress findings
+    about a missing cancellation transition, a live task or an active decision.
+    """
+    if item.category != 'missing_late_change' or item.kind != 'action' or item.issue_key is None:
+        return False
+    if not re.search(r'(?i)\b(?:condition|điều\s+kiện)\b', item.explanation):
+        return False
+    matching = [r for r in records if r.issue_key == item.issue_key and
+                r.kind == 'action' and r.meeting_status == 'cancelled' and r.condition is None]
+    if len(matching) != 1:
+        return False
+    cancels = [e for e in events if e.kind == 'action' and e.issue_key == item.issue_key and
+               e.event_type == 'action_cancelled' and
+               set(item.source_ids) & set(e.source_ids)]
+    for event in cancels:
+        for sid in set(item.source_ids) & set(event.source_ids):
+            statement = source.get(sid, '').casefold()
+            if re.search(r'\b(?:vì|do|bởi\s+vì)\b', statement) and not re.search(
+                    r'\b(?:nếu|chỉ\s+khi)\b', statement):
+                return True
+    return False
+
+
+def _mistakes_cancel_as_owner_removal(item: AuditFinding, records: list[ResultRecord],
+                                      events: list[Event]) -> bool:
+    """A cancelled task can legitimately retain its historical assignee.
+
+    Reject only a finding whose sole demand is to REMOVE that previously
+    evidenced owner, absent an explicit owner clearing event. The returned
+    record must still have owner evidence from its earlier assignment.
+    """
+    if item.kind != 'action' or item.category != 'missing_late_change' or item.issue_key is None:
+        return False
+    explanation = item.explanation.casefold()
+    if not ('owner' in explanation and
+            re.search(r'\b(?:remove|delete|clear|null|xóa|bỏ)\b', explanation)):
+        return False
+    matching = [r for r in records if r.issue_key == item.issue_key and
+                r.kind == 'action' and r.meeting_status == 'cancelled' and r.owner and
+                r.field_evidence_ids.get('owner')]
+    if len(matching) != 1:
+        return False
+    relevant = [e for e in events if e.kind == 'action' and e.issue_key == item.issue_key
+                and e.event_type == 'action_cancelled' and
+                set(e.source_ids) & set(item.source_ids)]
+    if not relevant or any('owner' in e.clear_fields for e in relevant):
+        return False
+    # A separate explicit owner release is *not* an immutable historical owner.
+    if any('owner' in e.clear_fields for e in events
+           if e.kind == 'action' and e.issue_key == item.issue_key):
+        return False
+    return True
 
 
 def audit_events(utterances: list[Utterance], events: list[Event],
@@ -103,6 +164,12 @@ def audit_events(utterances: list[Utterance], events: list[Event],
             continue
         if not any(_norm(item.source_quote) in _norm(source[s]) for s in item.source_ids):
             skipped.append('Audit trích dẫn không có nguyên văn trong câu nguồn; loại cảnh báo thiếu căn cứ')
+            continue
+        if _mistakes_cancel_reason_for_condition(item, records, events, source):
+            skipped.append('Đã loại cảnh báo audit nhầm lý do hủy với điều kiện tác nghiệp còn hiệu lực')
+            continue
+        if _mistakes_cancel_as_owner_removal(item, records, events):
+            skipped.append('Đã loại cảnh báo audit yêu cầu xóa người phụ trách lịch sử của việc đã hủy')
             continue
         accepted.append(item)
     return accepted, skipped

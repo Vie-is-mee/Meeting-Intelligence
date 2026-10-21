@@ -30,7 +30,7 @@ def analyze(text: str, engine: Literal['llm_api', 'offline_rules'] = 'llm_api',
         warnings.append('OFFLINE BASELINE: luật hẹp cho quyết định tiếng Việt, KHÔNG phải kiểm thử năng lực LLM.')
     else:
         raise ValueError('engine không hợp lệ')
-    records = verify_records(resolve_events(events, utterances), utterances)
+    records = verify_records(resolve_events(events, utterances), utterances, warnings=warnings)
     if engine == 'llm_api' and audit:
         try:
             audit_findings, ignored = audit_events(utterances, events, records, active_client)
