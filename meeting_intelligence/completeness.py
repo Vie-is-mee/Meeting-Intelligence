@@ -18,6 +18,11 @@ _CHOICE_RE = re.compile(
     r'[^.!?;,]{0,85}?))(?=\s*(?:\bvà\s+chưa\b|[.!?;,]|$))',
     re.IGNORECASE,
 )
+_SUFFIX_CHOICE_RE = re.compile(
+    r'(?i)(?:^|[,.;]\s*)(?:còn\s+)?(?P<subject>cách\s+(?:làm|triển\s+khai)\s+khác|'
+    r'phương\s+án\s+thay\s+thế|giải\s+pháp\s+khác)\s+(?:thì\s+)?'
+    r'(?:vẫn\s+)?chưa\s+(?:chốt|chọn)\b'
+)
 _REQUEST_RE = re.compile(
     r'(?i)^(?P<sentence>(?:cần\s+|khách\s+hàng\s+yêu\s+cầu\s+|'
     r'người\s+dùng\s+yêu\s+cầu\s+)[^.!?]{8,200})[.!]?\s*$'
@@ -72,19 +77,32 @@ def recover_explicit_omissions(events: list[Event], utterances: list[Utterance],
                     sentence
                 )
                 if not assigned and not _has_record(result,kind='request',source=u.id,detail=sentence):
-                    # Don't mint a second record if this same line has already
-                    # been classified as an assigned action.
                     action_here=any(e.kind=='action' and u.id in e.source_ids for e in result)
                     if not action_here:
-                        bound=_DUE_REL_RE.search(sentence)
-                        key='m3_recovered_request_'+u.id
-                        result.append(Event(kind='request',event_type='request_made',
-                            issue_key=key,topic=sentence[:100],
-                            source_ids=[u.id],value=sentence,
-                            due_raw=bound.group(0).strip() if bound else None))
-                        recovered.add(key)
-                        warnings.append('Bổ sung yêu cầu tường minh còn thiếu từ nguồn '+u.id+
-                            '; đây là bản ghi do kiểm tra bổ sung, cần người xác nhận')
+                        norm=lambda s: ' '.join(re.findall(r'\w+', (s or '').casefold()))
+                        # Very narrow recovery: an exact customer-request sentence
+                        # mislabeled issue_reported is a request, NOT two records.
+                        # Distinct issues about a related problem are left intact.
+                        misclassified=[(i,e) for i,e in enumerate(result)
+                            if e.kind=='issue' and e.event_type=='issue_reported'
+                            and e.source_ids==[u.id] and norm(e.value)==norm(sentence)
+                            and re.search(r'(?i)^khách\s+hàng\s+yêu\s+cầu\b',sentence)]
+                        if len(misclassified)==1:
+                            i,e=misclassified[0]
+                            result[i]=e.model_copy(update={'kind':'request','event_type':'request_made'})
+                            recovered.add(e.issue_key)
+                            warnings.append('Chuẩn hóa issue trùng nguyên văn yêu cầu khách hàng thành request từ nguồn '+
+                                u.id+'; giữ một bản ghi và chờ người xác nhận')
+                        else:
+                            bound=_DUE_REL_RE.search(sentence)
+                            key='m3_recovered_request_'+u.id
+                            result.append(Event(kind='request',event_type='request_made',
+                                issue_key=key,topic=sentence[:100],
+                                source_ids=[u.id],value=sentence,
+                                due_raw=bound.group(0).strip() if bound else None))
+                            recovered.add(key)
+                            warnings.append('Bổ sung yêu cầu tường minh còn thiếu từ nguồn '+u.id+
+                                '; đây là bản ghi do kiểm tra bổ sung, cần người xác nhận')
         # An explicit unresolved choice is not an approved choice. The chosen
         # implementation/technology must be explicit; no general-purpose
         # "chưa giao" or proposed weekday triggers a fabricated decision.
@@ -117,4 +135,28 @@ def recover_explicit_omissions(events: list[Event], utterances: list[Utterance],
             recovered.add(key)
             warnings.append('Bổ sung lựa chọn chưa chốt tường minh từ nguồn '+u.id+
                 '; không phải phương án được duyệt, cần người xác nhận')
+        # Also recognize inverted utterances: "còn cách làm khác thì chưa chốt".
+        # No agreement can be inferred; only a reviewable OPEN decision.
+        for match in _SUFFIX_CHOICE_RE.finditer(text):
+            tail=text[match.end():]
+            if re.search(r'(?i)\b(?:đã\s+chốt|đã\s+chọn|thống\s+nhất)\b',tail):
+                warnings.append('Nguồn có cả chưa chốt và chốt sau đó; không tự phục hồi: '+u.id)
+                continue
+            subject=match.group('subject').strip()
+            if _has_record(result,kind='decision',source=u.id,detail=subject):
+                continue
+            related=[e for e in result if e.kind=='decision'
+                     and len(_tokens(subject)&_tokens(' '.join([e.topic,e.value or ''])))>=2]
+            if any(e.event_type in {'agreement','conditional_agreement'} for e in related):
+                warnings.append('Có quyết định đã chốt liên quan, không thêm open dựa trên câu ngược: '+u.id)
+                continue
+            key='m3_recovered_open_'+u.id
+            if key in recovered:
+                continue
+            result.append(Event(kind='decision',event_type='unresolved',
+                issue_key=key,topic=subject,source_ids=[u.id],
+                value=subject+' chưa chốt'))
+            recovered.add(key)
+            warnings.append('Khôi phục lựa chọn chưa chốt từ cách nói đảo chiều ở nguồn '+u.id+
+                            '; cần người đối chiếu')
     return result,recovered

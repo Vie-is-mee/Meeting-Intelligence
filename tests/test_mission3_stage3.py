@@ -221,9 +221,12 @@ class Stage3ArchivedM2ReplayTests(unittest.TestCase):
             with self.subTest(case=cid):
                 actual=self.replay(cid)
                 original=self.archive[cid]["output"]
-                # Baseline M2 fields unchanged by this utility-only layer;
-                # prior Stage1/2 already correct several source/status errors.
-                self.assertEqual(len(actual.records),len(original["records"]))
+                # A later Stage 3.5 recovery adds the explicit open alternative
+                # in E01; preserve original correct rows and allow that new one.
+                self.assertEqual(len(actual.records),len(original["records"])+(cid=="M3-E01"))
+                if cid=="M3-E01":
+                    self.assertTrue(any(r.kind=="decision" and r.meeting_status=="open"
+                                        for r in actual.records))
                 self.assertTrue(all(r.information_utility in {
                     "current_work","historical_context","needs_verification"}
                     for r in actual.records))

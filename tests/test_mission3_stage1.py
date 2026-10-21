@@ -253,8 +253,9 @@ class SavedM2EventReplayTests(unittest.TestCase):
     def test_E01_false_audit_is_rejected_without_losing_request(self):
         x=self.replay("M3-E01")
         self.assertEqual(len(x.audit_findings),0)
+        # The explicit unresolved alternate method at L005 is now recovered.
         self.assertEqual(sorted((r.kind,r.meeting_status) for r in x.records),
-                         [("action","cancelled"),("request","recorded")])
+                         [("action","cancelled"),("decision","open"),("request","recorded")])
         self.assertFalse(any("condition field null" in z for r in x.records for z in r.warnings))
 
     def test_E02_previous_good_cancellation_survives(self):

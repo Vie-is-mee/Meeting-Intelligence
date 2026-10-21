@@ -91,5 +91,49 @@ class Stage35LiveFailureTests(unittest.TestCase):
         self.assertIsNotNone(agreed.condition)
         self.assertIn("L004",agreed.field_evidence_ids.get("condition",[]))
 
+    def test_E01_live_run2_issue_gets_normalized_and_unselected_option_recovered(self):
+        run=json.loads((ROOT/"docs/evaluation/mission3/m3_fresh_E01_run2.json").read_text(encoding="utf-8"))
+        raw=run["results"][0]["output"]
+        seen=set()
+        events=[]
+        for record in raw["records"]:
+            # Raw saved output includes a Stage 2 rule-recovered event;
+            # replay only the provider-origin events to reproduce extraction.
+            if record["issue_key"].startswith("m3_recovered_"):
+                continue
+            for e in record["history"]:
+                key=json.dumps(e,ensure_ascii=False,sort_keys=True)
+                if key not in seen:
+                    seen.add(key)
+                    events.append(e)
+        class Client:
+            def completion_json(self,*args,**kwargs):
+                return {"events":events}
+        result=analyze(TRANSCRIPTS["M3-E01"],client=Client(),audit=False)
+        self.assertEqual(sorted((r.kind,r.meeting_status) for r in result.records),
+                         [("action","cancelled"),("decision","open"),("request","recorded")])
+        self.assertFalse(any(r.kind=="issue" for r in result.records))
+        self.assertTrue(any(r.kind=="decision" and "L005" in r.evidence_ids
+                            and r.review_status=="needs_review" for r in result.records))
+        self.assertTrue(any("Chuẩn hóa issue" in w for w in result.warnings))
+
+    def test_separate_issue_with_different_meaning_must_survive(self):
+        from meeting_intelligence.completeness import recover_explicit_omissions
+        lines=parse_transcript("L001 | An | Khách hàng yêu cầu xuất file CSV trong báo cáo.")
+        prior=[Event(issue_key="csv_problem",kind="issue",topic="lỗi xuất CSV",
+                     event_type="issue_reported",source_ids=["L001"],
+                     value="CSV đang bị lỗi").model_dump()]
+        events,keys=recover_explicit_omissions([Event.model_validate(x) for x in prior],lines,[])
+        self.assertTrue(any(x.kind=="issue" for x in events))
+        self.assertTrue(any(x.kind=="request" for x in events))
+        self.assertTrue(keys)
+
+    def test_suffix_open_must_not_override_later_confirmed_choice(self):
+        from meeting_intelligence.completeness import recover_explicit_omissions
+        lines=parse_transcript("L001 | An | Còn cách làm khác thì chưa chốt, sau đó đã chốt dùng Y.")
+        events,keys=recover_explicit_omissions([],lines,[])
+        self.assertEqual(events,[])
+        self.assertFalse(keys)
+
 if __name__=="__main__":
     unittest.main()
