@@ -1,0 +1,279 @@
+{
+  "created_utc": "2026-10-21T16:37:05.771681+00:00",
+  "model": "openai/gpt-oss-120b",
+  "engine": "llm_api",
+  "audit": true,
+  "sha256": {
+    "docs\\evaluation\\final_regression_input_v2.json": "fd20a7b307307e4df785e022c8f236079b42b6d43014770f3116194d1a021d21",
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\auditor.py": "e999d93d3b0fb9dc5d9992c03c2d32dbd2cb739e5f1d01847edec9580d06904b",
+    "meeting_intelligence\\completeness.py": "353bccf94cade536cb724bf458cbea0a220cfa037232b87ce786b9f63b175c25",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\extractor.py": "1152b3fe8d98791122cff5a1f530b0aff12b61274b565c9597fdb4ecac39b059",
+    "meeting_intelligence\\information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+    "meeting_intelligence\\llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence\\models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "35ba8a06416ef099a6fd49c6efe8d53f8bd83ea60afaf31b86c15dd79c442f74",
+    "meeting_intelligence\\resolver.py": "3d7eb6c7220b8f72a2d8d26883bd65e0d2744f7c273d21cea2e662e2bb267ecc",
+    "meeting_intelligence\\verifier.py": "41612e62f1f6612ed862e89c10877d1e6931bc4a74104468a7886d018cc63ae4"
+  },
+  "call_interval_s": 60.0,
+  "structured_outputs": "auto",
+  "max_retries": 0,
+  "generation_settings": {
+    "max_completion_tokens": 2560,
+    "audit_max_completion_tokens": 1024,
+    "temperature": 0.6,
+    "reasoning_effort": "low"
+  },
+  "requested_cases": [
+    "D01"
+  ],
+  "complete": true,
+  "cases": [
+    {
+      "id": "D01",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Mục tiêu hôm nay là chọn cách lưu tệp đính kèm cho bản thử nghiệm.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Tôi đề xuất lưu trên ổ đĩa của máy chủ ứng dụng.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Cách đó khó mở rộng nếu chạy hai máy chủ, tôi đề nghị dùng object storage.",
+            "speaker": "Chi",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Ta chỉ bàn nơi lưu tệp, chưa bàn nhà cung cấp.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Tôi rút đề xuất lưu trên máy chủ, đồng ý chuyển sang object storage.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L006",
+            "order": 6,
+            "text": "Chốt dùng object storage cho bản thử nghiệm. Nhà cung cấp để cuộc họp sau chọn.",
+            "speaker": "An",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "storage_choice",
+            "topic": "Lưu trữ tệp đính kèm",
+            "kind": "decision",
+            "content": "dùng object storage cho bản thử nghiệm",
+            "meeting_status": "agreed",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L002",
+              "L003",
+              "L006"
+            ],
+            "counter_evidence_ids": [
+              "L006"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L006"
+              ],
+              "content": [
+                "L006"
+              ],
+              "condition": [
+                "L006"
+              ],
+              "execution_status": [
+                "L006"
+              ],
+              "information_utility": [
+                "L006"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Kiểm tra lại missing_late_change: The record's condition field is null, but the transcript indicates a pending condition regarding the provider selection ('Nhà cung cấp để cuộc họp sau chọn'), which should be captured as a condition in the decision record. (nguồn: L006)"
+            ],
+            "history": [
+              {
+                "issue_key": "storage_choice",
+                "topic": "Lưu trữ tệp đính kèm",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "lưu trên ổ đĩa của máy chủ ứng dụng",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_choice",
+                "topic": "Lưu trữ tệp đính kèm",
+                "kind": "decision",
+                "event_type": "counterproposal",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "dùng object storage",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_choice",
+                "topic": "Lưu trữ tệp đính kèm",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L006"
+                ],
+                "value": "dùng object storage cho bản thử nghiệm",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": [
+          {
+            "issue_key": "storage_choice",
+            "kind": "decision",
+            "category": "missing_late_change",
+            "severity": "medium",
+            "source_ids": [
+              "L006"
+            ],
+            "source_quote": "Chốt dùng object storage cho bản thử nghiệm. Nhà cung cấp để cuộc họp sau chọn.",
+            "explanation": "The record's condition field is null, but the transcript indicates a pending condition regarding the provider selection ('Nhà cung cấp để cuộc họp sau chọn'), which should be captured as a condition in the decision record."
+          }
+        ]
+      },
+      "audit_completed": true,
+      "duration_s": 61.42,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 3805,
+        "completion_tokens": 897,
+        "total_tokens": 4702
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "storage_choice",
+                "topic": "Lưu trữ tệp đính kèm",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "lưu trên ổ đĩa của máy chủ ứng dụng",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_choice",
+                "topic": "Lưu trữ tệp đính kèm",
+                "kind": "decision",
+                "event_type": "counterproposal",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "dùng object storage",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_choice",
+                "topic": "Lưu trữ tệp đính kèm",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L006"
+                ],
+                "value": "dùng object storage cho bản thử nghiệm",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 2.4012378999905195
+        },
+        {
+          "response": {
+            "findings": [
+              {
+                "issue_key": "storage_choice",
+                "kind": "decision",
+                "category": "missing_late_change",
+                "severity": "medium",
+                "source_ids": [
+                  "L006"
+                ],
+                "source_quote": "Chốt dùng object storage cho bản thử nghiệm. Nhà cung cấp để cuộc họp sau chọn.",
+                "explanation": "The record's condition field is null, but the transcript indicates a pending condition regarding the provider selection ('Nhà cung cấp để cuộc họp sau chọn'), which should be captured as a condition in the decision record."
+              }
+            ]
+          },
+          "elapsed_s": 58.97215439999127
+        }
+      ]
+    }
+  ]
+}
