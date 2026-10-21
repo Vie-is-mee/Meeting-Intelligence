@@ -1,0 +1,5 @@
+L001 | An | Khách hàng yêu cầu xuất file CSV trong trang báo cáo.
+L002 | Bình | Giao Lan thử thư viện X để làm tính năng xuất CSV.
+L003 | Lan | Tôi nhận việc thử thư viện X.
+L004 | An | Hủy công việc thử thư viện X vì giấy phép không phù hợp.
+L005 | Bình | Nhu cầu xuất CSV của khách hàng vẫn giữ nguyên, còn cách làm khác thì chưa chốt.

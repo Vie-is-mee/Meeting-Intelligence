@@ -1,0 +1,5 @@
+L001 | Bình | Ban đầu đề xuất phương án A cho kho dữ liệu.
+L002 | Lan | Phương án B phù hợp hơn.
+L003 | Bình | Thống nhất phương án B cho bản thử nghiệm.
+L004 | An | Chưa được triển khai B cho khách hàng đến khi pháp chế duyệt.
+L005 | Bình | Việc chọn nhà cung cấp B chưa bàn đến, chưa chốt nhà cung cấp.

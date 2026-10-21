@@ -1,0 +1,4 @@
+L001 | An | Giao Lan chạy kiểm thử tải vào thứ Sáu.
+L002 | Bình | Khi retry request, cần dùng idempotency key để hạn chế ghi trùng. Đây là kinh nghiệm từ lần triển khai trước.
+L003 | Chi | Tôi nghe nói thư viện Y luôn nhanh hơn X, nhưng chưa có benchmark xác minh.
+L004 | An | Quyết định giữ việc benchmark Y và X cho cuộc họp sau, hôm nay chưa chọn thư viện.
