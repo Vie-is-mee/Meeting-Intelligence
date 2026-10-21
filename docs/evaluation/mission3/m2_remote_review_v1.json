@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "review_kind": "manual_semantic_adjudication_of_saved_deployed_m2_outputs",
+  "reviewer": "assistant_internal_not_independent",
+  "source_artifact": "m2_remote_baseline_v1.json",
+  "source_commit_attested": false,
+  "criteria": "Locked datasets/mission3_before_after_labels_v1.json; core_pass means required business meaning/status represented and no spurious committed decision/action; full_pass also requires no demonstrably false warnings/audit and sufficient supporting evidence. M3-only utility labels are not retroactively counted against M2 core.",
+  "cases": [
+    {
+      "id": "M3-E01",
+      "completed": true,
+      "core_pass": true,
+      "full_pass": false,
+      "required_core_correct": 2,
+      "required_total": 2,
+      "missing_required": 0,
+      "false_committed_actions": 0,
+      "false_committed_decisions": 0,
+      "extra_misclassified_request": 0,
+      "actual_record_kinds": [
+        "request",
+        "action"
+      ],
+      "evidence_review": "Customer requirement supported by L001 but later explicit reaffirmation L005 was not cited; action cancellation source L004 present.",
+      "audit_review": "One false positive: auditor demands cancellation reason 'giấy phép không phù hợp' as an active condition of cancelled task. Cancellation reason is not a precondition for implementation.",
+      "lesson": "Retain business requirement independently; reduce audit false positives and improve late-source evidence coverage."
+    },
+    {
+      "id": "M3-E02",
+      "completed": true,
+      "core_pass": true,
+      "full_pass": true,
+      "required_core_correct": 1,
+      "required_total": 1,
+      "missing_required": 0,
+      "false_committed_actions": 0,
+      "false_committed_decisions": 0,
+      "extra_misclassified_request": 0,
+      "actual_record_kinds": [
+        "action"
+      ],
+      "evidence_review": "L001 supports assignment to Lan; L003 supports cancelled status, no due invented.",
+      "audit_review": "No audit findings; transcript's straightforward cancellation has supporting evidence.",
+      "lesson": "M2 already solves basic cancellation; do not use this single case as proof of an M3 improvement."
+    },
+    {
+      "id": "M3-R01",
+      "completed": true,
+      "core_pass": true,
+      "full_pass": false,
+      "required_core_correct": 2,
+      "required_total": 2,
+      "missing_required": 0,
+      "false_committed_actions": 0,
+      "false_committed_decisions": 0,
+      "extra_misclassified_request": 0,
+      "actual_record_kinds": [
+        "decision",
+        "decision"
+      ],
+      "evidence_review": "L003 supports agreed B pilot, L004 blocked legal approval, L005 open vendor choice.",
+      "audit_review": "Auditor has no findings, but deterministic verifier incorrectly flags unrelated L005 'chưa chốt nhà cung cấp' as late negation of already agreed architecture/pilot decision.",
+      "lesson": "Scope later negation to the same decision issue to avoid cross-topic verifier false warnings."
+    },
+    {
+      "id": "M3-K01",
+      "completed": true,
+      "core_pass": false,
+      "full_pass": false,
+      "required_core_correct": 1,
+      "required_total": 3,
+      "missing_required": 0,
+      "false_committed_actions": 0,
+      "false_committed_decisions": 0,
+      "extra_misclassified_request": 0,
+      "actual_record_kinds": [
+        "action",
+        "knowledge",
+        "knowledge",
+        "decision"
+      ],
+      "evidence_review": "L001 task correct; L002 technical practice present but marked meeting_status unverified instead of locked recorded knowledge-candidate; L003 unverified performance rumor conservatively flagged; L004 no-choice wrongly represented as proposed, not open.",
+      "audit_review": "No audit findings despite wrong unresolved-vs-proposed representation. Utility class current_work/reusable_candidate/needs_verification does not yet exist in M2.",
+      "lesson": "M3 needs explicit information utility labels and unresolved choice extraction, without asserting a rumored performance claim."
+    }
+  ],
+  "limitations": [
+    "4 synthetic development cases, assistant-authored gold/review, no independent benchmark",
+    "Hosted backend reports model but not exact source commit, so source byte identity cannot be proven",
+    "One fresh run per case, temperature is not guaranteed deterministic",
+    "Required semantic core pass and full pass are operational judgments, not statistical model accuracy",
+    "Existing eight-case historical baseline is a separate run; do not merge denominators"
+  ]
+}

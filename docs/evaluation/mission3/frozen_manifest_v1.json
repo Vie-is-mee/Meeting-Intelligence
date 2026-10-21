@@ -1,0 +1,18 @@
+{
+  "protocol": "m3-comparison-v1",
+  "status": "frozen-before-stage1_or_llm_runs",
+  "created_ict": "2026-10-21",
+  "cases": [
+    "M3-E01",
+    "M3-E02",
+    "M3-R01",
+    "M3-K01"
+  ],
+  "inputs_sha256": "d01ea985df426a4e2fc9360056838122d22773a71303fcf3c3b5cc5fe8926852",
+  "labels_sha256": "464045dc9216a93776da6a9b2f1ede667c15fbd5d7c9a86ce5448edb9a12daf6",
+  "source_tag": "submission-a-ui-v2-20261015",
+  "source_commit": "439f672a3204238100158570ebcf80f0551b85fd",
+  "data_type": "assistant_written_synthetic_development",
+  "independent_benchmark": false,
+  "protocol_note": "M2 and M3 receive exactly transcript only. M3-only information_utility is evaluated separately from shared extraction semantics. Keep failures. Do not revise gold post-output. Do not treat remote API run as exact local tag without attestation."
+}

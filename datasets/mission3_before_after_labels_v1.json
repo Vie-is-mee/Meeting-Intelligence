@@ -1,0 +1,181 @@
+{
+  "dataset_id": "mission3_before_after_v1",
+  "schema_version": "1.0",
+  "review_provenance": "assistant-authored expected outcomes, predeclared before M3 model runs; manual semantic adjudication required",
+  "strict_metric_note": "M3-only utility field is scored separately from shared M2/M3 semantic core. Alternate open-record representations must be adjudicated explicitly.",
+  "cases": [
+    {
+      "id": "M3-E01",
+      "required": [
+        {
+          "label_id": "csv_requirement",
+          "kind": "request",
+          "meeting_status": "recorded",
+          "meaning": "Customer's CSV export requirement remains",
+          "source_ids": [
+            "L001",
+            "L005"
+          ],
+          "owner": null,
+          "due_raw": null
+        },
+        {
+          "label_id": "library_x_trial",
+          "kind": "action",
+          "meeting_status": "cancelled",
+          "meaning": "Lan's trial of library X cancelled",
+          "source_ids": [
+            "L002",
+            "L003",
+            "L004"
+          ],
+          "owner": "Lan",
+          "due_raw": null
+        }
+      ],
+      "optional": [
+        {
+          "label_id": "replacement_choice",
+          "kind": "decision",
+          "meeting_status": "open",
+          "meaning": "Alternative implementation not chosen",
+          "source_ids": [
+            "L005"
+          ]
+        }
+      ],
+      "forbidden": [
+        "independent active request solely from L002",
+        "active library X trial",
+        "library X agreed implementation",
+        "invented owner/due",
+        "cancellation of CSV business requirement"
+      ],
+      "notes": "Optional separate open choice or explicit verified uncertainty is acceptable; test mainly guards retention vs deletion."
+    },
+    {
+      "id": "M3-E02",
+      "required": [
+        {
+          "label_id": "library_x_internal_sample",
+          "kind": "action",
+          "meeting_status": "cancelled",
+          "meaning": "Internal sample library X trial cancelled",
+          "source_ids": [
+            "L001",
+            "L002",
+            "L003"
+          ],
+          "owner": "Lan",
+          "due_raw": null
+        }
+      ],
+      "optional": [],
+      "forbidden": [
+        "separate active request based solely on assignment",
+        "active trial",
+        "replacement task",
+        "approved decision"
+      ],
+      "notes": "Historical assignee Lan may stay on a cancelled action; not actively assigned."
+    },
+    {
+      "id": "M3-R01",
+      "required": [
+        {
+          "label_id": "pilot_b",
+          "kind": "decision",
+          "meeting_status": "agreed",
+          "execution_status": "blocked",
+          "meaning": "B was agreed for a pilot only, cannot roll out to customer until legal approval",
+          "source_ids": [
+            "L003",
+            "L004"
+          ],
+          "owner": null,
+          "due_raw": null
+        },
+        {
+          "label_id": "vendor_unselected",
+          "kind": "decision",
+          "meeting_status": "open",
+          "meaning": "Vendor choice not made",
+          "source_ids": [
+            "L005"
+          ],
+          "owner": null,
+          "due_raw": null
+        }
+      ],
+      "optional": [],
+      "forbidden": [
+        "pilot choice B reopened due to L005",
+        "B unconditional customer rollout approved",
+        "vendor B approved",
+        "A remains final"
+      ],
+      "notes": "Separate vendor undecided vs architecture choice; evidence L004 for block and legal prerequisite."
+    },
+    {
+      "id": "M3-K01",
+      "required": [
+        {
+          "label_id": "load_test",
+          "kind": "action",
+          "meeting_status": "assigned",
+          "meaning": "Lan will perform load test by Friday",
+          "source_ids": [
+            "L001"
+          ],
+          "owner": "Lan",
+          "due_raw": "thứ Sáu"
+        },
+        {
+          "label_id": "idempotency_practice",
+          "kind": "knowledge",
+          "meeting_status": "recorded",
+          "meaning": "Using idempotency keys during retries helps avoid duplicated writes, stated as past practice",
+          "source_ids": [
+            "L002"
+          ],
+          "owner": null,
+          "due_raw": null
+        },
+        {
+          "label_id": "library_unselected",
+          "kind": "decision",
+          "meeting_status": "open",
+          "meaning": "No winning library chosen for Y versus X",
+          "source_ids": [
+            "L004"
+          ],
+          "owner": null,
+          "due_raw": null
+        }
+      ],
+      "optional": [
+        {
+          "label_id": "unverified_performance_statement",
+          "kind": "knowledge",
+          "meaning": "Unverified Y faster than X claim",
+          "source_ids": [
+            "L003"
+          ],
+          "must_mark_unverified": true
+        }
+      ],
+      "forbidden": [
+        "asserting Y faster than X as confirmed fact",
+        "Y or X agreed winner",
+        "fabricated benchmark",
+        "automatically published verified knowledge"
+      ],
+      "m3_only_utility_expected": {
+        "idempotency_practice": "reusable_candidate",
+        "unverified_performance_statement": "needs_verification",
+        "load_test": "current_work"
+      },
+      "notes": "M2 is not penalized on missing M3-only utility field; keep extraction and utility evaluations distinct."
+    }
+  ]
+}

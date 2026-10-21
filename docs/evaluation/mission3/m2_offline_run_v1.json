@@ -1,0 +1,270 @@
+{
+  "started_utc": "2026-10-21T03:01:40.977418+00:00",
+  "manifest": {
+    "version": "m2",
+    "transport": "offline",
+    "core_commit": "439f672a3204238100158570ebcf80f0551b85fd",
+    "source_files_sha256": {
+      "meeting_intelligence/__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+      "meeting_intelligence/auditor.py": "3c1ef3ba528d3fcfdc0e494a8bdd23f88e3c6fb1bb1d998fe58d3001b71738c6",
+      "meeting_intelligence/config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+      "meeting_intelligence/extractor.py": "1d8f3662d4b16de3ff68f2e61b1d57d9df70e802334c37264ffb3ef0e5b46a68",
+      "meeting_intelligence/llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+      "meeting_intelligence/models.py": "96e7e38e155a14822dcfdca637882259ac20f7c7c341e1280f16a7f17ed4cab2",
+      "meeting_intelligence/offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+      "meeting_intelligence/parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+      "meeting_intelligence/pipeline.py": "66a5cf23ac51b1245b857a549b79c3d3066eb28a40736df11e692dd02d3805b7",
+      "meeting_intelligence/resolver.py": "3d7eb6c7220b8f72a2d8d26883bd65e0d2744f7c273d21cea2e662e2bb267ecc",
+      "meeting_intelligence/verifier.py": "805f0fcde122c2c81dc9d5c64080c107118f3335a8969a13b1429f1839fecb8d"
+    },
+    "frozen_input_sha256": "d01ea985df426a4e2fc9360056838122d22773a71303fcf3c3b5cc5fe8926852",
+    "frozen_labels_sha256": "464045dc9216a93776da6a9b2f1ede667c15fbd5d7c9a86ce5448edb9a12daf6",
+    "audit": "on",
+    "cases": [
+      "M3-E01",
+      "M3-E02",
+      "M3-R01",
+      "M3-K01"
+    ],
+    "remote_url": null,
+    "interpretation": "OFFLINE RULES only; not LLM accuracy"
+  },
+  "results": [
+    {
+      "id": "M3-E01",
+      "status": "COMPLETED",
+      "started_utc": "2026-10-21T03:01:40.979865+00:00",
+      "output": {
+        "engine": "offline_rules",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Khách hàng yêu cầu xuất file CSV trong trang báo cáo.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Giao Lan thử thư viện X để làm tính năng xuất CSV.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Tôi nhận việc thử thư viện X.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Hủy công việc thử thư viện X vì giấy phép không phù hợp.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Nhu cầu xuất CSV của khách hàng vẫn giữ nguyên, còn cách làm khác thì chưa chốt.",
+            "speaker": "Bình",
+            "timestamp": null
+          }
+        ],
+        "records": [],
+        "warnings": [
+          "OFFLINE BASELINE: luật hẹp cho quyết định tiếng Việt, KHÔNG phải kiểm thử năng lực LLM."
+        ],
+        "audit_findings": []
+      },
+      "duration_s": 0.0
+    },
+    {
+      "id": "M3-E02",
+      "status": "COMPLETED",
+      "started_utc": "2026-10-21T03:01:40.986689+00:00",
+      "output": {
+        "engine": "offline_rules",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Giao Lan thử thư viện X để tạo CSV mẫu nội bộ.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Tôi nhận.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Hủy việc thử thư viện X, không cần làm nữa.",
+            "speaker": "Bình",
+            "timestamp": null
+          }
+        ],
+        "records": [],
+        "warnings": [
+          "OFFLINE BASELINE: luật hẹp cho quyết định tiếng Việt, KHÔNG phải kiểm thử năng lực LLM."
+        ],
+        "audit_findings": []
+      },
+      "duration_s": 0.0
+    },
+    {
+      "id": "M3-R01",
+      "status": "COMPLETED",
+      "started_utc": "2026-10-21T03:01:40.989090+00:00",
+      "output": {
+        "engine": "offline_rules",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Ban đầu đề xuất phương án A cho kho dữ liệu.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Phương án B phù hợp hơn.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Thống nhất phương án B cho bản thử nghiệm.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Chưa được triển khai B cho khách hàng đến khi pháp chế duyệt.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Việc chọn nhà cung cấp B chưa bàn đến, chưa chốt nhà cung cấp.",
+            "speaker": "Bình",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "lua_chon_phuong_an",
+            "topic": "Lựa chọn phương án",
+            "kind": "decision",
+            "content": "Phương án A",
+            "meeting_status": "proposed",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ],
+              "condition": [
+                "L001"
+              ],
+              "execution_status": [
+                "L001"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "lua_chon_phuong_an",
+                "topic": "Lựa chọn phương án",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Phương án A",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "OFFLINE BASELINE: luật hẹp cho quyết định tiếng Việt, KHÔNG phải kiểm thử năng lực LLM."
+        ],
+        "audit_findings": []
+      },
+      "duration_s": 0.02
+    },
+    {
+      "id": "M3-K01",
+      "status": "COMPLETED",
+      "started_utc": "2026-10-21T03:01:40.993141+00:00",
+      "output": {
+        "engine": "offline_rules",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Giao Lan chạy kiểm thử tải vào thứ Sáu.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Khi retry request, cần dùng idempotency key để hạn chế ghi trùng. Đây là kinh nghiệm từ lần triển khai trước.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Tôi nghe nói thư viện Y luôn nhanh hơn X, nhưng chưa có benchmark xác minh.",
+            "speaker": "Chi",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Quyết định giữ việc benchmark Y và X cho cuộc họp sau, hôm nay chưa chọn thư viện.",
+            "speaker": "An",
+            "timestamp": null
+          }
+        ],
+        "records": [],
+        "warnings": [
+          "OFFLINE BASELINE: luật hẹp cho quyết định tiếng Việt, KHÔNG phải kiểm thử năng lực LLM."
+        ],
+        "audit_findings": []
+      },
+      "duration_s": 0.0
+    }
+  ],
+  "complete": true
+}

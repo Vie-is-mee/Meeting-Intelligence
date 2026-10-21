@@ -1,0 +1,34 @@
+{
+  "id": "mission3_before_after_v1",
+  "schema_version": "1.0",
+  "created_for": "M3 Stage 0.5 before M3 core edits",
+  "dataset_kind": "synthetic_development_comparison",
+  "reviewer_status": "assistant_authored_not_independent",
+  "input_rule": "ONLY transcript field may be passed to LLM; labels are separate",
+  "cases": [
+    {
+      "id": "M3-E01",
+      "title": "Cancelled implementation task; independent CSV requirement survives",
+      "transcript": "L001 | An | Khách hàng yêu cầu xuất file CSV trong trang báo cáo.\nL002 | Bình | Giao Lan thử thư viện X để làm tính năng xuất CSV.\nL003 | Lan | Tôi nhận việc thử thư viện X.\nL004 | An | Hủy công việc thử thư viện X vì giấy phép không phù hợp.\nL005 | Bình | Nhu cầu xuất CSV của khách hàng vẫn giữ nguyên, còn cách làm khác thì chưa chốt.",
+      "split": "development"
+    },
+    {
+      "id": "M3-E02",
+      "title": "Cancelled task with no independent business requirement",
+      "transcript": "L001 | Bình | Giao Lan thử thư viện X để tạo CSV mẫu nội bộ.\nL002 | Lan | Tôi nhận.\nL003 | Bình | Hủy việc thử thư viện X, không cần làm nữa.",
+      "split": "development"
+    },
+    {
+      "id": "M3-R01",
+      "title": "Agreed pilot, blocked rollout, unrelated vendor undecided",
+      "transcript": "L001 | Bình | Ban đầu đề xuất phương án A cho kho dữ liệu.\nL002 | Lan | Phương án B phù hợp hơn.\nL003 | Bình | Thống nhất phương án B cho bản thử nghiệm.\nL004 | An | Chưa được triển khai B cho khách hàng đến khi pháp chế duyệt.\nL005 | Bình | Việc chọn nhà cung cấp B chưa bàn đến, chưa chốt nhà cung cấp.",
+      "split": "development"
+    },
+    {
+      "id": "M3-K01",
+      "title": "Current work, reusable candidate knowledge, and unverified anecdote",
+      "transcript": "L001 | An | Giao Lan chạy kiểm thử tải vào thứ Sáu.\nL002 | Bình | Khi retry request, cần dùng idempotency key để hạn chế ghi trùng. Đây là kinh nghiệm từ lần triển khai trước.\nL003 | Chi | Tôi nghe nói thư viện Y luôn nhanh hơn X, nhưng chưa có benchmark xác minh.\nL004 | An | Quyết định giữ việc benchmark Y và X cho cuộc họp sau, hôm nay chưa chọn thư viện.",
+      "split": "development"
+    }
+  ]
+}
