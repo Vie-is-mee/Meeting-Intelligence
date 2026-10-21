@@ -321,8 +321,10 @@ def _mistakes_reopened_decision_for_missing_old_condition(
     history=candidates[0].history
     past=[e for e in history if e.event_type=='conditional_agreement'
           and any(s in item.source_ids for s in e.source_ids)]
+    # An auditor may quote only the old agreement, not the later reopen.
+    # The actual later reopen must be proved by the recorded event history.
     reopen=[e for e in history if e.event_type=='reopen'
-            and any(s in item.source_ids for s in e.source_ids)]
+            and any(s in positions for s in e.source_ids)]
     if not past or not reopen:
         return False
     past_orders=[positions[s] for e in past for s in e.source_ids if s in positions]

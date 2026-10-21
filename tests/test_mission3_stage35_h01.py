@@ -73,4 +73,26 @@ class ReopenAuditControls(unittest.TestCase):
         self.assertFalse(_mistakes_reopened_decision_for_missing_old_condition(
             AuditFinding.model_validate(ORIGINAL["audit_findings"][0]),records,lines))
 
+    def test_fresh_h01_auditor_quotes_only_old_source_but_reopen_is_later(self):
+        raw=json.loads((ROOT/"docs/evaluation/mission3/m3_fresh_regression_D01_H01_2842f8d_run1.json").read_text(encoding="utf-8"))
+        case=next(row for row in raw["cases"] if row["id"]=="H01")
+        transcript="\n".join(u["id"]+" | "+(u.get("speaker") or "Unknown")+" | "+u["text"]
+                             for u in case["output"]["utterances"])
+        record=next(row for row in case["output"]["records"] if row["kind"]=="decision")
+        event_hypotheses=record["history"]
+        for row in case["output"]["records"]:
+            if row["kind"]!="decision":
+                event_hypotheses+=row["history"]
+        finding=AuditFinding.model_validate(case["output"]["audit_findings"][0])
+        self.assertEqual(finding.source_ids,["L001"])
+        self.assertTrue(_mistakes_reopened_decision_for_missing_old_condition(
+            finding,resolve_events([Event.model_validate(e) for e in event_hypotheses],
+                                   parse_transcript(transcript)),parse_transcript(transcript)))
+        result=analyze(transcript,client=Replay(event_hypotheses,case["output"]["audit_findings"]),audit=True)
+        self.assertEqual(result.audit_findings,[])
+        self.assertTrue(any(r.kind=="decision" and r.meeting_status=="reopened"
+                            and r.condition is None for r in result.records))
+        self.assertTrue(any(r.kind=="action" and r.owner=="Huy"
+                            and r.meeting_status=="assigned" for r in result.records))
+
 if __name__=="__main__":unittest.main()

@@ -1,0 +1,397 @@
+{
+  "created_utc": "2026-10-21T17:49:09.938278+00:00",
+  "model": "openai/gpt-oss-120b",
+  "engine": "llm_api",
+  "audit": true,
+  "sha256": {
+    "datasets\\task_lifecycle_regression_v1.json": "96249144b21e9e598e6179c211f441afb894a22042e59d1f50e2b801e890f59c",
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\auditor.py": "612c9fcf99ed852937e7551d2f9bb27060abfff6db4188724b3a133035b12d1a",
+    "meeting_intelligence\\completeness.py": "b0a13938dccc546667def2990d28a4dab0ed5f7e501ae44b4bf2daaf301a6d0d",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\extractor.py": "1152b3fe8d98791122cff5a1f530b0aff12b61274b565c9597fdb4ecac39b059",
+    "meeting_intelligence\\information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+    "meeting_intelligence\\llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence\\models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "35ba8a06416ef099a6fd49c6efe8d53f8bd83ea60afaf31b86c15dd79c442f74",
+    "meeting_intelligence\\resolver.py": "22dd923732ae3a49c23959611a9fb816d0e4cfa85e963bf31d33130fadd37249",
+    "meeting_intelligence\\verifier.py": "41612e62f1f6612ed862e89c10877d1e6931bc4a74104468a7886d018cc63ae4"
+  },
+  "call_interval_s": 30.0,
+  "structured_outputs": "auto",
+  "max_retries": 0,
+  "generation_settings": {
+    "max_completion_tokens": 2560,
+    "audit_max_completion_tokens": 1024,
+    "temperature": 0.6,
+    "reasoning_effort": "low"
+  },
+  "requested_cases": [
+    "LC02"
+  ],
+  "complete": true,
+  "cases": [
+    {
+      "id": "LC02",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Khách hàng yêu cầu có xuất báo cáo dạng CSV.",
+            "speaker": "Hà",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Dũng thử làm bộ xuất CSV bằng thư viện X, hạn chiều mai.",
+            "speaker": "Sơn",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Tôi nhận thử bộ xuất đó.",
+            "speaker": "Dũng",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Hủy việc thử thư viện X vì giấy phép không phù hợp, bỏ hạn chiều mai.",
+            "speaker": "Sơn",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Yêu cầu xuất CSV của khách hàng vẫn giữ. Chưa chọn cách triển khai thay thế và chưa giao việc mới.",
+            "speaker": "Hà",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "customer_req_csv",
+            "topic": "Yêu cầu khách hàng",
+            "kind": "request",
+            "content": "khách hàng yêu cầu xuất báo cáo dạng CSV",
+            "meeting_status": "recorded",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "M3 Stage 2: khôi phục từ phát biểu tường minh; cần người đối chiếu trước khi dùng"
+            ],
+            "history": [
+              {
+                "issue_key": "customer_req_csv",
+                "topic": "Yêu cầu khách hàng",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "khách hàng yêu cầu xuất báo cáo dạng CSV",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "export_csv_choice",
+            "topic": "Xuất CSV",
+            "kind": "action",
+            "content": "thử bộ xuất CSV bằng thư viện X",
+            "meeting_status": "cancelled",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "historical_context",
+            "information_utility_note": "Giữ trạng thái/lịch sử; không phải cam kết cần thực hiện mới.",
+            "owner": "Dũng",
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L003",
+              "L004"
+            ],
+            "counter_evidence_ids": [
+              "L004"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L004"
+              ],
+              "content": [
+                "L003"
+              ],
+              "owner": [
+                "L003"
+              ],
+              "due_raw": [
+                "L004"
+              ],
+              "information_utility": [
+                "L003",
+                "L004"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "export_csv_choice",
+                "topic": "Xuất CSV",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "thử bộ xuất CSV bằng thư viện X",
+                "owner": "Dũng",
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "export_csv_choice",
+                "topic": "Xuất CSV",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "giấy phép không phù hợp",
+                "clear_fields": [
+                  "due_raw"
+                ]
+              }
+            ]
+          },
+          {
+            "issue_key": "export_csv_alternative",
+            "topic": "Xuất CSV - cách triển khai",
+            "kind": "decision",
+            "content": "chưa chọn cách triển khai thay thế",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L005"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L005"
+              ],
+              "content": [
+                "L005"
+              ],
+              "execution_status": [
+                "L005"
+              ],
+              "information_utility": [
+                "L005"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "export_csv_alternative",
+                "topic": "Xuất CSV - cách triển khai",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "chưa chọn cách triển khai thay thế",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Chuẩn hóa issue trùng nguyên văn yêu cầu khách hàng thành request từ nguồn L001; giữ một bản ghi và chờ người xác nhận",
+          "Loại proposal trùng với câu giao task đã được nhận; giữ nhiệm vụ và bằng chứng lịch sử: L002",
+          "Audit đưa kind không khớp bản ghi; loại cảnh báo thiếu căn cứ",
+          "Đã loại cảnh báo audit nhầm lý do hủy với điều kiện tác nghiệp còn hiệu lực",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "audit_completed": true,
+      "duration_s": 31.96,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 4108,
+        "completion_tokens": 1379,
+        "total_tokens": 5487
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "export_csv_choice",
+                "topic": "Xuất CSV",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "thử bộ xuất CSV bằng thư viện X",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "export_csv_choice",
+                "topic": "Xuất CSV",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "thử bộ xuất CSV bằng thư viện X",
+                "owner": "Dũng",
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "export_csv_choice",
+                "topic": "Xuất CSV",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "giấy phép không phù hợp",
+                "clear_fields": [
+                  "due_raw"
+                ]
+              },
+              {
+                "issue_key": "export_csv_alternative",
+                "topic": "Xuất CSV - cách triển khai",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "chưa chọn cách triển khai thay thế",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "customer_req_csv",
+                "topic": "Yêu cầu khách hàng",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "khách hàng yêu cầu xuất báo cáo dạng CSV",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 3.2539462999848183
+        },
+        {
+          "response": {
+            "findings": [
+              {
+                "issue_key": "export_csv_choice",
+                "kind": "decision",
+                "category": "missing_issue",
+                "severity": "high",
+                "source_ids": [
+                  "L002"
+                ],
+                "source_quote": "Dũng thử làm bộ xuất CSV bằng thư viện X, hạn chiều mai.",
+                "explanation": "The transcript contains a proposal decision (event) for export_csv_choice, but there is no corresponding record in the final records. This missing decision record should be added."
+              },
+              {
+                "issue_key": "export_csv_choice",
+                "kind": "action",
+                "category": "missing_late_change",
+                "severity": "medium",
+                "source_ids": [
+                  "L004"
+                ],
+                "source_quote": "Hủy việc thử thư viện X vì giấy phép không phù hợp, bỏ hạn chiều mai.",
+                "explanation": "The cancelled action record does not capture the cancellation condition \"giấy phép không phù hợp\" even though the event specifies this condition. The record should include the condition to reflect the late change."
+              }
+            ]
+          },
+          "elapsed_s": 28.67097519998788
+        }
+      ]
+    }
+  ]
+}
