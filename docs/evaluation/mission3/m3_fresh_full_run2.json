@@ -1,0 +1,924 @@
+{
+  "manifest": {
+    "version": "m3",
+    "transport": "local",
+    "core_commit": "9d9082cc0f5676faa63371275e243ace6a28ad3b",
+    "source_files_sha256": {
+      "meeting_intelligence/__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+      "meeting_intelligence/auditor.py": "ee91721b90714056bca6b6da6701cd47a4714a30bbebec6d59a6f235191fd3b0",
+      "meeting_intelligence/completeness.py": "c5473a2f7d0970facc2429b8afa2ae69dc6a3ce3d4c80eba13718f9775e337f4",
+      "meeting_intelligence/config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+      "meeting_intelligence/extractor.py": "1152b3fe8d98791122cff5a1f530b0aff12b61274b565c9597fdb4ecac39b059",
+      "meeting_intelligence/information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+      "meeting_intelligence/llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+      "meeting_intelligence/models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+      "meeting_intelligence/offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+      "meeting_intelligence/parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+      "meeting_intelligence/pipeline.py": "35ba8a06416ef099a6fd49c6efe8d53f8bd83ea60afaf31b86c15dd79c442f74",
+      "meeting_intelligence/resolver.py": "3d7eb6c7220b8f72a2d8d26883bd65e0d2744f7c273d21cea2e662e2bb267ecc",
+      "meeting_intelligence/verifier.py": "8d2fde5cbba9ddd232ba950ade72bab569adec8ed95b29f0c48979ddd817dc63"
+    },
+    "frozen_input_sha256": "d01ea985df426a4e2fc9360056838122d22773a71303fcf3c3b5cc5fe8926852",
+    "frozen_labels_sha256": "464045dc9216a93776da6a9b2f1ede667c15fbd5d7c9a86ce5448edb9a12daf6",
+    "audit": "on",
+    "cases": [
+      "M3-E01",
+      "M3-E02",
+      "M3-R01",
+      "M3-K01"
+    ],
+    "remote_url": null,
+    "interpretation": "Direct LLM execution against the selected local source tree"
+  },
+  "model": "openai/gpt-oss-120b",
+  "generation_settings": {
+    "temperature": 0.6,
+    "reasoning_effort": "low",
+    "max_completion_tokens": 2560,
+    "structured_outputs": "auto"
+  },
+  "complete": true,
+  "merged_from_distinct_local_runs": [
+    {
+      "file": "m3_fresh_E01_run2.json",
+      "sha256": "e3d4175fe48fe1acc5d2b10c44fd3f5a4c788a4cc1eeb1c52722aeb47f1c6d93",
+      "cases": [
+        "M3-E01"
+      ]
+    },
+    {
+      "file": "m3_fresh_E02_run2.json",
+      "sha256": "d8b5e8c08c9e26da8c5b7e74fe2a97b298fcad1d18da5061de1fea684e234933",
+      "cases": [
+        "M3-E02"
+      ]
+    },
+    {
+      "file": "m3_fresh_R01_run2.json",
+      "sha256": "0367ecdc6628c9f2c0c77e480ca25dbdd77eaaef8d47f7d7cfe386b5399016a6",
+      "cases": [
+        "M3-R01"
+      ]
+    },
+    {
+      "file": "m3_fresh_K01_run2.json",
+      "sha256": "b720dcc29acb9188dfe7171a92673a07a3c1ead0e116ddaf2c7aa6bd33df664d",
+      "cases": [
+        "M3-K01"
+      ]
+    }
+  ],
+  "semantically_reviewed": false,
+  "note": "Source-preserving merge of source-attested local M3 runs. Errors retained; this is NOT a semantic score.",
+  "results": [
+    {
+      "id": "M3-E01",
+      "status": "COMPLETED",
+      "started_utc": "2026-10-21T16:07:02.545480+00:00",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Khách hàng yêu cầu xuất file CSV trong trang báo cáo.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Giao Lan thử thư viện X để làm tính năng xuất CSV.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Tôi nhận việc thử thư viện X.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Hủy công việc thử thư viện X vì giấy phép không phù hợp.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Nhu cầu xuất CSV của khách hàng vẫn giữ nguyên, còn cách làm khác thì chưa chốt.",
+            "speaker": "Bình",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "req_csv",
+            "topic": "Yêu cầu khách hàng",
+            "kind": "issue",
+            "content": "Khách hàng yêu cầu xuất file CSV trong trang báo cáo",
+            "meeting_status": "open",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "req_csv",
+                "topic": "Yêu cầu khách hàng",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Khách hàng yêu cầu xuất file CSV trong trang báo cáo",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "m3_recovered_request_L001",
+            "topic": "Khách hàng yêu cầu xuất file CSV trong trang báo cáo",
+            "kind": "request",
+            "content": "Khách hàng yêu cầu xuất file CSV trong trang báo cáo",
+            "meeting_status": "recorded",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "M3 Stage 2: khôi phục từ phát biểu tường minh; cần người đối chiếu trước khi dùng"
+            ],
+            "history": [
+              {
+                "issue_key": "m3_recovered_request_L001",
+                "topic": "Khách hàng yêu cầu xuất file CSV trong trang báo cáo",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Khách hàng yêu cầu xuất file CSV trong trang báo cáo",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "task_csv_lib",
+            "topic": "Thử thư viện X để xuất CSV",
+            "kind": "action",
+            "content": "Thử thư viện X để làm tính năng xuất CSV",
+            "meeting_status": "cancelled",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "historical_context",
+            "information_utility_note": "Giữ trạng thái/lịch sử; không phải cam kết cần thực hiện mới.",
+            "owner": "Lan",
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L003",
+              "L004"
+            ],
+            "counter_evidence_ids": [
+              "L004"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L004"
+              ],
+              "content": [
+                "L003"
+              ],
+              "owner": [
+                "L003"
+              ],
+              "information_utility": [
+                "L003",
+                "L004"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "task_csv_lib",
+                "topic": "Thử thư viện X để xuất CSV",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "Thử thư viện X để làm tính năng xuất CSV",
+                "owner": "Lan",
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "task_csv_lib",
+                "topic": "Thử thư viện X để xuất CSV",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "giấy phép không phù hợp",
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Bổ sung yêu cầu tường minh còn thiếu từ nguồn L001; đây là bản ghi do kiểm tra bổ sung, cần người xác nhận",
+          "Loại proposal trùng với câu giao task đã được nhận; giữ nhiệm vụ và bằng chứng lịch sử: L002",
+          "Đã loại cảnh báo audit nhầm lý do hủy với điều kiện tác nghiệp còn hiệu lực",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "api_calls_cumulative": 2,
+      "token_usage_cumulative": {
+        "prompt_tokens": 4056,
+        "completion_tokens": 852,
+        "total_tokens": 4908
+      },
+      "duration_s": 61.95,
+      "source_run_sha256": "e3d4175fe48fe1acc5d2b10c44fd3f5a4c788a4cc1eeb1c52722aeb47f1c6d93",
+      "source_run_file": "m3_fresh_E01_run2.json"
+    },
+    {
+      "id": "M3-E02",
+      "status": "COMPLETED",
+      "started_utc": "2026-10-21T16:09:54.772368+00:00",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Giao Lan thử thư viện X để tạo CSV mẫu nội bộ.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Tôi nhận.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Hủy việc thử thư viện X, không cần làm nữa.",
+            "speaker": "Bình",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "task_1",
+            "topic": "thử thư viện X",
+            "kind": "action",
+            "content": "thử thư viện X để tạo CSV mẫu nội bộ",
+            "meeting_status": "cancelled",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "historical_context",
+            "information_utility_note": "Giữ trạng thái/lịch sử; không phải cam kết cần thực hiện mới.",
+            "owner": "Lan",
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001",
+              "L003"
+            ],
+            "counter_evidence_ids": [
+              "L003"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L003"
+              ],
+              "content": [
+                "L001"
+              ],
+              "owner": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001",
+                "L003"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "task_1",
+                "topic": "thử thư viện X",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "thử thư viện X để tạo CSV mẫu nội bộ",
+                "owner": "Lan",
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "task_1",
+                "topic": "thử thư viện X",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "api_calls_cumulative": 2,
+      "token_usage_cumulative": {
+        "prompt_tokens": 3542,
+        "completion_tokens": 468,
+        "total_tokens": 4010
+      },
+      "duration_s": 61.67,
+      "source_run_sha256": "d8b5e8c08c9e26da8c5b7e74fe2a97b298fcad1d18da5061de1fea684e234933",
+      "source_run_file": "m3_fresh_E02_run2.json"
+    },
+    {
+      "id": "M3-R01",
+      "status": "COMPLETED",
+      "started_utc": "2026-10-21T16:08:31.735621+00:00",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Ban đầu đề xuất phương án A cho kho dữ liệu.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Phương án B phù hợp hơn.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Thống nhất phương án B cho bản thử nghiệm.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Chưa được triển khai B cho khách hàng đến khi pháp chế duyệt.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Việc chọn nhà cung cấp B chưa bàn đến, chưa chốt nhà cung cấp.",
+            "speaker": "Bình",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "choice_phương_án",
+            "topic": "phương án",
+            "kind": "decision",
+            "content": "phương án B cho bản thử nghiệm",
+            "meeting_status": "agreed",
+            "execution_status": "blocked",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": "pháp chế duyệt",
+            "evidence_ids": [
+              "L001",
+              "L002",
+              "L003",
+              "L004"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L003"
+              ],
+              "content": [
+                "L003"
+              ],
+              "condition": [
+                "L004"
+              ],
+              "execution_status": [
+                "L004"
+              ],
+              "information_utility": [
+                "L003",
+                "L004"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "choice_phương_án",
+                "topic": "phương án",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "phương án A cho kho dữ liệu",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "choice_phương_án",
+                "topic": "phương án",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "phương án B phù hợp hơn",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "choice_phương_án",
+                "topic": "phương án",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "phương án B cho bản thử nghiệm",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "choice_phương_án",
+                "topic": "phương án",
+                "kind": "decision",
+                "event_type": "execution_blocked",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "pháp chế duyệt",
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "choice_nhà_cung_cấp",
+            "topic": "nhà cung cấp",
+            "kind": "decision",
+            "content": "chưa chốt nhà cung cấp",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L005"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L005"
+              ],
+              "content": [
+                "L005"
+              ],
+              "condition": [
+                "L005"
+              ],
+              "execution_status": [
+                "L005"
+              ],
+              "information_utility": [
+                "L005"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "choice_nhà_cung_cấp",
+                "topic": "nhà cung cấp",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "chưa chốt nhà cung cấp",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "api_calls_cumulative": 2,
+      "token_usage_cumulative": {
+        "prompt_tokens": 3900,
+        "completion_tokens": 963,
+        "total_tokens": 4863
+      },
+      "duration_s": 62.86,
+      "source_run_sha256": "0367ecdc6628c9f2c0c77e480ca25dbdd77eaaef8d47f7d7cfe386b5399016a6",
+      "source_run_file": "m3_fresh_R01_run2.json"
+    },
+    {
+      "id": "M3-K01",
+      "status": "COMPLETED",
+      "started_utc": "2026-10-21T16:11:11.150901+00:00",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Giao Lan chạy kiểm thử tải vào thứ Sáu.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Khi retry request, cần dùng idempotency key để hạn chế ghi trùng. Đây là kinh nghiệm từ lần triển khai trước.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Tôi nghe nói thư viện Y luôn nhanh hơn X, nhưng chưa có benchmark xác minh.",
+            "speaker": "Chi",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Quyết định giữ việc benchmark Y và X cho cuộc họp sau, hôm nay chưa chọn thư viện.",
+            "speaker": "An",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "load_test",
+            "topic": "kiểm thử tải",
+            "kind": "action",
+            "content": "Lan chạy kiểm thử tải",
+            "meeting_status": "assigned",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": "Lan",
+            "supporter": null,
+            "due_raw": "thứ Sáu",
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ],
+              "owner": [
+                "L001"
+              ],
+              "due_raw": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "load_test",
+                "topic": "kiểm thử tải",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Lan chạy kiểm thử tải",
+                "owner": "Lan",
+                "supporter": null,
+                "due_raw": "thứ Sáu",
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "idempotency_key",
+            "topic": "idempotency key",
+            "kind": "knowledge",
+            "content": "Khi retry request, cần dùng idempotency key để hạn chế ghi trùng. Đây là kinh nghiệm từ lần triển khai trước.",
+            "meeting_status": "unverified",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "reusable_candidate",
+            "information_utility_note": "Nguồn nêu một nguyên tắc/kinh nghiệm thực hành; chỉ là ứng viên tri thức, CHƯA được kiểm chứng và phê duyệt.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L002"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L002"
+              ],
+              "content": [
+                "L002"
+              ],
+              "information_utility": [
+                "L002"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Không thể xác định trạng thái cuối; cần người kiểm tra",
+              "Ứng viên tri thức tái sử dụng CHƯA ĐƯỢC KIỂM CHỨNG; cần người xác nhận trước khi sử dụng."
+            ],
+            "history": [
+              {
+                "issue_key": "idempotency_key",
+                "topic": "idempotency key",
+                "kind": "knowledge",
+                "event_type": "knowledge_shared",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "Khi retry request, cần dùng idempotency key để hạn chế ghi trùng. Đây là kinh nghiệm từ lần triển khai trước.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "benchmark_claim",
+            "topic": "benchmark thư viện",
+            "kind": "knowledge",
+            "content": "Thư viện Y luôn nhanh hơn X, nhưng chưa có benchmark xác minh.",
+            "meeting_status": "unverified",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "needs_verification",
+            "information_utility_note": "Nguồn thừa nhận thông tin chưa kiểm chứng hoặc chỉ là lời nghe nói.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L003"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L003"
+              ],
+              "content": [
+                "L003"
+              ],
+              "information_utility": [
+                "L003"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Không thể xác định trạng thái cuối; cần người kiểm tra",
+              "Phát biểu tri thức còn thiếu xác minh; không coi là sự thật của doanh nghiệp."
+            ],
+            "history": [
+              {
+                "issue_key": "benchmark_claim",
+                "topic": "benchmark thư viện",
+                "kind": "knowledge",
+                "event_type": "knowledge_shared",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "Thư viện Y luôn nhanh hơn X, nhưng chưa có benchmark xác minh.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "library_choice",
+            "topic": "thư viện",
+            "kind": "decision",
+            "content": "hôm nay chưa chọn thư viện, sẽ giữ việc benchmark Y và X cho cuộc họp sau",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L004"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L004"
+              ],
+              "content": [
+                "L004"
+              ],
+              "condition": [
+                "L004"
+              ],
+              "execution_status": [
+                "L004"
+              ],
+              "information_utility": [
+                "L004"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "library_choice",
+                "topic": "thư viện",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "hôm nay chưa chọn thư viện, sẽ giữ việc benchmark Y và X cho cuộc họp sau",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "api_calls_cumulative": 2,
+      "token_usage_cumulative": {
+        "prompt_tokens": 4172,
+        "completion_tokens": 838,
+        "total_tokens": 5010
+      },
+      "duration_s": 62.2,
+      "source_run_sha256": "b720dcc29acb9188dfe7171a92673a07a3c1ead0e116ddaf2c7aa6bd33df664d",
+      "source_run_file": "m3_fresh_K01_run2.json"
+    }
+  ],
+  "provider_attempts_total": 8,
+  "reported_tokens_total": 18791
+}
