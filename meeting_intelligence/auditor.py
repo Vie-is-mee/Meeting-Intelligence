@@ -296,6 +296,47 @@ def _mistakes_named_assignment_for_unsupported_owner(
     return False
 
 
+def _mistakes_reopened_decision_for_missing_old_condition(
+    item: AuditFinding, records: list[ResultRecord],
+    utterances: list[Utterance]
+) -> bool:
+    """Old prerequisite is not operative after an explicitly reopened choice.
+
+    Do not hide true missing conditions on conditional/agreed decisions,
+    nor a NEW agreement/condition following the reopen.
+    """
+    if (item.category!='missing_late_change' or item.kind!='decision'
+            or not item.issue_key):
+        return False
+    reason=item.explanation.casefold()
+    if not ('condition' in reason and 'null' in reason and
+            re.search(r'\b(?:omit\w*|miss\w*|prerequisite|restore\w*)\b',reason)):
+        return False
+    positions={u.id:u.order for u in utterances}
+    candidates=[r for r in records if r.issue_key==item.issue_key
+                and r.kind=='decision' and r.meeting_status=='reopened'
+                and r.condition is None]
+    if len(candidates)!=1:
+        return False
+    history=candidates[0].history
+    past=[e for e in history if e.event_type=='conditional_agreement'
+          and any(s in item.source_ids for s in e.source_ids)]
+    reopen=[e for e in history if e.event_type=='reopen'
+            and any(s in item.source_ids for s in e.source_ids)]
+    if not past or not reopen:
+        return False
+    past_orders=[positions[s] for e in past for s in e.source_ids if s in positions]
+    reopen_orders=[positions[s] for e in reopen for s in e.source_ids if s in positions]
+    if not past_orders or not reopen_orders or max(past_orders)>=max(reopen_orders):
+        return False
+    # A subsequent approved decision could reinstate the old/new prerequisite.
+    if any(e.event_type in {'agreement','conditional_agreement'} and
+           any(positions.get(s,-1)>max(reopen_orders) for s in e.source_ids)
+           for e in history):
+        return False
+    return True
+
+
 def audit_events(utterances: list[Utterance], events: list[Event],
                  records: list[ResultRecord], client) -> tuple[list[AuditFinding], list[str]]:
     """LLM audit followed by strict, code-level quote and ID validation."""
@@ -335,6 +376,9 @@ def audit_events(utterances: list[Utterance], events: list[Event],
             continue
         if not any(_norm(item.source_quote) in _norm(source[s]) for s in item.source_ids):
             skipped.append('Audit trích dẫn không có nguyên văn trong câu nguồn; loại cảnh báo thiếu căn cứ')
+            continue
+        if _mistakes_reopened_decision_for_missing_old_condition(item, records, utterances):
+            skipped.append('Điều kiện cũ đã hết hiệu lực sau khi quyết định mở lại; loại cảnh báo phục hồi điều kiện lịch sử')
             continue
         if _mistakes_named_assignment_for_unsupported_owner(item, records, utterances):
             skipped.append('Lệnh giao việc có nêu đích danh người phụ trách và người đó đã nhận; loại audit sai về owner lịch sử')
