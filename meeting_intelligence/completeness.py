@@ -23,6 +23,12 @@ _SUFFIX_CHOICE_RE = re.compile(
     r'phương\s+án\s+thay\s+thế|giải\s+pháp\s+khác)\s+(?:thì\s+)?'
     r'(?:vẫn\s+)?chưa\s+(?:chốt|chọn)\b'
 )
+_DEFERRED_CHOICE_RE = re.compile(
+    r'(?i)(?:^|[.!?;]\s*)(?P<subject>nhà\s+cung\s+cấp|'
+    r'thư\s+viện|phương\s+án\s+thay\s+thế)'
+    r'\s+để\s+(?:cuộc\s+họp|buổi\s+họp|lần\s+họp)\s+sau\s+'
+    r'(?:mới\s+)?(?:chọn|chốt)\b'
+)
 _REQUEST_RE = re.compile(
     r'(?i)^(?P<sentence>(?:cần\s+|khách\s+hàng\s+yêu\s+cầu\s+|'
     r'người\s+dùng\s+yêu\s+cầu\s+)[^.!?]{8,200})[.!]?\s*$'
@@ -159,4 +165,30 @@ def recover_explicit_omissions(events: list[Event], utterances: list[Utterance],
             recovered.add(key)
             warnings.append('Khôi phục lựa chọn chưa chốt từ cách nói đảo chiều ở nguồn '+u.id+
                             '; cần người đối chiếu')
+        # "Chốt storage. Nhà cung cấp để cuộc họp sau chọn."
+        # One utterance can legitimately support TWO independent issues.
+        # Do not deduplicate purely by source_id (storage and vendor share L006).
+        for match in _DEFERRED_CHOICE_RE.finditer(text):
+            tail=text[match.end():]
+            if re.search(r'(?i)\b(?:đã\s+chốt|đã\s+chọn|thống\s+nhất)\b',tail):
+                warnings.append('Có lựa chọn được chốt muộn trong cùng nguồn; không tự tạo open: '+u.id)
+                continue
+            subject=match.group('subject').strip()
+            topic_terms=_tokens(subject)
+            same_issue=[e for e in result if e.kind=='decision'
+                and len(topic_terms & _tokens(' '.join([e.topic,e.value or ''])))>=2]
+            if any(e.event_type=='unresolved' for e in same_issue):
+                continue
+            if any(e.event_type in {'agreement','conditional_agreement'} for e in same_issue):
+                warnings.append('Nguồn có lựa chọn tương tự từng chốt; giữ để người dùng đối chiếu: '+u.id)
+                continue
+            key='m3_recovered_deferred_open_'+u.id
+            if key in recovered:
+                continue
+            result.append(Event(kind='decision',event_type='unresolved',issue_key=key,
+                topic=subject,source_ids=[u.id],
+                value=subject+' để cuộc họp sau chọn'))
+            recovered.add(key)
+            warnings.append('Khôi phục lựa chọn '+subject+' còn mở từ nguồn '+u.id+
+                            '; độc lập với quyết định cùng câu và cần người xác nhận')
     return result,recovered

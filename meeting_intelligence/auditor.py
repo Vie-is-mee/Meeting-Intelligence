@@ -208,6 +208,38 @@ def _mistakes_null_condition_for_claimed_condition(
     return bool(candidates) and all(r.condition is None for r in candidates)
 
 
+def _mistakes_deferred_vendor_for_storage_condition(
+    item: AuditFinding, records: list[ResultRecord],
+    utterances: list[Utterance]
+) -> bool:
+    """A deferred independent provider choice is not storage's prerequisite.
+
+    Requires a separate OPEN vendor decision backed by the very same cited
+    utterance. A real legal or operational prerequisite is not filtered.
+    """
+    if (item.category!='missing_late_change' or item.kind!='decision' or
+            not item.issue_key):
+        return False
+    reason=item.explanation.casefold()
+    if not ('condition' in reason and
+            re.search(r'(?i)\b(?:provider|supplier|nhà\s+cung\s+cấp)\b',reason)):
+        return False
+    old=[r for r in records if r.issue_key==item.issue_key and r.kind=='decision'
+         and r.meeting_status=='agreed' and r.condition is None]
+    if len(old)!=1:
+        return False
+    source={u.id:u.text for u in utterances}
+    deferred=set(s for s in item.source_ids if s in source and re.search(
+        r'(?i)\bnhà\s+cung\s+cấp\s+để\s+cuộc\s+họp\s+sau\s+chọn\b',source[s]))
+    if not deferred:
+        return False
+    return any(r.issue_key!=item.issue_key and r.kind=='decision' and
+               r.meeting_status=='open' and
+               re.search(r'(?i)nhà\s+cung\s+cấp',r.topic+' '+(r.content or '')) and
+               bool(deferred & set(r.evidence_ids))
+               for r in records)
+
+
 def audit_events(utterances: list[Utterance], events: list[Event],
                  records: list[ResultRecord], client) -> tuple[list[AuditFinding], list[str]]:
     """LLM audit followed by strict, code-level quote and ID validation."""
@@ -253,6 +285,9 @@ def audit_events(utterances: list[Utterance], events: list[Event],
             continue
         if _mistakes_null_condition_for_claimed_condition(item, records):
             skipped.append('Record hiện không có condition; loại audit sai về condition field nguồn trống')
+            continue
+        if _mistakes_deferred_vendor_for_storage_condition(item, records, utterances):
+            skipped.append('Nhà cung cấp là lựa chọn còn mở độc lập, không phải condition của storage; loại cảnh báo sai')
             continue
         if _mistakes_cancel_reason_for_condition(item, records, events, source):
             skipped.append('Đã loại cảnh báo audit nhầm lý do hủy với điều kiện tác nghiệp còn hiệu lực')
