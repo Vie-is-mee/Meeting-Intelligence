@@ -154,5 +154,53 @@ class Stage35LiveFailureTests(unittest.TestCase):
         self.assertNotIn("condition",vendor.field_evidence_ids)
         self.assertTrue(any("condition field" in warning for warning in result.warnings))
 
+    def test_E01_run4_owner_audit_cannot_dismiss_explicit_named_assignment(self):
+        from meeting_intelligence.auditor import (
+            AuditFinding, _mistakes_named_assignment_for_unsupported_owner
+        )
+        d=json.loads((ROOT/"docs/evaluation/mission3/m3_fresh_E01_run4.json").read_text(encoding="utf-8"))
+        out=d["results"][0]["output"]
+        self.assertEqual(len(out["audit_findings"]),1)
+        seen=set()
+        events=[]
+        for record in out["records"]:
+            for e in record["history"]:
+                token=json.dumps(e,ensure_ascii=False,sort_keys=True)
+                if token not in seen:
+                    seen.add(token)
+                    events.append(e)
+        client=ArchivedClient(events,out["audit_findings"])
+        result=analyze(TRANSCRIPTS["M3-E01"],client=client,audit=True)
+        self.assertEqual(result.audit_findings,[])
+        self.assertEqual(len(result.records),3)
+        action=next(r for r in result.records if r.kind=="action")
+        self.assertEqual((action.meeting_status,action.owner),("cancelled","Lan"))
+        self.assertTrue(any("owner lịch sử" in x for x in result.warnings))
+        finding=AuditFinding.model_validate(out["audit_findings"][0])
+        action.owner="Minh"
+        self.assertFalse(_mistakes_named_assignment_for_unsupported_owner(
+            finding,[action],parse_transcript(TRANSCRIPTS["M3-E01"])))
+
+    def test_owner_audit_refusal_is_not_suppressed(self):
+        from meeting_intelligence.auditor import (
+            AuditFinding, _mistakes_named_assignment_for_unsupported_owner
+        )
+        from meeting_intelligence.models import Utterance
+        source="L001 | Bình | Giao Lan thử thư viện X.\nL002 | Lan | Tôi không nhận việc này."
+        utterances=parse_transcript(source)
+        events=[
+            Event(issue_key="task_x",topic="thư viện X",kind="action",
+                  event_type="assignment",source_ids=["L001"],
+                  owner="Lan",value="thử thư viện X"),
+            Event(issue_key="task_x",topic="thư viện X",kind="action",
+                  event_type="action_cancelled",source_ids=["L002"]),
+        ]
+        record=verify_records(resolve_events(events,utterances),utterances)[0]
+        finding=AuditFinding(issue_key="task_x",kind="action",category="unsupported_fact",
+                             severity="high",source_ids=["L002"],source_quote="Tôi không nhận",
+                             explanation="The record lists owner Lan based on assignment evidence L001, but the acceptance was declined in L002.")
+        self.assertFalse(_mistakes_named_assignment_for_unsupported_owner(
+            finding,[record],utterances))
+
 if __name__=="__main__":
     unittest.main()

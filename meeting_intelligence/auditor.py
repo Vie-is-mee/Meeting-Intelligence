@@ -240,6 +240,62 @@ def _mistakes_deferred_vendor_for_storage_condition(
                for r in records)
 
 
+def _mistakes_named_assignment_for_unsupported_owner(
+    item: AuditFinding, records: list[ResultRecord],
+    utterances: list[Utterance]
+) -> bool:
+    """An explicit assigned owner stays historical after cancellation.
+
+    Suppress ONLY the auditor's claim that a named task-assignment source
+    cannot support its named assignee because a later acceptance is needed.
+    Require both a direct assignment EVENT/field source and an independently
+    cited first-person acceptance by the same assignee. Real mismatched owner
+    names or refusals must remain reportable.
+    """
+    if (item.category != 'unsupported_fact' or item.kind != 'action' or
+            not item.issue_key):
+        return False
+    reason=item.explanation.casefold()
+    if not (re.search(r'\bowner\b', reason) and
+            re.search(r'\b(?:assigns?|assignment)\b', reason) and
+            re.search(r'\b(?:acceptance|accepted)\b', reason) and
+            re.search(r'\b(?:evidence|source)\b', reason)):
+        return False
+    candidates=[r for r in records if r.kind=='action' and
+                r.issue_key==item.issue_key and r.meeting_status=='cancelled'
+                and r.owner]
+    if len(candidates)!=1:
+        return False
+    record=candidates[0]
+    owner=record.owner
+    lookup={u.id:u for u in utterances}
+    assigned=[]
+    for h in record.history:
+        if h.event_type != 'assignment' or h.owner != owner:
+            continue
+        for sid in h.source_ids:
+            if sid not in record.field_evidence_ids.get('owner',[]) or sid not in lookup:
+                continue
+            phrase=lookup[sid].text.casefold()
+            if re.match(r'^\s*giao\s+'+re.escape(owner.casefold())+r'\b',phrase):
+                assigned.append(lookup[sid])
+    if not assigned:
+        return False
+    for sid in item.source_ids:
+        u=lookup.get(sid)
+        if not u or not u.speaker or u.speaker.casefold()!=owner.casefold():
+            continue
+        if not re.match(r'(?i)^\s*(?:tôi|mình)\s+nhận\b',u.text):
+            continue
+        if not any(a.order<u.order for a in assigned):
+            continue
+        # A real refusal contradicts acceptance; keep the finding for review.
+        if re.search(r'(?i)\b(?:không|chưa)\s+nhận\b',u.text):
+            continue
+        return True
+    return False
+
+
 def audit_events(utterances: list[Utterance], events: list[Event],
                  records: list[ResultRecord], client) -> tuple[list[AuditFinding], list[str]]:
     """LLM audit followed by strict, code-level quote and ID validation."""
@@ -279,6 +335,9 @@ def audit_events(utterances: list[Utterance], events: list[Event],
             continue
         if not any(_norm(item.source_quote) in _norm(source[s]) for s in item.source_ids):
             skipped.append('Audit trích dẫn không có nguyên văn trong câu nguồn; loại cảnh báo thiếu căn cứ')
+            continue
+        if _mistakes_named_assignment_for_unsupported_owner(item, records, utterances):
+            skipped.append('Lệnh giao việc có nêu đích danh người phụ trách và người đó đã nhận; loại audit sai về owner lịch sử')
             continue
         if _mistakes_logged_proposals_for_missing_change(item, records, utterances):
             skipped.append('Đã có lịch sử đề xuất được trích đầy đủ trước quyết định cuối; loại cảnh báo thiếu sai')
