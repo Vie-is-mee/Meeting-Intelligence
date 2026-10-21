@@ -21,3 +21,9 @@
 ## Release decision
 
 **GO** for testing the second H01 fix with live Groq and checking D03/D04. **NO-GO** for `main` merge and production until the source-pinned fresh regression, assigned Change Request, export, UI/backend and submission gates are fulfilled. H03 still has potential duplicate unresolved decisions; K01 has a frozen gold-vs-conservative-unverified-status discrepancy; neither may be silently scored as a strict pass.
+
+## Post-fix H01 — fresh Groq on source 9679067
+
+The separate source-pinned run `docs/evaluation/mission3/m3_fresh_regression_H01_9679067_run2.json` completed using the live provider with two calls. Final records: `decision/reopened`, `action/assigned` with Huy as owner, plus a source-backed `request/recorded` about personal data read access. **Accepted audit findings: 0.** The earlier false demand to restore a condition from before reopening did not recur in this run. The additional request must be reviewed for independent business meaning; zero auditor findings do not establish audit recall.
+
+**Current gate:** key H01 core and LC02 targets pass in these source-specific fresh runs; **overall release still NO-GO** until remaining cases (especially H03/K01 semantics and actual CR), complete source-matched final regression, production/deploy proof and submission are checked.
