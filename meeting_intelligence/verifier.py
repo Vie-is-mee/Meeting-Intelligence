@@ -185,8 +185,9 @@ def drop_spurious_task_proposals(records: list[ResultRecord],
                 task.meeting_status not in {'assigned','cancelled'} or
                 not task.owner or norm(task.content)!=norm(proposal.content)):
                 continue
-            if not re.match(r'(?i)^'+re.escape(task.owner)+r'\s+(?:thử|làm|viết|kiểm|rà|chuẩn)\b',
-                            utterance.text):
+            if ('?' in utterance.text or not re.match(
+                    r'(?i)^(?:giao\s+)?'+re.escape(task.owner)+
+                    r'\s+(?:thử|làm|viết|kiểm|rà|chuẩn)\b', utterance.text)):
                 continue
             confirmed=any(h.event_type in {'assignment','reassignment'} and
                 h.owner==task.owner and

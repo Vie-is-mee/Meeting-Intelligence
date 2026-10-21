@@ -159,6 +159,55 @@ def _mistakes_unaccepted_date_proposal_as_current_deadline(
                          snippets.get(s,'')) for e in latest for s in e.source_ids)
 
 
+def _mistakes_logged_proposals_for_missing_change(
+    item: AuditFinding, records: list[ResultRecord],
+    utterances: list[Utterance]
+) -> bool:
+    """Reject only 'earlier proposals missing' when those exact events exist.
+
+    A proposal before a later agreement is historical context. This guard
+    does NOT reject a genuinely missing *later* reopen/cancellation/decision.
+    """
+    if item.category != 'missing_late_change' or item.kind != 'decision' or not item.issue_key:
+        return False
+    explanation=item.explanation.casefold()
+    if not re.search(r'\b(?:proposal|proposed|đề\s+xuất)\b', explanation):
+        return False
+    positions={u.id:u.order for u in utterances}
+    cited=set(item.source_ids)
+    if not cited:
+        return False
+    for record in records:
+        if (record.issue_key!=item.issue_key or record.kind!='decision' or
+                record.meeting_status not in {'agreed','conditional'}):
+            continue
+        historic=set(s for event in record.history if event.event_type=='proposal'
+                     for s in event.source_ids)
+        agreements=[positions[s] for event in record.history
+                    if event.event_type in {'agreement','conditional_agreement'}
+                    for s in event.source_ids if s in positions]
+        if (cited.issubset(historic) and agreements and
+                all(s in positions and positions[s] < max(agreements) for s in cited)):
+            return True
+    return False
+
+
+def _mistakes_null_condition_for_claimed_condition(
+    item: AuditFinding, records: list[ResultRecord]
+) -> bool:
+    """The auditor must not allege a PRESENT condition on a null field.
+
+    Specific to the mistaken 'record lists a condition field citing X'
+    criticism, not all unsupported_fact reports.
+    """
+    if (item.category!='unsupported_fact' or not item.issue_key or
+            not re.search(r'(?i)\bcondition\s+field\s+citing\b', item.explanation)):
+        return False
+    candidates=[r for r in records if r.issue_key==item.issue_key and
+                (item.kind is None or r.kind==item.kind)]
+    return bool(candidates) and all(r.condition is None for r in candidates)
+
+
 def audit_events(utterances: list[Utterance], events: list[Event],
                  records: list[ResultRecord], client) -> tuple[list[AuditFinding], list[str]]:
     """LLM audit followed by strict, code-level quote and ID validation."""
@@ -198,6 +247,12 @@ def audit_events(utterances: list[Utterance], events: list[Event],
             continue
         if not any(_norm(item.source_quote) in _norm(source[s]) for s in item.source_ids):
             skipped.append('Audit trích dẫn không có nguyên văn trong câu nguồn; loại cảnh báo thiếu căn cứ')
+            continue
+        if _mistakes_logged_proposals_for_missing_change(item, records, utterances):
+            skipped.append('Đã có lịch sử đề xuất được trích đầy đủ trước quyết định cuối; loại cảnh báo thiếu sai')
+            continue
+        if _mistakes_null_condition_for_claimed_condition(item, records):
+            skipped.append('Record hiện không có condition; loại audit sai về condition field nguồn trống')
             continue
         if _mistakes_cancel_reason_for_condition(item, records, events, source):
             skipped.append('Đã loại cảnh báo audit nhầm lý do hủy với điều kiện tác nghiệp còn hiệu lực')
