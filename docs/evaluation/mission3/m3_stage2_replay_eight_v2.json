@@ -1,0 +1,1056 @@
+{
+  "created_utc": "2026-10-21T05:18:09.220000+00:00",
+  "purpose": "Deterministic M2-event replay through Stage1 code. No fresh LLM calls.",
+  "source": "docs/evaluation/final_regression_round5_retry2.json",
+  "source_sha256": "ef7e7638ddf367ed9f9c035530d939b1b93c108d0546721d8c6cd6d6647cdd1c",
+  "code_hashes": {
+    "__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "auditor.py": "1b5b6a6ed244621c816afaed2e03349d2b673267113305068d00874e657fa297",
+    "completeness.py": "6b7870652a67235feb134f41e8d45f2ad2d196ae8c7a2dddd119b8305d5f9e3a",
+    "config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "extractor.py": "1152b3fe8d98791122cff5a1f530b0aff12b61274b565c9597fdb4ecac39b059",
+    "llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "models.py": "96e7e38e155a14822dcfdca637882259ac20f7c7c341e1280f16a7f17ed4cab2",
+    "offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "pipeline.py": "dfb8a3b294af6887563791a0dda7a79ce4059fb373baa36db87c40a942795a71",
+    "resolver.py": "3d7eb6c7220b8f72a2d8d26883bd65e0d2744f7c273d21cea2e662e2bb267ecc",
+    "verifier.py": "e87489d91555e47bfa31c24ba7a4c1b4a77502229119106bd9d99de02d2fa745"
+  },
+  "data_label": "synthetic previously seen developer cases, internal review only",
+  "entries": [
+    {
+      "id": "H03",
+      "replayed": true,
+      "archived_events_count": 3,
+      "old": [
+        {
+          "issue_key": "review_email_config",
+          "kind": "decision",
+          "content": "chưa chọn ngày và chưa giao việc cho ai",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [
+            "Kiểm tra lại missing_late_change: The transcript contains a proposal to set the deadline to Wednesday (L004) which is not represented in the final records. (nguồn: L004)",
+            "Kiểm tra lại missing_late_change: The transcript contains a counter‑proposal to set the deadline to Thursday (L005) which is not represented in the final records. (nguồn: L005)"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L006"
+            ],
+            "content": [
+              "L006"
+            ],
+            "condition": [
+              "L006"
+            ],
+            "execution_status": [
+              "L006"
+            ]
+          }
+        }
+      ],
+      "new": [
+        {
+          "issue_key": "m3_recovered_request_L001",
+          "kind": "request",
+          "content": "Cần rà soát cấu hình gửi email trước lần thử tiếp theo",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": "trước lần thử tiếp theo",
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [
+            "M3 Stage 2: khôi phục từ phát biểu tường minh; cần người đối chiếu trước khi dùng"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L001"
+            ],
+            "content": [
+              "L001"
+            ],
+            "due_raw": [
+              "L001"
+            ]
+          }
+        },
+        {
+          "issue_key": "review_email_config",
+          "kind": "decision",
+          "content": "chưa chọn ngày và chưa giao việc cho ai",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L006"
+            ],
+            "content": [
+              "L006"
+            ],
+            "condition": [
+              "L006"
+            ],
+            "execution_status": [
+              "L006"
+            ]
+          }
+        }
+      ],
+      "old_audit_findings": [
+        {
+          "issue_key": "review_email_config",
+          "kind": "decision",
+          "category": "missing_late_change",
+          "severity": "medium",
+          "source_ids": [
+            "L004"
+          ],
+          "source_quote": "Hay đặt hạn thứ Tư?",
+          "explanation": "The transcript contains a proposal to set the deadline to Wednesday (L004) which is not represented in the final records."
+        },
+        {
+          "issue_key": "review_email_config",
+          "kind": "decision",
+          "category": "missing_late_change",
+          "severity": "medium",
+          "source_ids": [
+            "L005"
+          ],
+          "source_quote": "Thứ Năm có vẻ hợp hơn.",
+          "explanation": "The transcript contains a counter‑proposal to set the deadline to Thursday (L005) which is not represented in the final records."
+        }
+      ],
+      "new_audit_findings": [],
+      "warning_changes": [
+        {
+          "issue_key": "m3_recovered_request_L001",
+          "kind": "request",
+          "before": [
+            "Kiểm tra lại missing_late_change: The transcript contains a proposal to set the deadline to Wednesday (L004) which is not represented in the final records. (nguồn: L004)",
+            "Kiểm tra lại missing_late_change: The transcript contains a counter‑proposal to set the deadline to Thursday (L005) which is not represented in the final records. (nguồn: L005)"
+          ],
+          "after": [
+            "M3 Stage 2: khôi phục từ phát biểu tường minh; cần người đối chiếu trước khi dùng"
+          ]
+        }
+      ],
+      "new_pipeline_warnings": [
+        "Bổ sung yêu cầu tường minh còn thiếu từ nguồn L001; đây là bản ghi do kiểm tra bổ sung, cần người xác nhận",
+        "Đã loại cảnh báo đòi coi ngày chỉ mới đề xuất là hạn đã chốt",
+        "Đã loại cảnh báo đòi coi ngày chỉ mới đề xuất là hạn đã chốt",
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "note": "Archived event hypotheses, NOT newly sampled events."
+    },
+    {
+      "id": "LC03",
+      "replayed": true,
+      "archived_events_count": 4,
+      "old": [
+        {
+          "issue_key": "choice_1",
+          "kind": "decision",
+          "content": "chỉ thử luồng thanh toán mới ở nhóm nội bộ",
+          "meeting_status": "agreed",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L001"
+            ],
+            "content": [
+              "L001"
+            ],
+            "execution_status": [
+              "L001"
+            ],
+            "condition": [
+              "L001"
+            ]
+          }
+        },
+        {
+          "issue_key": "req_1",
+          "kind": "request",
+          "content": "có nút quay lại bước trước",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L002"
+            ],
+            "content": [
+              "L002"
+            ]
+          }
+        },
+        {
+          "issue_key": "task_guide",
+          "kind": "action",
+          "content": "viết hướng dẫn cho nhóm nội bộ",
+          "meeting_status": "cancelled",
+          "execution_status": "unknown",
+          "owner": "Chi",
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [
+            "Kiểm tra lại missing_late_change: The cancellation event (L005) clears the due date but does not remove the previously assigned owner (Chi). The record still lists Chi as the owner despite the task being cancelled, indicating a missing late change. (nguồn: L005)"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L005"
+            ],
+            "content": [
+              "L003"
+            ],
+            "owner": [
+              "L003"
+            ],
+            "due_raw": [
+              "L005"
+            ]
+          }
+        }
+      ],
+      "new": [
+        {
+          "issue_key": "choice_1",
+          "kind": "decision",
+          "content": "chỉ thử luồng thanh toán mới ở nhóm nội bộ",
+          "meeting_status": "agreed",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L001"
+            ],
+            "content": [
+              "L001"
+            ],
+            "execution_status": [
+              "L001"
+            ],
+            "condition": [
+              "L001"
+            ]
+          }
+        },
+        {
+          "issue_key": "req_1",
+          "kind": "request",
+          "content": "có nút quay lại bước trước",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L002"
+            ],
+            "content": [
+              "L002"
+            ]
+          }
+        },
+        {
+          "issue_key": "task_guide",
+          "kind": "action",
+          "content": "viết hướng dẫn cho nhóm nội bộ",
+          "meeting_status": "cancelled",
+          "execution_status": "unknown",
+          "owner": "Chi",
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L005"
+            ],
+            "content": [
+              "L003"
+            ],
+            "owner": [
+              "L003"
+            ],
+            "due_raw": [
+              "L005"
+            ]
+          }
+        }
+      ],
+      "old_audit_findings": [
+        {
+          "issue_key": "task_guide",
+          "kind": "action",
+          "category": "missing_late_change",
+          "severity": "medium",
+          "source_ids": [
+            "L005"
+          ],
+          "source_quote": "Hủy việc viết hướng dẫn, bỏ hạn đã giao. Phạm vi thử nội bộ và yêu cầu nút quay lại vẫn giữ.",
+          "explanation": "The cancellation event (L005) clears the due date but does not remove the previously assigned owner (Chi). The record still lists Chi as the owner despite the task being cancelled, indicating a missing late change."
+        }
+      ],
+      "new_audit_findings": [],
+      "warning_changes": [
+        {
+          "issue_key": "task_guide",
+          "kind": "action",
+          "before": [
+            "Kiểm tra lại missing_late_change: The cancellation event (L005) clears the due date but does not remove the previously assigned owner (Chi). The record still lists Chi as the owner despite the task being cancelled, indicating a missing late change. (nguồn: L005)"
+          ],
+          "after": []
+        }
+      ],
+      "new_pipeline_warnings": [
+        "Đã loại cảnh báo audit yêu cầu xóa người phụ trách lịch sử của việc đã hủy",
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "note": "Archived event hypotheses, NOT newly sampled events."
+    },
+    {
+      "id": "D01",
+      "replayed": true,
+      "archived_events_count": 5,
+      "old": [
+        {
+          "issue_key": "storage_choice",
+          "kind": "decision",
+          "content": "dùng object storage cho bản thử nghiệm",
+          "meeting_status": "agreed",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L006"
+            ],
+            "content": [
+              "L006"
+            ],
+            "condition": [
+              "L006"
+            ],
+            "execution_status": [
+              "L006"
+            ]
+          }
+        },
+        {
+          "issue_key": "provider_choice",
+          "kind": "decision",
+          "content": "chưa quyết định nhà cung cấp cho lưu trữ",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L006"
+            ],
+            "content": [
+              "L006"
+            ],
+            "condition": [
+              "L006"
+            ],
+            "execution_status": [
+              "L006"
+            ]
+          }
+        }
+      ],
+      "new": [
+        {
+          "issue_key": "storage_choice",
+          "kind": "decision",
+          "content": "dùng object storage cho bản thử nghiệm",
+          "meeting_status": "agreed",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L006"
+            ],
+            "content": [
+              "L006"
+            ],
+            "condition": [
+              "L006"
+            ],
+            "execution_status": [
+              "L006"
+            ]
+          }
+        },
+        {
+          "issue_key": "provider_choice",
+          "kind": "decision",
+          "content": "chưa quyết định nhà cung cấp cho lưu trữ",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L006"
+            ],
+            "content": [
+              "L006"
+            ],
+            "condition": [
+              "L006"
+            ],
+            "execution_status": [
+              "L006"
+            ]
+          }
+        }
+      ],
+      "old_audit_findings": [],
+      "new_audit_findings": [],
+      "warning_changes": [],
+      "new_pipeline_warnings": [
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "note": "Archived event hypotheses, NOT newly sampled events."
+    },
+    {
+      "id": "D03",
+      "replayed": true,
+      "archived_events_count": 4,
+      "old": [
+        {
+          "issue_key": "task_1",
+          "kind": "decision",
+          "content": "chuyển sang nhà cung cấp mới trong phạm vi thiết kế",
+          "meeting_status": "agreed",
+          "execution_status": "blocked",
+          "owner": null,
+          "due_raw": null,
+          "condition": "pháp chế phê duyệt hợp đồng",
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ],
+            "condition": [
+              "L005"
+            ],
+            "execution_status": [
+              "L005"
+            ]
+          }
+        },
+        {
+          "issue_key": "issue_1",
+          "kind": "issue",
+          "content": "Hợp đồng chưa được pháp chế duyệt",
+          "meeting_status": "open",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L004"
+            ]
+          }
+        }
+      ],
+      "new": [
+        {
+          "issue_key": "task_1",
+          "kind": "decision",
+          "content": "chuyển sang nhà cung cấp mới trong phạm vi thiết kế",
+          "meeting_status": "agreed",
+          "execution_status": "blocked",
+          "owner": null,
+          "due_raw": null,
+          "condition": "pháp chế phê duyệt hợp đồng",
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ],
+            "condition": [
+              "L005"
+            ],
+            "execution_status": [
+              "L005"
+            ]
+          }
+        },
+        {
+          "issue_key": "issue_1",
+          "kind": "issue",
+          "content": "Hợp đồng chưa được pháp chế duyệt",
+          "meeting_status": "open",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L004"
+            ]
+          }
+        }
+      ],
+      "old_audit_findings": [],
+      "new_audit_findings": [],
+      "warning_changes": [],
+      "new_pipeline_warnings": [
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "note": "Archived event hypotheses, NOT newly sampled events."
+    },
+    {
+      "id": "D04",
+      "replayed": true,
+      "archived_events_count": 2,
+      "old": [
+        {
+          "issue_key": "beta_release",
+          "kind": "decision",
+          "content": "phát hành bản beta",
+          "meeting_status": "conditional",
+          "execution_status": "pending_condition",
+          "owner": null,
+          "due_raw": null,
+          "condition": "kiểm thử tải đạt 300 người đồng thời và không có lỗi nghiêm trọng",
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ],
+            "execution_status": [
+              "L003"
+            ],
+            "condition": [
+              "L003"
+            ]
+          }
+        }
+      ],
+      "new": [
+        {
+          "issue_key": "beta_release",
+          "kind": "decision",
+          "content": "phát hành bản beta",
+          "meeting_status": "conditional",
+          "execution_status": "pending_condition",
+          "owner": null,
+          "due_raw": null,
+          "condition": "kiểm thử tải đạt 300 người đồng thời và không có lỗi nghiêm trọng",
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ],
+            "execution_status": [
+              "L003"
+            ],
+            "condition": [
+              "L003"
+            ]
+          }
+        }
+      ],
+      "old_audit_findings": [],
+      "new_audit_findings": [],
+      "warning_changes": [],
+      "new_pipeline_warnings": [
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "note": "Archived event hypotheses, NOT newly sampled events."
+    },
+    {
+      "id": "H01",
+      "replayed": true,
+      "archived_events_count": 3,
+      "old": [
+        {
+          "issue_key": "sync_auto_enable",
+          "kind": "decision",
+          "content": "bật đồng bộ tự động",
+          "meeting_status": "reopened",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L001"
+            ],
+            "execution_status": [
+              "L004"
+            ],
+            "condition": [
+              "L004"
+            ]
+          }
+        },
+        {
+          "issue_key": "list_permission",
+          "kind": "action",
+          "content": "soạn danh sách quyền cần xin",
+          "meeting_status": "assigned",
+          "execution_status": "unknown",
+          "owner": "Huy",
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L002"
+            ],
+            "content": [
+              "L002"
+            ],
+            "owner": [
+              "L002"
+            ]
+          }
+        }
+      ],
+      "new": [
+        {
+          "issue_key": "sync_auto_enable",
+          "kind": "decision",
+          "content": "bật đồng bộ tự động",
+          "meeting_status": "reopened",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L001"
+            ],
+            "execution_status": [
+              "L004"
+            ],
+            "condition": [
+              "L004"
+            ]
+          }
+        },
+        {
+          "issue_key": "list_permission",
+          "kind": "action",
+          "content": "soạn danh sách quyền cần xin",
+          "meeting_status": "assigned",
+          "execution_status": "unknown",
+          "owner": "Huy",
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L002"
+            ],
+            "content": [
+              "L002"
+            ],
+            "owner": [
+              "L002"
+            ]
+          }
+        }
+      ],
+      "old_audit_findings": [],
+      "new_audit_findings": [],
+      "warning_changes": [],
+      "new_pipeline_warnings": [
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "note": "Archived event hypotheses, NOT newly sampled events."
+    },
+    {
+      "id": "LC01",
+      "replayed": true,
+      "archived_events_count": 4,
+      "old": [
+        {
+          "issue_key": "task_lap_bang",
+          "kind": "request",
+          "content": "Lập bảng đối soát cho đợt nhập kho",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [
+            "Yêu cầu trùng nội dung và mã với công việc đã hủy; cần kiểm tra đây là yêu cầu độc lập còn hiệu lực hay bản ghi lặp câu giao việc. Chưa tự rút/xóa yêu cầu. Nguồn yêu cầu: L001; nguồn hủy: L003",
+            "Kiểm tra lại unsupported_fact: The transcript contains a cancellation of the task (L003), yet the final records keep a request entry for the same issue_key marked as active (meeting_status: recorded). This contradicts the meeting evidence that the work was cancelled, making the request record unsupported. (nguồn: L003)"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L001"
+            ],
+            "content": [
+              "L001"
+            ]
+          }
+        },
+        {
+          "issue_key": "task_lap_bang",
+          "kind": "action",
+          "content": "Lập bảng đối soát cho đợt nhập kho",
+          "meeting_status": "cancelled",
+          "execution_status": "unknown",
+          "owner": "Mai",
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L002"
+            ],
+            "owner": [
+              "L002"
+            ],
+            "due_raw": [
+              "L004"
+            ]
+          }
+        }
+      ],
+      "new": [
+        {
+          "issue_key": "task_lap_bang",
+          "kind": "action",
+          "content": "Lập bảng đối soát cho đợt nhập kho",
+          "meeting_status": "cancelled",
+          "execution_status": "unknown",
+          "owner": "Mai",
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L002"
+            ],
+            "owner": [
+              "L002"
+            ],
+            "due_raw": [
+              "L004"
+            ]
+          }
+        }
+      ],
+      "old_audit_findings": [
+        {
+          "issue_key": "task_lap_bang",
+          "kind": "request",
+          "category": "unsupported_fact",
+          "severity": "high",
+          "source_ids": [
+            "L003"
+          ],
+          "source_quote": "Hủy việc lập bảng đối soát vì hệ thống đã có bản tự động.",
+          "explanation": "The transcript contains a cancellation of the task (L003), yet the final records keep a request entry for the same issue_key marked as active (meeting_status: recorded). This contradicts the meeting evidence that the work was cancelled, making the request record unsupported."
+        }
+      ],
+      "new_audit_findings": [],
+      "warning_changes": [
+        {
+          "issue_key": "task_lap_bang",
+          "kind": "action",
+          "before": [
+            "Yêu cầu trùng nội dung và mã với công việc đã hủy; cần kiểm tra đây là yêu cầu độc lập còn hiệu lực hay bản ghi lặp câu giao việc. Chưa tự rút/xóa yêu cầu. Nguồn yêu cầu: L001; nguồn hủy: L003",
+            "Kiểm tra lại unsupported_fact: The transcript contains a cancellation of the task (L003), yet the final records keep a request entry for the same issue_key marked as active (meeting_status: recorded). This contradicts the meeting evidence that the work was cancelled, making the request record unsupported. (nguồn: L003)"
+          ],
+          "after": []
+        }
+      ],
+      "new_pipeline_warnings": [
+        "Loại request trùng câu giao việc đã hủy (giữ action lịch sử); chỉ áp dụng mẫu đã xác nhận bởi người nhận. Nguồn: L001",
+        "Audit đưa kind không khớp bản ghi; loại cảnh báo thiếu căn cứ",
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "note": "Archived event hypotheses, NOT newly sampled events."
+    },
+    {
+      "id": "LC02",
+      "replayed": true,
+      "archived_events_count": 4,
+      "old": [
+        {
+          "issue_key": "req_csv",
+          "kind": "request",
+          "content": "xuất báo cáo dạng CSV",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L001"
+            ],
+            "content": [
+              "L001"
+            ]
+          }
+        },
+        {
+          "issue_key": "task_try_libX",
+          "kind": "decision",
+          "content": "thử bộ xuất CSV bằng thư viện X",
+          "meeting_status": "proposed",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L002"
+            ],
+            "content": [
+              "L002"
+            ],
+            "condition": [
+              "L002"
+            ],
+            "execution_status": [
+              "L002"
+            ]
+          }
+        },
+        {
+          "issue_key": "task_try_libX",
+          "kind": "action",
+          "content": "thử bộ xuất CSV bằng thư viện X",
+          "meeting_status": "cancelled",
+          "execution_status": "unknown",
+          "owner": "Dũng",
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [
+            "Kiểm tra lại missing_late_change: The cancellation event (L004) specifies a condition \"giấy phép không phù hợp\", but the corresponding action record does not include this condition, leaving the condition field null. (nguồn: L004)"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L003"
+            ],
+            "owner": [
+              "L003"
+            ],
+            "due_raw": [
+              "L004"
+            ]
+          }
+        }
+      ],
+      "new": [
+        {
+          "issue_key": "req_csv",
+          "kind": "request",
+          "content": "xuất báo cáo dạng CSV",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L001"
+            ],
+            "content": [
+              "L001"
+            ]
+          }
+        },
+        {
+          "issue_key": "task_try_libX",
+          "kind": "action",
+          "content": "thử bộ xuất CSV bằng thư viện X",
+          "meeting_status": "cancelled",
+          "execution_status": "unknown",
+          "owner": "Dũng",
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L003"
+            ],
+            "owner": [
+              "L003"
+            ],
+            "due_raw": [
+              "L004"
+            ]
+          }
+        },
+        {
+          "issue_key": "m3_recovered_open_L005",
+          "kind": "decision",
+          "content": "Chưa chọn cách triển khai thay thế",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [
+            "M3 Stage 2: khôi phục từ phát biểu tường minh; cần người đối chiếu trước khi dùng"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L005"
+            ],
+            "content": [
+              "L005"
+            ],
+            "condition": [
+              "L005"
+            ],
+            "execution_status": [
+              "L005"
+            ]
+          }
+        }
+      ],
+      "old_audit_findings": [
+        {
+          "issue_key": "task_try_libX",
+          "kind": "action",
+          "category": "missing_late_change",
+          "severity": "medium",
+          "source_ids": [
+            "L004"
+          ],
+          "source_quote": "Hủy việc thử thư viện X vì giấy phép không phù hợp, bỏ hạn chiều mai.",
+          "explanation": "The cancellation event (L004) specifies a condition \"giấy phép không phù hợp\", but the corresponding action record does not include this condition, leaving the condition field null."
+        }
+      ],
+      "new_audit_findings": [],
+      "warning_changes": [
+        {
+          "issue_key": "m3_recovered_open_L005",
+          "kind": "decision",
+          "before": [
+            "Kiểm tra lại missing_late_change: The cancellation event (L004) specifies a condition \"giấy phép không phù hợp\", but the corresponding action record does not include this condition, leaving the condition field null. (nguồn: L004)"
+          ],
+          "after": [
+            "M3 Stage 2: khôi phục từ phát biểu tường minh; cần người đối chiếu trước khi dùng"
+          ]
+        }
+      ],
+      "new_pipeline_warnings": [
+        "Bổ sung lựa chọn chưa chốt tường minh từ nguồn L005; không phải phương án được duyệt, cần người xác nhận",
+        "Loại proposal trùng với câu giao task đã được nhận; giữ nhiệm vụ và bằng chứng lịch sử: L002",
+        "Đã loại cảnh báo audit nhầm lý do hủy với điều kiện tác nghiệp còn hiệu lực",
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "note": "Archived event hypotheses, NOT newly sampled events."
+    }
+  ]
+}

@@ -125,6 +125,40 @@ def _mistakes_cancel_as_owner_removal(item: AuditFinding, records: list[ResultRe
     return True
 
 
+def _mistakes_unaccepted_date_proposal_as_current_deadline(
+    item: AuditFinding, records: list[ResultRecord],
+    events: list[Event], utterances: list[Utterance]
+) -> bool:
+    """Don't demand a date from an unaccepted suggestion after explicit no-date.
+
+    Keeps missing genuinely accepted deadlines reportable. A no-date event
+    must be cited, occur LATER than the proposed date, and concern the SAME
+    decision key. This only rejects proposed-date-as-current-date findings.
+    """
+    if (item.kind!='decision' or item.category!='missing_late_change' or
+            item.issue_key is None):
+        return False
+    statement=item.explanation.casefold()
+    if not ('deadline' in statement and
+            re.search(r'(?i)\b(?:proposal|counter.proposal|proposed|đề\s+xuất)\b',statement)):
+        return False
+    candidates=[r for r in records if r.kind=='decision' and
+                r.issue_key==item.issue_key and r.meeting_status in {'open','reopened'} and
+                r.due_raw is None]
+    if len(candidates)!=1:
+        return False
+    positions={u.id:u.order for u in utterances}
+    previous=max((positions.get(s,-1) for s in item.source_ids),default=-1)
+    if previous<0:
+        return False
+    latest=[e for e in events if e.kind=='decision' and e.issue_key==item.issue_key and
+            e.event_type=='unresolved' and
+            any(positions.get(s,-1)>previous for s in e.source_ids)]
+    snippets={u.id:u.text for u in utterances}
+    return any(re.search(r'(?i)\bchưa\s+chọn\b.*\b(?:thứ|ngày|hạn)\b',
+                         snippets.get(s,'')) for e in latest for s in e.source_ids)
+
+
 def audit_events(utterances: list[Utterance], events: list[Event],
                  records: list[ResultRecord], client) -> tuple[list[AuditFinding], list[str]]:
     """LLM audit followed by strict, code-level quote and ID validation."""
@@ -170,6 +204,9 @@ def audit_events(utterances: list[Utterance], events: list[Event],
             continue
         if _mistakes_cancel_as_owner_removal(item, records, events):
             skipped.append('Đã loại cảnh báo audit yêu cầu xóa người phụ trách lịch sử của việc đã hủy')
+            continue
+        if _mistakes_unaccepted_date_proposal_as_current_deadline(item, records, events, utterances):
+            skipped.append('Đã loại cảnh báo đòi coi ngày chỉ mới đề xuất là hạn đã chốt')
             continue
         accepted.append(item)
     return accepted, skipped

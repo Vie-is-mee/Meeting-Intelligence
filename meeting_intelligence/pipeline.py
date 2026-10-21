@@ -7,6 +7,7 @@ from __future__ import annotations
 from typing import Literal
 from .parser import parse_transcript
 from .extractor import extract_events
+from .completeness import recover_explicit_omissions
 from .resolver import resolve_events
 from .verifier import verify_records
 from .models import AnalysisResult
@@ -24,13 +25,19 @@ def analyze(text: str, engine: Literal['llm_api', 'offline_rules'] = 'llm_api',
     if engine == 'llm_api':
         active_client = client or LLMClient()
         events = extract_events(utterances, active_client, warnings=warnings)
+        events, recovered_keys = recover_explicit_omissions(events, utterances, warnings)
     elif engine == 'offline_rules':
         active_client = None
         events = offline_extract_decisions(utterances)
+        recovered_keys = set()
         warnings.append('OFFLINE BASELINE: luật hẹp cho quyết định tiếng Việt, KHÔNG phải kiểm thử năng lực LLM.')
     else:
         raise ValueError('engine không hợp lệ')
     records = verify_records(resolve_events(events, utterances), utterances, warnings=warnings)
+    for record in records:
+        if record.issue_key in recovered_keys:
+            record.review_status = 'needs_review'
+            record.warnings.append('M3 Stage 2: khôi phục từ phát biểu tường minh; cần người đối chiếu trước khi dùng')
     if engine == 'llm_api' and audit:
         try:
             audit_findings, ignored = audit_events(utterances, events, records, active_client)

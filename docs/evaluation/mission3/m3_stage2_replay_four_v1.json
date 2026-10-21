@@ -1,0 +1,551 @@
+{
+  "created_utc": "2026-10-21T05:14:58.455362+00:00",
+  "purpose": "Deterministic M2-event replay through Stage1 code. No fresh LLM calls.",
+  "source": "docs/evaluation/mission3/m2_remote_baseline_v1.json",
+  "source_sha256": "0564914e3dbc6bee9dc28f4f62aada3ec3b6eb380bf4d6fed9ad13237df49f8d",
+  "code_hashes": {
+    "__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "auditor.py": "fac57c9aec96700d4bb20b6900253a59078dc7d78791a5213b43337012e2dfad",
+    "completeness.py": "6b7870652a67235feb134f41e8d45f2ad2d196ae8c7a2dddd119b8305d5f9e3a",
+    "config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "extractor.py": "1152b3fe8d98791122cff5a1f530b0aff12b61274b565c9597fdb4ecac39b059",
+    "llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "models.py": "96e7e38e155a14822dcfdca637882259ac20f7c7c341e1280f16a7f17ed4cab2",
+    "offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "pipeline.py": "dfb8a3b294af6887563791a0dda7a79ce4059fb373baa36db87c40a942795a71",
+    "resolver.py": "3d7eb6c7220b8f72a2d8d26883bd65e0d2744f7c273d21cea2e662e2bb267ecc",
+    "verifier.py": "3d577959bbbd1da817cdd7861d1e0a27dcddd1456e95681e05fb9fe9108e9d12"
+  },
+  "data_label": "synthetic previously seen developer cases, internal review only",
+  "entries": [
+    {
+      "id": "M3-E01",
+      "replayed": true,
+      "archived_events_count": 3,
+      "old": [
+        {
+          "issue_key": "req_csv_export",
+          "kind": "request",
+          "content": "Khách hàng yêu cầu xuất file CSV trong trang báo cáo.",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L001"
+            ],
+            "content": [
+              "L001"
+            ]
+          }
+        },
+        {
+          "issue_key": "task_test_libX",
+          "kind": "action",
+          "content": "Thử thư viện X để làm tính năng xuất CSV.",
+          "meeting_status": "cancelled",
+          "execution_status": "unknown",
+          "owner": "Lan",
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [
+            "Kiểm tra lại missing_late_change: The record for 'task_test_libX' marks the meeting_status as cancelled but leaves the condition field null, while the event indicates the cancellation was due to the condition \"giấy phép không phù hợp\". The condition should be recorded. (nguồn: L004)"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L002"
+            ],
+            "owner": [
+              "L002"
+            ]
+          }
+        }
+      ],
+      "new": [
+        {
+          "issue_key": "req_csv_export",
+          "kind": "request",
+          "content": "Khách hàng yêu cầu xuất file CSV trong trang báo cáo.",
+          "meeting_status": "recorded",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L001"
+            ],
+            "content": [
+              "L001"
+            ]
+          }
+        },
+        {
+          "issue_key": "task_test_libX",
+          "kind": "action",
+          "content": "Thử thư viện X để làm tính năng xuất CSV.",
+          "meeting_status": "cancelled",
+          "execution_status": "unknown",
+          "owner": "Lan",
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L002"
+            ],
+            "owner": [
+              "L002"
+            ]
+          }
+        }
+      ],
+      "old_audit_findings": [
+        {
+          "issue_key": "task_test_libX",
+          "kind": "action",
+          "category": "missing_late_change",
+          "severity": "medium",
+          "source_ids": [
+            "L004"
+          ],
+          "source_quote": "Hủy công việc thử thư viện X vì giấy phép không phù hợp.",
+          "explanation": "The record for 'task_test_libX' marks the meeting_status as cancelled but leaves the condition field null, while the event indicates the cancellation was due to the condition \"giấy phép không phù hợp\". The condition should be recorded."
+        }
+      ],
+      "new_audit_findings": [],
+      "warning_changes": [
+        {
+          "issue_key": "task_test_libX",
+          "kind": "action",
+          "before": [
+            "Kiểm tra lại missing_late_change: The record for 'task_test_libX' marks the meeting_status as cancelled but leaves the condition field null, while the event indicates the cancellation was due to the condition \"giấy phép không phù hợp\". The condition should be recorded. (nguồn: L004)"
+          ],
+          "after": []
+        }
+      ],
+      "new_pipeline_warnings": [
+        "Đã loại cảnh báo audit nhầm lý do hủy với điều kiện tác nghiệp còn hiệu lực",
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "note": "Archived event hypotheses, NOT newly sampled events."
+    },
+    {
+      "id": "M3-E02",
+      "replayed": true,
+      "archived_events_count": 2,
+      "old": [
+        {
+          "issue_key": "task1",
+          "kind": "action",
+          "content": "thử thư viện X để tạo CSV mẫu nội bộ",
+          "meeting_status": "cancelled",
+          "execution_status": "unknown",
+          "owner": "Lan",
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L001"
+            ],
+            "owner": [
+              "L001"
+            ]
+          }
+        }
+      ],
+      "new": [
+        {
+          "issue_key": "task1",
+          "kind": "action",
+          "content": "thử thư viện X để tạo CSV mẫu nội bộ",
+          "meeting_status": "cancelled",
+          "execution_status": "unknown",
+          "owner": "Lan",
+          "due_raw": null,
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L001"
+            ],
+            "owner": [
+              "L001"
+            ]
+          }
+        }
+      ],
+      "old_audit_findings": [],
+      "new_audit_findings": [],
+      "warning_changes": [],
+      "new_pipeline_warnings": [
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "note": "Archived event hypotheses, NOT newly sampled events."
+    },
+    {
+      "id": "M3-R01",
+      "replayed": true,
+      "archived_events_count": 5,
+      "old": [
+        {
+          "issue_key": "choice1",
+          "kind": "decision",
+          "content": "phương án B cho bản thử nghiệm",
+          "meeting_status": "agreed",
+          "execution_status": "blocked",
+          "owner": null,
+          "due_raw": null,
+          "condition": "pháp chế duyệt",
+          "review_status": "needs_review",
+          "warnings": [
+            "Có câu phủ định sau bằng chứng cuối có thể liên quan: L005"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ],
+            "condition": [
+              "L004"
+            ],
+            "execution_status": [
+              "L004"
+            ]
+          }
+        },
+        {
+          "issue_key": "choice2",
+          "kind": "decision",
+          "content": "chưa chốt nhà cung cấp",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L005"
+            ],
+            "content": [
+              "L005"
+            ],
+            "condition": [
+              "L005"
+            ],
+            "execution_status": [
+              "L005"
+            ]
+          }
+        }
+      ],
+      "new": [
+        {
+          "issue_key": "choice1",
+          "kind": "decision",
+          "content": "phương án B cho bản thử nghiệm",
+          "meeting_status": "agreed",
+          "execution_status": "blocked",
+          "owner": null,
+          "due_raw": null,
+          "condition": "pháp chế duyệt",
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ],
+            "condition": [
+              "L004"
+            ],
+            "execution_status": [
+              "L004"
+            ]
+          }
+        },
+        {
+          "issue_key": "choice2",
+          "kind": "decision",
+          "content": "chưa chốt nhà cung cấp",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L005"
+            ],
+            "content": [
+              "L005"
+            ],
+            "condition": [
+              "L005"
+            ],
+            "execution_status": [
+              "L005"
+            ]
+          }
+        }
+      ],
+      "old_audit_findings": [],
+      "new_audit_findings": [],
+      "warning_changes": [
+        {
+          "issue_key": "choice1",
+          "kind": "decision",
+          "before": [
+            "Có câu phủ định sau bằng chứng cuối có thể liên quan: L005"
+          ],
+          "after": []
+        }
+      ],
+      "new_pipeline_warnings": [
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "note": "Archived event hypotheses, NOT newly sampled events."
+    },
+    {
+      "id": "M3-K01",
+      "replayed": true,
+      "archived_events_count": 4,
+      "old": [
+        {
+          "issue_key": "task_load_test",
+          "kind": "action",
+          "content": "chạy kiểm thử tải",
+          "meeting_status": "assigned",
+          "execution_status": "unknown",
+          "owner": "Lan",
+          "due_raw": "thứ Sáu",
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L001"
+            ],
+            "content": [
+              "L001"
+            ],
+            "owner": [
+              "L001"
+            ],
+            "due_raw": [
+              "L001"
+            ]
+          }
+        },
+        {
+          "issue_key": "knowledge_idempotency_key",
+          "kind": "knowledge",
+          "content": "cần dùng idempotency key để hạn chế ghi trùng khi retry request",
+          "meeting_status": "unverified",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [
+            "Không thể xác định trạng thái cuối; cần người kiểm tra"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L002"
+            ],
+            "content": [
+              "L002"
+            ]
+          }
+        },
+        {
+          "issue_key": "knowledge_lib_y_vs_x",
+          "kind": "knowledge",
+          "content": "thư viện Y luôn nhanh hơn X, nhưng chưa có benchmark xác minh",
+          "meeting_status": "unverified",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [
+            "Không thể xác định trạng thái cuối; cần người kiểm tra"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ]
+          }
+        },
+        {
+          "issue_key": "decision_benchmark_next_meeting",
+          "kind": "decision",
+          "content": "giữ việc benchmark Y và X cho cuộc họp sau, hôm nay chưa chọn thư viện",
+          "meeting_status": "proposed",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L004"
+            ],
+            "condition": [
+              "L004"
+            ],
+            "execution_status": [
+              "L004"
+            ]
+          }
+        }
+      ],
+      "new": [
+        {
+          "issue_key": "task_load_test",
+          "kind": "action",
+          "content": "chạy kiểm thử tải",
+          "meeting_status": "assigned",
+          "execution_status": "unknown",
+          "owner": "Lan",
+          "due_raw": "thứ Sáu",
+          "condition": null,
+          "review_status": "unreviewed",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L001"
+            ],
+            "content": [
+              "L001"
+            ],
+            "owner": [
+              "L001"
+            ],
+            "due_raw": [
+              "L001"
+            ]
+          }
+        },
+        {
+          "issue_key": "knowledge_idempotency_key",
+          "kind": "knowledge",
+          "content": "cần dùng idempotency key để hạn chế ghi trùng khi retry request",
+          "meeting_status": "unverified",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [
+            "Không thể xác định trạng thái cuối; cần người kiểm tra"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L002"
+            ],
+            "content": [
+              "L002"
+            ]
+          }
+        },
+        {
+          "issue_key": "knowledge_lib_y_vs_x",
+          "kind": "knowledge",
+          "content": "thư viện Y luôn nhanh hơn X, nhưng chưa có benchmark xác minh",
+          "meeting_status": "unverified",
+          "execution_status": "not_applicable",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [
+            "Không thể xác định trạng thái cuối; cần người kiểm tra"
+          ],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L003"
+            ],
+            "content": [
+              "L003"
+            ]
+          }
+        },
+        {
+          "issue_key": "decision_benchmark_next_meeting",
+          "kind": "decision",
+          "content": "giữ việc benchmark Y và X cho cuộc họp sau, hôm nay chưa chọn thư viện",
+          "meeting_status": "open",
+          "execution_status": "unknown",
+          "owner": null,
+          "due_raw": null,
+          "condition": null,
+          "review_status": "needs_review",
+          "warnings": [],
+          "field_evidence_ids": {
+            "meeting_status": [
+              "L004"
+            ],
+            "content": [
+              "L004"
+            ],
+            "condition": [
+              "L004"
+            ],
+            "execution_status": [
+              "L004"
+            ]
+          }
+        }
+      ],
+      "old_audit_findings": [],
+      "new_audit_findings": [],
+      "warning_changes": [],
+      "new_pipeline_warnings": [
+        "Lựa chọn chưa chốt được giữ đúng trạng thái theo nội dung và nguồn: L004",
+        "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+      ],
+      "note": "Archived event hypotheses, NOT newly sampled events."
+    }
+  ]
+}

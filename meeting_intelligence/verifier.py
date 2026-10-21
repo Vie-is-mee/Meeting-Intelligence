@@ -162,6 +162,79 @@ def drop_proven_assignment_echoes(records: list[ResultRecord],
     return [r for i,r in enumerate(records) if i not in suppressed]
 
 
+def drop_spurious_task_proposals(records: list[ResultRecord],
+                                  lookup: dict[str, Utterance],
+                                  diagnostics: list[str] | None = None) -> list[ResultRecord]:
+    """Remove a duplicate *proposal* that merely restates an accepted task.
+
+    Requires the exact same issue key + work content, a cited named imperative,
+    and a separately evidenced task later accepted by its named owner.
+    Real independent design proposals, even about the same technology, remain.
+    """
+    norm=lambda s:' '.join(re.sub(r'[^\w\s]',' ',(s or '').casefold()).split())
+    removed=set()
+    for idx, proposal in enumerate(records):
+        if proposal.kind!='decision' or proposal.meeting_status!='proposed' or len(proposal.history)!=1:
+            continue
+        e=proposal.history[0]
+        if e.event_type!='proposal' or len(e.source_ids)!=1 or e.source_ids[0] not in lookup:
+            continue
+        utterance=lookup[e.source_ids[0]]
+        for task in records:
+            if task.kind!='action' or task.issue_key!=proposal.issue_key or (
+                task.meeting_status not in {'assigned','cancelled'} or
+                not task.owner or norm(task.content)!=norm(proposal.content)):
+                continue
+            if not re.match(r'(?i)^'+re.escape(task.owner)+r'\s+(?:thử|làm|viết|kiểm|rà|chuẩn)\b',
+                            utterance.text):
+                continue
+            confirmed=any(h.event_type in {'assignment','reassignment'} and
+                h.owner==task.owner and
+                any(s in lookup and lookup[s].order>utterance.order and
+                    (lookup[s].speaker or '').casefold()==task.owner.casefold() and
+                    re.search(r'(?i)\b(?:tôi|mình)\s+nhận\b',lookup[s].text)
+                    for s in h.source_ids) for h in task.history)
+            if not confirmed:
+                continue
+            removed.add(idx)
+            if diagnostics is not None:
+                diagnostics.append('Loại proposal trùng với câu giao task đã được nhận; '
+                                   'giữ nhiệm vụ và bằng chứng lịch sử: '+utterance.id)
+            break
+    return [record for i,record in enumerate(records) if i not in removed]
+
+
+def _proposal_only_evidence(record: ResultRecord, field: str,
+                            lookup: dict[str, Utterance]) -> bool:
+    """A field mentioned only as a QUESTION or tentative option isn't agreed.
+
+    This high-precision negative guard is deliberately narrower than semantic
+    NLI. Distinct acceptance utterances, when cited for the field, override a
+    mere question; absent clear signals leave the original value for review.
+    """
+    ids=record.field_evidence_ids.get(field, [])
+    sources=[lookup[s].text.strip() for s in ids if s in lookup]
+    if not sources:
+        return False
+    tentative=r'(?i)^(?:hay\b|đề\s+xuất\b|mình\s+nghĩ\b|tôi\s+nghĩ\b|có\s+thể\b|chưa\s+(?:chốt|chọn|quyết\s+định)\b)'
+    accept=r'(?i)\b(?:thống\s+nhất|chốt|đã\s+chọn|đồng\s+ý|xác\s+nhận|quyết\s+định|tôi\s+nhận|hạn\s+chính\s+thức)\b'
+    def purely_tentative(s: str) -> bool:
+        # "chưa chốt" is NOT an affirmative "chốt", even though the keyword
+        # occurs in both. Mask the negative phrase before checking acceptance.
+        positive_text=re.sub(r'(?i)\b(?:chưa|không)\s+(?:chốt|chọn|quyết\s+định)\b','',s)
+        return bool(re.search(tentative,s) or '?' in s) and not re.search(accept,positive_text)
+    return all(purely_tentative(s) for s in sources)
+
+
+def _owner_explicitly_not_assigned(record: ResultRecord,
+                                   lookup: dict[str, Utterance]) -> bool:
+    if not record.owner or record.kind != 'action':
+        return False
+    name=re.escape(record.owner.casefold())
+    return any(re.search(r'(?i)\b(?:chưa|không)\s+(?:giao|phân\s+công|xác\s+nhận\s+(?:giao|người\s+phụ\s+trách))\b.{0,35}\b'+name+r'\b',lookup[s].text)
+               for s in record.field_evidence_ids.get('owner',[]) if s in lookup)
+
+
 def verify_records(records: list[ResultRecord], utterances: list[Utterance],
                    *, warnings: list[str] | None = None) -> list[ResultRecord]:
     lookup = {u.id: u for u in utterances}
@@ -181,6 +254,23 @@ def verify_records(records: list[ResultRecord], utterances: list[Utterance],
             # Speaker metadata supports first-person assignments, e.g. 'Lan: Tôi làm'.
             return ' '.join((lookup[s].speaker or '') + ': ' + lookup[s].text
                             for s in ids if s in lookup).casefold()
+        invalid_fields = {
+            name: [sid for sid in ids if sid not in lookup]
+            for name, ids in record.field_evidence_ids.items()
+            if any(sid not in lookup for sid in ids)
+        }
+        if invalid_fields:
+            record.review_status = 'needs_review'
+            record.warnings.append('Nguồn chứng minh theo trường không tồn tại: '+
+                                   ', '.join(invalid_fields))
+            if (record.kind in {'decision','action'} and
+                    any(name in invalid_fields for name in ('meeting_status','owner','due_raw','condition'))):
+                record.meeting_status = 'unverified'
+        if _owner_explicitly_not_assigned(record, lookup):
+            record.owner = None
+            record.review_status = 'needs_review'
+            record.meeting_status = 'unverified'
+            record.warnings.append('Nguồn người phụ trách ghi rõ chưa phân công; bỏ owner không đủ căn cứ')
         if explicitly_denies_owner(record, lookup):
             record.owner = None
             record.meeting_status = 'unverified'
@@ -196,6 +286,33 @@ def verify_records(records: list[ResultRecord], utterances: list[Utterance],
                 record.review_status = "needs_review"
                 if record.kind in {'decision', 'action'}:
                     record.meeting_status = 'unverified'
+        # A date that appears only in a *proposal* is not an agreed due date.
+        # Keep assigned work when the task itself was accepted; clear only the
+        # unsupported timing claim, with an explicit human-review warning.
+        if record.due_raw and _proposal_only_evidence(record, 'due_raw', lookup):
+            record.due_raw = None
+            record.due_iso = None
+            record.review_status = 'needs_review'
+            record.warnings.append('Thời hạn chỉ được nêu dưới dạng đề xuất/câu hỏi; không coi là hạn đã nhận')
+        # A decision that was ONLY suggested has no confirmed agreement.
+        if (record.kind == 'decision' and record.meeting_status in {'agreed','conditional'}
+                and _proposal_only_evidence(record, 'meeting_status', lookup)):
+            record.meeting_status = 'unverified'
+            record.review_status = 'needs_review'
+            record.warnings.append('Nguồn quyết định là câu hỏi/đề xuất, không chứng minh đã thống nhất')
+        # Numeric thresholds are material evidence. A hallucinated number in
+        # an operative condition cannot be supported by a citation that never
+        # mentions it. This guard does NOT pretend to verify paraphrases.
+        if record.condition:
+            claimed_numbers=set(re.findall(r'(?<!\w)\d+(?:[.,]\d+)?(?!\w)',record.condition))
+            cited_numbers=set(re.findall(r'(?<!\w)\d+(?:[.,]\d+)?(?!\w)',
+                                         field_reference('condition')))
+            if claimed_numbers and not claimed_numbers.issubset(cited_numbers):
+                record.review_status='needs_review'
+                record.warnings.append('Điều kiện chứa ngưỡng số không xuất hiện trong nguồn của trường: '+
+                                       ', '.join(sorted(claimed_numbers-cited_numbers)))
+                if record.kind=='decision' and record.meeting_status in {'agreed','conditional'}:
+                    record.meeting_status='unverified'
         # If an important late correction was not converted to an event, flag it.
         if record.kind == "decision" and record.meeting_status in {"agreed", "conditional"}:
             evidence_order = [lookup[x].order for x in record.evidence_ids if x in lookup]
@@ -218,4 +335,5 @@ def verify_records(records: list[ResultRecord], utterances: list[Utterance],
         # A source-backed record is still not necessarily approved by the company.
         record.authority_status = "unknown"
     flag_request_task_overlap(records, lookup)
-    return drop_proven_assignment_echoes(records, lookup, diagnostics=warnings)
+    records = drop_proven_assignment_echoes(records, lookup, diagnostics=warnings)
+    return drop_spurious_task_proposals(records, lookup, diagnostics=warnings)

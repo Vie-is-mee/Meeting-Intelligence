@@ -1,0 +1,120 @@
+"""Conservative second-chance checks for EXPLICIT missing non-committal speech acts.
+
+Only recovers a source-quoted request or an explicitly *open* choice. It never
+creates an assignment, agreement, deadline accepted from a proposal, or approval.
+This is a limited lexical safety net, not semantic retrieval. Every added item
+must be reviewed by a human and is labelled as recovered from source text.
+"""
+from __future__ import annotations
+
+import re
+from .models import Event, Utterance
+
+_CHOICE_RE = re.compile(
+    r'(?i)(?:^|[.!?;]\s*)(?:hôm\s+nay\s+)?(?:vẫn\s+)?'
+    r'(?P<statement>chưa\s+(?:chốt|chọn|quyết\s+định)\s+'
+    r'(?P<subject>(?:cách\s+(?:triển\s+khai|làm)|phương\s+án|'
+    r'nhà\s+cung\s+cấp|thư\s+viện|giải\s+pháp|công\s+nghệ)'
+    r'[^.!?;,]{0,85}?))(?=\s*(?:\bvà\s+chưa\b|[.!?;,]|$))',
+    re.IGNORECASE,
+)
+_REQUEST_RE = re.compile(
+    r'(?i)^(?P<sentence>(?:cần\s+|khách\s+hàng\s+yêu\s+cầu\s+|'
+    r'người\s+dùng\s+yêu\s+cầu\s+)[^.!?]{8,200})[.!]?\s*$'
+)
+_DUE_REL_RE = re.compile(r'(?i)\btrước\s+(?:lần|buổi|đợt)\s+[^,.!?;\n]+')
+
+def _tokens(text: str) -> set[str]:
+    return {s for s in re.findall(r'\w+', text.casefold()) if len(s)>2
+            and s not in {'chưa','chốt','không','chọn','cần','việc','một','được',
+                          'cho','của','với','vào','trong','hôm','nay','trước','sau'}}
+
+def _has_record(events: list[Event], *, kind: str, source: str,
+                detail: str = '') -> bool:
+    """Source identity or strong content overlap, never shared generic term."""
+    words=_tokens(detail)
+    for e in events:
+        if e.kind != kind:
+            continue
+        if source in e.source_ids:
+            return True
+        if words and len(words & _tokens(' '.join([e.value or '',e.topic])))>=2:
+            return True
+    return False
+
+def recover_explicit_omissions(events: list[Event], utterances: list[Utterance],
+                               warnings: list[str]) -> tuple[list[Event], set[str]]:
+    """Return original events plus narrowly evidenced review-only recoveries."""
+    recovered: set[str] = set()
+    result = list(events)
+    for u in utterances:
+        text=u.text.strip()
+        # Historical, hypothetical and quoted instructions must not be
+        # promoted into current meeting records merely because they start
+        # with an imperative/negative verb.
+        historical = bool(re.search(
+            r'(?i)\b(?:biên\s+bản\s+cũ|cuộc\s+họp\s+trước|hồi\s+trước|'
+            r'trước\s+đây|giả\s+sử|ví\s+dụ|chỉ\s+là\s+mẫu)\b',text
+        ))
+        if historical:
+            continue
+        # A suggestion or question is not a business requirement.
+        if '?' not in text and not re.search(
+            r'(?i)^\s*(?:không\s+cần|chưa\s+cần|đề\s+xuất|giả\s+sử|ví\s+dụ)\b',text
+        ):
+            m=_REQUEST_RE.fullmatch(text)
+            if m:
+                sentence=m.group('sentence').strip()
+                # "Cần Lan làm..." resembles a named assignment, not an
+                # independently stated requirement.
+                assigned = re.search(
+                    r'^Cần\s+[A-ZÀ-Ỹ][a-zà-ỹ]+\s+(?:làm|viết|thử|kiểm|rà|chuẩn)',
+                    sentence
+                )
+                if not assigned and not _has_record(result,kind='request',source=u.id,detail=sentence):
+                    # Don't mint a second record if this same line has already
+                    # been classified as an assigned action.
+                    action_here=any(e.kind=='action' and u.id in e.source_ids for e in result)
+                    if not action_here:
+                        bound=_DUE_REL_RE.search(sentence)
+                        key='m3_recovered_request_'+u.id
+                        result.append(Event(kind='request',event_type='request_made',
+                            issue_key=key,topic=sentence[:100],
+                            source_ids=[u.id],value=sentence,
+                            due_raw=bound.group(0).strip() if bound else None))
+                        recovered.add(key)
+                        warnings.append('Bổ sung yêu cầu tường minh còn thiếu từ nguồn '+u.id+
+                            '; đây là bản ghi do kiểm tra bổ sung, cần người xác nhận')
+        # An explicit unresolved choice is not an approved choice. The chosen
+        # implementation/technology must be explicit; no general-purpose
+        # "chưa giao" or proposed weekday triggers a fabricated decision.
+        for match in _CHOICE_RE.finditer(text):
+            # Mixed "not A ... but later approved B" in one utterance needs
+            # full event interpretation; a lexical fallback must abstain.
+            tail=text[match.end():]
+            if re.search(r'(?i)\b(?:đã\s+chốt|đã\s+chọn|thống\s+nhất)\b',tail):
+                warnings.append('Nguồn chứa cả chưa chọn và lựa chọn về sau; bỏ qua khôi phục tự động: '+u.id)
+                continue
+            subject=match.group('subject').strip()
+            statement=match.group('statement').strip()
+            # A separate explicit no-choice in the same source may already
+            # be represented by an open decision. Don't create duplicates.
+            if _has_record(result,kind='decision',source=u.id,detail=subject):
+                continue
+            # If a *settled* decision already exists about this choice,
+            # don't silently replace it with a second open decision.
+            related=[e for e in result if e.kind=='decision'
+                     and len(_tokens(subject)&_tokens(' '.join([e.topic,e.value or ''])))>=2]
+            if related and any(e.event_type in {'agreement','conditional_agreement'} for e in related):
+                warnings.append('Phát biểu chưa chốt có thể mâu thuẫn với quyết định trước: '+
+                                u.id+'; không tự tạo/ghi đè quyết định, cần rà soát')
+                continue
+            key='m3_recovered_open_'+u.id
+            if key in recovered:
+                continue
+            result.append(Event(kind='decision',event_type='unresolved',
+                issue_key=key,topic=subject,source_ids=[u.id],value=statement))
+            recovered.add(key)
+            warnings.append('Bổ sung lựa chọn chưa chốt tường minh từ nguồn '+u.id+
+                '; không phải phương án được duyệt, cần người xác nhận')
+    return result,recovered
