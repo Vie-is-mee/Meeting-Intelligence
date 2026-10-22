@@ -28,6 +28,26 @@ def _explicit_cancel_owner_release(event: Event, source: dict[str, Utterance]) -
     return False
 
 
+def _explicit_cancel_due_release(event: Event, source: dict[str, Utterance]) -> bool:
+    """Honor literal cancellation of an existing due date, even if LLM omits clear_fields.
+
+    Narrow source-phrase guard. Do not infer removal from cancellation alone,
+    suggestions, or explicitly negated deadline removal.
+    """
+    for sid in event.source_ids:
+        line = source.get(sid)
+        if not line:
+            continue
+        sentence = line.text.casefold()
+        clause_pattern = r"\b(?:bỏ|gỡ|xóa|huỷ|hủy)\s+(?:(?:cái|mốc)\s+)?(?:hạn|deadline)\b"
+        for match in re.finditer(clause_pattern, sentence):
+            segment = sentence[max(0, match.start() - 24):match.start()]
+            if re.search(r"\b(?:không|chưa|đừng|chớ|nếu|có\s+nên)\s*$", segment):
+                continue
+            return True
+    return False
+
+
 def resolve_events(events: list[Event], utterances: list[Utterance]) -> list[ResultRecord]:
     position = {u.id: u.order for u in utterances}
     sources = {u.id: u for u in utterances}
@@ -51,6 +71,15 @@ def resolve_events(events: list[Event], utterances: list[Utterance]) -> list[Res
                     'clear_fields': [x for x in event.clear_fields if x != 'owner']})
                 record.warnings.append(
                     'Câu hủy không ghi rút người phụ trách; giữ owner lịch sử và yêu cầu rà soát')
+                record.review_status = 'needs_review'
+            if (kind == 'action' and typ == 'action_cancelled'
+                    and record.due_raw is not None
+                    and 'due_raw' not in event.clear_fields
+                    and _explicit_cancel_due_release(event, sources)):
+                event = event.model_copy(update={
+                    'clear_fields': [*event.clear_fields, 'due_raw']})
+                record.warnings.append(
+                    'Câu hủy ghi rõ bỏ hạn, LLM thiếu clear_fields; bỏ hạn cũ theo câu nguồn')
                 record.review_status = 'needs_review'
             record.history.append(event)
             if typ not in {'deadline_change', 'execution_blocked'}:

@@ -19,6 +19,64 @@ _COLLECTIVE_ONLY = re.compile(
 def is_bare_collective(utterance: Utterance) -> bool:
     return bool(_COLLECTIVE_ONLY.fullmatch(utterance.text.strip()))
 
+_TOPIC_WORDS = {
+    "xử", "lý", "việc", "này", "đó", "team", "mình", "nhóm", "khách",
+    "hàng", "báo", "đã", "được", "cho", "sẽ", "cần", "làm", "lỗi",
+    "vào", "trước", "thứ", "nhận", "giao", "xong", "với", "của",
+}
+
+
+def _meaningful_words(text: str) -> set[str]:
+    return {word for word in re.findall(r"\w+", text.casefold())
+            if len(word) >= 3 and word not in _TOPIC_WORDS}
+
+
+def _later_personal_assignment(
+    collective: Utterance, records: list[ResultRecord],
+    utterances: list[Utterance], lookup: dict[str, Utterance],
+) -> ResultRecord | None:
+    """Bridge a bare group pledge to an explicit personal acceptance on SAME topic.
+
+    Requires prior topic evidence, lexical overlap on >=2 nongeneric words,
+    and a later utterance actually naming/accepting the individual. Otherwise
+    keep the unresolved collective placeholder for human review.
+    """
+    preceding = [u for u in utterances
+                 if u.order < collective.order and 0 < collective.order-u.order <= 2]
+    if not preceding:
+        return None
+    context = set().union(*(_meaningful_words(u.text) for u in preceding))
+    if len(context) < 2:
+        return None
+    candidates=[]
+    for record in records:
+        if record.kind != "action" or record.meeting_status != "assigned" or not record.owner:
+            continue
+        owner=record.owner.casefold()
+        if len(context & _meaningful_words(record.content or "")) < 2:
+            continue
+        proof=record.field_evidence_ids.get("owner", [])
+        if not proof:
+            continue
+        acceptable=False
+        for sid in proof:
+            src=lookup.get(sid)
+            if not src or src.order<=collective.order or src.order-collective.order>3:
+                continue
+            text=src.text.casefold()
+            first_person=((src.speaker or "").casefold()==owner
+                          and bool(re.search(r"\b(?:tôi|mình)\s+nhận\b", text)))
+            named=bool(re.search(
+                r"\b(?:giao|xác\s+nhận)\s+" + re.escape(owner) +
+                r"\b", text))
+            if first_person or named:
+                acceptable=True
+                break
+        if acceptable:
+            candidates.append(record)
+    return candidates[0] if len(candidates)==1 else None
+
+
 def guard_ambiguous_collective_actions(
     records: list[ResultRecord], utterances: list[Utterance],
     *, warnings: list[str] | None = None,
@@ -87,6 +145,16 @@ def guard_ambiguous_collective_actions(
         if not is_bare_collective(u) or u.id in referenced_collective:
             continue
         if any(r.kind == "action" and u.id in r.evidence_ids for r in records):
+            continue
+        confirmed = _later_personal_assignment(u, records, utterances, lookup)
+        if confirmed is not None:
+            # Historical group intent resolved by a later personally accepted
+            # action; no extra unverified duplicate should be created.
+            if warnings is not None:
+                warnings.append(
+                    "C2: ý định tập thể " + u.id +
+                    " đã có action cá nhân xác nhận sau đó: " +
+                    confirmed.issue_key + "; không tạo action trùng")
             continue
         placeholder = ResultRecord(
             issue_key="m3_c2_collective_" + u.id.casefold(),

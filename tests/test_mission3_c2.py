@@ -99,6 +99,62 @@ class C2ContractTests(unittest.TestCase):
         self.assertIsNone(actions[0].owner)
         self.assertIsNone(actions[0].due_raw)
 
+    def test_c2_03_real_provider_shape_no_duplicate_collective_action(self):
+        # Reproduces Groq: it extracted L003 named Huy task but skipped L002.
+        out=run("C2-03",[
+            event("issue_reported","L001",kind="issue",
+                  value="Khách hàng báo lỗi thanh toán bị trừ tiền hai lần"),
+            event("assignment","L003",owner="Huy",due="trước thứ Sáu",
+                  value="Xử lý lỗi thanh toán",key="payment_actual"),
+        ])
+        actions=[r for r in out.records if r.kind=="action"]
+        self.assertEqual(len(actions),1)
+        self.assertEqual(actions[0].meeting_status,"assigned")
+        self.assertEqual(actions[0].owner,"Huy")
+        self.assertEqual(actions[0].due_raw,"trước thứ Sáu")
+
+    def test_c2_03_unrelated_later_assignment_must_not_hide_collective(self):
+        transcript=(CASES["C2-03"]["transcript"].splitlines()[0] +
+                    "\nMinh: Cái này team mình xử lý nhé." +
+                    "\nHuy: Tôi nhận sửa lỗi đăng nhập trước thứ Sáu.")
+        out=analyze(transcript,client=MockEvents([
+            event("assignment","L003",owner="Huy",due="trước thứ Sáu",
+                  key="login_fix",value="Sửa lỗi đăng nhập"),
+        ]),audit=False)
+        actions=[r for r in out.records if r.kind=="action"]
+        self.assertEqual(len(actions),2)
+        self.assertTrue(any(r.meeting_status=="unverified" and r.owner is None
+                            for r in actions))
+        self.assertTrue(any(r.meeting_status=="assigned" and r.owner=="Huy"
+                            for r in actions))
+
+    def test_c2_04_missing_model_due_clear_is_recovered_only_from_source(self):
+        out=run("C2-04",[
+            event("assignment","L001",key="trial_x",owner="Lan",
+                  due="chiều mai",value="kiểm thử thư viện X"),
+            event("action_cancelled","L003",key="trial_x",value=None),
+        ])
+        self.assertEqual(len(out.records),1)
+        task=out.records[0]
+        self.assertEqual(task.meeting_status,"cancelled")
+        self.assertEqual(task.owner,"Lan")
+        self.assertIsNone(task.due_raw)
+        self.assertIn("due_raw",task.history[-1].clear_fields)
+
+    def test_c2_04_negative_no_deadline_removal_is_not_cleared(self):
+        transcript=("Minh: Giao Lan kiểm thử thư viện X vào chiều mai.\n"
+                    "Lan: Tôi nhận việc.\n"
+                    "Minh: Hủy kiểm thử thư viện X, không bỏ hạn chiều mai.")
+        out=analyze(transcript,client=MockEvents([
+            event("assignment","L001",key="trial_x",owner="Lan",
+                  due="chiều mai",value="kiểm thử thư viện X"),
+            event("action_cancelled","L003",key="trial_x",value=None),
+        ]),audit=False)
+        task=out.records[0]
+        self.assertEqual(task.meeting_status,"cancelled")
+        self.assertEqual(task.owner,"Lan")
+        self.assertEqual(task.due_raw,"chiều mai")
+
     def test_c2_04_regression_cancelled_preserves_former_owner(self):
         out=run("C2-04",[
             event("assignment","L001",key="trial_x",owner="Lan",
