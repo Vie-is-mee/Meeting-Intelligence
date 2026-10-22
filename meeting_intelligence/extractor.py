@@ -20,6 +20,7 @@ Choose the SPEECH ACT, not a default proposal:
 - "Đã chốt X nhưng chưa được triển khai, chờ phê duyệt" is execution_blocked, not reopen. Copy the specific approval/prerequisite into condition. If the same sentence both agrees and blocks, emit agreement then execution_blocked.
 
 Task identity and responsibility:
+- Mission 3 CR C2: "Cái này team mình xử lý nhé" is collective intent, NOT a personal assignment by the speaker. Do not infer owner or due_raw, even from speaker metadata. If "cái này" has no referent, abstain from an asserted assignment or hold for review. Preserve later explicitly accepted named assignee/deadline.
 - Use one stable issue_key per REAL task/choice throughout the meeting. An assignment, reassignment and deadline_change for the SAME task must reuse that key. Do not make separate _deadline/_owner keys. Different tasks with similar wording must remain separate.
 - assignment/reassignment requires actual acceptance or explicit assignment. A request, "chưa giao", "chưa nhận", an offer if free, or a question about ownership is not an assignment.
 - A direct instruction naming a responsible person and concrete work ("Lệ chuẩn bị tài liệu, hạn sáng mai") IS explicit assignment, not merely request_made. A later "Tôi nhận" confirms the SAME action; keep the original task, owner and deadline unless actually changed. Do not create an additional request solely to repeat that assignment.

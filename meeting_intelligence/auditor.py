@@ -48,6 +48,7 @@ Interpret status BEFORE judging content:
 - Check field_evidence_ids: old content and final status can legitimately cite different turns. Records need not repeat the whole event history.
 
 Avoid unsupported demands:
+- C2 collective "Cái này team mình xử lý nhé" does NOT personally assign its speaker or agree a deadline. A record with owner:null and due_raw:null needing review is valid. Never demand a guessed person/date; preserve later explicitly accepted assignments.
 - A named requester is not an assigned owner. A proposed date is not an accepted deadline. A statement "chưa chọn ngày, chưa giao ai" means there is NO agreed date or owner; do not claim that a later selection occurred.
 - An offer if free, or a time to check one's schedule, is not acceptance or a deadline.
 - Do not treat clear_fields in model events as authoritative. Cancellation alone does not remove the former owner's historical identity.

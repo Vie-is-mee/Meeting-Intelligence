@@ -10,6 +10,7 @@ from .extractor import extract_events
 from .completeness import recover_explicit_omissions
 from .resolver import resolve_events
 from .verifier import verify_records
+from .ambiguity import guard_ambiguous_collective_actions
 from .information_utility import classify_information_utility
 from .models import AnalysisResult
 from .offline_rules import offline_extract_decisions
@@ -35,6 +36,7 @@ def analyze(text: str, engine: Literal['llm_api', 'offline_rules'] = 'llm_api',
     else:
         raise ValueError('engine không hợp lệ')
     records = verify_records(resolve_events(events, utterances), utterances, warnings=warnings)
+    guard_ambiguous_collective_actions(records, utterances, warnings=warnings)
     for record in records:
         if record.issue_key in recovered_keys:
             record.review_status = 'needs_review'

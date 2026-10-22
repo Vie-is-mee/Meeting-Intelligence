@@ -1,0 +1,61 @@
+{
+  "id": "mission3_c2_action_ambiguous_v1",
+  "purpose": "Official Mission 3 personal C2: uncertain collective action; source-grounded owner/deadline handling",
+  "cases": [
+    {
+      "id": "C2-01",
+      "type": "change_request",
+      "transcript": "Minh: Cái này team mình xử lý nhé.",
+      "expected": {
+        "owner": null,
+        "due_raw": null,
+        "require_review_if_action": true,
+        "forbidden": [
+          "fabricated_named_owner",
+          "fabricated_deadline",
+          "approved_finished_action"
+        ]
+      }
+    },
+    {
+      "id": "C2-02",
+      "type": "edge_case",
+      "transcript": "Lan: Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.\nMinh: Cái này team mình xử lý nhé.\nChi: Hay để thứ Sáu xử lý xong được không?\nMinh: Chưa chốt hạn, cũng chưa phân công ai.",
+      "expected": {
+        "owner": null,
+        "due_raw": null,
+        "require_review_if_action": true,
+        "forbidden": [
+          "Minh_assigned_personally",
+          "Friday_confirmed_deadline",
+          "decision_agreed"
+        ]
+      }
+    },
+    {
+      "id": "C2-03",
+      "type": "positive_control",
+      "transcript": "Lan: Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.\nMinh: Cái này team mình xử lý nhé.\nHuy: Tôi nhận xử lý lỗi thanh toán, hoàn thành trước thứ Sáu.\nMinh: Xác nhận Huy xử lý lỗi thanh toán trước thứ Sáu.",
+      "expected": {
+        "owner": "Huy",
+        "due_raw": "trước thứ Sáu",
+        "forbidden": [
+          "owner_stays_null_after_explicit_confirmation"
+        ]
+      }
+    },
+    {
+      "id": "C2-04",
+      "type": "legacy_regression",
+      "transcript": "Minh: Giao Lan kiểm thử thư viện X vào chiều mai.\nLan: Tôi nhận việc kiểm thử thư viện X.\nMinh: Hủy việc kiểm thử thư viện X vì giấy phép không phù hợp, bỏ hạn chiều mai.",
+      "expected": {
+        "owner": "Lan",
+        "due_raw": null,
+        "meeting_status": "cancelled",
+        "forbidden": [
+          "new_active_request_from_cancelled_task"
+        ]
+      }
+    }
+  ]
+}
