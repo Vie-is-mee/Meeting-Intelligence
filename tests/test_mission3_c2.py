@@ -42,6 +42,16 @@ class C2ContractTests(unittest.TestCase):
         self.assertEqual(record.review_status,"needs_review")
         self.assertIn("L001",record.evidence_ids)
 
+    def test_c2_01_collective_phrase_is_not_a_decision_proposal(self):
+        out=run("C2-01",[
+            event("proposal","L001",kind="decision",value="team mình xử lý việc này"),
+        ])
+        self.assertEqual(len(out.records),1)
+        self.assertEqual(out.records[0].kind,"action")
+        self.assertEqual(out.records[0].meeting_status,"unverified")
+        self.assertIsNone(out.records[0].owner)
+        self.assertIsNone(out.records[0].due_raw)
+
     def test_c2_02_issue_context_and_proposed_friday_not_assignment(self):
         # L002 collective phrase cannot make its speaker personally responsible.
         # L003 proposes Friday; L004 explicitly says neither owner nor due agreed.
@@ -64,6 +74,30 @@ class C2ContractTests(unittest.TestCase):
         self.assertEqual(action.owner,"Huy")
         self.assertEqual(action.due_raw,"trước thứ Sáu")
         self.assertEqual(action.meeting_status,"assigned")
+
+    def test_c2_01_no_extracted_events_retains_reviewable_ambiguity(self):
+        out=run("C2-01",[])
+        self.assertEqual(len(out.records),1)
+        record=out.records[0]
+        self.assertEqual(record.kind,"action")
+        self.assertEqual(record.meeting_status,"unverified")
+        self.assertEqual(record.review_status,"needs_review")
+        self.assertIsNone(record.owner)
+        self.assertIsNone(record.due_raw)
+        self.assertEqual(record.evidence_ids,["L001"])
+        self.assertEqual(record.history,[])
+
+    def test_c2_02_other_topic_record_does_not_hide_collective_intent(self):
+        out=run("C2-02",[
+            event("issue_reported","L001",kind="issue",
+                  value="Khách hàng bị trừ tiền hai lần"),
+        ])
+        actions=[r for r in out.records if r.kind=="action"]
+        self.assertEqual(len(actions),1)
+        self.assertEqual(actions[0].meeting_status,"unverified")
+        self.assertEqual(actions[0].evidence_ids,["L002"])
+        self.assertIsNone(actions[0].owner)
+        self.assertIsNone(actions[0].due_raw)
 
     def test_c2_04_regression_cancelled_preserves_former_owner(self):
         out=run("C2-04",[

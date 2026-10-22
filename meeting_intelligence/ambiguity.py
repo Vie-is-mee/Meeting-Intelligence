@@ -65,13 +65,49 @@ def guard_ambiguous_collective_actions(
         if warnings is not None:
             warnings.append(message)
 
-    # No records may be better than inventing one, but surface the missing
-    # contextual resolution to a reviewer rather than silently dropping it.
-    if warnings is not None:
-        for u in utterances:
-            if not is_bare_collective(u) or u.id in referenced_collective:
-                continue
-            if any(u.id in r.evidence_ids for r in records):
-                continue
-            warnings.append("C2: câu cam kết tập thể " + u.id
-                            + " chưa có bản ghi gắn nguồn; cần làm rõ nội dung trước khi tạo action")
+    # A bare collective commitment is not a proposal/choice. Avoid a false
+    # decision if the extractor attached proposal/agreement to this exact line.
+    for record in list(records):
+        if (record.kind == "decision"
+                and record.meeting_status in {"proposed", "agreed"}
+                and len(record.history) == 1
+                and record.history[0].event_type in {"proposal", "agreement"}
+                and record.evidence_ids
+                and all(sid in lookup and is_bare_collective(lookup[sid])
+                        for sid in record.evidence_ids)):
+            records.remove(record)
+            if warnings is not None:
+                warnings.append("C2: loại decision giả từ câu team xử lý; giữ action mơ hồ để rà soát: "
+                                + ", ".join(record.evidence_ids))
+
+    # The extractor can omit the collective intent entirely. Recover ONLY the
+    # utterance literally spoken, never a guessed referent / owner / deadline.
+    # An unresolved action is a reviewer placeholder, not a confirmed assignment.
+    for u in utterances:
+        if not is_bare_collective(u) or u.id in referenced_collective:
+            continue
+        if any(r.kind == "action" and u.id in r.evidence_ids for r in records):
+            continue
+        placeholder = ResultRecord(
+            issue_key="m3_c2_collective_" + u.id.casefold(),
+            topic="Cam kết tập thể chưa phân công",
+            kind="action",
+            content=u.text.strip(),
+            meeting_status="unverified",
+            execution_status="unknown",
+            authority_status="unknown",
+            owner=None, due_raw=None, due_iso=None,
+            evidence_ids=[u.id],
+            field_evidence_ids={"content":[u.id], "meeting_status":[u.id]},
+            review_status="needs_review",
+            warnings=[
+                "C2: phát biểu có ý định xử lý nhưng chưa xác định việc cụ thể / "
+                "người phụ trách / hạn; cần người dùng làm rõ trước khi giao."
+            ],
+            history=[],
+        )
+        records.append(placeholder)
+        if warnings is not None:
+            warnings.append(
+                "C2: giữ ý định tập thể " + u.id +
+                " ở trạng thái cần làm rõ; không tự tạo owner/deadline")

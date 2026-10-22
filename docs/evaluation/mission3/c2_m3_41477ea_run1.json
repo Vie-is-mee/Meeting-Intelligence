@@ -1,0 +1,274 @@
+{
+  "started_utc": "2026-10-22T18:37:17.105886+00:00",
+  "manifest": {
+    "dataset_file": "datasets/mission3_c2_v1.json",
+    "dataset_sha256": "56c71f270cd3664c2d8fa75df64bdc01e5f6dd6e56a3a0e2973b1be3321cd182",
+    "cases": [
+      "C2-01",
+      "C2-02"
+    ],
+    "version": "m3",
+    "transport": "local",
+    "source_git_commit": "41477ea87ede8ff580f8150635809036da90e635",
+    "core_source_files_sha256": {
+      "meeting_intelligence/__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+      "meeting_intelligence/ambiguity.py": "b92754046bb868637a2b2c8493231716f9937406f766913650d8926ff898aa00",
+      "meeting_intelligence/auditor.py": "2e738f94b85d830e470e05cdcf5c8d22682aaf6e039474653d15319f22dd1a9e",
+      "meeting_intelligence/completeness.py": "b0a13938dccc546667def2990d28a4dab0ed5f7e501ae44b4bf2daaf301a6d0d",
+      "meeting_intelligence/config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+      "meeting_intelligence/extractor.py": "0cb2c5b421ff299ddcd8560f3b85195a34c97077658acac04d48b56ae6d4817b",
+      "meeting_intelligence/information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+      "meeting_intelligence/llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+      "meeting_intelligence/models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+      "meeting_intelligence/offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+      "meeting_intelligence/parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+      "meeting_intelligence/pipeline.py": "39bc7b406f3daf3a9f5dad6439d4ba243c10728dbefc2c9c91ce6df25ab23eb3",
+      "meeting_intelligence/resolver.py": "22dd923732ae3a49c23959611a9fb816d0e4cfa85e963bf31d33130fadd37249",
+      "meeting_intelligence/verifier.py": "41612e62f1f6612ed862e89c10877d1e6931bc4a74104468a7886d018cc63ae4"
+    },
+    "audit": "on"
+  },
+  "model": "openai/gpt-oss-120b",
+  "generation_settings": {
+    "temperature": 0.6,
+    "reasoning_effort": "low",
+    "max_completion_tokens": 2560,
+    "structured_outputs": "auto"
+  },
+  "results": [
+    {
+      "id": "C2-01",
+      "status": "COMPLETED",
+      "started_utc": "2026-10-22T18:37:17.105886+00:00",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Cái này team mình xử lý nhé.",
+            "speaker": "Minh",
+            "timestamp": null
+          }
+        ],
+        "records": [],
+        "warnings": [
+          "C2: câu cam kết tập thể L001 chưa có bản ghi gắn nguồn; cần làm rõ nội dung trước khi tạo action",
+          "Kiểm tra lại missing_issue: The transcript contains a clear statement that the team will handle the item, which should be captured as an action record, but no corresponding record exists. (nguồn: L001)",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": [
+          {
+            "issue_key": null,
+            "kind": null,
+            "category": "missing_issue",
+            "severity": "medium",
+            "source_ids": [
+              "L001"
+            ],
+            "source_quote": "Cái này team mình xử lý nhé.",
+            "explanation": "The transcript contains a clear statement that the team will handle the item, which should be captured as an action record, but no corresponding record exists."
+          }
+        ]
+      },
+      "duration_s": 36.48,
+      "api_calls_cumulative": 2,
+      "token_usage_cumulative": {
+        "prompt_tokens": 3438,
+        "completion_tokens": 356,
+        "total_tokens": 3794
+      }
+    },
+    {
+      "id": "C2-02",
+      "status": "COMPLETED",
+      "started_utc": "2026-10-22T18:37:53.610910+00:00",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Cái này team mình xử lý nhé.",
+            "speaker": "Minh",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Hay để thứ Sáu xử lý xong được không?",
+            "speaker": "Chi",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Chưa chốt hạn, cũng chưa phân công ai.",
+            "speaker": "Minh",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "issue_1",
+            "topic": "lỗi thanh toán",
+            "kind": "issue",
+            "content": "Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.",
+            "meeting_status": "open",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "issue_1",
+                "topic": "lỗi thanh toán",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "issue_1_deadline",
+            "topic": "deadline xử lý lỗi",
+            "kind": "decision",
+            "content": "Chưa chốt hạn, chưa phân công ai.",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L003",
+              "L004"
+            ],
+            "counter_evidence_ids": [
+              "L003"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L004"
+              ],
+              "content": [
+                "L004"
+              ],
+              "condition": [
+                "L004"
+              ],
+              "execution_status": [
+                "L004"
+              ],
+              "information_utility": [
+                "L004"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Kiểm tra lại missing_issue: The transcript contains a proposal to complete the issue by Friday (L003), but the final record for issue_1_deadline only reflects an unresolved status and does not capture this decision event. (nguồn: L003)"
+            ],
+            "history": [
+              {
+                "issue_key": "issue_1_deadline",
+                "topic": "deadline xử lý lỗi",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "Xử lý xong vào thứ Sáu.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "issue_1_deadline",
+                "topic": "deadline xử lý lỗi",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "Chưa chốt hạn, chưa phân công ai.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "C2: câu cam kết tập thể L002 chưa có bản ghi gắn nguồn; cần làm rõ nội dung trước khi tạo action",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": [
+          {
+            "issue_key": "issue_1_deadline",
+            "kind": "decision",
+            "category": "missing_issue",
+            "severity": "medium",
+            "source_ids": [
+              "L003"
+            ],
+            "source_quote": "Hay để thứ Sáu xử lý xong được không?",
+            "explanation": "The transcript contains a proposal to complete the issue by Friday (L003), but the final record for issue_1_deadline only reflects an unresolved status and does not capture this decision event."
+          }
+        ]
+      },
+      "duration_s": 69.84,
+      "api_calls_cumulative": 4,
+      "token_usage_cumulative": {
+        "prompt_tokens": 7374,
+        "completion_tokens": 1179,
+        "total_tokens": 8553
+      }
+    }
+  ],
+  "complete": true
+}
