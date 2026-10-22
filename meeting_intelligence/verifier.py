@@ -295,6 +295,23 @@ def verify_records(records: list[ResultRecord], utterances: list[Utterance],
             record.due_iso = None
             record.review_status = 'needs_review'
             record.warnings.append('Thời hạn chỉ được nêu dưới dạng đề xuất/câu hỏi; không coi là hạn đã nhận')
+        # Preserve a literal strict temporal bound, e.g. "trước thứ Sáu".
+        # Merely finding "thứ Sáu" inside evidence is not enough to preserve
+        # the deadline's meaning. Use only the accepted due-field evidence,
+        # not unrelated mentions elsewhere in the meeting.
+        if record.kind == 'action' and record.due_raw:
+            due = record.due_raw.strip()
+            if not re.match(r'(?i)^trước\b', due):
+                ids = record.field_evidence_ids.get('due_raw', [])
+                sources = [lookup[s].text for s in ids if s in lookup]
+                if (sources and any(re.search(
+                        r'(?i)(?<!\w)trước\s+' + re.escape(due) + r'(?!\w)', s)
+                        and not re.search(r'(?i)\b(?:không|chưa)\s+trước\s+'
+                                          + re.escape(due), s)
+                        for s in sources)):
+                    record.due_raw = 'trước ' + due
+                    record.warnings.append(
+                        'Đã giữ nguyên ràng buộc "trước" của hạn theo câu nguồn')
         # A decision that was ONLY suggested has no confirmed agreement.
         if (record.kind == 'decision' and record.meeting_status in {'agreed','conditional'}
                 and _proposal_only_evidence(record, 'meeting_status', lookup)):

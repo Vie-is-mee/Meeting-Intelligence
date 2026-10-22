@@ -155,6 +155,22 @@ class C2ContractTests(unittest.TestCase):
         self.assertEqual(task.owner,"Lan")
         self.assertEqual(task.due_raw,"chiều mai")
 
+    def test_c2_03_pre_friday_bound_not_weakened_to_friday(self):
+        out=run("C2-03",[
+            event("assignment","L003",owner="Huy",due="thứ Sáu",
+                  value="Xử lý lỗi thanh toán"),
+        ])
+        action=next(x for x in out.records if x.kind=="action" and x.owner=="Huy")
+        self.assertEqual(action.due_raw,"trước thứ Sáu")
+
+    def test_c2_deadline_without_pre_bound_not_strengthened(self):
+        text="Huy: Tôi nhận xử lý lỗi thanh toán, hạn thứ Sáu."
+        out=analyze(text,client=MockEvents([
+            event("assignment","L001",owner="Huy",due="thứ Sáu",
+                  value="Xử lý lỗi thanh toán"),
+        ]),audit=False)
+        self.assertEqual(out.records[0].due_raw,"thứ Sáu")
+
     def test_c2_04_regression_cancelled_preserves_former_owner(self):
         out=run("C2-04",[
             event("assignment","L001",key="trial_x",owner="Lan",
