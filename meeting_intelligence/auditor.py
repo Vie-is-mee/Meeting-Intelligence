@@ -48,6 +48,7 @@ Interpret status BEFORE judging content:
 - Check field_evidence_ids: old content and final status can legitimately cite different turns. Records need not repeat the whole event history.
 
 Avoid unsupported demands:
+- A reported issue and the action to fix it are separate record kinds. When an action already includes an accepted named owner and due date, do not demand copying that assignee/deadline into the open issue record. An actual resolution of the issue is a distinct later change and still must be detected.
 - C2 collective "Cái này team mình xử lý nhé" does NOT personally assign its speaker or agree a deadline. A record with owner:null and due_raw:null needing review is valid. Never demand a guessed person/date; preserve later explicitly accepted assignments.
 - A named requester is not an assigned owner. A proposed date is not an accepted deadline. A statement "chưa chọn ngày, chưa giao ai" means there is NO agreed date or owner; do not claim that a later selection occurred.
 - An offer if free, or a time to check one's schedule, is not acceptance or a deadline.
@@ -370,6 +371,49 @@ def _mistakes_cancelled_task_history_for_missing_assignment(
     return bool(assignments and cancels and 0 <= earlier < later)
 
 
+def _mistakes_recorded_assignment_for_missing_issue_update(
+    item: AuditFinding, records: list[ResultRecord],
+    utterances: list[Utterance],
+) -> bool:
+    """An issue record is NOT the action ledger.
+
+    Filter only claims that an issue must copy the owner/deadline of an
+    independent assigned action already present for the SAME issue and source.
+    An actual issue resolution/correction remains reportable.
+    """
+    if (item.kind != 'issue' or item.category != 'missing_late_change'
+            or not item.issue_key):
+        return False
+    reason=item.explanation.casefold()
+    if not (all(word in reason for word in ('issue record','owner','due','assignment'))):
+        return False
+    issues=[r for r in records if r.kind=='issue' and r.issue_key==item.issue_key
+            and r.meeting_status=='open']
+    actions=[r for r in records if r.kind=='action' and r.issue_key==item.issue_key
+             and r.meeting_status=='assigned' and r.owner and r.due_raw]
+    if len(issues)!=1 or len(actions)!=1:
+        return False
+    action=actions[0]
+    if (not set(item.source_ids).issubset(set(action.field_evidence_ids.get('owner',[])))
+            or not set(item.source_ids).issubset(set(action.field_evidence_ids.get('due_raw',[])))):
+        return False
+    lookup={u.id:u for u in utterances}
+    for sid in item.source_ids:
+        src=lookup.get(sid)
+        if not src or action.due_raw.casefold() not in src.text.casefold():
+            return False
+        owner_named = action.owner.casefold() in src.text.casefold()
+        first_person = ((src.speaker or "").casefold() == action.owner.casefold()
+                        and bool(re.search(r'(?i)\b(?:tôi|mình)\s+nhận\b', src.text)))
+        if not (owner_named or first_person):
+            return False
+    # Do not suppress an issue change actually described in the quoted source.
+    if any(re.search(r'(?i)\b(?:đã|được)\s+(?:sửa|khắc\s+phục|giải\s+quyết|xử\s+lý\s+xong)\b',
+                     lookup[s].text) for s in item.source_ids):
+        return False
+    return True
+
+
 def audit_events(utterances: list[Utterance], events: list[Event],
                  records: list[ResultRecord], client) -> tuple[list[AuditFinding], list[str]]:
     """LLM audit followed by strict, code-level quote and ID validation."""
@@ -409,6 +453,9 @@ def audit_events(utterances: list[Utterance], events: list[Event],
             continue
         if not any(_norm(item.source_quote) in _norm(source[s]) for s in item.source_ids):
             skipped.append('Audit trích dẫn không có nguyên văn trong câu nguồn; loại cảnh báo thiếu căn cứ')
+            continue
+        if _mistakes_recorded_assignment_for_missing_issue_update(item, records, utterances):
+            skipped.append('C2: owner và hạn đã ghi ở action được giao, không phải cập nhật của issue')
             continue
         if _mistakes_cancelled_task_history_for_missing_assignment(item, records, utterances):
             skipped.append('Assignment đã nằm trong history của action bị hủy; không tạo thêm action trùng')
