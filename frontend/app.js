@@ -90,6 +90,15 @@ function fitTranscript(){
 }
 window.addEventListener('resize',fitTranscript);
 function countText() { $('text-count').textContent = `${$('transcript').value.length.toLocaleString('vi-VN')} ký tự`;fitTranscript(); }
+$('load-c2').addEventListener('click',()=>{
+  $('transcript').value='Minh: Cái này team mình xử lý nhé.';
+  markChanged();
+  if(backendAvailable){
+    $('engine').value='llm_api';
+    engineSettings();
+  }
+  $('transcript').focus();
+});
 function markChanged() { if (result) $('stale').hidden = false; countText(); }
 function engineSettings() {
   const live = $('engine').value === 'llm_api';

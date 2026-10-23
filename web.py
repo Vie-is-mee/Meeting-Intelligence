@@ -5,6 +5,8 @@ are never public routes. API credentials stay inside the Python process.
 """
 from __future__ import annotations
 import argparse
+import hashlib
+import subprocess
 import json
 import logging
 import os
@@ -20,6 +22,22 @@ from meeting_intelligence.pipeline import analyze
 from scripts.run_scenarios import evaluate
 
 ROOT = Path(__file__).resolve().parent
+
+def release_identity():
+    """Fingerprint deployed source without exposing secrets."""
+    sha = os.environ.get('RENDER_GIT_COMMIT', '').strip()
+    if not sha:
+        try:
+            sha = subprocess.run(['git','rev-parse','HEAD'],cwd=ROOT,
+                  check=True,capture_output=True,text=True,timeout=2).stdout.strip()
+        except (OSError, subprocess.SubprocessError):
+            sha = 'unknown'
+    modules = ['meeting_intelligence/pipeline.py','meeting_intelligence/ambiguity.py',
+               'meeting_intelligence/verifier.py','meeting_intelligence/resolver.py']
+    return {'mission':'M3','change_request':'C2','source_commit':sha,
+            'core_sha256':{name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest()
+                           for name in modules}}
+
 ASSETS = {
     '/': ('index.html', 'text/html; charset=utf-8'),
     '/index.html': ('index.html', 'text/html; charset=utf-8'),
@@ -115,7 +133,9 @@ class Handler(BaseHTTPRequestHandler):
         if not self.local_request():
             return
         path = urlparse(self.path).path
-        if path in ASSETS:
+        if path == '/api/version':
+            self.send_json(200, release_identity())
+        elif path in ASSETS:
             filename, content_type = ASSETS[path]
             self.send_body(200, (ROOT / 'frontend' / filename).read_bytes(), content_type)
         elif path == '/api/config':
