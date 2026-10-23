@@ -86,6 +86,15 @@ def extract_events(utterances: list[Utterance], client: LLMClient, *, warnings: 
         ):
             # Only restore a literal uncertainty statement, never guess a task
             # from its topic or merge an orphan change with another task.
+            # A source can mention both no date AND no assignee.
+            # Preserve a literally quoted no-owner event, rather than
+            # overwriting its decision target with the entire mixed line.
+            original=(event.value or '').strip().casefold()
+            if (original and re.search(
+                r'(?i)\b(?:chưa|không)\s+(?:giao(?:\s+việc)?|phân\s+công)\b',
+                original
+            ) and any(original in source[s].casefold() for s in event.source_ids)):
+                continue
             quotes = [source[s] for s in event.source_ids]
             explicit = [q for q in quotes if re.match(r'(?i)^(?:hôm nay\s+)?chưa\s+(?:chốt|chọn|quyết\s+định)\b',q)]
             if explicit:
