@@ -1,0 +1,80 @@
+{
+  "environment": "LOCAL_HTTP_WITH_REAL_GROQ_NOT_PUBLIC_STAGING",
+  "api_version": {
+    "mission": "M3",
+    "change_request": "C2",
+    "source_commit": "0fdf08ec2a4cbcf3863425a21606c0e167320900",
+    "core_sha256": {
+      "meeting_intelligence/pipeline.py": "39bc7b406f3daf3a9f5dad6439d4ba243c10728dbefc2c9c91ce6df25ab23eb3",
+      "meeting_intelligence/ambiguity.py": "260b9f4961d78ea8ff5d42ea9ca8a9fb8646b2a9fdf3a8160f06b2c00f41fdb7",
+      "meeting_intelligence/verifier.py": "60e97a96319d2dd2159419be4fe6f93d6c04deb9e1eee5d7c5dd7271dacea9a7",
+      "meeting_intelligence/resolver.py": "a7ee220b177dd9d27ed1b65fc62cd172be975fa792e053a2f272531f5f956fc3"
+    }
+  },
+  "test": "Official CR C2 bare group commitment",
+  "source_utterance": "Minh: Cái này team mình xử lý nhé.",
+  "pass": true,
+  "records_count": 1,
+  "api_calls": 1,
+  "token_usage": {
+    "prompt_tokens": 2065,
+    "completion_tokens": 55,
+    "total_tokens": 2120
+  },
+  "analysis": {
+    "engine": "llm_api",
+    "utterances": [
+      {
+        "id": "L001",
+        "order": 1,
+        "text": "Cái này team mình xử lý nhé.",
+        "speaker": "Minh",
+        "timestamp": null
+      }
+    ],
+    "records": [
+      {
+        "issue_key": "m3_c2_collective_l001",
+        "topic": "Cam kết tập thể chưa phân công",
+        "kind": "action",
+        "content": "Cái này team mình xử lý nhé.",
+        "meeting_status": "unverified",
+        "execution_status": "unknown",
+        "authority_status": "unknown",
+        "information_utility": "needs_verification",
+        "information_utility_note": "Thông tin nghiệp vụ chưa đủ căn cứ; cần đối chiếu câu nguồn.",
+        "owner": null,
+        "supporter": null,
+        "due_raw": null,
+        "due_iso": null,
+        "condition": null,
+        "evidence_ids": [
+          "L001"
+        ],
+        "counter_evidence_ids": [],
+        "field_evidence_ids": {
+          "content": [
+            "L001"
+          ],
+          "meeting_status": [
+            "L001"
+          ],
+          "information_utility": [
+            "L001"
+          ]
+        },
+        "review_status": "needs_review",
+        "warnings": [
+          "C2: phát biểu có ý định xử lý nhưng chưa xác định việc cụ thể / người phụ trách / hạn; cần người dùng làm rõ trước khi giao."
+        ],
+        "history": []
+      }
+    ],
+    "warnings": [
+      "C2: giữ ý định tập thể L001 ở trạng thái cần làm rõ; không tự tạo owner/deadline",
+      "Đã TẮT audit thứ hai: chưa rà soát độc lập mâu thuẫn/ngữ cảnh",
+      "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+    ],
+    "audit_findings": []
+  }
+}

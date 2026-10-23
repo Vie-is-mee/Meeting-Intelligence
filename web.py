@@ -28,8 +28,10 @@ def release_identity():
     sha = os.environ.get('RENDER_GIT_COMMIT', '').strip()
     if not sha:
         try:
-            sha = subprocess.run(['git','rev-parse','HEAD'],cwd=ROOT,
-                  check=True,capture_output=True,text=True,timeout=2).stdout.strip()
+            env = os.environ.copy()
+            env['HOME'] = env.get('USERPROFILE') or env.get('HOME', '')
+            sha = subprocess.run(['git','rev-parse','HEAD'],cwd=ROOT,env=env,
+                  check=True,capture_output=True,text=True,timeout=3).stdout.strip()
         except (OSError, subprocess.SubprocessError):
             sha = 'unknown'
     modules = ['meeting_intelligence/pipeline.py','meeting_intelligence/ambiguity.py',

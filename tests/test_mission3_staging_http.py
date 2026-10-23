@@ -41,6 +41,7 @@ class TestStaging(unittest.TestCase):
         self.assertEqual(len(data["core_sha256"]),4)
         self.assertEqual(len(data["core_sha256"]["meeting_intelligence/ambiguity.py"]),64)
         self.assertGreaterEqual(len(data["source_commit"]),7)
+        self.assertNotEqual(data["source_commit"],"unknown")
 
     def test_m3_web_assets_include_c2_load_and_m3_label(self):
         _,page=self.get("/")
