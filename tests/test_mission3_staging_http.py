@@ -50,6 +50,21 @@ class TestStaging(unittest.TestCase):
         _,js=self.get("/app.js")
         self.assertIn(b"load-c2",js)
 
+    def test_sample_menu_contains_all_four_original_frozen_c2_inputs(self):
+        from pathlib import Path
+        expected=json.loads((Path(__file__).resolve().parents[1] /
+                            "datasets/mission3_c2_v1.json").read_text(encoding="utf-8"))
+        code,body=self.get("/api/samples")
+        self.assertEqual(code,200)
+        samples=json.loads(body)["samples"]
+        c2=[item for item in samples if item["id"].startswith("C2-")]
+        self.assertEqual([x["id"] for x in c2],["C2-01","C2-02","C2-03","C2-04"])
+        self.assertEqual([x["transcript"] for x in c2],
+                         [x["transcript"] for x in expected["cases"]])
+        self.assertTrue(all(x["sample_kind"]=="live_c2" for x in c2))
+        self.assertTrue(all("expected" not in x and "result" not in x for x in c2))
+        self.assertTrue(any(x["id"]=="T01" for x in samples))
+
     def test_http_post_c2_action_keeps_null_owner_due_and_evidence(self):
         data=json.dumps({"transcript":"Minh: Cái này team mình xử lý nhé.",
                          "engine":"llm_api","audit":False},ensure_ascii=False).encode("utf-8")

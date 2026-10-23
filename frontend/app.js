@@ -127,7 +127,12 @@ function chooseSample(id) {
   const sample = sampleData.find(item => item.id === id);
   if (sample) {
     $('transcript').value = sample.transcript;
-    $('sample-description').textContent = sample.description;
+    $('sample-description').textContent = sample.sample_kind === 'live_c2'
+      ? `${sample.description}. Bộ kiểm thử C2 · cần chọn LLM API để chạy mới, không có kết quả demo lưu sẵn.`
+      : sample.description;
+    if (sample.sample_kind === 'live_c2' && $('engine').value === 'recorded' && backendAvailable) {
+      $('engine').value = 'llm_api';
+    }
   } else {
     $('sample-description').textContent = 'Dán transcript của bạn. Không có đáp án tham chiếu cho dữ liệu tùy chỉnh.';
   }
@@ -729,7 +734,7 @@ async function connectBackend(){
     backendAvailable = true;
     $('static-preview').hidden=true;
     for(const value of ['offline_rules','llm_api'])$('engine').querySelector(`[value="${value}"]`).disabled=false;
-    const merged=[...(demoData?.cases || []),...data.samples];
+    const merged=[...data.samples.filter(s=>s.sample_kind==='live_c2'),...(demoData?.cases || []),...data.samples.filter(s=>s.sample_kind!=='live_c2')];
     if(!result)populateSamples(merged);
     else {const previous=$('sample').value;sampleData=merged;$('sample').replaceChildren();for(const s of merged){const option=node('option','',`${s.id} · ${s.description}`);option.value=s.id;$('sample').append(option);}const custom=node('option','','Transcript của bạn');custom.value='custom';$('sample').append(custom);$('sample').value=previous;}
     $('config-status').textContent = config.api_configured ? `Backend đã kết nối · ${config.provider} · ${config.model}` : 'Backend đã kết nối; cấu hình khóa/bật LLM trên server để phân tích mới. Offline vẫn dùng được.';

@@ -72,6 +72,20 @@ def samples():
     return entries
 
 
+def c2_samples():
+    """Expose frozen C2 transcripts as selectable LIVE tests, not recorded outputs or gold."""
+    data = json.loads((ROOT / 'datasets' / 'mission3_c2_v1.json').read_text(encoding='utf-8'))
+    descriptions = {
+        'C2-01': 'CR C2 · Team nhận xử lý, chưa rõ owner/deadline',
+        'C2-02': 'Edge case · Đề xuất hạn thứ Sáu nhưng chưa chốt',
+        'C2-03': 'Positive control · Huy nhận việc trước thứ Sáu',
+        'C2-04': 'Regression · Giao Lan rồi hủy công việc',
+    }
+    return [{'id': case['id'], 'description': descriptions[case['id']],
+             'transcript': case['transcript'], 'sample_kind': 'live_c2'}
+            for case in data['cases'] if case['id'] in descriptions]
+
+
 class InspectionServer(ThreadingHTTPServer):
     daemon_threads = True
 
@@ -143,7 +157,7 @@ class Handler(BaseHTTPRequestHandler):
         elif path == '/api/config':
             self.send_json(200, public_config(self.server.public))
         elif path == '/api/samples':
-            self.send_json(200, {'samples': samples()})
+            self.send_json(200, {'samples': c2_samples() + samples()})
         else:
             self.send_json(404, {'error': 'Không tìm thấy đường dẫn.'})
 
