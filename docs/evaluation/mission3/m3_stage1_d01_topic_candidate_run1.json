@@ -1,0 +1,140 @@
+{
+  "created_utc": "2026-10-23T07:55:40.191851+00:00",
+  "model": "openai/gpt-oss-120b",
+  "engine": "llm_api",
+  "audit": true,
+  "sha256": {
+    "datasets\\meeting_eval_v1.json": "49a4e75945e32e16e376c9d1ec47096dc464661dcb985ac67f5d75ca21ac5bc9",
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\ambiguity.py": "260b9f4961d78ea8ff5d42ea9ca8a9fb8646b2a9fdf3a8160f06b2c00f41fdb7",
+    "meeting_intelligence\\auditor.py": "102ddcdb03562e40b6968313756a34299be00b1a7639c17d4e4c24de07608f4a",
+    "meeting_intelligence\\completeness.py": "491798492425c80065dff8f320a152ba0ec5714303ab741800cd858b8885e292",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\extractor.py": "0cb2c5b421ff299ddcd8560f3b85195a34c97077658acac04d48b56ae6d4817b",
+    "meeting_intelligence\\information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+    "meeting_intelligence\\llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence\\models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "39bc7b406f3daf3a9f5dad6439d4ba243c10728dbefc2c9c91ce6df25ab23eb3",
+    "meeting_intelligence\\resolver.py": "a7ee220b177dd9d27ed1b65fc62cd172be975fa792e053a2f272531f5f956fc3",
+    "meeting_intelligence\\verifier.py": "60e97a96319d2dd2159419be4fe6f93d6c04deb9e1eee5d7c5dd7271dacea9a7"
+  },
+  "call_interval_s": 45,
+  "structured_outputs": "auto",
+  "max_retries": 0,
+  "generation_settings": {
+    "max_completion_tokens": 2560,
+    "audit_max_completion_tokens": 1024,
+    "temperature": 0.6,
+    "reasoning_effort": "low"
+  },
+  "requested_cases": [
+    "D01"
+  ],
+  "complete": false,
+  "cases": [
+    {
+      "id": "D01",
+      "split": "development",
+      "result": "ERROR",
+      "error": "Remote end closed connection without response",
+      "audit_completed": false,
+      "duration_s": 75.43,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 2224,
+        "completion_tokens": 790,
+        "total_tokens": 3014
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "storage_choice",
+                "topic": "Lưu tệp đính kèm",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "lưu trên ổ đĩa của máy chủ ứng dụng",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_choice",
+                "topic": "Lưu tệp đính kèm",
+                "kind": "decision",
+                "event_type": "counterproposal",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "dùng object storage",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_choice",
+                "topic": "Lưu tệp đính kèm",
+                "kind": "decision",
+                "event_type": "withdrawal",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "lưu trên ổ đĩa của máy chủ ứng dụng",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_choice",
+                "topic": "Lưu tệp đính kèm",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "dùng object storage",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_choice",
+                "topic": "Lưu tệp đính kèm",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L006"
+                ],
+                "value": "dùng object storage cho bản thử nghiệm",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 3.141486199980136
+        },
+        {
+          "error": "Remote end closed connection without response",
+          "elapsed_s": 72.26724199997261
+        }
+      ]
+    }
+  ]
+}

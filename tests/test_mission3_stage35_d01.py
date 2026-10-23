@@ -68,6 +68,25 @@ class D01DeferredVendorRegressionTests(unittest.TestCase):
         self.assertEqual({x.event_type for x in events},{"agreement","unresolved"})
         self.assertTrue(keys)
 
+    def test_agreed_storage_content_mentions_vendor_but_vendor_remains_open(self):
+        lines=parse_transcript("L001 | An | Chốt object storage cho bản thử nghiệm. Nhà cung cấp để cuộc họp sau chọn.")
+        e=Event(kind="decision",event_type="agreement",issue_key="storage_choice",
+                topic="lưu tệp đính kèm bằng object storage",
+                source_ids=["L001"],
+                value="Dùng object storage cho bản thử nghiệm; nhà cung cấp để cuộc họp sau chọn")
+        events,keys=recover_explicit_omissions([e],lines,[])
+        self.assertEqual(len(events),2)
+        self.assertEqual(sorted(x.event_type for x in events),["agreement","unresolved"])
+        self.assertEqual(len(keys),1)
+
+    def test_same_vendor_target_already_agreed_not_auto_reopened(self):
+        lines=parse_transcript("L001 | An | Chốt nhà cung cấp B. Nhà cung cấp để cuộc họp sau chọn.")
+        e=Event(kind="decision",event_type="agreement",issue_key="vendor",
+                topic="nhà cung cấp",source_ids=["L001"],value="Chốt nhà cung cấp B")
+        events,keys=recover_explicit_omissions([e],lines,[])
+        self.assertEqual(len(events),1)
+        self.assertFalse(keys)
+
     def test_dont_recover_if_vendor_already_explicitly_open(self):
         lines=parse_transcript("L001 | Bình | Nhà cung cấp để cuộc họp sau chọn.")
         e=Event(kind="decision",event_type="unresolved",issue_key="vendor",

@@ -177,12 +177,25 @@ def recover_explicit_omissions(events: list[Event], utterances: list[Utterance],
                 continue
             subject=match.group('subject').strip()
             topic_terms=_tokens(subject)
-            same_issue=[e for e in result if e.kind=='decision'
-                and len(topic_terms & _tokens(' '.join([e.topic,e.value or ''])))>=2]
+            # An agreed STORAGE decision can mention that the VENDOR is deferred
+            # in its explanatory value. That reference does NOT make vendor chosen.
+            # Match the independent decision target, not incidental words inside
+            # another target's evidence/content.
+            def target_is_same(e: Event) -> bool:
+                if e.kind != 'decision':
+                    return False
+                topic = _tokens(e.topic)
+                if topic_terms and topic_terms.issubset(topic):
+                    return True
+                if e.event_type == 'unresolved':
+                    return bool(topic_terms and topic_terms.issubset(
+                        _tokens(' '.join([e.topic,e.value or '']))))
+                return False
+            same_issue=[e for e in result if target_is_same(e)]
             if any(e.event_type=='unresolved' for e in same_issue):
                 continue
             if any(e.event_type in {'agreement','conditional_agreement'} for e in same_issue):
-                warnings.append('Nguồn có lựa chọn tương tự từng chốt; giữ để người dùng đối chiếu: '+u.id)
+                warnings.append('Cùng đối tượng lựa chọn đã được chốt; cần đối chiếu nguồn: '+u.id)
                 continue
             key='m3_recovered_deferred_open_'+u.id
             if key in recovered:
