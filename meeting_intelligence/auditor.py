@@ -108,7 +108,7 @@ def _mistakes_cancel_as_owner_removal(item: AuditFinding, records: list[ResultRe
         return False
     explanation = item.explanation.casefold()
     if not ('owner' in explanation and
-            re.search(r'\b(?:remove|delete|clear|null|xóa|bỏ)\b', explanation)):
+            re.search(r'\b(?:remove|delete|clear|cleared|clearing|null|xóa|bỏ)\b', explanation)):
         return False
     matching = [r for r in records if r.issue_key == item.issue_key and
                 r.kind == 'action' and r.meeting_status == 'cancelled' and r.owner and
@@ -341,6 +341,43 @@ def _mistakes_reopened_decision_for_missing_old_condition(
     return True
 
 
+def _mistakes_existing_cancel_or_cleared_due_for_missing_event(
+    item: AuditFinding, records: list[ResultRecord],
+    utterances: list[Utterance]
+) -> bool:
+    """Suppress a missing-cancel/clear audit ONLY if source-attested final state proves it.
+
+    The source cited by the auditor must already appear in action history,
+    and the cancelled record must reflect that event. A newly mentioned
+    cancellation absent from history is NOT suppressed.
+    """
+    if item.category != 'missing_issue' or item.kind != 'action' or not item.issue_key:
+        return False
+    rows = [r for r in records if r.issue_key == item.issue_key and
+            r.kind == 'action' and r.meeting_status == 'cancelled']
+    if len(rows) != 1:
+        return False
+    row = rows[0]
+    source_ids = set(item.source_ids)
+    if not source_ids or any(s not in {u.id for u in utterances} for s in source_ids):
+        return False
+    reason = item.explanation.casefold()
+    events = [h for h in row.history if source_ids.issubset(set(h.source_ids))]
+    if not events:
+        return False
+    if ('cancel' in reason or 'hủy' in reason) and any(
+        h.event_type == 'action_cancelled' for h in events
+    ):
+        return True
+    if ('deadline' in reason or 'due date' in reason or 'hạn' in reason) and row.due_raw is None and any(
+        h.event_type in {'deadline_change','action_cancelled'} and
+        ('due_raw' in h.clear_fields or h.event_type == 'action_cancelled')
+        for h in events
+    ):
+        return True
+    return False
+
+
 def _mistakes_cancelled_task_history_for_missing_assignment(
     item: AuditFinding, records: list[ResultRecord],
     utterances: list[Utterance],
@@ -456,6 +493,9 @@ def audit_events(utterances: list[Utterance], events: list[Event],
             continue
         if _mistakes_recorded_assignment_for_missing_issue_update(item, records, utterances):
             skipped.append('C2: owner và hạn đã ghi ở action được giao, không phải cập nhật của issue')
+            continue
+        if _mistakes_existing_cancel_or_cleared_due_for_missing_event(item, records, utterances):
+            skipped.append('Hủy việc/xóa hạn đã có trong history và trạng thái cuối; audit báo thiếu sai')
             continue
         if _mistakes_cancelled_task_history_for_missing_assignment(item, records, utterances):
             skipped.append('Assignment đã nằm trong history của action bị hủy; không tạo thêm action trùng')
