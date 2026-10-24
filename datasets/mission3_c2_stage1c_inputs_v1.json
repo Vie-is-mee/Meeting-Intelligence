@@ -1,0 +1,27 @@
+{
+  "dataset_id": "mission3_c2_stage1c_inputs_v1",
+  "purpose": "Source-frozen C2 provider inputs without gold labels",
+  "original_dataset": "datasets/mission3_c2_v1.json",
+  "cases": [
+    {
+      "id": "C2-01",
+      "split": "development",
+      "transcript": "Minh: Cái này team mình xử lý nhé."
+    },
+    {
+      "id": "C2-02",
+      "split": "development",
+      "transcript": "Lan: Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.\nMinh: Cái này team mình xử lý nhé.\nChi: Hay để thứ Sáu xử lý xong được không?\nMinh: Chưa chốt hạn, cũng chưa phân công ai."
+    },
+    {
+      "id": "C2-03",
+      "split": "development",
+      "transcript": "Lan: Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.\nMinh: Cái này team mình xử lý nhé.\nHuy: Tôi nhận xử lý lỗi thanh toán, hoàn thành trước thứ Sáu.\nMinh: Xác nhận Huy xử lý lỗi thanh toán trước thứ Sáu."
+    },
+    {
+      "id": "C2-04",
+      "split": "development",
+      "transcript": "Minh: Giao Lan kiểm thử thư viện X vào chiều mai.\nLan: Tôi nhận việc kiểm thử thư viện X.\nMinh: Hủy việc kiểm thử thư viện X vì giấy phép không phù hợp, bỏ hạn chiều mai."
+    }
+  ]
+}

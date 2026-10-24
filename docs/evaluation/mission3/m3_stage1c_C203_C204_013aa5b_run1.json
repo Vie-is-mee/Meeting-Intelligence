@@ -1,0 +1,413 @@
+{
+  "created_utc": "2026-10-24T06:52:08.704698+00:00",
+  "model": "openai/gpt-oss-120b",
+  "engine": "llm_api",
+  "audit": true,
+  "sha256": {
+    "datasets\\mission3_c2_stage1c_inputs_v1.json": "b30794f8721d303d1800e47f0bcbd94d710c750400c270b855d182fa7b79d5af",
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\ambiguity.py": "260b9f4961d78ea8ff5d42ea9ca8a9fb8646b2a9fdf3a8160f06b2c00f41fdb7",
+    "meeting_intelligence\\auditor.py": "102ddcdb03562e40b6968313756a34299be00b1a7639c17d4e4c24de07608f4a",
+    "meeting_intelligence\\completeness.py": "491798492425c80065dff8f320a152ba0ec5714303ab741800cd858b8885e292",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\extractor.py": "d96fee48045d51c262250b9236a84af4352287fd7378cafbd8a15d0d776cf14a",
+    "meeting_intelligence\\information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+    "meeting_intelligence\\llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence\\models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "84c3906fc295f0d27d328150952734f6ae6f270af53acf1e02f72c8b58816560",
+    "meeting_intelligence\\resolver.py": "a7ee220b177dd9d27ed1b65fc62cd172be975fa792e053a2f272531f5f956fc3",
+    "meeting_intelligence\\topic_resolution.py": "625acd7da633752ede9c046a73cbed49a8029e1f9be30cff67604bf876316f9a",
+    "meeting_intelligence\\verifier.py": "60e97a96319d2dd2159419be4fe6f93d6c04deb9e1eee5d7c5dd7271dacea9a7"
+  },
+  "call_interval_s": 35.0,
+  "structured_outputs": "auto",
+  "max_retries": 0,
+  "generation_settings": {
+    "max_completion_tokens": 2560,
+    "audit_max_completion_tokens": 1024,
+    "temperature": 0.6,
+    "reasoning_effort": "low"
+  },
+  "requested_cases": [
+    "C2-03",
+    "C2-04"
+  ],
+  "complete": true,
+  "cases": [
+    {
+      "id": "C2-03",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Cái này team mình xử lý nhé.",
+            "speaker": "Minh",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Tôi nhận xử lý lỗi thanh toán, hoàn thành trước thứ Sáu.",
+            "speaker": "Huy",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Xác nhận Huy xử lý lỗi thanh toán trước thứ Sáu.",
+            "speaker": "Minh",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "payment_double_charge",
+            "topic": "lỗi thanh toán",
+            "kind": "issue",
+            "content": "Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.",
+            "meeting_status": "open",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "payment_double_charge",
+                "topic": "lỗi thanh toán",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "payment_double_charge",
+            "topic": "xử lý lỗi thanh toán",
+            "kind": "action",
+            "content": "Xử lý lỗi thanh toán, hoàn thành trước thứ Sáu.",
+            "meeting_status": "assigned",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": "Huy",
+            "supporter": null,
+            "due_raw": "trước thứ Sáu",
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L003"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L003"
+              ],
+              "content": [
+                "L003"
+              ],
+              "owner": [
+                "L003"
+              ],
+              "due_raw": [
+                "L003"
+              ],
+              "information_utility": [
+                "L003"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "payment_double_charge",
+                "topic": "xử lý lỗi thanh toán",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "Xử lý lỗi thanh toán, hoàn thành trước thứ Sáu.",
+                "owner": "Huy",
+                "supporter": null,
+                "due_raw": "trước thứ Sáu",
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "C2: ý định tập thể L002 đã có action cá nhân xác nhận sau đó: payment_double_charge; không tạo action trùng",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "audit_completed": true,
+      "duration_s": 39.37,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 3996,
+        "completion_tokens": 546,
+        "total_tokens": 4542
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "payment_double_charge",
+                "topic": "lỗi thanh toán",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "payment_double_charge",
+                "topic": "xử lý lỗi thanh toán",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "Xử lý lỗi thanh toán, hoàn thành trước thứ Sáu.",
+                "owner": "Huy",
+                "supporter": null,
+                "due_raw": "trước thứ Sáu",
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 1.6799841999891214
+        },
+        {
+          "response": {
+            "findings": []
+          },
+          "elapsed_s": 37.57017479999922
+        }
+      ]
+    },
+    {
+      "id": "C2-04",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Giao Lan kiểm thử thư viện X vào chiều mai.",
+            "speaker": "Minh",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Tôi nhận việc kiểm thử thư viện X.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Hủy việc kiểm thử thư viện X vì giấy phép không phù hợp, bỏ hạn chiều mai.",
+            "speaker": "Minh",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "test_libX",
+            "topic": "kiểm thử thư viện X",
+            "kind": "action",
+            "content": "kiểm thử thư viện X",
+            "meeting_status": "cancelled",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "historical_context",
+            "information_utility_note": "Giữ trạng thái/lịch sử; không phải cam kết cần thực hiện mới.",
+            "owner": "Lan",
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001",
+              "L003"
+            ],
+            "counter_evidence_ids": [
+              "L003"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L003"
+              ],
+              "content": [
+                "L001"
+              ],
+              "owner": [
+                "L001"
+              ],
+              "due_raw": [
+                "L003"
+              ],
+              "information_utility": [
+                "L001",
+                "L003"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Câu hủy ghi rõ bỏ hạn, LLM thiếu clear_fields; bỏ hạn cũ theo câu nguồn"
+            ],
+            "history": [
+              {
+                "issue_key": "test_libX",
+                "topic": "kiểm thử thư viện X",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "kiểm thử thư viện X",
+                "owner": "Lan",
+                "supporter": null,
+                "due_raw": "chiều mai",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "test_libX",
+                "topic": "kiểm thử thư viện X",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": [
+                  "due_raw"
+                ]
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "audit_completed": true,
+      "duration_s": 68.03,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 3822,
+        "completion_tokens": 536,
+        "total_tokens": 4358
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "test_libX",
+                "topic": "kiểm thử thư viện X",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "kiểm thử thư viện X",
+                "owner": "Lan",
+                "supporter": null,
+                "due_raw": "chiều mai",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "test_libX",
+                "topic": "kiểm thử thư viện X",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 33.73952130001271
+        },
+        {
+          "response": {
+            "findings": []
+          },
+          "elapsed_s": 34.224688499991316
+        }
+      ]
+    }
+  ]
+}

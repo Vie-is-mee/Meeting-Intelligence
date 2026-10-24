@@ -1,0 +1,451 @@
+{
+  "created_utc": "2026-10-24T06:49:51.417110+00:00",
+  "model": "openai/gpt-oss-120b",
+  "engine": "llm_api",
+  "audit": true,
+  "sha256": {
+    "datasets\\mission3_c2_stage1c_inputs_v1.json": "b30794f8721d303d1800e47f0bcbd94d710c750400c270b855d182fa7b79d5af",
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\ambiguity.py": "260b9f4961d78ea8ff5d42ea9ca8a9fb8646b2a9fdf3a8160f06b2c00f41fdb7",
+    "meeting_intelligence\\auditor.py": "102ddcdb03562e40b6968313756a34299be00b1a7639c17d4e4c24de07608f4a",
+    "meeting_intelligence\\completeness.py": "491798492425c80065dff8f320a152ba0ec5714303ab741800cd858b8885e292",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\extractor.py": "d96fee48045d51c262250b9236a84af4352287fd7378cafbd8a15d0d776cf14a",
+    "meeting_intelligence\\information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+    "meeting_intelligence\\llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence\\models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "84c3906fc295f0d27d328150952734f6ae6f270af53acf1e02f72c8b58816560",
+    "meeting_intelligence\\resolver.py": "a7ee220b177dd9d27ed1b65fc62cd172be975fa792e053a2f272531f5f956fc3",
+    "meeting_intelligence\\topic_resolution.py": "625acd7da633752ede9c046a73cbed49a8029e1f9be30cff67604bf876316f9a",
+    "meeting_intelligence\\verifier.py": "60e97a96319d2dd2159419be4fe6f93d6c04deb9e1eee5d7c5dd7271dacea9a7"
+  },
+  "call_interval_s": 35.0,
+  "structured_outputs": "auto",
+  "max_retries": 0,
+  "generation_settings": {
+    "max_completion_tokens": 2560,
+    "audit_max_completion_tokens": 1024,
+    "temperature": 0.6,
+    "reasoning_effort": "low"
+  },
+  "requested_cases": [
+    "C2-01",
+    "C2-02"
+  ],
+  "complete": true,
+  "cases": [
+    {
+      "id": "C2-01",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Cái này team mình xử lý nhé.",
+            "speaker": "Minh",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "m3_c2_collective_l001",
+            "topic": "Cam kết tập thể chưa phân công",
+            "kind": "action",
+            "content": "Cái này team mình xử lý nhé.",
+            "meeting_status": "unverified",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "needs_verification",
+            "information_utility_note": "Thông tin nghiệp vụ chưa đủ căn cứ; cần đối chiếu câu nguồn.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "content": [
+                "L001"
+              ],
+              "meeting_status": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "C2: phát biểu có ý định xử lý nhưng chưa xác định việc cụ thể / người phụ trách / hạn; cần người dùng làm rõ trước khi giao."
+            ],
+            "history": []
+          }
+        ],
+        "warnings": [
+          "C2: giữ ý định tập thể L001 ở trạng thái cần làm rõ; không tự tạo owner/deadline",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": []
+      },
+      "audit_completed": true,
+      "duration_s": 35.93,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 3645,
+        "completion_tokens": 123,
+        "total_tokens": 3768
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": []
+          },
+          "elapsed_s": 1.1506198000279255
+        },
+        {
+          "response": {
+            "findings": []
+          },
+          "elapsed_s": 34.752033600001596
+        }
+      ]
+    },
+    {
+      "id": "C2-02",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Cái này team mình xử lý nhé.",
+            "speaker": "Minh",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Hay để thứ Sáu xử lý xong được không?",
+            "speaker": "Chi",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Chưa chốt hạn, cũng chưa phân công ai.",
+            "speaker": "Minh",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "error_payment_duplicate",
+            "topic": "báo lỗi thanh toán trừ tiền hai lần",
+            "kind": "issue",
+            "content": "Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.",
+            "meeting_status": "open",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "error_payment_duplicate",
+                "topic": "báo lỗi thanh toán trừ tiền hai lần",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "deadline_error_payment",
+            "topic": "hạn xử lý lỗi thanh toán",
+            "kind": "request",
+            "content": "Xử lý xong vào thứ Sáu.",
+            "meeting_status": "recorded",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L003"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L003"
+              ],
+              "content": [
+                "L003"
+              ],
+              "information_utility": [
+                "L003"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "deadline_error_payment",
+                "topic": "hạn xử lý lỗi thanh toán",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "Xử lý xong vào thứ Sáu.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "deadline_error_payment",
+            "topic": "hạn xử lý lỗi thanh toán",
+            "kind": "decision",
+            "content": "Chưa chốt hạn xử lý.",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L004"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L004"
+              ],
+              "content": [
+                "L004"
+              ],
+              "execution_status": [
+                "L004"
+              ],
+              "information_utility": [
+                "L004"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "deadline_error_payment",
+                "topic": "hạn xử lý lỗi thanh toán",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "Chưa chốt hạn xử lý.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "m3_c2_collective_l002",
+            "topic": "Cam kết tập thể chưa phân công",
+            "kind": "action",
+            "content": "Cái này team mình xử lý nhé.",
+            "meeting_status": "unverified",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "needs_verification",
+            "information_utility_note": "Thông tin nghiệp vụ chưa đủ căn cứ; cần đối chiếu câu nguồn.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L002"
+            ],
+            "counter_evidence_ids": [
+              "L002"
+            ],
+            "field_evidence_ids": {
+              "content": [
+                "L002"
+              ],
+              "meeting_status": [
+                "L002"
+              ],
+              "information_utility": [
+                "L002"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "C2: phát biểu có ý định xử lý nhưng chưa xác định việc cụ thể / người phụ trách / hạn; cần người dùng làm rõ trước khi giao.",
+              "Kiểm tra lại unsupported_fact: The record classifies the utterance as an actionable \"action\" record, but the transcript only shows a collective intent statement without any specific task, assignee, or deadline, making the factual basis for an action unsupported. (nguồn: L002)"
+            ],
+            "history": []
+          }
+        ],
+        "warnings": [
+          "C2: giữ ý định tập thể L002 ở trạng thái cần làm rõ; không tự tạo owner/deadline",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": [
+          {
+            "issue_key": "m3_c2_collective_l002",
+            "kind": "action",
+            "category": "unsupported_fact",
+            "severity": "medium",
+            "source_ids": [
+              "L002"
+            ],
+            "source_quote": "Cái này team mình xử lý nhé.",
+            "explanation": "The record classifies the utterance as an actionable \"action\" record, but the transcript only shows a collective intent statement without any specific task, assignee, or deadline, making the factual basis for an action unsupported."
+          }
+        ]
+      },
+      "audit_completed": true,
+      "duration_s": 70.56,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 4246,
+        "completion_tokens": 899,
+        "total_tokens": 5145
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "error_payment_duplicate",
+                "topic": "báo lỗi thanh toán trừ tiền hai lần",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "Khách hàng báo lỗi thanh toán bị trừ tiền hai lần.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "deadline_error_payment",
+                "topic": "hạn xử lý lỗi thanh toán",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "Xử lý xong vào thứ Sáu.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "deadline_error_payment",
+                "topic": "hạn xử lý lỗi thanh toán",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "Chưa chốt hạn xử lý.",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 36.06198930001119
+        },
+        {
+          "response": {
+            "findings": [
+              {
+                "issue_key": "m3_c2_collective_l002",
+                "kind": "action",
+                "category": "unsupported_fact",
+                "severity": "medium",
+                "source_ids": [
+                  "L002"
+                ],
+                "source_quote": "Cái này team mình xử lý nhé.",
+                "explanation": "The record classifies the utterance as an actionable \"action\" record, but the transcript only shows a collective intent statement without any specific task, assignee, or deadline, making the factual basis for an action unsupported."
+              }
+            ]
+          },
+          "elapsed_s": 34.47797740000533
+        }
+      ]
+    }
+  ]
+}

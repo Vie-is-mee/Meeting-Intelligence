@@ -1,0 +1,383 @@
+{
+  "created_utc": "2026-10-24T06:48:42.416745+00:00",
+  "model": "openai/gpt-oss-120b",
+  "engine": "llm_api",
+  "audit": true,
+  "sha256": {
+    "docs\\evaluation\\final_regression_input_v2.json": "fd20a7b307307e4df785e022c8f236079b42b6d43014770f3116194d1a021d21",
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\ambiguity.py": "260b9f4961d78ea8ff5d42ea9ca8a9fb8646b2a9fdf3a8160f06b2c00f41fdb7",
+    "meeting_intelligence\\auditor.py": "102ddcdb03562e40b6968313756a34299be00b1a7639c17d4e4c24de07608f4a",
+    "meeting_intelligence\\completeness.py": "491798492425c80065dff8f320a152ba0ec5714303ab741800cd858b8885e292",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\extractor.py": "d96fee48045d51c262250b9236a84af4352287fd7378cafbd8a15d0d776cf14a",
+    "meeting_intelligence\\information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+    "meeting_intelligence\\llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence\\models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "84c3906fc295f0d27d328150952734f6ae6f270af53acf1e02f72c8b58816560",
+    "meeting_intelligence\\resolver.py": "a7ee220b177dd9d27ed1b65fc62cd172be975fa792e053a2f272531f5f956fc3",
+    "meeting_intelligence\\topic_resolution.py": "625acd7da633752ede9c046a73cbed49a8029e1f9be30cff67604bf876316f9a",
+    "meeting_intelligence\\verifier.py": "60e97a96319d2dd2159419be4fe6f93d6c04deb9e1eee5d7c5dd7271dacea9a7"
+  },
+  "call_interval_s": 35.0,
+  "structured_outputs": "auto",
+  "max_retries": 0,
+  "generation_settings": {
+    "max_completion_tokens": 2560,
+    "audit_max_completion_tokens": 1024,
+    "temperature": 0.6,
+    "reasoning_effort": "low"
+  },
+  "requested_cases": [
+    "LC03"
+  ],
+  "complete": true,
+  "cases": [
+    {
+      "id": "LC03",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Chốt chỉ thử luồng thanh toán mới ở nhóm nội bộ.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Yêu cầu có nút quay lại bước trước.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Chi viết hướng dẫn cho nhóm nội bộ, hạn cuối ngày mai.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Tôi nhận viết hướng dẫn.",
+            "speaker": "Chi",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Hủy việc viết hướng dẫn, bỏ hạn đã giao. Phạm vi thử nội bộ và yêu cầu nút quay lại vẫn giữ.",
+            "speaker": "An",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "payment_flow_test",
+            "topic": "luồng thanh toán",
+            "kind": "decision",
+            "content": "chỉ thử luồng thanh toán mới ở nhóm nội bộ",
+            "meeting_status": "agreed",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L001"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L001"
+              ],
+              "content": [
+                "L001"
+              ],
+              "execution_status": [
+                "L001"
+              ],
+              "condition": [
+                "L001"
+              ],
+              "information_utility": [
+                "L001"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "payment_flow_test",
+                "topic": "luồng thanh toán",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "chỉ thử luồng thanh toán mới ở nhóm nội bộ",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "back_button",
+            "topic": "yêu cầu nút quay lại",
+            "kind": "request",
+            "content": "có nút quay lại bước trước",
+            "meeting_status": "recorded",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L002"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L002"
+              ],
+              "content": [
+                "L002"
+              ],
+              "information_utility": [
+                "L002"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "back_button",
+                "topic": "yêu cầu nút quay lại",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "có nút quay lại bước trước",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "write_guide",
+            "topic": "viết hướng dẫn",
+            "kind": "action",
+            "content": "viết hướng dẫn cho nhóm nội bộ",
+            "meeting_status": "cancelled",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "historical_context",
+            "information_utility_note": "Giữ trạng thái/lịch sử; không phải cam kết cần thực hiện mới.",
+            "owner": "Chi",
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L003",
+              "L005"
+            ],
+            "counter_evidence_ids": [
+              "L005"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L005"
+              ],
+              "content": [
+                "L003"
+              ],
+              "owner": [
+                "L003"
+              ],
+              "due_raw": [
+                "L005"
+              ],
+              "information_utility": [
+                "L003",
+                "L005"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Câu hủy ghi rõ bỏ hạn, LLM thiếu clear_fields; bỏ hạn cũ theo câu nguồn",
+              "Kiểm tra lại missing_late_change: The cancellation statement explicitly removes the previously assigned deadline, but the record still retains the original owner \"Chi\" without indicating the owner was cleared or reassigned, resulting in a missing update to the owner field. (nguồn: L005)"
+            ],
+            "history": [
+              {
+                "issue_key": "write_guide",
+                "topic": "viết hướng dẫn",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "viết hướng dẫn cho nhóm nội bộ",
+                "owner": "Chi",
+                "supporter": null,
+                "due_raw": "ngày mai",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "write_guide",
+                "topic": "viết hướng dẫn",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": [
+                  "due_raw"
+                ]
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": [
+          {
+            "issue_key": "write_guide",
+            "kind": "action",
+            "category": "missing_late_change",
+            "severity": "medium",
+            "source_ids": [
+              "L005"
+            ],
+            "source_quote": "Hủy việc viết hướng dẫn, bỏ hạn đã giao. Phạm vi thử nội bộ và yêu cầu nút quay lại vẫn giữ.",
+            "explanation": "The cancellation statement explicitly removes the previously assigned deadline, but the record still retains the original owner \"Chi\" without indicating the owner was cleared or reassigned, resulting in a missing update to the owner field."
+          }
+        ]
+      },
+      "audit_completed": true,
+      "duration_s": 39.1,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 4234,
+        "completion_tokens": 1041,
+        "total_tokens": 5275
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "payment_flow_test",
+                "topic": "luồng thanh toán",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L001"
+                ],
+                "value": "chỉ thử luồng thanh toán mới ở nhóm nội bộ",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "back_button",
+                "topic": "yêu cầu nút quay lại",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "có nút quay lại bước trước",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "write_guide",
+                "topic": "viết hướng dẫn",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L003"
+                ],
+                "value": "viết hướng dẫn cho nhóm nội bộ",
+                "owner": "Chi",
+                "supporter": null,
+                "due_raw": "ngày mai",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "write_guide",
+                "topic": "viết hướng dẫn",
+                "kind": "action",
+                "event_type": "action_cancelled",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 3.088198299985379
+        },
+        {
+          "response": {
+            "findings": [
+              {
+                "issue_key": "write_guide",
+                "kind": "action",
+                "category": "missing_late_change",
+                "severity": "medium",
+                "source_ids": [
+                  "L005"
+                ],
+                "source_quote": "Hủy việc viết hướng dẫn, bỏ hạn đã giao. Phạm vi thử nội bộ và yêu cầu nút quay lại vẫn giữ.",
+                "explanation": "The cancellation statement explicitly removes the previously assigned deadline, but the record still retains the original owner \"Chi\" without indicating the owner was cleared or reassigned, resulting in a missing update to the owner field."
+              }
+            ]
+          },
+          "elapsed_s": 35.930300100008026
+        }
+      ]
+    }
+  ]
+}
