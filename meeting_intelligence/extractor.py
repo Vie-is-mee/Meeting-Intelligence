@@ -27,13 +27,13 @@ Task identity and responsibility:
 - Keep the lifecycle of accepted work in kind action. Stopping/cancelling that work and confirming "tôi không tiếp tục" are action_cancelled or redundant confirmation, not a separate decision/withdrawal. Repeated cancellation confirmation must not create a new record.
 - Do not collapse independent requirements or business choices into that action: cancelling an implementation task does not withdraw the customer's requirement or reopen an independently agreed scope. Retain separate request/decision records when their source states distinct facts, especially when explicitly reaffirmed.
 - "X không còn là người phụ trách" does NOT assign the task to X. A confirmation that ownership is unchanged does not create another assignment.
-- "Hủy / không tiếp tục việc đã giao" is action_cancelled on that task key, not decision/withdrawal. Cancellation alone does not explicitly remove the historical owner.
+- "Hủy / không tiếp tục việc đã giao" is action_cancelled on that task key, not decision/withdrawal. Cancellation alone does not explicitly remove the historical owner.\n- "Tạm dừng / tạm hoãn việc X" is action_paused for that SAME task key, not a permanent cancellation and not merely deadline_change. Keep historical owner and task; if the pause also explicitly removes a date ("hủy deadline"), add due_raw to clear_fields. A hypothetical "nếu tạm dừng" or "không tạm dừng" is NOT a pause. A later explicit assignment/acceptance can resume the work.
 - value must describe the task/content, not just the change of owner or deadline. deadline_change has value null and only updates due_raw/clear_fields. Never invent an ISO date, owner, deadline or authority.
 - Relative timing such as "trước lần thử tiếp theo" belongs in due_raw even on a request without an owner. A time to check availability is not a deadline. Null means no update; explicitly removed fields use clear_fields.
 
 Allowed kind/event_type pairs:
 decision: proposal, counterproposal, agreement, conditional_agreement, reopen, unresolved, withdrawal, execution_blocked.
-action: assignment, reassignment, deadline_change, action_cancelled.
+action: assignment, reassignment, deadline_change, action_paused, action_cancelled.
 issue: issue_reported, issue_reported_resolved.
 request: request_made, request_changed, request_withdrawn.
 feedback: feedback_given.

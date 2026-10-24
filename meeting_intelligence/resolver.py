@@ -48,6 +48,40 @@ def _explicit_cancel_due_release(event: Event, source: dict[str, Utterance]) -> 
     return False
 
 
+def _source_grounded_task_pause(event: Event, record: ResultRecord,
+                                source: dict[str, Utterance]) -> bool:
+    """A literal, nonhypothetical pause on the SAME previously assigned task.
+
+    Never infer this lifecycle event from deadline removal alone. Require a
+    specific task phrase after 'tạm dừng/tạm hoãn' to overlap the task record.
+    """
+    stop={"tạm","dừng","hoãn","đình","chỉ","việc","công","phần","này",
+          "đó","chuẩn","bị","sẽ","được","cho","để","của","làm","hạn",
+          "deadline","hủy","bỏ","thứ","ngày","sau","trước","mình",
+          "và","cần","tiếp","tục","triển","khai","xử","lý"}
+    def tokens(text):
+        return {word for word in re.findall(r"\w+",text.casefold())
+                if len(word)>1 and word not in stop}
+    task_terms=tokens(" ".join([record.content or "",record.topic]))
+    if len(task_terms)<2:
+        return False
+    if not event.source_ids or any(s not in source for s in event.source_ids):
+        return False
+    for sid in event.source_ids:
+        statement=source[sid].text.casefold()
+        for match in re.finditer(
+            r"\b(?:tạm\s+dừng|tạm\s+hoãn|đình\s+chỉ)"
+            r"\s+(?:(?:công\s+việc|phần\s+việc|việc)\s+)?"
+            r"(?P<task>[^,.;!?\n]{3,120})",statement
+        ):
+            prefix=statement[max(0,match.start()-23):match.start()]
+            if re.search(r"\b(?:nếu|không|chưa|đừng|giả\s+sử|ví\s+dụ|liệu)\b",prefix):
+                continue
+            if len(task_terms & tokens(match.group("task")))>=2:
+                return True
+    return False
+
+
 def resolve_events(events: list[Event], utterances: list[Utterance]) -> list[ResultRecord]:
     position = {u.id: u.order for u in utterances}
     sources = {u.id: u for u in utterances}
@@ -63,7 +97,24 @@ def resolve_events(events: list[Event], utterances: list[Utterance]) -> list[Res
                               content=None, meeting_status="unverified")
         for event in history:
             typ = event.event_type
-            if (kind == 'action' and typ == 'action_cancelled'
+            if (kind == 'action' and record.meeting_status in {'assigned','paused'}
+                    and typ in {'deadline_change','action_paused'}):
+                # A real Groq event for LONG01 was mistyped deadline_change:
+                # L018 also says "tạm dừng việc chuẩn bị bảng giá".
+                grounded_pause = _source_grounded_task_pause(event, record, sources)
+                if grounded_pause and typ == 'deadline_change':
+                    event = event.model_copy(update={'event_type':'action_paused'})
+                    typ = 'action_paused'
+                elif not grounded_pause and typ == 'action_paused':
+                    # A claimed pause with no matching affirmative source cannot
+                    # silently suspend another task. Keep any actual due update.
+                    event = event.model_copy(update={'event_type':'deadline_change'})
+                    typ = 'deadline_change'
+                    record.warnings.append(
+                        'LLM nêu tạm dừng nhưng câu nguồn không chứng minh đúng việc; '
+                        'chỉ giữ cập nhật hạn và yêu cầu người dùng kiểm tra')
+                    record.review_status = 'needs_review'
+            if (kind == 'action' and typ in {'action_cancelled','action_paused'}
                     and 'owner' in event.clear_fields
                     and not _explicit_cancel_owner_release(event, sources)):
                 # Model clear_fields may misread 'bỏ hạn' as 'bỏ người nhận'.
@@ -72,7 +123,7 @@ def resolve_events(events: list[Event], utterances: list[Utterance]) -> list[Res
                 record.warnings.append(
                     'Câu hủy không ghi rút người phụ trách; giữ owner lịch sử và yêu cầu rà soát')
                 record.review_status = 'needs_review'
-            if (kind == 'action' and typ == 'action_cancelled'
+            if (kind == 'action' and typ in {'action_cancelled','action_paused'}
                     and record.due_raw is not None
                     and 'due_raw' not in event.clear_fields
                     and _explicit_cancel_due_release(event, sources)):
@@ -87,7 +138,7 @@ def resolve_events(events: list[Event], utterances: list[Utterance]) -> list[Res
             # Lifecycle changes retain historical content; their value describes
             # the change, not a replacement for that historical content.
             if event.value and typ not in {'reopen', 'withdrawal', 'execution_blocked',
-                                          'action_cancelled', 'request_withdrawn', 'deadline_change'}:
+                                          'action_cancelled', 'action_paused', 'request_withdrawn', 'deadline_change'}:
                 record.field_evidence_ids['content'] = list(event.source_ids)
             for sid in event.source_ids:
                 if sid not in record.evidence_ids:
@@ -145,8 +196,8 @@ def resolve_events(events: list[Event], utterances: list[Utterance]) -> list[Res
                 if typ in {"assignment", "reassignment", "deadline_change"}:
                     if typ != 'deadline_change':
                         record.meeting_status = "assigned"
-                        if record.execution_status == 'not_applicable':
-                            record.execution_status = 'unknown'
+                        # A new explicit acceptance can resume a paused task.
+                        record.execution_status = 'unknown'
                         if event.value: record.content = event.value
                     names = ['due_raw'] if typ == 'deadline_change' else ['owner', 'supporter', 'due_raw', 'condition']
                     if typ == 'deadline_change' and any(getattr(event, name) is not None or name in event.clear_fields
@@ -174,6 +225,22 @@ def resolve_events(events: list[Event], utterances: list[Utterance]) -> list[Res
                     if event.condition and typ != 'deadline_change':
                         record.execution_status = "pending_condition"
                         record.field_evidence_ids['execution_status'] = list(event.source_ids)
+                elif typ == 'action_paused':
+                    record.meeting_status = 'paused'
+                    record.execution_status = 'blocked'
+                    for name in event.clear_fields:
+                        setattr(record,name,None)
+                        record.field_evidence_ids[name] = list(event.source_ids)
+                    if 'due_raw' in event.clear_fields:
+                        record.due_iso = None
+                    record.field_evidence_ids['execution_status'] = list(event.source_ids)
+                    for sid in event.source_ids:
+                        if sid not in record.counter_evidence_ids:
+                            record.counter_evidence_ids.append(sid)
+                    record.review_status = 'needs_review'
+                    record.warnings.append(
+                        'Câu nguồn tạm dừng công việc: giữ người phụ trách lịch sử, '
+                        'không coi việc vẫn đang thực hiện; cần xác minh điều kiện tiếp tục')
                 elif typ == "action_cancelled":
                     record.meeting_status = "cancelled"
                     # Cancellation alone preserves historical fields. Apply
@@ -236,7 +303,7 @@ def resolve_events(events: list[Event], utterances: list[Utterance]) -> list[Res
                 record.field_evidence_ids['due_raw'] = list(dict.fromkeys(sid for _,sid in candidates))
                 record.review_status = 'needs_review'
                 record.warnings.append('Hạn tương đối được giữ nguyên văn từ nội dung và câu nguồn; cần rà soát vì LLM bỏ trống due_raw')
-        if record.meeting_status in {"reopened", "withdrawn", "conditional", "proposed", "open", "unverified"}:
+        if record.meeting_status in {"reopened", "withdrawn", "conditional", "proposed", "open", "paused", "unverified"}:
             record.review_status = "needs_review"
         if record.meeting_status == "unverified":
             record.warnings.append("Không thể xác định trạng thái cuối; cần người kiểm tra")

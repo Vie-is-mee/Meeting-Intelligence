@@ -7,13 +7,13 @@ Kind = Literal["decision", "action", "issue", "request", "feedback", "knowledge"
 EventType = Literal[
     "proposal", "counterproposal", "agreement", "conditional_agreement",
     "reopen", "unresolved", "withdrawal", "execution_blocked",
-    "assignment", "reassignment", "deadline_change", "action_cancelled",
+    "assignment", "reassignment", "deadline_change", "action_paused", "action_cancelled",
     "issue_reported", "issue_reported_resolved", "request_made", "request_changed",
     "request_withdrawn", "feedback_given", "knowledge_shared"
 ]
 MeetingStatus = Literal[
     "proposed", "agreed", "conditional", "reopened", "withdrawn",
-    "assigned", "cancelled", "open", "reported_resolved", "recorded", "unverified"
+    "assigned", "paused", "cancelled", "open", "reported_resolved", "recorded", "unverified"
 ]
 ExecutionStatus = Literal["unknown", "pending_condition", "blocked", "not_applicable"]
 ReviewStatus = Literal["unreviewed", "needs_review", "reviewed"]
@@ -49,7 +49,7 @@ class Event(BaseModel):
         allowed = {
             'decision': {'proposal','counterproposal','agreement','conditional_agreement',
                          'reopen','unresolved','withdrawal','execution_blocked'},
-            'action': {'assignment','reassignment','deadline_change','action_cancelled'},
+            'action': {'assignment','reassignment','deadline_change','action_paused','action_cancelled'},
             'issue': {'issue_reported','issue_reported_resolved'},
             'request': {'request_made','request_changed','request_withdrawn'},
             'feedback': {'feedback_given'},

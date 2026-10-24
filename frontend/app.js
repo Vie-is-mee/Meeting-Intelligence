@@ -2,8 +2,8 @@
 
 const $ = id => document.getElementById(id);
 const kinds = {decision:'Quyết định',action:'Công việc',issue:'Vướng mắc',request:'Yêu cầu',feedback:'Phản hồi',knowledge:'Tri thức'};
-const statuses = {proposed:'Chỉ mới đề xuất',agreed:'Đã thống nhất',conditional:'Chốt có điều kiện',reopened:'Chưa chốt lại',withdrawn:'Đã rút',assigned:'Đã phân công',cancelled:'Đã hủy',open:'Chưa chốt / còn mở',reported_resolved:'Được báo đã xử lý',recorded:'Đã ghi nhận',unverified:'Chưa xác định chắc chắn'};
-const events = {proposal:'Đề xuất',counterproposal:'Đề xuất thay thế',agreement:'Thống nhất',conditional_agreement:'Thống nhất có điều kiện',reopen:'Mở lại kết luận',unresolved:'Chưa chốt',withdrawal:'Rút quyết định',execution_blocked:'Chặn triển khai',assignment:'Phân công',reassignment:'Đổi người phụ trách',deadline_change:'Thay đổi thời hạn',action_cancelled:'Hủy công việc',issue_reported:'Ghi nhận vướng mắc',issue_reported_resolved:'Báo đã xử lý',request_made:'Đưa ra yêu cầu',request_changed:'Sửa yêu cầu',request_withdrawn:'Rút yêu cầu',feedback_given:'Ghi nhận phản hồi',knowledge_shared:'Chia sẻ tri thức'};
+const statuses = {proposed:'Chỉ mới đề xuất',agreed:'Đã thống nhất',conditional:'Chốt có điều kiện',reopened:'Chưa chốt lại',withdrawn:'Đã rút',assigned:'Đã phân công',paused:'Đang tạm dừng',cancelled:'Đã hủy',open:'Chưa chốt / còn mở',reported_resolved:'Được báo đã xử lý',recorded:'Đã ghi nhận',unverified:'Chưa xác định chắc chắn'};
+const events = {proposal:'Đề xuất',counterproposal:'Đề xuất thay thế',agreement:'Thống nhất',conditional_agreement:'Thống nhất có điều kiện',reopen:'Mở lại kết luận',unresolved:'Chưa chốt',withdrawal:'Rút quyết định',execution_blocked:'Chặn triển khai',assignment:'Phân công',reassignment:'Đổi người phụ trách',deadline_change:'Thay đổi thời hạn',action_paused:'Tạm dừng công việc',action_cancelled:'Hủy công việc',issue_reported:'Ghi nhận vướng mắc',issue_reported_resolved:'Báo đã xử lý',request_made:'Đưa ra yêu cầu',request_changed:'Sửa yêu cầu',request_withdrawn:'Rút yêu cầu',feedback_given:'Ghi nhận phản hồi',knowledge_shared:'Chia sẻ tri thức'};
 const fields = {content:'Nội dung',meeting_status:'Trạng thái',execution_status:'Trạng thái triển khai',owner:'Người phụ trách',supporter:'Người hỗ trợ',due_raw:'Thời hạn',condition:'Điều kiện',information_utility:'Mục đích sử dụng thông tin'};
 const utilityLabels = {current_work:'Phục vụ công việc hiện tại',reusable_candidate:'Ứng viên tri thức tái sử dụng · chưa xác minh',historical_context:'Bối cảnh lịch sử',needs_verification:'Thông tin cần xác minh'};
 let sampleData = [], result = null, selected = -1, filter = 'all', busy = false;
@@ -52,6 +52,7 @@ function statusBadge(status) {
 function recordPresentation(record) {
   const content = record.content || 'Nội dung chưa được xác định.';
   if (record.kind === 'action' && record.meeting_status === 'cancelled') return {title:'Công việc đã bị hủy',context:`Công việc trước đó: ${content}. Không còn là việc đang được giao.`};
+  if (record.kind === 'action' && record.meeting_status === 'paused') return {title:'Công việc đang tạm dừng',context:`Đã từng được giao: ${content}. Không được xem là công việc đang thực hiện; đối chiếu câu nguồn và điều kiện tiếp tục.`};
   if (record.kind !== 'decision') return {title: content, context: ''};
   switch (record.meeting_status) {
     case 'reopened': {
@@ -200,12 +201,13 @@ function renderRecords() {
     const details = node('div','record-fields');
     if (record.kind === 'action') {
       const cancelled = record.meeting_status === 'cancelled';
-      details.append(node('span','',`${cancelled ? 'Người từng phụ trách' : 'Phụ trách'}: ${record.owner || 'Chưa nêu / cần làm rõ'}`));
-      details.append(node('span','',`${cancelled ? 'Hạn còn lưu trong bản ghi' : 'Hạn'}: ${record.due_raw || (cancelled ? 'Không có' : 'Chưa nêu')}`));
+      const paused = record.meeting_status === 'paused';
+      details.append(node('span','',`${cancelled || paused ? 'Người từng phụ trách' : 'Phụ trách'}: ${record.owner || 'Chưa nêu / cần làm rõ'}`));
+      details.append(node('span','',`${cancelled || paused ? 'Hạn hiện hành' : 'Hạn'}: ${record.due_raw || (cancelled || paused ? 'Không có / đã gỡ' : 'Chưa nêu')}`));
     }
     if (record.supporter) details.append(node('span','',`Hỗ trợ: ${record.supporter}`));
     if (record.condition) details.append(node('span','',`Điều kiện: ${record.condition}`));
-    if (record.execution_status === 'blocked') details.append(node('span','', 'Chưa được triển khai'));
+    if (record.execution_status === 'blocked') details.append(node('span','', record.meeting_status === 'paused' ? 'Đang tạm dừng — cần xác minh trước khi tiếp tục' : 'Chưa được triển khai'));
     if (record.information_utility) details.append(node('span','',`Mục đích: ${utilityLabels[record.information_utility] || record.information_utility}`));
     if (details.childNodes.length) button.append(details);
     const bottom = node('div','record-bottom');
@@ -261,6 +263,7 @@ const eventRules = {
   assignment:'Cập nhật phân công và các trường được trích; trường không có dữ liệu không tự được điền.',
   reassignment:'Cập nhật phân công mới; nếu chưa rõ người nhận thì giữ để rà soát.',
   deadline_change:'Chỉ cập nhật hoặc xóa hạn, không tự đổi người hoặc kích hoạt lại việc đã hủy.',
+  action_paused:'Tạm dừng công việc theo bằng chứng nguồn; giữ người phụ trách trong lịch sử, không coi công việc còn hoạt động.',
   action_cancelled:'Đánh dấu công việc đã hủy. Giữ thông tin lịch sử trừ những trường được yêu cầu xóa rõ ràng.',
   request_made:'Ghi nhận yêu cầu; không tự biến thành công việc đã giao cho một người.',
   request_changed:'Cập nhật nội dung yêu cầu theo sự kiện được trích.',
@@ -290,7 +293,7 @@ function renderExplanation(record, utterances) {
   $('explanation-title').textContent = `${kinds[record.kind]} · ${record.topic}`;
   const execution = {unknown:'Chưa xác định',blocked:'Chưa được triển khai',pending_condition:'Chờ đáp ứng điều kiện',not_applicable:'Không áp dụng'};
   const provenance = record.field_evidence_ids || {};
-  const relevant=['content','meeting_status',...(record.information_utility?['information_utility']:[]),...(record.kind==='decision'?['execution_status','condition']:[]),...(record.kind==='action'?['owner','supporter','due_raw','condition']:[]),...(record.kind==='request'?['due_raw']:[])];
+  const relevant=['content','meeting_status',...(record.information_utility?['information_utility']:[]),...(record.kind==='decision'?['execution_status','condition']:[]),...(record.kind==='action'?['execution_status','owner','supporter','due_raw','condition']:[]),...(record.kind==='request'?['due_raw']:[])];
   const fieldRows = [...new Set([...relevant,...Object.keys(provenance)])].map(field => {
     const ids=provenance[field]||[];
     const sources = node('div'); ids.forEach(id => sources.append(sourceQuote(id,utterances)));
@@ -299,7 +302,7 @@ function renderExplanation(record, utterances) {
     const cleared=record.history.some(e=>(e.clear_fields||[]).includes(field)&&(e.source_ids||[]).some(id=>ids.includes(id)));
     const missing=cleared?'Không có giá trị hiện hành — hệ thống có ghi thao tác xóa; đối chiếu câu nguồn.':field==='condition'&&record.meeting_status==='reopened'?'Không có điều kiện hiện hành sau khi mở lại. Điều kiện cũ nằm trong lịch sử.':'Chưa ghi nhận — không tự suy đoán.';
     const value = field === 'meeting_status' ? statuses[raw] || raw : field === 'execution_status' ? execution[raw] || raw : field === 'information_utility' ? utilityLabels[raw] || raw : raw ?? missing;
-    const label = field === 'owner' && record.meeting_status === 'cancelled' ? 'Người từng phụ trách' : fields[field] || field;
+    const label = field === 'owner' && ['cancelled','paused'].includes(record.meeting_status) ? 'Người từng phụ trách' : fields[field] || field;
     return [label,String(value),sources];
   });
   $('conclusion-table').replaceChildren(makeTraceTable(['Trường kết quả','Giá trị hiện tại','Câu nguồn được hệ thống gắn'],fieldRows));
