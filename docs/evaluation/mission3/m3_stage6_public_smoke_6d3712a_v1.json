@@ -1,0 +1,19 @@
+{
+  "base_url": "https://meeting-intelligence-m3-staging.onrender.com",
+  "expected_sha": "6d3712aa52c118bd513a602d28c48378bfa501e5",
+  "observed_sha": "6d3712aa52c118bd513a602d28c48378bfa501e5",
+  "checks": {
+    "mission3": true,
+    "git_sha_matches": true,
+    "module_meeting_intelligence/pipeline.py": true,
+    "module_meeting_intelligence/ambiguity.py": true,
+    "module_meeting_intelligence/verifier.py": true,
+    "module_meeting_intelligence/resolver.py": true,
+    "frontend_c2": true,
+    "groq_configured": true,
+    "c2_http_live": true
+  },
+  "all_checked_pass": true,
+  "live_provider_called": true,
+  "note": "Browser-based human review/export still requires UI smoke; unit tests cover review/CSV."
+}
