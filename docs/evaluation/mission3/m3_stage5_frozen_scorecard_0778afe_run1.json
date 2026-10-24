@@ -1,0 +1,52 @@
+{
+  "scope": "6 explicit known development/regression cases, NOT independent benchmark",
+  "model": "openai/gpt-oss-120b",
+  "same_source_fingerprint": true,
+  "provider_completed": 6,
+  "audit_completed": 6,
+  "criteria": {
+    "C2-01": true,
+    "C2-02": true,
+    "C2-03": true,
+    "C2-04": true,
+    "D01": true,
+    "D04": true
+  },
+  "criteria_satisfied": 6,
+  "audit_findings": {
+    "C2-01": 1,
+    "C2-02": 1,
+    "C2-03": 0,
+    "C2-04": 0,
+    "D01": 0,
+    "D04": 0
+  },
+  "core_sha256": {
+    "meeting_intelligence/__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence/ambiguity.py": "260b9f4961d78ea8ff5d42ea9ca8a9fb8646b2a9fdf3a8160f06b2c00f41fdb7",
+    "meeting_intelligence/auditor.py": "487460bba6ce530a103fc4939631acffa3506977ee420bebec8c334988dc6ff3",
+    "meeting_intelligence/commitment.py": "6f550868e7137dba5904c183a399fd6d062ddc026ae72786e441bb6b7507978a",
+    "meeting_intelligence/completeness.py": "491798492425c80065dff8f320a152ba0ec5714303ab741800cd858b8885e292",
+    "meeting_intelligence/config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence/extractor.py": "d96fee48045d51c262250b9236a84af4352287fd7378cafbd8a15d0d776cf14a",
+    "meeting_intelligence/information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+    "meeting_intelligence/llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence/models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+    "meeting_intelligence/offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence/parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence/pipeline.py": "09e449ab2630ca4377aa57cba5679bdeeedbd633a1b7181dfc2722d7c1e7ecd9",
+    "meeting_intelligence/resolver.py": "a7ee220b177dd9d27ed1b65fc62cd172be975fa792e053a2f272531f5f956fc3",
+    "meeting_intelligence/topic_resolution.py": "625acd7da633752ede9c046a73cbed49a8029e1f9be30cff67604bf876316f9a",
+    "meeting_intelligence/verifier.py": "60e97a96319d2dd2159419be4fe6f93d6c04deb9e1eee5d7c5dd7271dacea9a7"
+  },
+  "sources": [
+    "m3_stage5_C201_C202_0778afe_run1.json",
+    "m3_stage5_C203_C204_0778afe_run1.json",
+    "m3_stage5_D01_D04_0778afe_run1.json"
+  ],
+  "limitations": [
+    "LC01/LC03 and two long-meeting stress cases not in this six-case count",
+    "C2-01 and C2-02 have accepted audit findings",
+    "Assistant-authored synthetic cases; model stochastic; human gold review pending"
+  ]
+}
