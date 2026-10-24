@@ -35,6 +35,22 @@ _REQUEST_RE = re.compile(
 )
 _DUE_REL_RE = re.compile(r'(?i)\btrước\s+(?:lần|buổi|đợt)\s+[^,.!?;\n]+')
 
+_INCIDENT_REPORT_RE = re.compile(
+    r'(?i)^(?:(?:có|phát\s+hiện)\s+|(?:khách\s+hàng|người\s+dùng)\s+báo\s+)'
+    r'(?:một\s+|các\s+)?(?:lỗi|sự\s+cố|vấn\s+đề)\s+'
+    r'(?P<description>[^!?;\n]{8,170}?)[.!]?\s*$'
+)
+_RESOLVED_INCIDENT_RE = re.compile(
+    r'(?i)^(?:đã|vừa)\s+(?:sửa\s+xong|khắc\s+phục|xử\s+lý\s+xong)'
+    r'\s+(?:lỗi|sự\s+cố|vấn\s+đề)\b'
+)
+
+_EXPLICIT_VENDOR_OPEN_RE = re.compile(
+    r'(?i)(?:^|[,:;.]\s*)(?:còn\s+)?nhà\s+cung\s+cấp\s+'
+    r'(?:vẫn\s+)?(?:còn\s+mở|chọn\s+ở\s+cuộc\s+họp\s+khác|'
+    r'để\s+cuộc\s+họp\s+khác\s+chọn)\b'
+)
+
 def _tokens(text: str) -> set[str]:
     return {s for s in re.findall(r'\w+', text.casefold()) if len(s)>2
             and s not in {'chưa','chốt','không','chọn','cần','việc','một','được',
@@ -111,6 +127,46 @@ def recover_explicit_omissions(events: list[Event], utterances: list[Utterance],
                             recovered.add(key)
                             warnings.append('Bổ sung yêu cầu tường minh còn thiếu từ nguồn '+u.id+
                                 '; đây là bản ghi do kiểm tra bổ sung, cần người xác nhận')
+        # Only recover explicitly reported concrete incidents as REVIEW-ONLY
+        # records. They remain separate from subsequent actions to fix them.
+        incident = _INCIDENT_REPORT_RE.fullmatch(text)
+        if incident and not re.search(
+            r'(?i)\b(?:đã\s+(?:sửa|giải\s+quyết|xử\s+lý|khắc\s+phục)|'
+            r'không\s+có\s+lỗi|chưa\s+có\s+lỗi)\b', text
+        ):
+            detail=incident.group('description').strip().rstrip('.!')
+            if len(_tokens(detail))>=2:
+                # Same source or nearly identical incident: avoid duplicates.
+                def already_reported(e):
+                    if e.kind!='issue':
+                        return False
+                    if u.id in e.source_ids:
+                        return True
+                    old=' '.join(re.findall(r'\w+', (e.value or '').casefold()))
+                    new=' '.join(re.findall(r'\w+', text.casefold()))
+                    old_terms=_tokens(old)
+                    new_terms=_tokens(new)
+                    return (old==new or (len(old_terms)>=3 and len(new_terms)>=3
+                        and len(old_terms&new_terms)/len(old_terms|new_terms)>=0.85))
+                if not any(already_reported(e) for e in result):
+                    # If the same incident is later expressly said to be fixed,
+                    # do not invent an active OPEN problem from an older utterance.
+                    later_resolved=[later for later in utterances if later.order>u.order
+                        and _RESOLVED_INCIDENT_RE.search(later.text)
+                        and len(_tokens(detail)&_tokens(later.text))>=2]
+                    if not later_resolved:
+                        key='m3_recovered_issue_'+u.id
+                        result.append(Event(kind='issue',event_type='issue_reported',
+                            issue_key=key,topic=detail[:100],source_ids=[u.id],
+                            value=text))
+                        recovered.add(key)
+                        warnings.append(
+                            'Bổ sung vướng mắc được báo rõ từ nguồn '+u.id+
+                            '; không phải task đã phân công, cần người kiểm chứng.')
+                    else:
+                        warnings.append(
+                            'Nguồn '+u.id+' nêu lỗi nhưng có phát biểu đã xử lý '
+                            'sau đó; không tự mở lại issue, cần rà soát trạng thái.')
         # An explicit unresolved choice is not an approved choice. The chosen
         # implementation/technology must be explicit; no general-purpose
         # "chưa giao" or proposed weekday triggers a fabricated decision.
@@ -206,4 +262,35 @@ def recover_explicit_omissions(events: list[Event], utterances: list[Utterance],
             recovered.add(key)
             warnings.append('Khôi phục lựa chọn '+subject+' còn mở từ nguồn '+u.id+
                             '; độc lập với quyết định cùng câu và cần người xác nhận')
+    # Another explicit non-committal form can occur after a storage agreement:
+    # "chốt object storage, còn nhà cung cấp chọn ở cuộc họp khác."
+    # Also honor a summary "nhà cung cấp còn mở"; never mark it agreed.
+    for u in utterances:
+        line=u.text.strip()
+        if not _EXPLICIT_VENDOR_OPEN_RE.search(line) or '?' in line:
+            continue
+        if re.search(
+            r'(?i)\b(?:giả\s+sử|ví\s+dụ|cuộc\s+họp\s+trước|'
+            r'biên\s+bản\s+cũ|nếu\s+nhà\s+cung\s+cấp)\b',line
+        ):
+            continue
+        vendor_terms=_tokens('nhà cung cấp')
+        represented=[event for event in result if event.kind=='decision'
+            and vendor_terms.issubset(_tokens(event.topic))]
+        # Both a preexisting open vendor and a vendor actually agreed elsewhere
+        # preclude generating an independent artificial decision.
+        if represented:
+            if any(event.event_type in {'agreement','conditional_agreement'} for event in represented):
+                warnings.append(
+                    'Nguồn '+u.id+' nhắc nhà cung cấp còn mở nhưng đã có '
+                    'quyết định chốt đúng đối tượng; để con người đối chiếu.')
+            continue
+        key='m3_recovered_vendor_open_'+u.id
+        result.append(Event(kind='decision',event_type='unresolved',
+            issue_key=key,topic='nhà cung cấp',source_ids=[u.id],
+            value='Nhà cung cấp chưa được lựa chọn / còn mở'))
+        recovered.add(key)
+        warnings.append(
+            'Khôi phục lựa chọn nhà cung cấp còn mở theo nguồn '+u.id+
+            '; không suy ra nhà cung cấp cụ thể, phải kiểm chứng.')
     return result,recovered

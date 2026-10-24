@@ -43,7 +43,7 @@ Interpret status BEFORE judging content:
 - decision is a TYPE, not a claim of agreement. proposed/open/reopened explicitly mean no current settled choice. Never flag an open decision merely because the transcript says "chưa chốt".
 - conditional means the choice was agreed SUBJECT TO prerequisites; it does not claim those prerequisites passed. "Điều kiện chưa đạt/chưa được xác nhận đạt" is compatible with conditional/pending_condition, not evidence that the choice was reopened.
 - agreed + blocked means the choice was settled but cannot be implemented. "Chưa được triển khai, chờ phê duyệt" is compatible with that state, not a retraction of the agreement.
-- reopened/withdrawn/cancelled may retain historical content and the former owner. Their content is not an active choice/task. Do not demand deleting that history just because the state changed.
+- reopened/withdrawn/cancelled/paused may retain historical content and the former owner. Their content is not an active choice/task. Paused work is represented as meeting_status=paused and execution_status=blocked (execution halted, not permanent cancellation). Do not demand deleting history or claiming it is still active.
 - After a choice is reopened or withdrawn, condition:null correctly means there is no current operative prerequisite set. An earlier conditional agreement remains in events as history. Do not demand restoring its old condition unless a later utterance explicitly makes that condition operative again. Compare the latest state event before reporting a missing condition.
 - Check field_evidence_ids: old content and final status can legitimately cite different turns. Records need not repeat the whole event history.
 
@@ -536,7 +536,7 @@ def hold_for_review(record: ResultRecord) -> None:
     """
     record.review_status = 'needs_review'
     if record.kind in {'decision', 'action'} and record.meeting_status not in {
-        'open', 'proposed', 'reopened', 'withdrawn', 'cancelled'
+        'open', 'proposed', 'reopened', 'withdrawn', 'cancelled', 'paused'
     }:
         record.meeting_status = 'unverified'
 

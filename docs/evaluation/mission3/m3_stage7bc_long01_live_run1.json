@@ -1,0 +1,1003 @@
+{
+  "created_utc": "2026-10-24T10:09:39.285761+00:00",
+  "model": "openai/gpt-oss-120b",
+  "engine": "llm_api",
+  "audit": true,
+  "sha256": {
+    "datasets\\mission3_stage4_multitopic_v1.json": "d8497457e641ce00db290009862c1a991d3169bbb40c51b5d5cee0efbfaba7e2",
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\ambiguity.py": "260b9f4961d78ea8ff5d42ea9ca8a9fb8646b2a9fdf3a8160f06b2c00f41fdb7",
+    "meeting_intelligence\\auditor.py": "487460bba6ce530a103fc4939631acffa3506977ee420bebec8c334988dc6ff3",
+    "meeting_intelligence\\commitment.py": "6f550868e7137dba5904c183a399fd6d062ddc026ae72786e441bb6b7507978a",
+    "meeting_intelligence\\completeness.py": "d804d1568b1f5ec65e15b658abc6c4b84431be35b39893310c13cd7f22ab115a",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\extractor.py": "e02cda2cf14606ba6e3acaba4c11d91788bfdaabe3a4c1fb215915406ccaf619",
+    "meeting_intelligence\\information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+    "meeting_intelligence\\llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence\\models.py": "bfaa528da18ab3803b3bcd89d5e941987c57afcf2ccef59df9d3057de29dd414",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "09e449ab2630ca4377aa57cba5679bdeeedbd633a1b7181dfc2722d7c1e7ecd9",
+    "meeting_intelligence\\resolver.py": "e2ad4a12c71230d06785121b0e8e71bd773046bfb32d0b0481afbd076ada701b",
+    "meeting_intelligence\\topic_resolution.py": "625acd7da633752ede9c046a73cbed49a8029e1f9be30cff67604bf876316f9a",
+    "meeting_intelligence\\verifier.py": "60e97a96319d2dd2159419be4fe6f93d6c04deb9e1eee5d7c5dd7271dacea9a7"
+  },
+  "call_interval_s": 45,
+  "structured_outputs": "auto",
+  "max_retries": 0,
+  "generation_settings": {
+    "max_completion_tokens": 2560,
+    "audit_max_completion_tokens": 1024,
+    "temperature": 0.6,
+    "reasoning_effort": "low"
+  },
+  "requested_cases": [
+    "LONG01"
+  ],
+  "complete": true,
+  "cases": [
+    {
+      "id": "LONG01",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Hôm nay cần chốt phương thức lưu trữ, việc sửa thanh toán và kế hoạch kiểm thử.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Tôi đề xuất lưu tệp trên ổ cứng máy chủ.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Nếu chạy hai máy chủ thì lưu trên ổ cứng khó đồng bộ.",
+            "speaker": "Chi",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Chưa chốt phương án lưu trữ, sang việc thanh toán trước.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Có lỗi thanh toán làm khách bị trừ hai lần.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L006",
+            "order": 6,
+            "text": "Cái này team mình xử lý nhé.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L007",
+            "order": 7,
+            "text": "Tôi nhận xử lý lỗi trừ tiền hai lần trước thứ Sáu.",
+            "speaker": "Huy",
+            "timestamp": null
+          },
+          {
+            "id": "L008",
+            "order": 8,
+            "text": "Xác nhận Huy xử lý lỗi thanh toán trước thứ Sáu.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L009",
+            "order": 9,
+            "text": "Ta quay lại lưu trữ: tôi rút đề xuất ổ cứng.",
+            "speaker": "Bình",
+            "timestamp": null
+          },
+          {
+            "id": "L010",
+            "order": 10,
+            "text": "Chuyển sang object storage sẽ dễ mở rộng.",
+            "speaker": "Chi",
+            "timestamp": null
+          },
+          {
+            "id": "L011",
+            "order": 11,
+            "text": "Chốt object storage cho bản thử nghiệm, còn nhà cung cấp chọn ở cuộc họp khác.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L012",
+            "order": 12,
+            "text": "Tôi nhận chuẩn bị bảng so sánh giá nhà cung cấp vào thứ Hai.",
+            "speaker": "Mai",
+            "timestamp": null
+          },
+          {
+            "id": "L013",
+            "order": 13,
+            "text": "Được, Mai chuẩn bị bảng giá trước thứ Hai.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L014",
+            "order": 14,
+            "text": "Khi retry API cần dùng idempotency key để tránh ghi trùng. Đây là kinh nghiệm dự án trước.",
+            "speaker": "Kiên",
+            "timestamp": null
+          },
+          {
+            "id": "L015",
+            "order": 15,
+            "text": "Nghe nói thư viện thanh toán Z nhanh nhất, nhưng chưa đo thực tế.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L016",
+            "order": 16,
+            "text": "Chưa thể coi thư viện Z nhanh hơn nếu chưa benchmark.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L017",
+            "order": 17,
+            "text": "Tôi gặp trở ngại do không có quyền xem báo giá.",
+            "speaker": "Mai",
+            "timestamp": null
+          },
+          {
+            "id": "L018",
+            "order": 18,
+            "text": "Tạm dừng việc chuẩn bị bảng giá, hủy deadline thứ Hai để xin quyền.",
+            "speaker": "An",
+            "timestamp": null
+          },
+          {
+            "id": "L019",
+            "order": 19,
+            "text": "Tôi hiểu việc được tạm dừng; chưa hẹn ngày mới.",
+            "speaker": "Mai",
+            "timestamp": null
+          },
+          {
+            "id": "L020",
+            "order": 20,
+            "text": "Kết luận: object storage đã chốt, nhà cung cấp còn mở, Huy vẫn xử lý lỗi thanh toán.",
+            "speaker": "An",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "storage_method",
+            "topic": "phương thức lưu trữ",
+            "kind": "decision",
+            "content": "object storage cho bản thử nghiệm",
+            "meeting_status": "agreed",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L002",
+              "L009",
+              "L010",
+              "L011"
+            ],
+            "counter_evidence_ids": [
+              "L009"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L011"
+              ],
+              "content": [
+                "L011"
+              ],
+              "condition": [
+                "L011"
+              ],
+              "execution_status": [
+                "L011"
+              ],
+              "information_utility": [
+                "L011"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "storage_method",
+                "topic": "phương thức lưu trữ",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "lưu tệp trên ổ cứng máy chủ",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_method",
+                "topic": "phương thức lưu trữ",
+                "kind": "decision",
+                "event_type": "withdrawal",
+                "source_ids": [
+                  "L009"
+                ],
+                "value": "đề xuất lưu trữ trên ổ cứng",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_method",
+                "topic": "phương thức lưu trữ",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L010"
+                ],
+                "value": "chuyển sang object storage",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_method",
+                "topic": "phương thức lưu trữ",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L011"
+                ],
+                "value": "object storage cho bản thử nghiệm",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "payment_error",
+            "topic": "lỗi trừ tiền hai lần",
+            "kind": "issue",
+            "content": "có lỗi thanh toán làm khách bị trừ hai lần",
+            "meeting_status": "open",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L005"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L005"
+              ],
+              "content": [
+                "L005"
+              ],
+              "information_utility": [
+                "L005"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "payment_error",
+                "topic": "lỗi trừ tiền hai lần",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "có lỗi thanh toán làm khách bị trừ hai lần",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "payment_error",
+            "topic": "xử lý lỗi trừ tiền hai lần",
+            "kind": "action",
+            "content": "xử lý lỗi trừ tiền hai lần",
+            "meeting_status": "assigned",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": "Huy",
+            "supporter": null,
+            "due_raw": "trước thứ Sáu",
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L007"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L007"
+              ],
+              "content": [
+                "L007"
+              ],
+              "owner": [
+                "L007"
+              ],
+              "due_raw": [
+                "L007"
+              ],
+              "information_utility": [
+                "L007"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "payment_error",
+                "topic": "xử lý lỗi trừ tiền hai lần",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L007"
+                ],
+                "value": "xử lý lỗi trừ tiền hai lần",
+                "owner": "Huy",
+                "supporter": null,
+                "due_raw": "trước thứ Sáu",
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "provider_selection",
+            "topic": "nhà cung cấp",
+            "kind": "decision",
+            "content": "chọn nhà cung cấp",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L011"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L011"
+              ],
+              "content": [
+                "L011"
+              ],
+              "execution_status": [
+                "L011"
+              ],
+              "information_utility": [
+                "L011"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "provider_selection",
+                "topic": "nhà cung cấp",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L011"
+                ],
+                "value": "chọn nhà cung cấp",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "price_comparison",
+            "topic": "bảng so sánh giá nhà cung cấp",
+            "kind": "action",
+            "content": "chuẩn bị bảng so sánh giá nhà cung cấp",
+            "meeting_status": "unverified",
+            "execution_status": "blocked",
+            "authority_status": "unknown",
+            "information_utility": "needs_verification",
+            "information_utility_note": "Thông tin nghiệp vụ chưa đủ căn cứ; cần đối chiếu câu nguồn.",
+            "owner": "Mai",
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L012",
+              "L018"
+            ],
+            "counter_evidence_ids": [
+              "L018"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L018"
+              ],
+              "content": [
+                "L012"
+              ],
+              "owner": [
+                "L012"
+              ],
+              "due_raw": [
+                "L018"
+              ],
+              "execution_status": [
+                "L018"
+              ],
+              "information_utility": [
+                "L012",
+                "L018"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Câu nguồn tạm dừng công việc: giữ người phụ trách lịch sử, không coi việc vẫn đang thực hiện; cần xác minh điều kiện tiếp tục",
+              "Kiểm tra lại unsupported_fact: The record marks the action as \"execution_status\": \"blocked\", but the source utterance indicates the work was merely paused and the deadline was cleared, not that the task is blocked. The evidence does not support a blocked status. (nguồn: L018)"
+            ],
+            "history": [
+              {
+                "issue_key": "price_comparison",
+                "topic": "bảng so sánh giá nhà cung cấp",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L012"
+                ],
+                "value": "chuẩn bị bảng so sánh giá nhà cung cấp",
+                "owner": "Mai",
+                "supporter": null,
+                "due_raw": "thứ Hai",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "price_comparison",
+                "topic": "bảng so sánh giá nhà cung cấp",
+                "kind": "action",
+                "event_type": "action_paused",
+                "source_ids": [
+                  "L018"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": [
+                  "due_raw"
+                ]
+              }
+            ]
+          },
+          {
+            "issue_key": "price_comparison",
+            "topic": "bảng so sánh giá nhà cung cấp",
+            "kind": "decision",
+            "content": "Mai chuẩn bị bảng giá trước thứ Hai",
+            "meeting_status": "agreed",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L013"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L013"
+              ],
+              "content": [
+                "L013"
+              ],
+              "execution_status": [
+                "L013"
+              ],
+              "condition": [
+                "L013"
+              ],
+              "information_utility": [
+                "L013"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "price_comparison",
+                "topic": "bảng so sánh giá nhà cung cấp",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L013"
+                ],
+                "value": "Mai chuẩn bị bảng giá trước thứ Hai",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "knowledge_idempotency",
+            "topic": "retry API",
+            "kind": "knowledge",
+            "content": "khi retry API cần dùng idempotency key để tránh ghi trùng",
+            "meeting_status": "unverified",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "reusable_candidate",
+            "information_utility_note": "Nguồn nêu một nguyên tắc/kinh nghiệm thực hành; chỉ là ứng viên tri thức, CHƯA được kiểm chứng và phê duyệt.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L014"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L014"
+              ],
+              "content": [
+                "L014"
+              ],
+              "information_utility": [
+                "L014"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Không thể xác định trạng thái cuối; cần người kiểm tra",
+              "Ứng viên tri thức tái sử dụng CHƯA ĐƯỢC KIỂM CHỨNG; cần người xác nhận trước khi sử dụng."
+            ],
+            "history": [
+              {
+                "issue_key": "knowledge_idempotency",
+                "topic": "retry API",
+                "kind": "knowledge",
+                "event_type": "knowledge_shared",
+                "source_ids": [
+                  "L014"
+                ],
+                "value": "khi retry API cần dùng idempotency key để tránh ghi trùng",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "knowledge_library_z",
+            "topic": "thư viện thanh toán Z",
+            "kind": "knowledge",
+            "content": "thư viện thanh toán Z được cho là nhanh nhất nhưng chưa đo thực tế",
+            "meeting_status": "unverified",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "needs_verification",
+            "information_utility_note": "Nguồn thừa nhận thông tin chưa kiểm chứng hoặc chỉ là lời nghe nói.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L015"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L015"
+              ],
+              "content": [
+                "L015"
+              ],
+              "information_utility": [
+                "L015"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Không thể xác định trạng thái cuối; cần người kiểm tra",
+              "Phát biểu tri thức còn thiếu xác minh; không coi là sự thật của doanh nghiệp."
+            ],
+            "history": [
+              {
+                "issue_key": "knowledge_library_z",
+                "topic": "thư viện thanh toán Z",
+                "kind": "knowledge",
+                "event_type": "knowledge_shared",
+                "source_ids": [
+                  "L015"
+                ],
+                "value": "thư viện thanh toán Z được cho là nhanh nhất nhưng chưa đo thực tế",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "permission_issue",
+            "topic": "quyền xem báo giá",
+            "kind": "issue",
+            "content": "không có quyền xem báo giá",
+            "meeting_status": "open",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L017"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L017"
+              ],
+              "content": [
+                "L017"
+              ],
+              "information_utility": [
+                "L017"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "permission_issue",
+                "topic": "quyền xem báo giá",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L017"
+                ],
+                "value": "không có quyền xem báo giá",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Nguồn L011 nhắc nhà cung cấp còn mở nhưng đã có quyết định chốt đúng đối tượng; để con người đối chiếu.",
+          "Nguồn L020 nhắc nhà cung cấp còn mở nhưng đã có quyết định chốt đúng đối tượng; để con người đối chiếu.",
+          "C2: ý định tập thể L006 đã có action cá nhân xác nhận sau đó: payment_error; không tạo action trùng",
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": [
+          {
+            "issue_key": "price_comparison",
+            "kind": "action",
+            "category": "unsupported_fact",
+            "severity": "high",
+            "source_ids": [
+              "L018"
+            ],
+            "source_quote": "Tạm dừng việc chuẩn bị bảng giá, hủy deadline thứ Hai để xin quyền.",
+            "explanation": "The record marks the action as \"execution_status\": \"blocked\", but the source utterance indicates the work was merely paused and the deadline was cleared, not that the task is blocked. The evidence does not support a blocked status."
+          }
+        ]
+      },
+      "audit_completed": true,
+      "duration_s": 47.41,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 6259,
+        "completion_tokens": 2729,
+        "total_tokens": 8988
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "storage_method",
+                "topic": "phương thức lưu trữ",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L002"
+                ],
+                "value": "lưu tệp trên ổ cứng máy chủ",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_method",
+                "topic": "phương thức lưu trữ",
+                "kind": "decision",
+                "event_type": "withdrawal",
+                "source_ids": [
+                  "L009"
+                ],
+                "value": "đề xuất lưu trữ trên ổ cứng",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_method",
+                "topic": "phương thức lưu trữ",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L010"
+                ],
+                "value": "chuyển sang object storage",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "storage_method",
+                "topic": "phương thức lưu trữ",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L011"
+                ],
+                "value": "object storage cho bản thử nghiệm",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "provider_selection",
+                "topic": "nhà cung cấp",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L011"
+                ],
+                "value": "chọn nhà cung cấp",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "payment_error",
+                "topic": "lỗi trừ tiền hai lần",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "có lỗi thanh toán làm khách bị trừ hai lần",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "payment_error",
+                "topic": "xử lý lỗi trừ tiền hai lần",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L007"
+                ],
+                "value": "xử lý lỗi trừ tiền hai lần",
+                "owner": "Huy",
+                "supporter": null,
+                "due_raw": "trước thứ Sáu",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "price_comparison",
+                "topic": "bảng so sánh giá nhà cung cấp",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L012"
+                ],
+                "value": "chuẩn bị bảng so sánh giá nhà cung cấp",
+                "owner": "Mai",
+                "supporter": null,
+                "due_raw": "thứ Hai",
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "price_comparison",
+                "topic": "bảng so sánh giá nhà cung cấp",
+                "kind": "decision",
+                "event_type": "agreement",
+                "source_ids": [
+                  "L013"
+                ],
+                "value": "Mai chuẩn bị bảng giá trước thứ Hai",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "price_comparison",
+                "topic": "bảng so sánh giá nhà cung cấp",
+                "kind": "action",
+                "event_type": "action_paused",
+                "source_ids": [
+                  "L018"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": [
+                  "due_raw"
+                ]
+              },
+              {
+                "issue_key": "permission_issue",
+                "topic": "quyền xem báo giá",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L017"
+                ],
+                "value": "không có quyền xem báo giá",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "knowledge_idempotency",
+                "topic": "retry API",
+                "kind": "knowledge",
+                "event_type": "knowledge_shared",
+                "source_ids": [
+                  "L014"
+                ],
+                "value": "khi retry API cần dùng idempotency key để tránh ghi trùng",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "knowledge_library_z",
+                "topic": "thư viện thanh toán Z",
+                "kind": "knowledge",
+                "event_type": "knowledge_shared",
+                "source_ids": [
+                  "L015"
+                ],
+                "value": "thư viện thanh toán Z được cho là nhanh nhất nhưng chưa đo thực tế",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 5.680235399981029
+        },
+        {
+          "response": {
+            "findings": [
+              {
+                "issue_key": "price_comparison",
+                "kind": "action",
+                "category": "unsupported_fact",
+                "severity": "high",
+                "source_ids": [
+                  "L018"
+                ],
+                "source_quote": "Tạm dừng việc chuẩn bị bảng giá, hủy deadline thứ Hai để xin quyền.",
+                "explanation": "The record marks the action as \"execution_status\": \"blocked\", but the source utterance indicates the work was merely paused and the deadline was cleared, not that the task is blocked. The evidence does not support a blocked status."
+              }
+            ]
+          },
+          "elapsed_s": 41.700974600040354
+        }
+      ]
+    }
+  ]
+}
