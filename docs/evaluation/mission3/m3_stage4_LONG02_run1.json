@@ -1,0 +1,863 @@
+{
+  "created_utc": "2026-10-24T07:07:50.449470+00:00",
+  "model": "openai/gpt-oss-120b",
+  "engine": "llm_api",
+  "audit": true,
+  "sha256": {
+    "datasets\\mission3_stage4_multitopic_v1.json": "d8497457e641ce00db290009862c1a991d3169bbb40c51b5d5cee0efbfaba7e2",
+    "meeting_intelligence\\__init__.py": "1a2f5d2499b74f4ba2a6846f809b7428c7fc9f49b76b6ada570ea5992fa55d73",
+    "meeting_intelligence\\ambiguity.py": "260b9f4961d78ea8ff5d42ea9ca8a9fb8646b2a9fdf3a8160f06b2c00f41fdb7",
+    "meeting_intelligence\\auditor.py": "487460bba6ce530a103fc4939631acffa3506977ee420bebec8c334988dc6ff3",
+    "meeting_intelligence\\commitment.py": "0373c426c63817789fbe06527638464df6f218f168ff5c7a3b693f78a3d5e6ff",
+    "meeting_intelligence\\completeness.py": "491798492425c80065dff8f320a152ba0ec5714303ab741800cd858b8885e292",
+    "meeting_intelligence\\config.py": "a0bac91dd5d83ec5addbaef211ef7c2abd1d6bdf33c519fcfc839d6690e7e11f",
+    "meeting_intelligence\\extractor.py": "d96fee48045d51c262250b9236a84af4352287fd7378cafbd8a15d0d776cf14a",
+    "meeting_intelligence\\information_utility.py": "75a09d69fa1c413ad2fc26bb59383e7d87491e0bb0bd18eb02980dc3528fa43a",
+    "meeting_intelligence\\llm_client.py": "25fd473f08ff47b79c3fc8ab247c4882491a47b454c03e28b5ad42797af629d9",
+    "meeting_intelligence\\models.py": "d145abcb1c10fd594103016bec092838790242536fd53b9edb4d586da626901c",
+    "meeting_intelligence\\offline_rules.py": "0cefa963eaa5d367569aa176eaa8d439eb5008edff218da8e52b72eb8e8fef19",
+    "meeting_intelligence\\parser.py": "b1b937ca676c0af78ed9187d760b7b7cb0242429092030eca16e89f9cfe1a1fd",
+    "meeting_intelligence\\pipeline.py": "09e449ab2630ca4377aa57cba5679bdeeedbd633a1b7181dfc2722d7c1e7ecd9",
+    "meeting_intelligence\\resolver.py": "a7ee220b177dd9d27ed1b65fc62cd172be975fa792e053a2f272531f5f956fc3",
+    "meeting_intelligence\\topic_resolution.py": "625acd7da633752ede9c046a73cbed49a8029e1f9be30cff67604bf876316f9a",
+    "meeting_intelligence\\verifier.py": "60e97a96319d2dd2159419be4fe6f93d6c04deb9e1eee5d7c5dd7271dacea9a7"
+  },
+  "call_interval_s": 35.0,
+  "structured_outputs": "auto",
+  "max_retries": 0,
+  "generation_settings": {
+    "max_completion_tokens": 2560,
+    "audit_max_completion_tokens": 1024,
+    "temperature": 0.6,
+    "reasoning_effort": "low"
+  },
+  "requested_cases": [
+    "LONG02"
+  ],
+  "complete": true,
+  "cases": [
+    {
+      "id": "LONG02",
+      "split": "development",
+      "result": "COMPLETED",
+      "output": {
+        "engine": "llm_api",
+        "utterances": [
+          {
+            "id": "L001",
+            "order": 1,
+            "text": "Hôm nay bàn lựa chọn đồng bộ dữ liệu và phân công đội kiểm thử.",
+            "speaker": "Diệp",
+            "timestamp": null
+          },
+          {
+            "id": "L002",
+            "order": 2,
+            "text": "Chúng ta có hai cách: đồng bộ tự động hoặc thủ công.",
+            "speaker": "Sang",
+            "timestamp": null
+          },
+          {
+            "id": "L003",
+            "order": 3,
+            "text": "Tôi nhận viết danh sách quyền cần xin, chưa chốt deadline.",
+            "speaker": "Huy",
+            "timestamp": null
+          },
+          {
+            "id": "L004",
+            "order": 4,
+            "text": "Chốt bật đồng bộ tự động nếu bảo mật phê duyệt quyền đọc dữ liệu.",
+            "speaker": "Diệp",
+            "timestamp": null
+          },
+          {
+            "id": "L005",
+            "order": 5,
+            "text": "Bảo mật chưa xem xong phạm vi thông tin cá nhân.",
+            "speaker": "Lan",
+            "timestamp": null
+          },
+          {
+            "id": "L006",
+            "order": 6,
+            "text": "Mình có nên giao Huy kiểm thử API thứ Sáu được không?",
+            "speaker": "Chi",
+            "timestamp": null
+          },
+          {
+            "id": "L007",
+            "order": 7,
+            "text": "Chưa chốt hạn kiểm thử API, cũng chưa phân công người.",
+            "speaker": "Diệp",
+            "timestamp": null
+          },
+          {
+            "id": "L008",
+            "order": 8,
+            "text": "Đối với module thông báo, chúng ta đang theo cách gửi theo lô.",
+            "speaker": "Kiên",
+            "timestamp": null
+          },
+          {
+            "id": "L009",
+            "order": 9,
+            "text": "Phần cấu hình gửi email cần rà soát trước buổi thử tiếp theo.",
+            "speaker": "Sang",
+            "timestamp": null
+          },
+          {
+            "id": "L010",
+            "order": 10,
+            "text": "Hay đặt hạn thứ Ba?",
+            "speaker": "Kiên",
+            "timestamp": null
+          },
+          {
+            "id": "L011",
+            "order": 11,
+            "text": "Hay thứ Năm?",
+            "speaker": "Sang",
+            "timestamp": null
+          },
+          {
+            "id": "L012",
+            "order": 12,
+            "text": "Chưa chọn ngày cho cấu hình email, chưa biết ai nhận việc.",
+            "speaker": "Diệp",
+            "timestamp": null
+          },
+          {
+            "id": "L013",
+            "order": 13,
+            "text": "Việc danh sách quyền vẫn do tôi phụ trách, dù đồng bộ chưa chốt.",
+            "speaker": "Huy",
+            "timestamp": null
+          },
+          {
+            "id": "L014",
+            "order": 14,
+            "text": "Tôi mở lại lựa chọn đồng bộ tự động, chưa quyết định bật hay giữ thủ công.",
+            "speaker": "Diệp",
+            "timestamp": null
+          },
+          {
+            "id": "L015",
+            "order": 15,
+            "text": "Vấn đề quyền dữ liệu cá nhân còn mở.",
+            "speaker": "Sang",
+            "timestamp": null
+          },
+          {
+            "id": "L016",
+            "order": 16,
+            "text": "Để team mình xem phần kiểm thử API nhé.",
+            "speaker": "Chi",
+            "timestamp": null
+          },
+          {
+            "id": "L017",
+            "order": 17,
+            "text": "Đúng, chưa giao cá nhân nào phụ trách kiểm thử API.",
+            "speaker": "Diệp",
+            "timestamp": null
+          },
+          {
+            "id": "L018",
+            "order": 18,
+            "text": "Hãy ghi rõ các mục chưa xác định thay vì tự điền người hoặc ngày.",
+            "speaker": "Diệp",
+            "timestamp": null
+          }
+        ],
+        "records": [
+          {
+            "issue_key": "sync_data",
+            "topic": "đồng bộ dữ liệu",
+            "kind": "decision",
+            "content": "bật đồng bộ tự động",
+            "meeting_status": "reopened",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L004",
+              "L014"
+            ],
+            "counter_evidence_ids": [
+              "L014"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L014"
+              ],
+              "content": [
+                "L004"
+              ],
+              "execution_status": [
+                "L014"
+              ],
+              "condition": [
+                "L014"
+              ],
+              "information_utility": [
+                "L004",
+                "L014"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Kiểm tra lại missing_late_change: The record for sync_data does not include the condition \"bảo mật phê duyệt quyền đọc dữ liệu\" that was present in the event (L004) and referenced again in the reopen statement (L014). The condition field is null, indicating a missing late change. (nguồn: L014)"
+            ],
+            "history": [
+              {
+                "issue_key": "sync_data",
+                "topic": "đồng bộ dữ liệu",
+                "kind": "decision",
+                "event_type": "conditional_agreement",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "bật đồng bộ tự động",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "bảo mật phê duyệt quyền đọc dữ liệu",
+                "clear_fields": []
+              },
+              {
+                "issue_key": "sync_data",
+                "topic": "đồng bộ dữ liệu",
+                "kind": "decision",
+                "event_type": "reopen",
+                "source_ids": [
+                  "L014"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "security_scope",
+            "topic": "bảo mật dữ liệu cá nhân",
+            "kind": "issue",
+            "content": "bảo mật chưa xem xong phạm vi thông tin cá nhân",
+            "meeting_status": "open",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L005"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L005"
+              ],
+              "content": [
+                "L005"
+              ],
+              "information_utility": [
+                "L005"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "security_scope",
+                "topic": "bảo mật dữ liệu cá nhân",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "bảo mật chưa xem xong phạm vi thông tin cá nhân",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "api_test_assignment",
+            "topic": "kiểm thử API",
+            "kind": "request",
+            "content": "giao Huy kiểm thử API vào thứ Sáu",
+            "meeting_status": "recorded",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L006"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L006"
+              ],
+              "content": [
+                "L006"
+              ],
+              "information_utility": [
+                "L006"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "api_test_assignment",
+                "topic": "kiểm thử API",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L006"
+                ],
+                "value": "giao Huy kiểm thử API vào thứ Sáu",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "api_test_deadline",
+            "topic": "kiểm thử API",
+            "kind": "decision",
+            "content": "không chọn hạn kiểm thử API và chưa phân công người",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L007"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L007"
+              ],
+              "content": [
+                "L007"
+              ],
+              "execution_status": [
+                "L007"
+              ],
+              "information_utility": [
+                "L007"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "api_test_deadline",
+                "topic": "kiểm thử API",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L007"
+                ],
+                "value": "không chọn hạn kiểm thử API và chưa phân công người",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "email_config_deadline",
+            "topic": "cấu hình email",
+            "kind": "decision",
+            "content": "đặt hạn thứ Năm",
+            "meeting_status": "proposed",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L010",
+              "L011"
+            ],
+            "counter_evidence_ids": [
+              "L010"
+            ],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L011"
+              ],
+              "content": [
+                "L011"
+              ],
+              "condition": [
+                "L011"
+              ],
+              "execution_status": [
+                "L011"
+              ],
+              "information_utility": [
+                "L011"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [
+              "Kiểm tra lại missing_issue: A proposal to set the email configuration deadline to Tuesday (L010) is present in the transcript and events but no corresponding record exists; only the Thursday proposal (L011) is recorded. (nguồn: L010)"
+            ],
+            "history": [
+              {
+                "issue_key": "email_config_deadline",
+                "topic": "cấu hình email",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L010"
+                ],
+                "value": "đặt hạn thứ Ba",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "email_config_deadline",
+                "topic": "cấu hình email",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L011"
+                ],
+                "value": "đặt hạn thứ Năm",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "permission_list",
+            "topic": "danh sách quyền",
+            "kind": "action",
+            "content": "danh sách quyền cần xin",
+            "meeting_status": "assigned",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": "Huy",
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L013"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L013"
+              ],
+              "content": [
+                "L013"
+              ],
+              "owner": [
+                "L013"
+              ],
+              "information_utility": [
+                "L013"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "permission_list",
+                "topic": "danh sách quyền",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L013"
+                ],
+                "value": "danh sách quyền cần xin",
+                "owner": "Huy",
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "api_testing_review",
+            "topic": "kiểm thử API",
+            "kind": "request",
+            "content": "team mình xem phần kiểm thử API",
+            "meeting_status": "recorded",
+            "execution_status": "not_applicable",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L016"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L016"
+              ],
+              "content": [
+                "L016"
+              ],
+              "information_utility": [
+                "L016"
+              ]
+            },
+            "review_status": "unreviewed",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "api_testing_review",
+                "topic": "kiểm thử API",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L016"
+                ],
+                "value": "team mình xem phần kiểm thử API",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          {
+            "issue_key": "api_testing_assignment",
+            "topic": "kiểm thử API",
+            "kind": "decision",
+            "content": "chưa giao cá nhân nào phụ trách kiểm thử API",
+            "meeting_status": "open",
+            "execution_status": "unknown",
+            "authority_status": "unknown",
+            "information_utility": "current_work",
+            "information_utility_note": "Dùng để theo dõi quyết định, việc, yêu cầu, vấn đề hoặc phản hồi hiện tại; trạng thái cuộc họp và rà soát vẫn có hiệu lực riêng.",
+            "owner": null,
+            "supporter": null,
+            "due_raw": null,
+            "due_iso": null,
+            "condition": null,
+            "evidence_ids": [
+              "L017"
+            ],
+            "counter_evidence_ids": [],
+            "field_evidence_ids": {
+              "meeting_status": [
+                "L017"
+              ],
+              "content": [
+                "L017"
+              ],
+              "execution_status": [
+                "L017"
+              ],
+              "information_utility": [
+                "L017"
+              ]
+            },
+            "review_status": "needs_review",
+            "warnings": [],
+            "history": [
+              {
+                "issue_key": "api_testing_assignment",
+                "topic": "kiểm thử API",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L017"
+                ],
+                "value": "chưa giao cá nhân nào phụ trách kiểm thử API",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          }
+        ],
+        "warnings": [
+          "Kết quả LLM vẫn cần đối chiếu đáp án gán nhãn; audit không bảo đảm độ đúng ngữ nghĩa."
+        ],
+        "audit_findings": [
+          {
+            "issue_key": "sync_data",
+            "kind": "decision",
+            "category": "missing_late_change",
+            "severity": "high",
+            "source_ids": [
+              "L014"
+            ],
+            "source_quote": "Tôi mở lại lựa chọn đồng bộ tự động, chưa quyết định bật hay giữ thủ công.",
+            "explanation": "The record for sync_data does not include the condition \"bảo mật phê duyệt quyền đọc dữ liệu\" that was present in the event (L004) and referenced again in the reopen statement (L014). The condition field is null, indicating a missing late change."
+          },
+          {
+            "issue_key": "email_config_deadline",
+            "kind": "decision",
+            "category": "missing_issue",
+            "severity": "medium",
+            "source_ids": [
+              "L010"
+            ],
+            "source_quote": "Hay đặt hạn thứ Ba?",
+            "explanation": "A proposal to set the email configuration deadline to Tuesday (L010) is present in the transcript and events but no corresponding record exists; only the Thursday proposal (L011) is recorded."
+          }
+        ]
+      },
+      "audit_completed": true,
+      "duration_s": 37.0,
+      "api_calls": 2,
+      "api_tokens": {
+        "prompt_tokens": 5681,
+        "completion_tokens": 2157,
+        "total_tokens": 7838
+      },
+      "llm_responses": [
+        {
+          "response": {
+            "events": [
+              {
+                "issue_key": "sync_data",
+                "topic": "đồng bộ dữ liệu",
+                "kind": "decision",
+                "event_type": "conditional_agreement",
+                "source_ids": [
+                  "L004"
+                ],
+                "value": "bật đồng bộ tự động",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": "bảo mật phê duyệt quyền đọc dữ liệu",
+                "clear_fields": []
+              },
+              {
+                "issue_key": "security_scope",
+                "topic": "bảo mật dữ liệu cá nhân",
+                "kind": "issue",
+                "event_type": "issue_reported",
+                "source_ids": [
+                  "L005"
+                ],
+                "value": "bảo mật chưa xem xong phạm vi thông tin cá nhân",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "api_test_assignment",
+                "topic": "kiểm thử API",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L006"
+                ],
+                "value": "giao Huy kiểm thử API vào thứ Sáu",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "api_test_deadline",
+                "topic": "kiểm thử API",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L007"
+                ],
+                "value": "không chọn hạn kiểm thử API và chưa phân công người",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "email_config_deadline",
+                "topic": "cấu hình email",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L010"
+                ],
+                "value": "đặt hạn thứ Ba",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "email_config_deadline",
+                "topic": "cấu hình email",
+                "kind": "decision",
+                "event_type": "proposal",
+                "source_ids": [
+                  "L011"
+                ],
+                "value": "đặt hạn thứ Năm",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "permission_list",
+                "topic": "danh sách quyền",
+                "kind": "action",
+                "event_type": "assignment",
+                "source_ids": [
+                  "L013"
+                ],
+                "value": "danh sách quyền cần xin",
+                "owner": "Huy",
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "sync_data",
+                "topic": "đồng bộ dữ liệu",
+                "kind": "decision",
+                "event_type": "reopen",
+                "source_ids": [
+                  "L014"
+                ],
+                "value": null,
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "api_testing_review",
+                "topic": "kiểm thử API",
+                "kind": "request",
+                "event_type": "request_made",
+                "source_ids": [
+                  "L016"
+                ],
+                "value": "team mình xem phần kiểm thử API",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              },
+              {
+                "issue_key": "api_testing_assignment",
+                "topic": "kiểm thử API",
+                "kind": "decision",
+                "event_type": "unresolved",
+                "source_ids": [
+                  "L017"
+                ],
+                "value": "chưa giao cá nhân nào phụ trách kiểm thử API",
+                "owner": null,
+                "supporter": null,
+                "due_raw": null,
+                "condition": null,
+                "clear_fields": []
+              }
+            ]
+          },
+          "elapsed_s": 4.138616500014905
+        },
+        {
+          "response": {
+            "findings": [
+              {
+                "issue_key": "sync_data",
+                "kind": "decision",
+                "category": "missing_late_change",
+                "severity": "high",
+                "source_ids": [
+                  "L014"
+                ],
+                "source_quote": "Tôi mở lại lựa chọn đồng bộ tự động, chưa quyết định bật hay giữ thủ công.",
+                "explanation": "The record for sync_data does not include the condition \"bảo mật phê duyệt quyền đọc dữ liệu\" that was present in the event (L004) and referenced again in the reopen statement (L014). The condition field is null, indicating a missing late change."
+              },
+              {
+                "issue_key": "email_config_deadline",
+                "kind": "decision",
+                "category": "missing_issue",
+                "severity": "medium",
+                "source_ids": [
+                  "L010"
+                ],
+                "source_quote": "Hay đặt hạn thứ Ba?",
+                "explanation": "A proposal to set the email configuration deadline to Tuesday (L010) is present in the transcript and events but no corresponding record exists; only the Thursday proposal (L011) is recorded."
+              }
+            ]
+          },
+          "elapsed_s": 32.83749980002176
+        }
+      ]
+    }
+  ]
+}

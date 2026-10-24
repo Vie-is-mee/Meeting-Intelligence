@@ -1,0 +1,16 @@
+{
+  "dataset_id": "m3_stage4_long_multitopic_v1",
+  "purpose": "Stage4 synthetic multi-topic stress, assistant authored; NOT independent holdout",
+  "cases": [
+    {
+      "id": "LONG01",
+      "split": "development",
+      "transcript": "An: Hôm nay cần chốt phương thức lưu trữ, việc sửa thanh toán và kế hoạch kiểm thử.\nBình: Tôi đề xuất lưu tệp trên ổ cứng máy chủ.\nChi: Nếu chạy hai máy chủ thì lưu trên ổ cứng khó đồng bộ.\nAn: Chưa chốt phương án lưu trữ, sang việc thanh toán trước.\nLan: Có lỗi thanh toán làm khách bị trừ hai lần.\nAn: Cái này team mình xử lý nhé.\nHuy: Tôi nhận xử lý lỗi trừ tiền hai lần trước thứ Sáu.\nAn: Xác nhận Huy xử lý lỗi thanh toán trước thứ Sáu.\nBình: Ta quay lại lưu trữ: tôi rút đề xuất ổ cứng.\nChi: Chuyển sang object storage sẽ dễ mở rộng.\nAn: Chốt object storage cho bản thử nghiệm, còn nhà cung cấp chọn ở cuộc họp khác.\nMai: Tôi nhận chuẩn bị bảng so sánh giá nhà cung cấp vào thứ Hai.\nAn: Được, Mai chuẩn bị bảng giá trước thứ Hai.\nKiên: Khi retry API cần dùng idempotency key để tránh ghi trùng. Đây là kinh nghiệm dự án trước.\nLan: Nghe nói thư viện thanh toán Z nhanh nhất, nhưng chưa đo thực tế.\nAn: Chưa thể coi thư viện Z nhanh hơn nếu chưa benchmark.\nMai: Tôi gặp trở ngại do không có quyền xem báo giá.\nAn: Tạm dừng việc chuẩn bị bảng giá, hủy deadline thứ Hai để xin quyền.\nMai: Tôi hiểu việc được tạm dừng; chưa hẹn ngày mới.\nAn: Kết luận: object storage đã chốt, nhà cung cấp còn mở, Huy vẫn xử lý lỗi thanh toán."
+    },
+    {
+      "id": "LONG02",
+      "split": "development",
+      "transcript": "Diệp: Hôm nay bàn lựa chọn đồng bộ dữ liệu và phân công đội kiểm thử.\nSang: Chúng ta có hai cách: đồng bộ tự động hoặc thủ công.\nHuy: Tôi nhận viết danh sách quyền cần xin, chưa chốt deadline.\nDiệp: Chốt bật đồng bộ tự động nếu bảo mật phê duyệt quyền đọc dữ liệu.\nLan: Bảo mật chưa xem xong phạm vi thông tin cá nhân.\nChi: Mình có nên giao Huy kiểm thử API thứ Sáu được không?\nDiệp: Chưa chốt hạn kiểm thử API, cũng chưa phân công người.\nKiên: Đối với module thông báo, chúng ta đang theo cách gửi theo lô.\nSang: Phần cấu hình gửi email cần rà soát trước buổi thử tiếp theo.\nKiên: Hay đặt hạn thứ Ba?\nSang: Hay thứ Năm?\nDiệp: Chưa chọn ngày cho cấu hình email, chưa biết ai nhận việc.\nHuy: Việc danh sách quyền vẫn do tôi phụ trách, dù đồng bộ chưa chốt.\nDiệp: Tôi mở lại lựa chọn đồng bộ tự động, chưa quyết định bật hay giữ thủ công.\nSang: Vấn đề quyền dữ liệu cá nhân còn mở.\nChi: Để team mình xem phần kiểm thử API nhé.\nDiệp: Đúng, chưa giao cá nhân nào phụ trách kiểm thử API.\nDiệp: Hãy ghi rõ các mục chưa xác định thay vì tự điền người hoặc ngày."
+    }
+  ]
+}
